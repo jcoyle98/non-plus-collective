@@ -37,6 +37,7 @@ def build():
     if OUT.exists():
         shutil.rmtree(OUT)
     shutil.copytree(ROOT / "static", OUT / "static")
+    shutil.copy(ROOT / "static" / "favicon.ico", OUT / "favicon.ico")  # browsers look for it at the root
     page = Template((ROOT / "templates" / "base.html").read_text(encoding="utf-8")).substitute(
         site_title=html.escape(config["site_title"]),
         description=html.escape(config["description"]),

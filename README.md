@@ -20,6 +20,7 @@ The page rebuilds when you save a file; refresh to see it.
 | Title, description | `config.json` |
 | Page layout | `templates/base.html` |
 | Scroll-to-rotate behaviour | `static/rotate.js` (`DEGREES_PER_PIXEL` sets the speed) |
+| Site icon (black barred S on its side) | `static/favicon.svg`, plus PNG/ICO copies |
 | The barred S itself | `templates/barred-s.svg` (EB Garamond's S plus a diagonal bar) |
 
 ## Publishing
