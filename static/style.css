@@ -1,0 +1,30 @@
+:root {
+  --mauve: #3a2240;   /* background: very dark purple */
+  --bright: #00f0ff;  /* the barred S: bright cyan */
+}
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  overscroll-behavior: none;   /* no bounce or pull-to-refresh */
+  background: var(--mauve);
+  color: var(--bright);
+}
+
+main {
+  height: 100vh;
+  height: 100dvh;       /* full height on phones, below the browser bars */
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  touch-action: none;   /* swipes rotate the S instead of scrolling or zooming the page */
+}
+
+/* Lacan's barred subject: large and centred. Scrolling rotates it (see static/rotate.js).
+   Sized so that even at 45 degrees its diagonal still fits the window. */
+.barred-s {
+  height: min(72vh, 72vw);
+  width: auto;
+  will-change: transform;
+}
