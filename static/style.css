@@ -1,3 +1,13 @@
+/* EB Garamond, the same face the barred S is drawn from (latin subset, regular).
+   Bundled so the text looks the same everywhere; licence in fonts/OFL.txt. */
+@font-face {
+  font-family: "EB Garamond";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/eb-garamond-latin-400.woff2") format("woff2");
+}
+
 :root {
   --mauve: #3a2240;   /* background: very dark purple */
   --bright: #00f0ff;  /* the barred S: bright cyan */

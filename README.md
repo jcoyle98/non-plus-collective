@@ -24,6 +24,7 @@ The page rebuilds when you save a file; refresh to see it.
 | Adding a page | `PAGES` in `build.py` |
 | Scroll-to-rotate behaviour | `static/rotate.js` (`DEGREES_PER_PIXEL` sets the speed) |
 | Site icon (black barred S on its side) | `static/favicon.svg`, plus PNG/ICO copies |
+| Text font (EB Garamond, bundled) | `static/fonts/`, `@font-face` at the top of `static/style.css` |
 | The barred S itself | `templates/barred-s.svg` (EB Garamond's S plus a diagonal bar) |
 
 ## Publishing
