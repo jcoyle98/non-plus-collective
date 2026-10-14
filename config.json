@@ -1,4 +1,10 @@
 {
   "site_title": "nonpluscollective",
-  "description": "An art collective."
+  "description": "An art collective.",
+  "directory": [
+    "alexwennerberg.com",
+    "desiringmachines.com",
+    "marykatetankard.com",
+    "naterthought.com"
+  ]
 }

@@ -36,6 +36,7 @@
 
   // Keyboard
   window.addEventListener("keydown", (e) => {
+    if (e.target.closest("a, summary, button")) return;  // let the menu use Enter and Space
     const step = { ArrowDown: 40, ArrowUp: -40, PageDown: 200, PageUp: -200, " ": 200 }[e.key];
     if (step !== undefined) { e.preventDefault(); turn(step); }
   });
