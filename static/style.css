@@ -1,3 +1,13 @@
+/* EB Garamond, the same face the barred S is drawn from (latin subset, regular).
+   Bundled so the text looks the same everywhere; licence in fonts/OFL.txt. */
+@font-face {
+  font-family: "EB Garamond";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/eb-garamond-latin-400.woff2") format("woff2");
+}
+
 :root {
   --mauve: #3a2240;   /* background: very dark purple */
   --bright: #00f0ff;  /* the barred S: bright cyan */
@@ -7,12 +17,50 @@ html, body { height: 100%; }
 
 body {
   margin: 0;
-  overscroll-behavior: none;   /* no bounce or pull-to-refresh */
   background: var(--mauve);
   color: var(--bright);
+  font-family: "EB Garamond", Garamond, Georgia, serif;
 }
 
-main {
+/* ---- Menu: three bars, top left, on every page ---- */
+
+.menu {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+}
+
+.menu summary {
+  list-style: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+}
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary svg { width: 28px; height: 28px; fill: var(--bright); }
+.menu summary:focus-visible { outline: 2px solid var(--bright); outline-offset: 2px; }
+
+.menu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 8px;
+  padding: 1rem 1.25rem;
+  background: var(--mauve);
+  border: 1px solid var(--bright);
+  font-size: 1.25rem;
+}
+.menu nav a { color: var(--bright); text-decoration: none; }
+.menu nav a:hover, .menu nav a[aria-current] { text-decoration: underline; }
+
+/* ---- Home: the barred S fills the window and turns on scroll ---- */
+
+body.home { overscroll-behavior: none; }   /* no bounce or pull-to-refresh */
+
+.home main {
   height: 100vh;
   height: 100dvh;       /* full height on phones, below the browser bars */
   display: grid;
@@ -23,8 +71,34 @@ main {
 
 /* Lacan's barred subject: large and centred. Scrolling rotates it (see static/rotate.js).
    Sized so that even at 45 degrees its diagonal still fits the window. */
-.barred-s {
+.home .barred-s {
   height: min(72vh, 72vw);
   width: auto;
   will-change: transform;
 }
+
+/* ---- Directory: smaller S near the top, list of sites beneath ---- */
+
+.directory main {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 72px 16px 4rem;
+  text-align: center;
+}
+
+.directory .barred-s {
+  display: block;
+  height: min(28vh, 40vw);
+  width: auto;
+  margin: 0 auto;
+}
+
+.sites {
+  list-style: none;
+  margin: 3rem 0 0;
+  padding: 0;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+  line-height: 2;
+}
+.sites a { color: var(--bright); text-decoration: none; overflow-wrap: anywhere; }
+.sites a:hover, .sites a:focus-visible { text-decoration: underline; }

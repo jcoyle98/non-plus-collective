@@ -3,17 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>$site_title</title>
+<title>$page_title</title>
 <meta name="description" content="$description">
-<link rel="icon" href="static/favicon.svg?v=$static_version" type="image/svg+xml">
-<link rel="icon" href="static/favicon-32.png?v=$static_version" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="static/apple-touch-icon.png?v=$static_version">
-<link rel="stylesheet" href="static/style.css?v=$static_version">
+<link rel="icon" href="${root}static/favicon.svg?v=$static_version" type="image/svg+xml">
+<link rel="icon" href="${root}static/favicon-32.png?v=$static_version" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="${root}static/apple-touch-icon.png?v=$static_version">
+<link rel="preload" href="${root}static/fonts/eb-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="${root}static/style.css?v=$static_version">
 </head>
-<body>
-<main>
-$barred_s
-</main>
-<script src="static/rotate.js?v=$static_version"></script>
+<body class="$page">
+<details class="menu">
+<summary aria-label="Menu">
+<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="2"/><rect x="3" y="11" width="18" height="2"/><rect x="3" y="17" width="18" height="2"/></svg>
+</summary>
+<nav>
+$nav
+</nav>
+</details>
+$content
+$scripts
 </body>
 </html>
