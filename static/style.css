@@ -258,7 +258,17 @@ body.design {
 .reveal:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; }
 
 .design .reveal .barred-s { color: var(--bg); }   /* invisible until hovered */
-.design .reveal:hover .barred-s, .design .reveal:focus-visible .barred-s { color: var(--mark); }
+.design .reveal:hover .barred-s, .design .reveal:focus-visible .barred-s,
+.design .reveal.barred .barred-s { color: var(--mark); }
+
+/* A plain S on hover; clicking draws the bar across it (pathLength="1" on the line) */
+.reveal .bar {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.4s ease-in;
+}
+.reveal.barred .bar { stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: reduce) { .reveal .bar { transition: none; } }
 
 .directory-dialog {
   padding: 0;
