@@ -59,7 +59,7 @@ def build():
     version = static_version()
     barred_s = (ROOT / "templates" / "barred-s.svg").read_text(encoding="utf-8")
     sites = "\n".join(
-        f'<li><a href="https://{html.escape(site)}">{html.escape(site)}</a></li>' for site in config["directory"]
+        f'<li><a href="https://{html.escape(site)}">{html.escape(site)}</a></li>' for site in sorted(config["directory"], key=str.lower)  # alphabetical, whatever order config.json uses
     )
     palettes = json.dumps(config["palettes"])
     for folder, label, template, title, scripts in PAGES:

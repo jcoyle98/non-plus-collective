@@ -19,7 +19,7 @@ The page rebuilds when you save a file; refresh to see it.
 | Colours | top of `static/style.css` (`--mauve`, `--bright`) |
 | Size of the barred S | `.barred-s` in `static/style.css` |
 | Title, description | `config.json` |
-| Sites listed on the directory page | `directory` in `config.json` |
+| Sites listed on the directory page (shown alphabetically) | `directory` in `config.json` |
 | Menu | `templates/menu.html` |
 | The parts every page shares | `templates/base.html` |
 | Page content | `templates/home.html`, `templates/directory.html`, `templates/design.html` |
