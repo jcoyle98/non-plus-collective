@@ -23,7 +23,7 @@ The page rebuilds when you save a file; refresh to see it.
 | Menu | `templates/menu.html` |
 | The parts every page shares | `templates/base.html` |
 | Page content | `templates/home.html`, `templates/directory.html`, `templates/design.html` |
-| Palettes on the design page | `palettes` in `config.json`; behaviour in `static/palette.js` |
+| Palettes on the design page | `palettes` in `config.json` (add `"roles"` to fix which colour is background, text, barred S and headline); behaviour in `static/palette.js` |
 | Adding a page | `PAGES` in `build.py` |
 | Draft pages (no menu, reached only by link) | `DRAFTS` in `build.py`; the hidden-S draft is `templates/draft-disappearing-s.html` and `static/reveal.js` |
 | Scroll-to-rotate behaviour | `static/rotate.js` (`DEGREES_PER_PIXEL` sets the speed) |

@@ -1,5 +1,7 @@
 // Design page: click a palette to recolour the page, or open "Adjust colours"
-// to choose which colour plays which part. The choice is kept in the address
+// to choose which colour plays which part. A palette in config.json can set
+// its own starting roles ("roles": {"bg": 1, ...}, numbered from colour-1);
+// otherwise they are worked out from the colours. The choice is kept in the address
 // (e.g. #p=3&bg=1&text=2&mark=5&head=4), so a combination can be shared as a link.
 (function () {
   const palettes = JSON.parse(document.getElementById("palette-data").textContent);
@@ -43,7 +45,16 @@
     return { bg, text, mark, head };
   }
 
-  let state = { p: 1, roles: defaults(palettes[1].colours) };
+  // Where a palette names its own roles, start from those
+  function startRoles(p) {
+    const palette = palettes[p];
+    if (!palette.roles) return defaults(palette.colours);
+    const roles = {};
+    ROLES.forEach(([role]) => { roles[role] = palette.roles[role] - 1; });
+    return roles;
+  }
+
+  let state = { p: 1, roles: startRoles(1) };
 
   function swatch(hex) {
     const span = document.createElement("span");
@@ -64,7 +75,7 @@
     label.textContent = palette.name;
     button.append(stripes, label);
     button.addEventListener("click", () => {
-      state = { p, roles: defaults(palette.colours) };
+      state = { p, roles: startRoles(p) };
       apply();
     });
     list.append(button);
@@ -118,7 +129,7 @@
     const q = new URLSearchParams(location.hash.slice(1));
     const p = palettes.findIndex((palette) => palette.name === q.get("p"));
     if (p < 0) return;
-    const roles = defaults(palettes[p].colours);
+    const roles = startRoles(p);
     ROLES.forEach(([role]) => {
       const i = parseInt(q.get(role), 10) - 1;
       if (i >= 0 && i < palettes[p].colours.length) roles[role] = i;
