@@ -262,6 +262,7 @@ body.design {
 .design .reveal.barred .barred-s { color: var(--mark); }
 
 /* Draft: the title sits above the S, so the gap goes beneath it instead */
+.design main.draft { padding-top: 24px; }   /* no menu on drafts, so no room needed for it */
 .reveal-head h1 { margin: 0 0 1.5rem; }
 .reveal-head .reveal { margin-bottom: 3rem; }
 
