@@ -5,7 +5,7 @@
     python3 build.py --serve   # build, serve at http://localhost:8001,
                                # and rebuild whenever a file changes
 
-Every page shares templates/base.html (head and menu); each page's own
+Every page shares templates/base.html (head) and templates/menu.html; each page's own
 content is a template listed in PAGES below. The barred S is
 templates/barred-s.svg; colours are at the top of static/style.css; title,
 description, the directory's list of sites and the design page's
@@ -39,7 +39,11 @@ PAGES = [
     ("", "Home", "home.html", None, ["rotate.js"]),
     ("directory", "Directory", "directory.html", "Directory", []),
     ("design", "Design", "design.html", "Design", ["palette.js"]),
+    # Drafts: built like any page but with no menu, and left out of everyone else's,
+    # so only the link reaches them
+    ("draft-disappearing-s", "Design", "draft-disappearing-s.html", "Design (draft)", ["palette.js", "reveal.js"]),
 ]
+DRAFTS = {"draft-disappearing-s"}
 
 
 def render(template, **values):
@@ -63,6 +67,7 @@ def build():
         nav = "\n".join(
             f'<a href="{root}{f + "/" if f else ""}"' + (' aria-current="page"' if f == folder else "") + f">{l}</a>"
             for f, l, *_ in PAGES
+            if f not in DRAFTS
         )
         page = render(
             "base.html",
@@ -71,7 +76,7 @@ def build():
             static_version=version,
             root=root,
             page=label.lower(),
-            nav=nav,
+            menu="" if folder in DRAFTS else render("menu.html", nav=nav),
             content=render(template, barred_s=barred_s, sites=sites, palettes=palettes),
             scripts="\n".join(f'<script src="{root}static/{js}?v={version}"></script>' for js in scripts),
         )

@@ -244,3 +244,33 @@ body.design {
   outline: 2px solid var(--text);
   outline-offset: 2px;
 }
+
+/* ---- Design: hidden barred S that opens the directory (see static/reveal.js) ---- */
+
+.reveal {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.reveal:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; }
+
+.design .reveal .barred-s { color: var(--bg); }   /* invisible until hovered */
+.design .reveal:hover .barred-s, .design .reveal:focus-visible .barred-s { color: var(--mark); }
+
+.directory-dialog {
+  padding: 0;
+  max-width: min(32rem, calc(100vw - 32px));
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--text);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+}
+.directory-dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
+
+.dialog-inner { padding: 1.5rem 16px; text-align: center; }
+.directory-dialog .sites { margin: 0; }
+.directory-dialog .sites a { color: var(--text); }
