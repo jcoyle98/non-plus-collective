@@ -42,8 +42,9 @@ PAGES = [
     # Drafts: built like any page but with no menu, and left out of everyone else's,
     # so only the link reaches them
     ("draft-disappearing-s", "Design", "draft-disappearing-s.html", "Design (draft)", ["palette.js", "reveal.js"]),
+    ("draft-arterial", "Design", "draft-arterial.html", "Design (draft)", ["palette.js", "reveal.js", "looks.js"]),
 ]
-DRAFTS = {"draft-disappearing-s"}
+DRAFTS = {"draft-disappearing-s", "draft-arterial"}
 
 
 def render(template, **values):
@@ -77,7 +78,7 @@ def build():
             root=root,
             page=label.lower(),
             menu="" if folder in DRAFTS else render("menu.html", nav=nav),
-            content=render(template, barred_s=barred_s, sites=sites, palettes=palettes),
+            content=render(template, root=root, barred_s=barred_s, sites=sites, palettes=palettes),
             scripts="\n".join(f'<script src="{root}static/{js}?v={version}"></script>' for js in scripts),
         )
         (OUT / folder).mkdir(parents=True, exist_ok=True)

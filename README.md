@@ -26,6 +26,7 @@ The page rebuilds when you save a file; refresh to see it.
 | Palettes on the design page | `palettes` in `config.json` (add `"roles"` to fix which colour is background, text, barred S and headline); behaviour in `static/palette.js` |
 | Adding a page | `PAGES` in `build.py` |
 | Draft pages (no menu, reached only by link) | `DRAFTS` in `build.py`; the hidden-S draft is `templates/draft-disappearing-s.html` and `static/reveal.js` |
+| The arterial-engraving draft | `templates/draft-arterial.html`, `static/looks.js` (the image toggles), image 142 from the image gallery in `tools/source/` (not published). Made from it, into `static/images/`: the lines-only masks (`tools/ink_mask.py`), the copy without the border and page number (`tools/unframe.py`) and the background grain tiles (`tools/grain.py`) |
 | Scroll-to-rotate behaviour | `static/rotate.js` (`DEGREES_PER_PIXEL` sets the speed) |
 | Site icon (black barred S on its side) | `static/favicon.svg`, plus PNG/ICO copies |
 | Text font (EB Garamond, bundled) | `static/fonts/`, `@font-face` at the top of `static/style.css` |

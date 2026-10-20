@@ -4,8 +4,10 @@
 // otherwise they are worked out from the colours. The choice is kept in the address
 // (e.g. #p=3&bg=1&text=2&mark=5&head=4), so a combination can be shared as a link.
 (function () {
-  const palettes = JSON.parse(document.getElementById("palette-data").textContent);
-  const ROLES = [["bg", "Background"], ["text", "Text"], ["mark", "Barred S"], ["head", "Headline"]];
+  const data = document.getElementById("palette-data");
+  const palettes = JSON.parse(data.textContent);
+  // A page can rename the barred S's colour with data-mark-label (the engraving draft calls it "Image")
+  const ROLES = [["bg", "Background"], ["text", "Text"], ["mark", data.dataset.markLabel || "Barred S"], ["head", "Headline"]];
   const body = document.body;
   const list = document.querySelector(".palettes");
   const rows = document.querySelector(".role-rows");

@@ -259,7 +259,7 @@ body.design {
 
 .design .reveal .barred-s { color: var(--bg); }   /* invisible until hovered */
 .design .reveal:hover .barred-s, .design .reveal:focus-visible .barred-s,
-.design .reveal.barred .barred-s { color: var(--mark); }
+.design .reveal.open .barred-s { color: var(--mark); }
 
 /* Draft: the title sits above the S, so the gap goes beneath it instead */
 .design main.draft { padding-top: 24px; }   /* no menu on drafts, so no room needed for it */
@@ -272,7 +272,7 @@ body.design {
   stroke-dashoffset: 1;
   transition: stroke-dashoffset 0.4s ease-in;
 }
-.reveal.barred .bar { stroke-dashoffset: 0; }
+.reveal.open .bar { stroke-dashoffset: 0; }
 @media (prefers-reduced-motion: reduce) { .reveal .bar { transition: none; } }
 
 .directory-dialog {
@@ -289,3 +289,82 @@ body.design {
 .dialog-inner { padding: 1.5rem 16px; text-align: center; }
 .directory-dialog .sites { margin: 0; }
 .directory-dialog .sites a { color: var(--text); }
+
+/* ---- Draft: the arterial engraving in place of the S (see static/looks.js) ----
+   Always showing; clicking it opens the directory. The buttons along the bottom
+   set data-look on <body>, which changes how the engraving meets the page. */
+
+.art {
+  display: block;
+  position: relative;
+  height: min(60vh, 120vw);
+  aspect-ratio: 965 / 1600;
+  margin: 0 auto;
+}
+.art > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* The lines alone: masks made by tools/ink_mask.py, painted in any colour.
+   Without the border and "Pag. 68." (tools/unframe.py) unless the Frame switch is on */
+.ink {
+  -webkit-mask: url("images/142-arterial-system-clean-ink.png") center / contain no-repeat;
+  mask: url("images/142-arterial-system-clean-ink.png") center / contain no-repeat;
+}
+[data-frame="on"] .ink {
+  -webkit-mask-image: url("images/142-arterial-system-ink.png");
+  mask-image: url("images/142-arterial-system-ink.png");
+}
+
+/* Sparse specks over the whole background, like the flecks in the print's paper:
+   seamless tiles used as masks (tools/grain.py), painted in the lines' colour.
+   looks.js sets --grain to as many layers of them as the grain slider asks for. */
+[data-grain="on"]::before,
+[data-grain="on"] .palette-panel::before,
+[data-grain="on"] .directory-dialog::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--mark);
+  -webkit-mask: var(--grain);
+  mask: var(--grain);
+}
+[data-grain="on"] .palette-panel::before,
+[data-grain="on"] .directory-dialog::before { position: absolute; }
+
+/* Ink: the lines in the image colour (--mark). Negative: a block of that colour with the lines cut out */
+.ink { background: var(--mark); }
+.plate { display: none; }
+[data-look="negative"] .plate { display: block; background: var(--mark); }
+[data-look="negative"] .ink { background: var(--bg); }
+
+.looks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 2px 0 8px;
+}
+.look {
+  font: inherit;
+  font-size: 1rem;
+  color: inherit;
+  cursor: pointer;
+  padding: 2px 10px;
+  background: none;
+  border: 1px solid var(--text);
+  border-radius: 999px;
+}
+.look[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+.look:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.looks .divider { width: 1px; margin: 0 6px; background: var(--text); opacity: 0.5; }
+.grain-control { display: flex; align-items: center; gap: 8px; font-size: 1rem; }
+.grain-control input { width: 7rem; accent-color: var(--text); }
+
+.credit { font-size: 0.9rem; opacity: 0.75; }
+.credit a { color: inherit; }
