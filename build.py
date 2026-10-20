@@ -8,7 +8,8 @@
 Every page shares templates/base.html (head and menu); each page's own
 content is a template listed in PAGES below. The barred S is
 templates/barred-s.svg; colours are at the top of static/style.css; title,
-description and the directory's list of sites are in config.json.
+description, the directory's list of sites and the design page's
+palettes are in config.json.
 """
 
 import hashlib
@@ -37,6 +38,7 @@ PAGES = [
     # (output folder, menu label, content template, title, scripts)
     ("", "Home", "home.html", None, ["rotate.js"]),
     ("directory", "Directory", "directory.html", "Directory", []),
+    ("design", "Design", "design.html", "Design", ["palette.js"]),
 ]
 
 
@@ -55,6 +57,7 @@ def build():
     sites = "\n".join(
         f'<li><a href="https://{html.escape(site)}">{html.escape(site)}</a></li>' for site in config["directory"]
     )
+    palettes = json.dumps(config["palettes"])
     for folder, label, template, title, scripts in PAGES:
         root = "../" * (folder.count("/") + 1) if folder else "./"  # relative links work under any base path
         nav = "\n".join(
@@ -69,7 +72,7 @@ def build():
             root=root,
             page=label.lower(),
             nav=nav,
-            content=render(template, barred_s=barred_s, sites=sites),
+            content=render(template, barred_s=barred_s, sites=sites, palettes=palettes),
             scripts="\n".join(f'<script src="{root}static/{js}?v={version}"></script>' for js in scripts),
         )
         (OUT / folder).mkdir(parents=True, exist_ok=True)

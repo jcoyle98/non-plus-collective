@@ -1,6 +1,7 @@
 # nonpluscollective
 
-A small static site: Lacan's barred subject, large, on dark purple, plus a directory of sites. No dependencies beyond Python 3.
+A small static site: Lacan's barred subject, large, on dark purple, plus a directory of sites
+and a design page for trying out colour palettes. No dependencies beyond Python 3.
 
 ## Preview locally
 
@@ -20,7 +21,8 @@ The page rebuilds when you save a file; refresh to see it.
 | Title, description | `config.json` |
 | Sites listed on the directory page | `directory` in `config.json` |
 | Menu and the parts every page shares | `templates/base.html` |
-| Home page / directory page content | `templates/home.html`, `templates/directory.html` |
+| Page content | `templates/home.html`, `templates/directory.html`, `templates/design.html` |
+| Palettes on the design page | `palettes` in `config.json`; behaviour in `static/palette.js` |
 | Adding a page | `PAGES` in `build.py` |
 | Scroll-to-rotate behaviour | `static/rotate.js` (`DEGREES_PER_PIXEL` sets the speed) |
 | Site icon (black barred S on its side) | `static/favicon.svg`, plus PNG/ICO copies |
