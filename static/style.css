@@ -102,3 +102,145 @@ body.home { overscroll-behavior: none; }   /* no bounce or pull-to-refresh */
 }
 .sites a { color: var(--bright); text-decoration: none; overflow-wrap: anywhere; }
 .sites a:hover, .sites a:focus-visible { text-decoration: underline; }
+
+/* ---- Design: try the palettes (see static/palette.js) ----
+   palette.js sets --bg, --text, --mark and --head on <body>;
+   the menu follows by borrowing them for --mauve and --bright. */
+
+body.design {
+  --bg: #3a2240;      /* the site's own colours, until palette.js runs */
+  --text: #00f0ff;
+  --mark: #00f0ff;
+  --head: #00f0ff;
+  --mauve: var(--bg);
+  --bright: var(--mark);
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.design main {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 72px 16px 12rem;   /* room at the bottom for the palette panel */
+}
+
+.design-head { text-align: center; }
+
+.design .barred-s {
+  display: block;
+  height: min(48vh, 64vw);
+  width: auto;
+  margin: 0 auto;
+  color: var(--mark);
+  transition: color 0.3s;
+}
+
+.design h1 {
+  margin: 1.5rem 0 3rem;
+  font-weight: 400;   /* only the regular weight is bundled */
+  font-size: clamp(2.25rem, 9vw, 4rem);
+  line-height: 1.1;
+  color: var(--head);
+  transition: color 0.3s;
+}
+
+.sample {
+  font-size: clamp(1.125rem, 2.8vw, 1.375rem);
+  line-height: 1.6;
+}
+.sample p { margin: 0 0 1.4em; }
+
+.palette-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: var(--bg);
+  border-top: 1px solid var(--text);
+  transition: background-color 0.3s;
+}
+
+.palettes {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  justify-content: safe center;
+  padding: 4px 2px;
+}
+
+.palette, .choice {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.palette {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: none;
+  border: 0;
+}
+.palette .stripes {
+  display: flex;
+  width: 60px;
+  height: 26px;
+  border: 1px solid var(--text);
+}
+.palette .stripes span { flex: 1; }
+.palette[aria-pressed="true"] .stripes { outline: 2px solid var(--text); outline-offset: 2px; }
+.palette[aria-pressed="true"] > span:last-child { text-decoration: underline; }
+
+.roles summary {
+  cursor: pointer;
+  margin-top: 4px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.role-rows {
+  display: grid;
+  gap: 10px;
+  max-width: 34rem;
+  margin: 12px auto 0;
+}
+
+.role {
+  display: grid;
+  grid-template-columns: 6.5rem auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.choices { display: flex; gap: 8px; }
+
+.choice {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--text);
+  border-radius: 50%;
+}
+.choice[aria-pressed="true"] { outline: 2px solid var(--text); outline-offset: 2px; }
+
+.role code { font-size: 0.85rem; opacity: 0.8; }
+
+.contrast { margin: 12px 0 2px; text-align: center; }
+
+@media (max-width: 480px) {
+  .role { grid-template-columns: 5.5rem auto; }
+  .role code { display: none; }
+}
+
+.palette:focus-visible, .choice:focus-visible, .roles summary:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}

@@ -5,8 +5,117 @@
     "alexwennerberg.com",
     "desiringmachines.com",
     "marykatetankard.com",
-    "naterthought.com" ,
-    "brookecorso.com" ,
+    "naterthought.com",
+    "brookecorso.com",
     "macksrothman.com"
+  ],
+  "palettes": [
+    {
+      "name": "Site",
+      "colours": [
+        "#3a2240",
+        "#00f0ff"
+      ]
+    },
+    {
+      "name": "1",
+      "colours": [
+        "#242422",
+        "#d3c8a8",
+        "#56513c",
+        "#81746b",
+        "#bc4b2f"
+      ]
+    },
+    {
+      "name": "2",
+      "colours": [
+        "#e8c273",
+        "#100d12",
+        "#633f21",
+        "#706a5a",
+        "#5d6a7d"
+      ]
+    },
+    {
+      "name": "3",
+      "colours": [
+        "#151513",
+        "#d8c07f",
+        "#df633d",
+        "#6f7655",
+        "#d9d3ae"
+      ]
+    },
+    {
+      "name": "4",
+      "colours": [
+        "#b99759",
+        "#8e8170",
+        "#3c2c2b",
+        "#a26828",
+        "#84713c"
+      ]
+    },
+    {
+      "name": "5",
+      "colours": [
+        "#8d7474",
+        "#d3b374",
+        "#777267",
+        "#5e6a7f",
+        "#8d8762"
+      ]
+    },
+    {
+      "name": "6",
+      "colours": [
+        "#c9785b",
+        "#cfa98d",
+        "#778063",
+        "#c15043",
+        "#a97f47"
+      ]
+    },
+    {
+      "name": "7",
+      "colours": [
+        "#3d4e78",
+        "#5f779c",
+        "#d8c164",
+        "#696035",
+        "#d0ccbd"
+      ]
+    },
+    {
+      "name": "8",
+      "colours": [
+        "#827356",
+        "#e78961",
+        "#615348",
+        "#efd381",
+        "#8d949c"
+      ]
+    },
+    {
+      "name": "9",
+      "colours": [
+        "#722b35",
+        "#c15043",
+        "#2a3339",
+        "#7b7a4b",
+        "#7c6b6a"
+      ]
+    },
+    {
+      "name": "10",
+      "colours": [
+        "#647553",
+        "#abac88",
+        "#a96152",
+        "#1e1d19",
+        "#a68747"
+      ]
+    }
   ]
 }
