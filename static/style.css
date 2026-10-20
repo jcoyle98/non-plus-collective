@@ -261,6 +261,10 @@ body.design {
 .design .reveal:hover .barred-s, .design .reveal:focus-visible .barred-s,
 .design .reveal.barred .barred-s { color: var(--mark); }
 
+/* Draft: the title sits above the S, so the gap goes beneath it instead */
+.reveal-head h1 { margin: 0 0 1.5rem; }
+.reveal-head .reveal { margin-bottom: 3rem; }
+
 /* A plain S on hover; clicking draws the bar across it (pathLength="1" on the line) */
 .reveal .bar {
   stroke-dasharray: 1;
