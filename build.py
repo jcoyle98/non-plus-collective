@@ -40,11 +40,16 @@ PAGES = [
     ("directory", "Directory", "directory.html", "Directory", []),
     ("design", "Design", "design.html", "Design", ["palette.js"]),
     # Drafts: built like any page but with no menu, and left out of everyone else's,
-    # so only the link reaches them
+    # so only a link reaches them; /drafts lists them all
+    ("drafts", "Drafts", "drafts.html", "Drafts", []),
     ("draft-disappearing-s", "Design", "draft-disappearing-s.html", "Design (draft)", ["palette.js", "reveal.js"]),
     ("draft-arterial", "Design", "draft-arterial.html", "Design (draft)", ["palette.js", "reveal.js", "looks.js"]),
 ]
-DRAFTS = {"draft-disappearing-s", "draft-arterial"}
+DRAFTS = {   # each draft, and what it tries, as listed on /drafts
+    "draft-disappearing-s": "The barred S hidden in the background colour: hover to see it, click to draw the bar and open the directory.",
+    "draft-arterial": "Image 142's arterial engraving in place of the S, as ink or a negative, with a frame switch and a grain slider.",
+}
+HIDDEN = {"drafts", *DRAFTS}   # pages with no menu, left out of the menu
 
 
 def render(template, **values):
@@ -63,12 +68,15 @@ def build():
         f'<li><a href="https://{html.escape(site)}">{html.escape(site)}</a></li>' for site in sorted(config["directory"], key=str.lower)  # alphabetical, whatever order config.json uses
     )
     palettes = json.dumps(config["palettes"])
+    drafts = "\n".join(
+        f'<li><a href="../{folder}/">{folder}</a><p>{html.escape(about)}</p></li>' for folder, about in DRAFTS.items()
+    )
     for folder, label, template, title, scripts in PAGES:
         root = "../" * (folder.count("/") + 1) if folder else "./"  # relative links work under any base path
         nav = "\n".join(
             f'<a href="{root}{f + "/" if f else ""}"' + (' aria-current="page"' if f == folder else "") + f">{l}</a>"
             for f, l, *_ in PAGES
-            if f not in DRAFTS
+            if f not in HIDDEN
         )
         page = render(
             "base.html",
@@ -77,8 +85,8 @@ def build():
             static_version=version,
             root=root,
             page=label.lower(),
-            menu="" if folder in DRAFTS else render("menu.html", nav=nav),
-            content=render(template, root=root, barred_s=barred_s, sites=sites, palettes=palettes),
+            menu="" if folder in HIDDEN else render("menu.html", nav=nav),
+            content=render(template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts),
             scripts="\n".join(f'<script src="{root}static/{js}?v={version}"></script>' for js in scripts),
         )
         (OUT / folder).mkdir(parents=True, exist_ok=True)

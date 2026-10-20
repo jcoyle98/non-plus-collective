@@ -103,6 +103,19 @@ body.home { overscroll-behavior: none; }   /* no bounce or pull-to-refresh */
 .sites a { color: var(--bright); text-decoration: none; overflow-wrap: anywhere; }
 .sites a:hover, .sites a:focus-visible { text-decoration: underline; }
 
+/* ---- Drafts: a list of the draft pages, each with what it tries ---- */
+
+.drafts main {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 48px 16px 4rem;
+}
+.drafts h1 { margin: 0 0 2rem; font-weight: 400; font-size: clamp(2.25rem, 9vw, 4rem); }
+.drafts-list { list-style: none; margin: 0; padding: 0; }
+.drafts-list li { margin: 0 0 1.75rem; }
+.drafts-list a { color: var(--bright); font-size: clamp(1.25rem, 5vw, 1.75rem); overflow-wrap: anywhere; }
+.drafts-list p { margin: 0.25rem 0 0; font-size: 1.1rem; line-height: 1.5; }
+
 /* ---- Design: try the palettes (see static/palette.js) ----
    palette.js sets --bg, --text, --mark and --head on <body>;
    the menu follows by borrowing them for --mauve and --bright. */
