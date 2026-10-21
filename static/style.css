@@ -750,6 +750,8 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .radiolarian-draft .r-nav a { color: var(--ink); text-decoration: none; white-space: nowrap; }
 /* in the middle layout the links span exactly the width of NON PLUS (sized by radiolarian.js) */
 .radiolarian-draft[data-layout="middle"] .r-nav { justify-content: space-between; flex-wrap: nowrap; gap: 0; }
+/* ...unless the window is too narrow for them to share a readable line: then they stack */
+.radiolarian-draft[data-layout="middle"] .r-nav.stacked { flex-direction: column; justify-content: flex-start; gap: .35rem; }
 /* "Hide options" hides the pickers and the credit */
 .radiolarian-draft.options-hidden .r-controls, .radiolarian-draft.options-hidden .r-credit { display: none; }
 .radiolarian-draft .r-nav a:hover { text-decoration: underline; }

@@ -135,14 +135,22 @@
   const title = page.querySelector(".r-title"), nav = page.querySelector(".r-nav");
   function fitNav() {
     const links = [...nav.querySelectorAll("a")];
+    nav.classList.remove("stacked");
     if (page.dataset.layout !== "middle") { nav.style.width = ""; nav.style.fontSize = ""; fit(); return; }
     const width = title.getBoundingClientRect().width;
+    nav.style.width = "";
     nav.style.fontSize = "100px";                                  // measure the words at a known size
     const words = links.reduce((sum, a) => sum + a.getBoundingClientRect().width, 0) / 100;
     const titleSize = parseFloat(getComputedStyle(title).fontSize);
-    const size = Math.max(13, Math.min(titleSize * 0.5, width / (words + 1.0 * (links.length - 1))));
-    nav.style.fontSize = `${size}px`;
-    nav.style.width = `${width}px`;
+    const fits = width / (words + 1.0 * (links.length - 1));      // the size that makes them span NON PLUS
+    if (fits >= 13) {
+      nav.style.fontSize = `${Math.min(titleSize * 0.5, fits)}px`;
+      nav.style.width = `${width}px`;
+    } else {
+      // too narrow to share one readable line (phones): stack them under NON PLUS instead
+      nav.classList.add("stacked");
+      nav.style.fontSize = `${Math.max(15, Math.min(titleSize * 0.45, 18))}px`;
+    }
     fit();   // the text's new size can change how much room the bulb has
   }
   addEventListener("resize", fitNav);
