@@ -8,6 +8,16 @@
   src: url("fonts/eb-garamond-latin-400.woff2") format("woff2");
 }
 
+/* EB Garamond italic (latin subset, regular weight; same licence), so italics are the real
+   italic letters rather than slanted upright ones. */
+@font-face {
+  font-family: "EB Garamond";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/eb-garamond-latin-400-italic.woff2") format("woff2");
+}
+
 /* The same EB Garamond with its discretionary ligatures kept, for the newspaper draft:
    just the linked st and ct of classic French printing (made from the full font,
    regular weight, latin; same licence). */
@@ -559,4 +569,124 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
   main.paper .photo { order: -1; justify-self: center; }   /* the engraving above, the text filling the rest */
   [data-paper] .paper .body { column-count: 1; }
   [data-paper="4"] .photo { margin-right: calc(-1 * var(--gutter)); }
+}
+
+/* ---------------------------------------------------------------------------
+   Draft: hurricane (templates/draft-hurricane.html, static/hurricane.js)
+   Hurricane Gracie full-screen, the barred S top left as the menu,
+   "non plus" in colours bottom right. Scoped to .hurricane-draft. */
+.design main.hurricane-draft {
+  position: fixed;
+  inset: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+  --mark: #f4f1ea;
+  --panel-bg: rgba(12, 10, 12, .86);
+  --panel-fg: #f4f1ea;
+}
+.hurricane-draft .storm {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+.hurricane-draft { --s-size: clamp(20px, 2.6vh, 28px); }   /* the menu button */
+.hurricane-draft .s-menu {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + clamp(16px, 3vw, 36px));
+  left: clamp(16px, 3vw, 36px);
+  z-index: 3;
+  width: var(--s-size);
+  height: var(--s-size);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.hurricane-draft .s-menu .burger {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: var(--word, var(--mark));   /* the same colour as "non plus" */
+}
+.hurricane-draft .h-menu {
+  position: absolute;
+  z-index: 2;
+  top: calc(env(safe-area-inset-top, 0px) + clamp(16px, 3vw, 36px) + var(--s-size) + 8px);
+  left: clamp(16px, 3vw, 36px);
+  padding: .9rem 1.2rem;
+  background: var(--panel-bg);
+  color: var(--panel-fg);
+  backdrop-filter: blur(8px);
+  border-radius: 3px;
+}
+.hurricane-draft .h-menu[hidden] { display: none; }
+.hurricane-draft .h-menu ul { list-style: none; margin: 0; padding: 0; }
+.hurricane-draft .h-menu li { margin: .25rem 0; font-size: 1.25rem; }
+.hurricane-draft .h-menu a { color: inherit; text-decoration: none; }
+.hurricane-draft .h-menu a:hover { text-decoration: underline; }
+.hurricane-draft .wordmark {
+  /* placed by hurricane.js so it comes out of the hurricane's eye */
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  font-family: var(--word-font, "EB Garamond"), serif;
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 5vw, 4.4rem);   /* between the first, large version and the small one */
+  letter-spacing: .12em;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--word, #00e5ff);
+  visibility: hidden;   /* until placed */
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+.hurricane-draft .wordmark.dragging { cursor: grabbing; }
+.hurricane-draft .h-pos { margin: 0; font-size: .7rem; color: var(--mark); opacity: .75; }
+.hurricane-draft .h-pos output { font-family: ui-monospace, Menlo, monospace; }
+.hurricane-draft .h-pos button { font: inherit; color: inherit; background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
+.hurricane-draft .h-controls {
+  position: absolute;
+  left: clamp(16px, 3vw, 36px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px));
+  z-index: 2;
+  display: grid;
+  gap: 8px;
+  max-width: 50vw;
+}
+.hurricane-draft .h-looks, .hurricane-draft .h-words { display: flex; flex-wrap: wrap; gap: 6px; }
+.hurricane-draft .h-font { font-size: .75rem; color: var(--mark); display: flex; gap: .5rem; align-items: center; }
+.hurricane-draft .h-font select { font: inherit; font-size: .8rem; padding: .15rem .3rem; max-width: 14rem; }
+.hurricane-draft .h-looks button, .hurricane-draft .h-words button {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(128, 128, 128, .6);
+  padding: 0;
+  cursor: pointer;
+}
+.hurricane-draft .h-looks button[aria-pressed="true"],
+.hurricane-draft .h-words button[aria-pressed="true"] { outline: 2px solid var(--mark); outline-offset: 2px; }
+.hurricane-draft .h-credit {
+  position: absolute;
+  left: clamp(16px, 3vw, 36px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 122px);
+  margin: 0;
+  max-width: 42vw;
+  font-size: .7rem;
+  color: var(--mark);
+  opacity: .55;
+}
+.hurricane-draft .h-credit a { color: inherit; }
+.hurricane-draft .h-filters { position: absolute; }
+@media (max-width: 600px) {
+  .hurricane-draft .h-credit { display: none; }
 }
