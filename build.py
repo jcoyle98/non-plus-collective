@@ -48,6 +48,7 @@ PAGES = [
     ("draft-arterial", "Design", "draft-arterial.html", "Design (draft)", ["palette.js", "reveal.js", "looks.js"]),
     ("draft-newspaper", "Design", "draft-newspaper.html", "Design (draft)", ["palette.js", "reveal.js", "looks.js", "newspaper.js"]),
     ("draft-hurricane", "Design", "draft-hurricane.html", "Design (draft)", ["hurricane.js"]),
+    ("draft-radiolarian", "Design", "draft-radiolarian.html", "Design (draft)", ["radiolarian.js"]),
 ]
 DRAFTS = {   # each design, and what it tries, as listed on /design
     "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
@@ -55,6 +56,7 @@ DRAFTS = {   # each design, and what it tries, as listed on /design
     "draft-arterial": "Image 142's arterial engraving in place of the S, as ink or a negative, with a frame switch and a grain slider.",
     "draft-newspaper": "Newspaper layouts: the title and a random passage of Proust, in French, filling the window beside the engraving, in five versions to compare.",
     "draft-hurricane": "Hurricane Gracie on a 1959 Navy radar scope, full-screen at 4K, in black and white, inverted, or washed in the palettes; a menu top left (directory, featured writings), and 'non plus' coming out of the eye, draggable, with a choice of colours and fonts.",
+    "draft-radiolarian": "Image 91, a radiolarian, on a diagonal: the stem from the top-right corner down to the body, its open end facing left, on a page of its own black; two layouts to compare: NON PLUS top left with 'Directory' and 'Featured Writings' stacked lower left, or NON PLUS in the middle with a short line and the links under it; the same colour treatments and fonts.",
 }
 HIDDEN = {"design", "drafts", *DRAFTS}   # pages with no menu, left out of the menu
 

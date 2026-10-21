@@ -690,3 +690,136 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 @media (max-width: 600px) {
   .hurricane-draft .h-credit { display: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   Draft: radiolarian (templates/draft-radiolarian.html, static/radiolarian.js)
+   Image 91 on a diagonal from the top-right corner, on a page of its own colour; "Directory" and
+   "Featured Writings" under a short line beneath NON PLUS, the block in the middle of the page, left-aligned.
+   Scoped to .radiolarian-draft. */
+.design main.radiolarian-draft {
+  position: fixed;
+  inset: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  --page: #000;
+  --ink: #fff;
+  --panel-bg: rgba(12, 10, 12, .86);
+  --panel-fg: #f4f1ea;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font, "EB Garamond"), serif;
+  transition: background-color .3s;
+}
+.radiolarian-draft .specimen {
+  /* The image is turned on its side by tools/radiolarian.py (body on the right, stem pointing left).
+     radiolarian.js fits it to the window: the body big and near the bottom right (--w, --cx, --cy),
+     turned (--rot) so its open end faces left and the stem runs up and off to the right.
+     The body's centre is at 63.2% across and 49% down the image (1735/2800 as tall as wide).
+     The values below are only a fallback, used until the script runs. */
+  --w: 125vw;
+  --cx: 60vw;
+  --cy: 74vh;
+  --rot: 135deg;
+  position: absolute;
+  width: var(--w);
+  aspect-ratio: 2800 / 1735;
+  max-width: none;
+  /* the photograph as a stencil: the page shows through its black, the light colour fills the rest,
+     so the background can't differ from the page (tools/radiolarian.py makes the mask) */
+  background: var(--image-ink, #fff);
+  -webkit-mask-size: 100% 100%;   /* the mask image itself is set on the element, in the template */
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  left: calc(var(--cx) - var(--w) * .632);
+  top: calc(var(--cy) - var(--w) * .6196 * .49);
+  transform-origin: 63.2% 49%;
+  transform: rotate(var(--rot));
+}
+.radiolarian-draft .r-block {
+  /* NON PLUS, a short line under it, and the two links: one block, in the middle of the page
+     against the left margin; the line is only as wide as the block */
+  position: absolute;
+  left: clamp(16px, 3vw, 36px);
+  top: 33%;   /* its centre a third of the way down; draggable up and down (radiolarian.js) */
+  transform: translateY(-50%);
+  z-index: 2;
+  width: max-content;
+  max-width: 80vw;
+  text-align: left;
+}
+.radiolarian-draft .r-nav {
+  display: flex;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+  margin-top: clamp(8px, 1.4vw, 16px);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+}
+.radiolarian-draft .r-nav a { color: var(--ink); text-decoration: none; }
+.radiolarian-draft .r-nav a:hover { text-decoration: underline; }
+.radiolarian-draft .r-title {
+  margin: 0;
+  padding-bottom: clamp(8px, 1.4vw, 16px);
+  border-bottom: 1px solid var(--ink);   /* the line */
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: clamp(2rem, 5.5vw, 5rem);
+  line-height: 1;
+  color: var(--ink);
+}
+/* Layout "middle": the block can be dragged up and down (radiolarian.js) */
+.radiolarian-draft[data-layout="middle"] .r-block { cursor: ns-resize; user-select: none; touch-action: none; }
+/* Layout "corners": NON PLUS top left, the two links stacked in the lower left, no line */
+.radiolarian-draft[data-layout="corners"] .r-block { position: static; transform: none; }
+.radiolarian-draft[data-layout="corners"] .r-title {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + clamp(48px, 14vh, 160px));
+  left: clamp(16px, 3vw, 36px);
+  z-index: 2;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.radiolarian-draft[data-layout="corners"] .r-nav {
+  position: absolute;
+  left: clamp(16px, 3vw, 36px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 130px);   /* above the controls and credit */
+  z-index: 2;
+  flex-direction: column;
+  gap: .35rem;
+  margin: 0;
+}
+.radiolarian-draft .r-layout { font-size: .75rem; display: flex; gap: .4rem; align-items: center; margin: 0; }
+.radiolarian-draft .r-layout button { font: inherit; color: inherit; background: none; border: 1px solid rgba(128,128,128,.6); border-radius: 3px; padding: .1rem .5rem; cursor: pointer; }
+.radiolarian-draft .r-layout button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
+.radiolarian-draft .r-controls {
+  position: absolute;
+  left: clamp(16px, 3vw, 36px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px));
+  z-index: 2;
+  display: grid;
+  gap: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+.radiolarian-draft .r-looks { display: flex; flex-wrap: wrap; gap: 6px; max-width: 45vw; }
+.radiolarian-draft .r-looks button {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1px solid rgba(128, 128, 128, .6); padding: 0; cursor: pointer;
+}
+.radiolarian-draft .r-looks button[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 2px; }
+.radiolarian-draft .r-font { font-size: .75rem; display: flex; gap: .5rem; align-items: center; }
+.radiolarian-draft .r-font select { font: inherit; font-size: .8rem; padding: .15rem .3rem; max-width: 14rem; }
+.radiolarian-draft .r-credit {
+  position: absolute;
+  left: clamp(16px, 3vw, 36px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 96px);
+  margin: 0;
+  max-width: 40vw;
+  font-size: .7rem;
+  opacity: .55;
+}
+.radiolarian-draft .r-credit a { color: inherit; }
+@media (max-width: 600px) {
+  .radiolarian-draft .r-credit { display: none; }
+}
