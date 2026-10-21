@@ -17,7 +17,7 @@
 
   function choose(look) {
     document.body.dataset.look = look;
-    group.querySelectorAll(".look").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.look === look)));
+    group.querySelectorAll(".look[data-look]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.look === look)));
   }
 
   LOOKS.forEach(([look, name, title]) => {

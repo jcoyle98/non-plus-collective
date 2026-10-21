@@ -2,7 +2,9 @@
 // to choose which colour plays which part. A palette in config.json can set
 // its own starting roles ("roles": {"bg": 1, ...}, numbered from colour-1);
 // otherwise they are worked out from the colours. The choice is kept in the address
-// (e.g. #p=3&bg=1&text=2&mark=5&head=4), so a combination can be shared as a link.
+// (e.g. #p=3&bg=1&text=2&mark=5&head=4), so a combination can be shared as a link;
+// other things in the address (a draft's own settings) are left alone. A page can
+// give a starting combination, used when the address has none, with data-start.
 (function () {
   const data = document.getElementById("palette-data");
   const palettes = JSON.parse(data.textContent);
@@ -123,12 +125,15 @@
     const ratio = contrast(colours[state.roles.text], colours[state.roles.bg]);
     contrastNote.textContent = `Text contrast ${ratio.toFixed(1)} : 1 — ` +
       (ratio >= 7 ? "very easy to read" : ratio >= 4.5 ? "easy to read" : ratio >= 3 ? "fine for large text only" : "hard to read");
-    const r = state.roles;
-    history.replaceState(null, "", `#p=${palettes[state.p].name}&bg=${r.bg + 1}&text=${r.text + 1}&mark=${r.mark + 1}&head=${r.head + 1}`);
+    const q = new URLSearchParams(location.hash.slice(1));
+    q.set("p", palettes[state.p].name);
+    ROLES.forEach(([role]) => q.set(role, state.roles[role] + 1));
+    history.replaceState(null, "", `#${q}`);
   }
 
   function fromAddress() {
-    const q = new URLSearchParams(location.hash.slice(1));
+    let q = new URLSearchParams(location.hash.slice(1));
+    if (!q.has("p")) q = new URLSearchParams(data.dataset.start || "");
     const p = palettes.findIndex((palette) => palette.name === q.get("p"));
     if (p < 0) return;
     const roles = startRoles(p);

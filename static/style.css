@@ -8,6 +8,17 @@
   src: url("fonts/eb-garamond-latin-400.woff2") format("woff2");
 }
 
+/* The same EB Garamond with its discretionary ligatures kept, for the newspaper draft:
+   just the linked st and ct of classic French printing (made from the full font,
+   regular weight, latin; same licence). */
+@font-face {
+  font-family: "EB Garamond St";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/eb-garamond-latin-400-st.woff2") format("woff2");
+}
+
 :root {
   --mauve: #3a2240;   /* background: very dark purple */
   --bright: #00f0ff;  /* the barred S: bright cyan */
@@ -381,3 +392,167 @@ body.design {
 
 .credit { font-size: 0.9rem; opacity: 0.75; }
 .credit a { color: inherit; }
+
+/* ---- Draft: the newspaper front page, in five versions (see static/newspaper.js) ----
+   The same story and engraving under the same rules and bars at the top;
+   data-paper on <body> picks the design. */
+
+body.design[data-paper] { overflow-x: clip; }   /* the Modern version's engraving runs to the window's edge */
+
+.design main.paper {
+  --gutter: 24px;
+  font-family: "EB Garamond St", "EB Garamond", Garamond, Georgia, serif;
+  font-variant-ligatures: common-ligatures discretionary-ligatures;   /* the st and ct ligatures */
+  max-width: 76rem;
+  padding: 24px var(--gutter) 0;   /* no room needed below: newspaper.js fits the page above the panel */
+}
+
+.paper .masthead { text-align: center; }
+.dateline { margin: 0; padding: 0.35rem 0; border-block: 1px solid var(--text); }   /* empty: just the rules */
+
+.front {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);   /* text on the left, the engraving on the right */
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.paper .headline {   /* "Non Plus Collective", as the story's headline */
+  margin: 0 0 0.5em;
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.05;
+  color: inherit;
+}
+
+.paper .body {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  text-align: justify;
+  hyphens: auto;
+}
+.paper .body p { margin: 0 0 0.8em; }
+.paper .below { margin-top: 1rem; }   /* the text carried on under a short engraving, a column wider */
+.paper .below[hidden] { display: none; }
+
+/* The copyright bar along the bottom, ruled like the top */
+.copyright {
+  margin-top: 1rem;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--text);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.photo { margin: 0; }
+.photo .reveal { width: 100%; }
+.paper .art { width: 100%; height: auto; }
+.directory-dialog .credit { margin: 1.25rem 0 0; font-size: 0.75rem; }   /* the engraving's licence (CC BY) asks for this credit */
+.directory-dialog .credit a { color: inherit; }
+
+/* 1 Broadsheet: a double rule, a large headline, two justified columns */
+[data-paper="1"] .headline { font-size: clamp(2.4rem, 6vw, 4.5rem); }
+[data-paper="1"] .dateline { border-top: 3px double var(--text); }
+[data-paper="1"] .paper .body { column-count: 2; column-gap: 1.5rem; column-rule: 1px solid var(--text); }
+[data-paper="1"] .paper .below { column-count: 3; }
+[data-paper="1"] .copyright { border-top: 3px double var(--text); }
+[data-paper="1"] .photo { border: 1px solid var(--text); padding: 8px; }
+
+/* 2 Tabloid: a band of colour, a huge headline in capitals over a heavy rule */
+[data-paper="2"] .masthead { background: var(--head); padding: 0.5rem 1rem; }
+[data-paper="2"] .dateline { border-color: var(--bg); }
+[data-paper="2"] .front { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+[data-paper="2"] .headline {
+  color: var(--head);
+  text-transform: uppercase;
+  font-size: clamp(2.6rem, 6.5vw, 6rem);   /* COLLECTIVE has to fit its column */
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  padding-bottom: 0.15em;
+  border-bottom: 4px solid var(--text);
+}
+[data-paper="2"] .paper .body { font-size: 1.2rem; text-align: left; }
+[data-paper="2"] .paper .below { column-count: 2; column-gap: 2rem; }
+[data-paper="2"] .copyright { border-top: 4px solid var(--text); }
+
+/* 3 Gazette: double rules, a headline in spaced capitals, three narrow columns with rules between */
+[data-paper="3"] .masthead { border-top: 4px double var(--text); }
+[data-paper="3"] .dateline { border: 0; border-top: 1px solid var(--text); padding: 2px 0 0; }
+[data-paper="3"] .front { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+[data-paper="3"] .story { text-align: center; }
+[data-paper="3"] .headline {
+  font-size: clamp(1.5rem, 4vw, 2.6rem);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  padding-bottom: 0.5em;
+  border-bottom: 4px double var(--text);
+}
+[data-paper="3"] .paper .body {
+  column-count: 3;
+  column-gap: 1.25rem;
+  column-rule: 1px solid var(--text);
+  font-size: 0.98rem;
+  text-align: justify;
+}
+[data-paper="3"] .paper .below { column-count: 4; }
+[data-paper="3"] .copyright { border-top: 4px double var(--text); }
+[data-paper="3"] .photo { border: 3px double var(--text); padding: 6px; }
+
+/* 4 Modern: a bar of colour, a very large flush-left headline, the engraving running to the window's right edge */
+[data-paper="4"] .masthead { border-top: 14px solid var(--mark); }
+[data-paper="4"] .dateline { border: 0; padding: 0; }
+[data-paper="4"] .front { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+[data-paper="4"] .photo {   /* out past the gutter and any space beside the page, to the window's edge */
+  margin-right: calc(-1 * (max(0px, (100vw - 76rem - 2 * var(--gutter)) / 2) + var(--gutter)));
+}
+[data-paper="4"] .headline {
+  font-size: clamp(3rem, 8vw, 6.5rem);   /* no letter-spacing: it would switch off the ct ligature */
+  line-height: 0.88;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid var(--text);
+}
+[data-paper="4"] .paper .body { column-count: 2; column-gap: 2rem; column-rule: 2px solid var(--text); text-align: left; }
+[data-paper="4"] .paper .below { column-count: 3; }
+[data-paper="4"] .copyright { border-top: 2px solid var(--text); text-align: left; }
+
+/* 5 Halftone: the engraving printed in dots, heavy and thin rules at the top */
+[data-paper="5"] .dateline { border-top: 6px solid var(--text); padding: 2px 0 0; }
+[data-paper="5"] .front { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+[data-paper="5"] .headline { font-size: clamp(2.4rem, 6vw, 4.5rem); color: var(--head); }
+[data-paper="5"] .paper .body { column-count: 2; column-gap: 1.5rem; }
+[data-paper="5"] .paper .below { column-count: 3; }
+[data-paper="5"] .copyright { border-top: 6px solid var(--text); }
+[data-paper="5"] .ink {   /* the lines, seen through a grid of dots */
+  -webkit-mask:
+    url("images/142-arterial-system-clean-ink.png") center / contain no-repeat,
+    radial-gradient(circle, #000 1.2px, transparent 1.7px) 0 0 / 4px 4px;
+  mask:
+    url("images/142-arterial-system-clean-ink.png") center / contain no-repeat,
+    radial-gradient(circle, #000 1.2px, transparent 1.7px) 0 0 / 4px 4px;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+[data-paper="5"][data-frame="on"] .ink {
+  -webkit-mask-image: url("images/142-arterial-system-ink.png"), radial-gradient(circle, #000 1.2px, transparent 1.7px);
+  mask-image: url("images/142-arterial-system-ink.png"), radial-gradient(circle, #000 1.2px, transparent 1.7px);
+}
+
+/* Every version fills the window above the panel: newspaper.js sets --art-h, the
+   engraving's height, so it is as tall as the room allows (but no wider than half
+   the page), and fills the story with text down to the same line. */
+main.paper .front { grid-template-columns: minmax(0, 1fr) auto; }
+main.paper .photo .reveal { width: auto; }
+main.paper .art { height: var(--art-h, 60vh); width: auto; }
+
+@media (max-width: 900px) {
+  [data-paper="3"] .paper .body { column-count: 2; }
+  [data-paper="3"] .paper .below { column-count: 3; }
+}
+@media (max-width: 720px) {
+  .front, [data-paper] .front, main.paper .front { grid-template-columns: 1fr; gap: 1rem; }
+  main.paper .photo { order: -1; justify-self: center; }   /* the engraving above, the text filling the rest */
+  [data-paper] .paper .body { column-count: 1; }
+  [data-paper="4"] .photo { margin-right: calc(-1 * var(--gutter)); }
+}

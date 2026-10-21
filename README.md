@@ -26,6 +26,7 @@ The page rebuilds when you save a file; refresh to see it.
 | Palettes on the colour palette design (`/color-palette-design`, from `templates/design.html`) | `palettes` in `config.json` (add `"roles"` to fix which colour is background, text, barred S and headline); behaviour in `static/palette.js` |
 | Adding a page | `PAGES` in `build.py` |
 | Designs (no menu, reached only by link, listed at `/design`) | `DRAFTS` in `build.py`, with the line `/design` shows for each; the hidden-S draft is `templates/draft-disappearing-s.html` and `static/reveal.js` |
+| The newspaper draft (five versions) | `templates/draft-newspaper.html`, `static/newspaper.js`; the designs are at the end of `static/style.css`; its font, for the st and ct ligatures, is `static/fonts/eb-garamond-latin-400-st.woff2` (EB Garamond, all other discretionary ligatures left out); the Proust text is `static/proust/`, made by `tools/proust.py` |
 | The arterial-engraving draft | `templates/draft-arterial.html`, `static/looks.js` (the image toggles), image 142 from the image gallery in `tools/source/` (not published). Made from it, into `static/images/`: the lines-only masks (`tools/ink_mask.py`), the copy without the border and page number (`tools/unframe.py`) and the background grain tiles (`tools/grain.py`) |
 | Scroll-to-rotate behaviour | `static/rotate.js` (`DEGREES_PER_PIXEL` sets the speed) |
 | Site icon (black barred S on its side) | `static/favicon.svg`, plus PNG/ICO copies |
