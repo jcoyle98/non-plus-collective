@@ -38,18 +38,21 @@ PAGES = [
     # (output folder, menu label, content template, title, scripts)
     ("", "Home", "home.html", None, ["rotate.js"]),
     ("directory", "Directory", "directory.html", "Directory", []),
-    ("design", "Design", "design.html", "Design", ["palette.js"]),
-    # Drafts: built like any page but with no menu, and left out of everyone else's,
-    # so only a link reaches them; /drafts lists them all
-    ("drafts", "Drafts", "drafts.html", "Drafts", []),
+    # Designs: built like any page but with no menu, and left out of everyone else's,
+    # so only a link reaches them; /design lists them all (and /drafts, its old
+    # address, forwards there)
+    ("design", "Drafts", "drafts.html", "Designs", []),
+    ("drafts", "Drafts", "forward.html", "Designs", []),
+    ("color-palette-design", "Design", "design.html", "Colour palettes", ["palette.js"]),
     ("draft-disappearing-s", "Design", "draft-disappearing-s.html", "Design (draft)", ["palette.js", "reveal.js"]),
     ("draft-arterial", "Design", "draft-arterial.html", "Design (draft)", ["palette.js", "reveal.js", "looks.js"]),
 ]
-DRAFTS = {   # each draft, and what it tries, as listed on /drafts
+DRAFTS = {   # each design, and what it tries, as listed on /design
+    "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
     "draft-disappearing-s": "The barred S hidden in the background colour: hover to see it, click to draw the bar and open the directory.",
     "draft-arterial": "Image 142's arterial engraving in place of the S, as ink or a negative, with a frame switch and a grain slider.",
 }
-HIDDEN = {"drafts", *DRAFTS}   # pages with no menu, left out of the menu
+HIDDEN = {"design", "drafts", *DRAFTS}   # pages with no menu, left out of the menu
 
 
 def render(template, **values):

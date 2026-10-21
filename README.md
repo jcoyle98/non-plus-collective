@@ -1,7 +1,7 @@
 # nonpluscollective
 
 A small static site: Lacan's barred subject, large, on dark purple, plus a directory of sites
-and a design page for trying out colour palettes. No dependencies beyond Python 3.
+and, off the menu, a list of designs to try at `/design`, among them one for trying out colour palettes. No dependencies beyond Python 3.
 
 ## Preview locally
 
@@ -23,9 +23,9 @@ The page rebuilds when you save a file; refresh to see it.
 | Menu | `templates/menu.html` |
 | The parts every page shares | `templates/base.html` |
 | Page content | `templates/home.html`, `templates/directory.html`, `templates/design.html` |
-| Palettes on the design page | `palettes` in `config.json` (add `"roles"` to fix which colour is background, text, barred S and headline); behaviour in `static/palette.js` |
+| Palettes on the colour palette design (`/color-palette-design`, from `templates/design.html`) | `palettes` in `config.json` (add `"roles"` to fix which colour is background, text, barred S and headline); behaviour in `static/palette.js` |
 | Adding a page | `PAGES` in `build.py` |
-| Draft pages (no menu, reached only by link, listed at `/drafts`) | `DRAFTS` in `build.py`, with the line `/drafts` shows for each; the hidden-S draft is `templates/draft-disappearing-s.html` and `static/reveal.js` |
+| Designs (no menu, reached only by link, listed at `/design`) | `DRAFTS` in `build.py`, with the line `/design` shows for each; the hidden-S draft is `templates/draft-disappearing-s.html` and `static/reveal.js` |
 | The arterial-engraving draft | `templates/draft-arterial.html`, `static/looks.js` (the image toggles), image 142 from the image gallery in `tools/source/` (not published). Made from it, into `static/images/`: the lines-only masks (`tools/ink_mask.py`), the copy without the border and page number (`tools/unframe.py`) and the background grain tiles (`tools/grain.py`) |
 | Scroll-to-rotate behaviour | `static/rotate.js` (`DEGREES_PER_PIXEL` sets the speed) |
 | Site icon (black barred S on its side) | `static/favicon.svg`, plus PNG/ICO copies |
