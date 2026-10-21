@@ -108,6 +108,7 @@
   let dragY = null;
   block.addEventListener("pointerdown", (e) => {
     if (page.dataset.layout !== "middle") return;
+    if (e.target.closest("a")) return;   // let the links be clicked; drag from NON PLUS or the space around it
     dragY = { id: e.pointerId, start: e.clientY, from: blockY, moved: false };
     block.setPointerCapture(e.pointerId);
     e.preventDefault();

@@ -765,6 +765,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 }
 /* Layout "middle": the block can be dragged up and down (radiolarian.js) */
 .radiolarian-draft[data-layout="middle"] .r-block { cursor: ns-resize; user-select: none; touch-action: none; }
+.radiolarian-draft[data-layout="middle"] .r-block a { cursor: pointer; }
 /* Layout "corners": NON PLUS top left, the two links stacked in the lower left, no line */
 .radiolarian-draft[data-layout="corners"] .r-block { position: static; transform: none; }
 .radiolarian-draft[data-layout="corners"] .r-title {
