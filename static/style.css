@@ -901,6 +901,8 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .chamber-draft .c-nav { display: flex; gap: clamp(1rem, 2.5vw, 2.2rem); font-size: clamp(.95rem, 1.5vw, 1.25rem); white-space: nowrap; }
 .chamber-draft .c-nav a { color: inherit; text-decoration: none; }
 .chamber-draft .c-nav a:hover { text-decoration: underline; }
+/* "Hide options" hides the pickers and the credit */
+.chamber-draft.options-hidden .c-controls, .chamber-draft.options-hidden .c-credit { display: none; }
 .chamber-draft .c-bars { margin: 0; font-size: .75rem; display: flex; gap: .4rem; align-items: center; }
 .chamber-draft .c-bars button { font: inherit; color: inherit; background: none; border: 1px solid rgba(200,200,200,.6); border-radius: 3px; padding: .1rem .5rem; cursor: pointer; }
 .chamber-draft .c-bars button[aria-pressed="true"] { background: #fff; color: #000; }

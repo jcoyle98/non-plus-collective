@@ -165,6 +165,19 @@
   });
   addEventListener("resize", placeTitle);
 
+  // "Hide options" / "Show options" in the bar
+  const toggle = page.querySelector(".c-toggle");
+  function showOptions(show) {
+    page.classList.toggle("options-hidden", !show);
+    toggle.textContent = show ? "Hide options" : "Show options";
+    toggle.setAttribute("aria-pressed", String(!show));
+    try { localStorage.setItem("chamber-options", show ? "shown" : "hidden"); } catch (_) {}
+  }
+  toggle.addEventListener("click", (e) => { e.preventDefault(); showOptions(page.classList.contains("options-hidden")); });
+  let savedOptions = null;
+  try { savedOptions = localStorage.getItem("chamber-options"); } catch (_) {}
+  showOptions(savedOptions !== "hidden");
+
   let saved = {};
   try { saved = { look: localStorage.getItem("chamber-look"), font: localStorage.getItem("chamber-font"), bar: localStorage.getItem("chamber-bar") }; } catch (_) {}
   // a box around the title: none, an outline or filled, in any of these colours
