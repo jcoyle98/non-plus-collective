@@ -168,6 +168,28 @@
   setBoxColour(savedBoxColour || BOX_COLOURS[0][1]);
   setBox(savedBox || "none");
 
+  // the links' own colour; auto = the same as "non plus"
+  (function () {
+    const COLOURS = [
+    ["white", "#ffffff"], ["black", "#141214"], ["cyan", "#00e5ff"], ["red", "#ff3b3b"], ["purple", "#a259ff"],
+    ["yellow", "#ffcc33"], ["green", "#3ddc84"], ["pink", "#ff5fa2"], ["blue", "#3d7bff"],
+    ["gold", "#e1b867"], ["brick red", "#a43434"], ["mint", "#8ec6ab"], ["violet", "#43396a"], ["sky blue", "#6da7d0"],
+    ["lilac", "#e0c9e3"], ["teal", "#274a49"], ["site cyan", "#00f0ff"], ["deep maroon", "#6e0a0a"], ["night", "#180826"],
+  ];
+    const row = page.querySelector(".h-linkcolours");
+    row.innerHTML = `<button type="button" class="auto" data-colour="">auto</button>` +
+      COLOURS.map(([name, c]) => `<button type="button" data-colour="${c}" title="${name}" aria-label="${name}" style="background:${c}"></button>`).join("");
+    function set(c) {
+      if (c) page.style.setProperty("--links", c); else page.style.removeProperty("--links");
+      row.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.colour === c));
+      try { localStorage.setItem("hurricane-links", c); } catch (_) {}
+    }
+    row.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) set(b.dataset.colour); });
+    let saved = "";
+    try { saved = localStorage.getItem("hurricane-links") || ""; } catch (_) {}
+    set(saved);
+  })();
+
   // the font of "non plus": picked from a list, fetched from Google Fonts only when chosen
   // [name shown, Google Fonts family, has a true italic]
   const FONTS = [

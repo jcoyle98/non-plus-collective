@@ -181,6 +181,49 @@
   try { savedLayout = localStorage.getItem("radiolarian-layout"); } catch (_) {}
   setLayout(savedLayout || "middle");
 
+  // NON PLUS's own colour; auto = the page's ink
+  (function () {
+    const COLOURS = [
+    ["white", "#ffffff"], ["black", "#141214"], ["cyan", "#00e5ff"], ["red", "#ff3b3b"], ["purple", "#a259ff"],
+    ["yellow", "#ffcc33"], ["green", "#3ddc84"], ["pink", "#ff5fa2"], ["blue", "#3d7bff"],
+    ["gold", "#e1b867"], ["brick red", "#a43434"], ["mint", "#8ec6ab"], ["violet", "#43396a"], ["sky blue", "#6da7d0"],
+    ["lilac", "#e0c9e3"], ["teal", "#274a49"], ["site cyan", "#00f0ff"], ["deep maroon", "#6e0a0a"], ["night", "#180826"],
+  ];
+    const row = page.querySelector(".r-titlecolours");
+    row.innerHTML = `<button type="button" class="auto" data-colour="">auto</button>` +
+      COLOURS.map(([name, c]) => `<button type="button" data-colour="${c}" title="${name}" aria-label="${name}" style="background:${c}"></button>`).join("");
+    function set(c) {
+      if (c) page.style.setProperty("--title", c); else page.style.removeProperty("--title");
+      row.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.colour === c));
+      try { localStorage.setItem("radiolarian-title", c); } catch (_) {}
+    }
+    row.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) set(b.dataset.colour); });
+    let saved = "";
+    try { saved = localStorage.getItem("radiolarian-title") || ""; } catch (_) {}
+    set(saved);
+  })();
+  // the links' own colour; auto = the page's ink
+  (function () {
+    const COLOURS = [
+    ["white", "#ffffff"], ["black", "#141214"], ["cyan", "#00e5ff"], ["red", "#ff3b3b"], ["purple", "#a259ff"],
+    ["yellow", "#ffcc33"], ["green", "#3ddc84"], ["pink", "#ff5fa2"], ["blue", "#3d7bff"],
+    ["gold", "#e1b867"], ["brick red", "#a43434"], ["mint", "#8ec6ab"], ["violet", "#43396a"], ["sky blue", "#6da7d0"],
+    ["lilac", "#e0c9e3"], ["teal", "#274a49"], ["site cyan", "#00f0ff"], ["deep maroon", "#6e0a0a"], ["night", "#180826"],
+  ];
+    const row = page.querySelector(".r-linkcolours");
+    row.innerHTML = `<button type="button" class="auto" data-colour="">auto</button>` +
+      COLOURS.map(([name, c]) => `<button type="button" data-colour="${c}" title="${name}" aria-label="${name}" style="background:${c}"></button>`).join("");
+    function set(c) {
+      if (c) page.style.setProperty("--links", c); else page.style.removeProperty("--links");
+      row.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.colour === c));
+      try { localStorage.setItem("radiolarian-links", c); } catch (_) {}
+    }
+    row.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) set(b.dataset.colour); });
+    let saved = "";
+    try { saved = localStorage.getItem("radiolarian-links") || ""; } catch (_) {}
+    set(saved);
+  })();
+
   let saved = {};
   try { saved = { look: localStorage.getItem("radiolarian-look"), font: localStorage.getItem("radiolarian-font") }; } catch (_) {}
   setLook(saved.look || "original");

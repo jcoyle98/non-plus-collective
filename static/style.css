@@ -607,7 +607,13 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
   gap: .4rem clamp(1rem, 2.6vw, 2.4rem);
   font-size: clamp(.95rem, 1.5vw, 1.25rem);
 }
-.hurricane-draft .h-links a, .hurricane-draft .h-toggle { color: var(--word, #00e5ff); text-decoration: none; }   /* the same colour as "non plus" */
+.hurricane-draft .h-links a, .hurricane-draft .h-toggle { color: var(--links, var(--word, #00e5ff)); text-decoration: none; }   /* their own colour, or as "non plus" */
+.hurricane-draft .h-label { margin: 0; font-size: .7rem; color: var(--mark); opacity: .8; }
+.hurricane-draft .h-linkcolours { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 50vw; }
+.hurricane-draft .h-linkcolours button { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(128,128,128,.6); padding: 0; cursor: pointer; }
+.hurricane-draft .h-linkcolours button.auto { width: auto; border-radius: 3px; padding: 0 .4rem; font: .7rem -apple-system, Arial, sans-serif; background: none; color: inherit; }
+.hurricane-draft .h-linkcolours button[aria-pressed="true"] { outline: 2px solid var(--mark); outline-offset: 2px; }
+
 .hurricane-draft .h-links a:hover, .hurricane-draft .h-toggle:hover { text-decoration: underline; }
 /* "Hide options" hides the pickers (and the credit above them) */
 .hurricane-draft.options-hidden .h-controls, .hurricane-draft.options-hidden .h-credit { display: none; }
@@ -668,7 +674,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .hurricane-draft .h-credit {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 184px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 236px);
   margin: 0;
   max-width: 42vw;
   font-size: .7rem;
@@ -747,7 +753,17 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
   margin-top: clamp(8px, 1.4vw, 16px);
   font-size: clamp(1rem, 1.4vw, 1.2rem);
 }
-.radiolarian-draft .r-nav a { color: var(--ink); text-decoration: none; white-space: nowrap; }
+.radiolarian-draft .r-nav a { color: var(--links, var(--ink)); text-decoration: none; white-space: nowrap; }
+.radiolarian-draft .r-label { margin: 0; font-size: .7rem; opacity: .8; }
+.radiolarian-draft .r-titlecolours { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 50vw; }
+.radiolarian-draft .r-titlecolours button { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(128,128,128,.6); padding: 0; cursor: pointer; }
+.radiolarian-draft .r-titlecolours button.auto { width: auto; border-radius: 3px; padding: 0 .4rem; font: .7rem -apple-system, Arial, sans-serif; background: none; color: inherit; }
+.radiolarian-draft .r-titlecolours button[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 2px; }
+.radiolarian-draft .r-linkcolours { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 50vw; }
+.radiolarian-draft .r-linkcolours button { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(128,128,128,.6); padding: 0; cursor: pointer; }
+.radiolarian-draft .r-linkcolours button.auto { width: auto; border-radius: 3px; padding: 0 .4rem; font: .7rem -apple-system, Arial, sans-serif; background: none; color: inherit; }
+.radiolarian-draft .r-linkcolours button[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 2px; }
+
 /* in the middle layout the links span exactly the width of NON PLUS (sized by radiolarian.js) */
 .radiolarian-draft[data-layout="middle"] .r-nav { justify-content: space-between; flex-wrap: nowrap; gap: 0; }
 /* ...unless the window is too narrow for them to share a readable line: then they stack */
@@ -758,12 +774,12 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .radiolarian-draft .r-title {
   margin: 0;
   padding-bottom: clamp(8px, 1.4vw, 16px);
-  border-bottom: 1px solid var(--ink);   /* the line */
+  border-bottom: 1px solid currentColor;   /* the line, in NON PLUS's colour */
   text-transform: uppercase;
   letter-spacing: .1em;
   font-size: clamp(2rem, 5.5vw, 5rem);
   line-height: 1;
-  color: var(--ink);
+  color: var(--title, var(--ink));
 }
 /* Layout "middle": the block can be dragged up and down (radiolarian.js) */
 .radiolarian-draft[data-layout="middle"] .r-block { cursor: ns-resize; user-select: none; touch-action: none; }
@@ -781,7 +797,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .radiolarian-draft[data-layout="corners"] .r-nav {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 130px);   /* above the controls and credit */
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 200px);   /* above the controls and credit */
   z-index: 2;
   flex-direction: column;
   gap: .35rem;
@@ -810,7 +826,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .radiolarian-draft .r-credit {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 96px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 170px);
   margin: 0;
   max-width: 40vw;
   font-size: .7rem;
@@ -902,7 +918,13 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .chamber-draft .c-words button { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(128, 128, 128, .6); padding: 0; cursor: pointer; }
 .chamber-draft .c-words button[aria-pressed="true"] { outline: 2px solid #fff; outline-offset: 2px; }
 .chamber-draft .c-nav { display: flex; gap: clamp(1rem, 2.5vw, 2.2rem); font-size: clamp(.95rem, 1.5vw, 1.25rem); white-space: nowrap; }
-.chamber-draft .c-nav a { color: inherit; text-decoration: none; }
+.chamber-draft .c-nav a { color: var(--links, inherit); text-decoration: none; }   /* their own colour, or the bar's */
+.chamber-draft .c-label { margin: 0; font-size: .7rem; opacity: .85; }
+.chamber-draft .c-linkcolours { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 50vw; }
+.chamber-draft .c-linkcolours button { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(128,128,128,.6); padding: 0; cursor: pointer; }
+.chamber-draft .c-linkcolours button.auto { width: auto; border-radius: 3px; padding: 0 .4rem; font: .7rem -apple-system, Arial, sans-serif; background: none; color: inherit; }
+.chamber-draft .c-linkcolours button[aria-pressed="true"] { outline: 2px solid #fff; outline-offset: 2px; }
+
 .chamber-draft .c-nav a:hover { text-decoration: underline; }
 /* "Hide options" hides the pickers and the credit */
 .chamber-draft.options-hidden .c-controls, .chamber-draft.options-hidden .c-credit { display: none; }

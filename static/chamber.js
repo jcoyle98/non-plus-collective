@@ -178,6 +178,28 @@
   try { savedOptions = localStorage.getItem("chamber-options"); } catch (_) {}
   showOptions(savedOptions !== "hidden");
 
+  // the links' own colour; auto = whichever image colour reads best on the bar
+  (function () {
+    const COLOURS = [
+    ["white", "#ffffff"], ["black", "#141214"], ["cyan", "#00e5ff"], ["red", "#ff3b3b"], ["purple", "#a259ff"],
+    ["yellow", "#ffcc33"], ["green", "#3ddc84"], ["pink", "#ff5fa2"], ["blue", "#3d7bff"],
+    ["gold", "#e1b867"], ["brick red", "#a43434"], ["mint", "#8ec6ab"], ["violet", "#43396a"], ["sky blue", "#6da7d0"],
+    ["lilac", "#e0c9e3"], ["teal", "#274a49"], ["site cyan", "#00f0ff"], ["deep maroon", "#6e0a0a"], ["night", "#180826"],
+  ];
+    const row = page.querySelector(".c-linkcolours");
+    row.innerHTML = `<button type="button" class="auto" data-colour="">auto</button>` +
+      COLOURS.map(([name, c]) => `<button type="button" data-colour="${c}" title="${name}" aria-label="${name}" style="background:${c}"></button>`).join("");
+    function set(c) {
+      if (c) page.style.setProperty("--links", c); else page.style.removeProperty("--links");
+      row.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.colour === c));
+      try { localStorage.setItem("chamber-links", c); } catch (_) {}
+    }
+    row.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) set(b.dataset.colour); });
+    let saved = "";
+    try { saved = localStorage.getItem("chamber-links") || ""; } catch (_) {}
+    set(saved);
+  })();
+
   let saved = {};
   try { saved = { look: localStorage.getItem("chamber-look"), font: localStorage.getItem("chamber-font"), bar: localStorage.getItem("chamber-bar") }; } catch (_) {}
   // a box around the title: none, an outline or filled, in any of these colours
