@@ -650,6 +650,15 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
   touch-action: none;
 }
 .hurricane-draft .wordmark.dragging { cursor: grabbing; }
+/* the box around "non plus": none, an outline or filled, in the chosen colour (hurricane.js) */
+.hurricane-draft[data-box="outline"] .wordmark { padding: .18em .35em .2em; border: .05em solid var(--box-colour, #fff); }
+.hurricane-draft[data-box="filled"] .wordmark { padding: .18em .35em .2em; background: var(--box-colour, #fff); }
+.hurricane-draft .h-boxes { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .4rem; align-items: center; }
+.hurricane-draft .h-boxes button { font: inherit; color: inherit; background: none; border: 1px solid rgba(128,128,128,.6); border-radius: 3px; padding: .1rem .5rem; cursor: pointer; }
+.hurricane-draft .h-boxes button[aria-pressed="true"] { background: var(--mark); color: #000; }
+.hurricane-draft .h-boxcolours { display: flex; flex-wrap: wrap; gap: 6px; max-width: 50vw; }
+.hurricane-draft .h-boxcolours button { width: 18px; height: 18px; border-radius: 3px; border: 1px solid rgba(128,128,128,.6); padding: 0; cursor: pointer; }
+.hurricane-draft .h-boxcolours button[aria-pressed="true"] { outline: 2px solid var(--mark); outline-offset: 2px; }
 .hurricane-draft .h-pos { margin: 0; font-size: .7rem; color: var(--mark); opacity: .75; }
 .hurricane-draft .h-pos output { font-family: ui-monospace, Menlo, monospace; }
 .hurricane-draft .h-pos button { font: inherit; color: inherit; background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
@@ -678,7 +687,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .hurricane-draft .h-credit {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 122px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 184px);
   margin: 0;
   max-width: 42vw;
   font-size: .7rem;
@@ -889,9 +898,12 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
   visibility: hidden;   /* until placed */
 }
 .chamber-draft .c-title.dragging { cursor: grabbing; }
-/* the box around NON PLUS: none, an outline in its own colour, or filled with the bar's colour */
-.chamber-draft[data-box="outline"] .c-title { padding: .18em .35em .2em; border: .045em solid currentColor; }
-.chamber-draft[data-box="filled"] .c-title { padding: .18em .35em .2em; background: var(--bar-bg, #fff); }
+/* the box around NON PLUS: none, an outline or filled, in the chosen colour (chamber.js) */
+.chamber-draft[data-box="outline"] .c-title { padding: .18em .35em .2em; border: .045em solid var(--box-colour, #fff); }
+.chamber-draft[data-box="filled"] .c-title { padding: .18em .35em .2em; background: var(--box-colour, #fff); }
+.chamber-draft .c-boxcolours { display: flex; flex-wrap: wrap; gap: 6px; max-width: 45vw; }
+.chamber-draft .c-boxcolours button { width: 18px; height: 18px; border-radius: 3px; border: 1px solid rgba(128,128,128,.6); padding: 0; cursor: pointer; }
+.chamber-draft .c-boxcolours button[aria-pressed="true"] { outline: 2px solid #fff; outline-offset: 2px; }
 .chamber-draft .c-boxes { margin: 0; font-size: .75rem; display: flex; gap: .4rem; align-items: center; }
 .chamber-draft .c-boxes button { font: inherit; color: inherit; background: none; border: 1px solid rgba(200,200,200,.6); border-radius: 3px; padding: .1rem .5rem; cursor: pointer; }
 .chamber-draft .c-boxes button[aria-pressed="true"] { background: #fff; color: #000; }

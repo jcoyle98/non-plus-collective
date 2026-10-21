@@ -139,6 +139,35 @@
   addEventListener("resize", placeWord);
   document.fonts && document.fonts.ready.then(placeWord);
 
+  // a box around the title: none, an outline or filled, in any of these colours
+  const BOX_COLOURS = [
+    ["white", "#ffffff"], ["black", "#141214"], ["cyan", "#00e5ff"], ["red", "#ff3b3b"], ["purple", "#a259ff"],
+    ["yellow", "#ffcc33"], ["green", "#3ddc84"], ["pink", "#ff5fa2"], ["blue", "#3d7bff"],
+    ["gold", "#e1b867"], ["brick red", "#a43434"], ["mint", "#8ec6ab"], ["violet", "#43396a"], ["sky blue", "#6da7d0"],
+    ["lilac", "#e0c9e3"], ["teal", "#274a49"], ["site cyan", "#00f0ff"], ["deep maroon", "#6e0a0a"], ["night", "#180826"],
+  ];
+  const boxes = page.querySelector(".h-boxes");
+  const boxColours = page.querySelector(".h-boxcolours");
+  boxColours.innerHTML = BOX_COLOURS.map(([name, c]) => `<button type="button" data-colour="${c}" title="${name}" aria-label="Box ${name}" style="background:${c}"></button>`).join("");
+  function setBox(name) {
+    if (!["none", "outline", "filled"].includes(name)) name = "none";
+    page.dataset.box = name;
+    boxes.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.box === name));
+    try { localStorage.setItem("hurricane-box", name); } catch (_) {}
+    placeWord();   // the box changes the title's size
+  }
+  function setBoxColour(c) {
+    page.style.setProperty("--box-colour", c);
+    boxColours.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.colour === c));
+    try { localStorage.setItem("hurricane-box-colour", c); } catch (_) {}
+  }
+  boxes.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setBox(b.dataset.box); });
+  boxColours.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setBoxColour(b.dataset.colour); });
+  let savedBox = null, savedBoxColour = null;
+  try { savedBox = localStorage.getItem("hurricane-box"); savedBoxColour = localStorage.getItem("hurricane-box-colour"); } catch (_) {}
+  setBoxColour(savedBoxColour || BOX_COLOURS[0][1]);
+  setBox(savedBox || "none");
+
   // the font of "non plus": picked from a list, fetched from Google Fonts only when chosen
   // [name shown, Google Fonts family, has a true italic]
   const FONTS = [
