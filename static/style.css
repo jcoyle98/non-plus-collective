@@ -823,3 +823,126 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 @media (max-width: 600px) {
   .radiolarian-draft .r-credit { display: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   Draft: cloud chamber (templates/draft-chamber.html, static/chamber.js)
+   Image 30, its labels cropped away, filling the window under a bar of links in the image's dark colour;
+   the chamber's two plates split it into three (columns on wide windows, rows on tall ones); NON PLUS
+   floats over it, draggable, in a colour of its own.
+   Scoped to .chamber-draft. */
+.design main.chamber-draft {
+  position: fixed;
+  inset: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+  --tag-bg: #000;
+  --tag-fg: #fff;
+  font-family: var(--font, "EB Garamond"), serif;
+}
+.chamber-draft { --bar-h: clamp(48px, 7vh, 72px); }
+.chamber-draft .chamber {
+  /* the photograph fills the window below the bar */
+  position: absolute;
+  top: var(--bar-h);
+  left: 0;
+  width: 100%;
+  height: calc(100% - var(--bar-h));
+  object-fit: cover;
+}
+.chamber-draft .c-bar {
+  /* the bar across the top: white by default, or the image's colours, or black (chamber.js) */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--bar-h);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  padding: 0 clamp(16px, 3vw, 36px);
+  padding-top: env(safe-area-inset-top, 0px);
+  background: var(--bar-bg, #fff);
+  color: var(--bar-fg, #000);
+}
+.chamber-draft .c-title {
+  /* floats over the photograph; dragged anywhere (chamber.js), its colour chosen separately */
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: clamp(2rem, 5.5vw, 5rem);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--word, #00e5ff);
+  font-style: var(--title-style, normal);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  visibility: hidden;   /* until placed */
+}
+.chamber-draft .c-title.dragging { cursor: grabbing; }
+/* the box around NON PLUS: none, an outline in its own colour, or filled with the bar's colour */
+.chamber-draft[data-box="outline"] .c-title { padding: .18em .35em .2em; border: .045em solid currentColor; }
+.chamber-draft[data-box="filled"] .c-title { padding: .18em .35em .2em; background: var(--bar-bg, #fff); }
+.chamber-draft .c-boxes { margin: 0; font-size: .75rem; display: flex; gap: .4rem; align-items: center; }
+.chamber-draft .c-boxes button { font: inherit; color: inherit; background: none; border: 1px solid rgba(200,200,200,.6); border-radius: 3px; padding: .1rem .5rem; cursor: pointer; }
+.chamber-draft .c-boxes button[aria-pressed="true"] { background: #fff; color: #000; }
+.chamber-draft .c-pos { margin: 0; font-size: .7rem; opacity: .85; }
+.chamber-draft .c-pos output { font-family: ui-monospace, Menlo, monospace; }
+.chamber-draft .c-pos button { font: inherit; color: inherit; background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
+.chamber-draft .c-words { display: flex; flex-wrap: wrap; gap: 6px; max-width: 45vw; }
+.chamber-draft .c-words button { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(128, 128, 128, .6); padding: 0; cursor: pointer; }
+.chamber-draft .c-words button[aria-pressed="true"] { outline: 2px solid #fff; outline-offset: 2px; }
+.chamber-draft .c-nav { display: flex; gap: clamp(1rem, 2.5vw, 2.2rem); font-size: clamp(.95rem, 1.5vw, 1.25rem); white-space: nowrap; }
+.chamber-draft .c-nav a { color: inherit; text-decoration: none; }
+.chamber-draft .c-nav a:hover { text-decoration: underline; }
+.chamber-draft .c-bars { margin: 0; font-size: .75rem; display: flex; gap: .4rem; align-items: center; }
+.chamber-draft .c-bars button { font: inherit; color: inherit; background: none; border: 1px solid rgba(200,200,200,.6); border-radius: 3px; padding: .1rem .5rem; cursor: pointer; }
+.chamber-draft .c-bars button[aria-pressed="true"] { background: #fff; color: #000; }
+.chamber-draft .c-controls {
+  position: absolute;
+  left: clamp(16px, 3vw, 36px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px));
+  z-index: 3;
+  display: grid;
+  gap: 8px;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, .55);
+  color: #fff;
+  border-radius: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+.chamber-draft .c-looks { display: flex; flex-wrap: wrap; gap: 6px; max-width: 45vw; }
+.chamber-draft .c-looks button { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(128, 128, 128, .6); padding: 0; cursor: pointer; }
+.chamber-draft .c-looks button[aria-pressed="true"] { outline: 2px solid #fff; outline-offset: 2px; }
+.chamber-draft .c-font { font-size: .75rem; display: flex; gap: .5rem; align-items: center; }
+.chamber-draft .c-font select { font: inherit; font-size: .8rem; padding: .15rem .3rem; max-width: 14rem; }
+.chamber-draft .c-italic { display: inline-flex; gap: .3rem; align-items: center; margin-left: .4rem; }
+.chamber-draft .c-credit {
+  position: absolute;
+  right: clamp(16px, 3vw, 36px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 8px);
+  z-index: 3;
+  margin: 0;
+  max-width: 40vw;
+  padding: 2px 6px;
+  background: rgba(0, 0, 0, .55);
+  color: #fff;
+  font-size: .65rem;
+  text-align: right;
+}
+.chamber-draft .c-credit a { color: inherit; }
+.chamber-draft .c-filters { position: absolute; }
+@media (max-width: 600px) {
+  .chamber-draft .c-credit { display: none; }
+  .chamber-draft .c-nav { gap: .9rem; font-size: .85rem; }
+  .chamber-draft .c-bar { overflow-x: auto; }
+}

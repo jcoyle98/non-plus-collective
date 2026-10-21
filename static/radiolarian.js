@@ -62,6 +62,7 @@
       loaded.add(family);
     }
     page.style.setProperty("--font", family ? `"${family}"` : '"EB Garamond"');
+    if (document.fonts) document.fonts.ready.then(fit);   // a new font changes the text's size
     select.value = String(i);
     try { localStorage.setItem("radiolarian-font", String(i)); } catch (_) {}
   }
@@ -77,8 +78,19 @@
   const REACH = { right: 0.244, down: 0.207, size: 0.455 };
   function fit() {
     const W = page.clientWidth, H = page.clientHeight;
-    const margin = 0.03 * Math.min(W, H);
-    const w = Math.min(0.72 * W, 0.72 * H) / REACH.size;   // the bulb takes up to 72% of the smaller side
+    const margin = 0.03 * Math.min(W, H), gap = 0.03 * H;
+    let w = (Math.min(W, H) - 2 * margin) / REACH.size;   // as big as the page allows, the whole bulb showing
+    // never over the text: if the bulb would reach under NON PLUS or the links, keep it below them
+    const pr = page.getBoundingClientRect();
+    const boxes = [...page.querySelectorAll(".r-title, .r-nav")].map((el) => el.getBoundingClientRect())
+      .filter((r) => r.width && r.height);
+    for (const r of boxes) {
+      const textRight = r.right - pr.left, textBottom = r.bottom - pr.top;
+      const bulbLeft = W - margin - REACH.size * w, bulbTop = H - margin - REACH.size * w;
+      if (bulbLeft < textRight + gap && bulbTop < textBottom + gap) {
+        w = Math.min(w, Math.max(0, H - margin - textBottom - gap) / REACH.size);
+      }
+    }
     specimen.style.setProperty("--w", `${w}px`);
     specimen.style.setProperty("--cx", `${W - margin - REACH.right * w}px`);
     specimen.style.setProperty("--cy", `${H - margin - REACH.down * w}px`);
@@ -91,7 +103,7 @@
   const block = page.querySelector(".r-block");
   let blockY = 0.33;   // its centre, as a fraction of the window's height (default: a third of the way down)
   try { const v = parseFloat(localStorage.getItem("radiolarian-block-y")); if (v >= 0 && v <= 1) blockY = v; } catch (_) {}
-  const placeBlock = () => { block.style.top = page.dataset.layout === "middle" ? `${blockY * 100}%` : ""; };
+  const placeBlock = () => { block.style.top = page.dataset.layout === "middle" ? `${blockY * 100}%` : ""; fit(); };
   let dragY = null;
   block.addEventListener("pointerdown", (e) => {
     if (page.dataset.layout !== "middle") return;
