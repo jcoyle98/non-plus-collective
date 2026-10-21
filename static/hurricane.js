@@ -223,7 +223,7 @@
     toggle.setAttribute("aria-pressed", String(!show));
     try { localStorage.setItem("hurricane-options", show ? "shown" : "hidden"); } catch (_) {}
   }
-  toggle.addEventListener("click", () => showOptions(page.classList.contains("options-hidden")));
+  toggle.addEventListener("click", (e) => { e.preventDefault(); showOptions(page.classList.contains("options-hidden")); });
   let savedOptions = null;
   try { savedOptions = localStorage.getItem("hurricane-options"); } catch (_) {}
   showOptions(savedOptions !== "hidden");

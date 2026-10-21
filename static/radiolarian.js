@@ -62,6 +62,7 @@
       loaded.add(family);
     }
     page.style.setProperty("--font", family ? `"${family}"` : '"EB Garamond"');
+    if (document.fonts) document.fonts.ready.then(() => { if (typeof fitNav === "function") fitNav(); });
     if (document.fonts) document.fonts.ready.then(fit);   // a new font changes the text's size
     select.value = String(i);
     try { localStorage.setItem("radiolarian-font", String(i)); } catch (_) {}
@@ -128,11 +129,40 @@
   block.addEventListener("pointercancel", endDrag);
   block.addEventListener("click", (e) => { if (e.target.closest('a[href="#"]')) e.preventDefault(); });   // placeholder links
 
+  // in the middle layout, the links under NON PLUS span its width: their size is worked out so that
+  // the words plus a gap of one space between each fill it, kept between 13px and half NON PLUS's size
+  const title = page.querySelector(".r-title"), nav = page.querySelector(".r-nav");
+  function fitNav() {
+    const links = [...nav.querySelectorAll("a")];
+    if (page.dataset.layout !== "middle") { nav.style.width = ""; nav.style.fontSize = ""; fit(); return; }
+    const width = title.getBoundingClientRect().width;
+    nav.style.fontSize = "100px";                                  // measure the words at a known size
+    const words = links.reduce((sum, a) => sum + a.getBoundingClientRect().width, 0) / 100;
+    const titleSize = parseFloat(getComputedStyle(title).fontSize);
+    const size = Math.max(13, Math.min(titleSize * 0.5, width / (words + 1.0 * (links.length - 1))));
+    nav.style.fontSize = `${size}px`;
+    nav.style.width = `${width}px`;
+    fit();   // the text's new size can change how much room the bulb has
+  }
+  addEventListener("resize", fitNav);
+
+  // "Hide options" / "Show options"
+  const toggle = page.querySelector(".r-toggle");
+  function showOptions(show) {
+    page.classList.toggle("options-hidden", !show);
+    toggle.textContent = show ? "Hide options" : "Show options";
+    toggle.setAttribute("aria-pressed", String(!show));
+    try { localStorage.setItem("radiolarian-options", show ? "shown" : "hidden"); } catch (_) {}
+    fitNav();
+  }
+  toggle.addEventListener("click", (e) => { e.preventDefault(); showOptions(page.classList.contains("options-hidden")); });
+
   // two layouts to compare
   const layouts = page.querySelector(".r-layout");
   function setLayout(name) {
     if (!["corners", "middle"].includes(name)) name = "middle";
     page.dataset.layout = name;
+    fitNav();
     placeBlock();
     layouts.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.layout === name));
     try { localStorage.setItem("radiolarian-layout", name); } catch (_) {}
@@ -146,5 +176,8 @@
   try { saved = { look: localStorage.getItem("radiolarian-look"), font: localStorage.getItem("radiolarian-font") }; } catch (_) {}
   setLook(saved.look || "original");
   setFont(saved.font ? +saved.font : 0);
+  let savedOptions = null;
+  try { savedOptions = localStorage.getItem("radiolarian-options"); } catch (_) {}
+  showOptions(savedOptions !== "hidden");
 
 })();
