@@ -213,12 +213,5 @@
   try { savedFont = localStorage.getItem("hurricane-font"); } catch (_) {}
   setFont(savedFont ? +savedFont : 0);
 
-  // the barred S opens and closes the menu
-  const button = page.querySelector(".s-menu");
-  const menu = page.querySelector(".h-menu");
-  const setOpen = (open) => { menu.hidden = !open; button.setAttribute("aria-expanded", open); };
-  button.addEventListener("click", () => setOpen(menu.hidden));
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
-  document.addEventListener("click", (e) => { if (!menu.hidden && !menu.contains(e.target) && !button.contains(e.target)) setOpen(false); });
-  menu.addEventListener("click", (e) => { if (e.target.closest('a[href="#"]')) e.preventDefault(); });   // placeholders for now
+  page.addEventListener("click", (e) => { if (e.target.closest('a[href="#"]')) e.preventDefault(); });   // placeholder links
 })();
