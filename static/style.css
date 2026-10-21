@@ -938,6 +938,8 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 }
 @media (max-width: 600px) {
   .chamber-draft .c-credit { display: none; }
-  .chamber-draft .c-nav { font-size: .85rem; }
+  /* phones: all five on one row, evenly spaced, the text a little smaller on the narrowest screens */
+  .chamber-draft .c-bar { padding: 0 12px; overflow: hidden; }
+  .chamber-draft .c-nav { font-size: min(.9rem, 3.3vw); gap: .4rem; }
   .chamber-draft .c-bar { overflow-x: auto; }
 }
