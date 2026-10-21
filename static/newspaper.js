@@ -1,7 +1,8 @@
 // Newspaper draft: five front-page designs for the same story and engraving.
 // The buttons at the start of the bottom row set data-paper on <body> (the
 // designs are in style.css); the choice is kept in the address as paper=N,
-// alongside the palette, so a link opens on the same version.
+// alongside the palette, so a link opens on the same version. Two switches
+// after them take the lines at the top and the bottom away (top=off, bottom=off).
 //
 // The page always fills the window above the panel. The engraving is made as
 // tall as that room allows (no wider than half the page; on a phone, it takes
@@ -47,6 +48,35 @@
 
   const asked = new URLSearchParams(location.hash.slice(1)).get("paper");
   choose(VERSIONS.some(([v]) => v === asked) ? asked : "1");
+
+  // The lines at the top and bottom, on or off: data-top / data-bottom on <body>
+  const LINES = [
+    ["top", "Top lines", "The rules, band or bar above the headline"],
+    ["bottom", "Bottom lines", "The rule over the copyright bar"],
+  ];
+  function lines(name, on) {
+    document.body.dataset[name] = on ? "on" : "off";
+    group.querySelector(`[data-lines="${name}"]`).setAttribute("aria-pressed", String(on));
+    const q = new URLSearchParams(location.hash.slice(1));
+    if (on) q.delete(name); else q.set(name, "off");
+    history.replaceState(null, "", `#${q}`);
+  }
+  const after = document.createElement("span");
+  after.className = "divider";
+  after.setAttribute("aria-hidden", "true");
+  const switches = LINES.map(([name, label, title]) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "look switch";
+    b.dataset.lines = name;
+    b.textContent = label;
+    b.title = title;
+    b.addEventListener("click", () => lines(name, document.body.dataset[name] !== "on"));
+    return b;
+  });
+  divider.after(...switches, after);
+  const address = new URLSearchParams(location.hash.slice(1));
+  LINES.forEach(([name]) => lines(name, address.get(name) !== "off"));
 
   // ---- The story: Proust, filling the page ----
 

@@ -539,6 +539,10 @@ body.design[data-paper] { overflow-x: clip; }   /* the Modern version's engravin
   mask-image: url("images/142-arterial-system-ink.png"), radial-gradient(circle, #000 1.2px, transparent 1.7px);
 }
 
+/* The Top lines and Bottom lines switches (newspaper.js) */
+body[data-top="off"] .paper .masthead { display: none; }
+body[data-bottom="off"] .copyright { border-top: 0; }
+
 /* Every version fills the window above the panel: newspaper.js sets --art-h, the
    engraving's height, so it is as tall as the room allows (but no wider than half
    the page), and fills the story with text down to the same line. */
