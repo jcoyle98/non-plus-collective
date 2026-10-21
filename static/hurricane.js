@@ -214,4 +214,17 @@
   setFont(savedFont ? +savedFont : 0);
 
   page.addEventListener("click", (e) => { if (e.target.closest('a[href="#"]')) e.preventDefault(); });   // placeholder links
+
+  // "Hide options" / "Show options" in the row along the top
+  const toggle = page.querySelector(".h-toggle");
+  function showOptions(show) {
+    page.classList.toggle("options-hidden", !show);
+    toggle.textContent = show ? "Hide options" : "Show options";
+    toggle.setAttribute("aria-pressed", String(!show));
+    try { localStorage.setItem("hurricane-options", show ? "shown" : "hidden"); } catch (_) {}
+  }
+  toggle.addEventListener("click", () => showOptions(page.classList.contains("options-hidden")));
+  let savedOptions = null;
+  try { savedOptions = localStorage.getItem("hurricane-options"); } catch (_) {}
+  showOptions(savedOptions !== "hidden");
 })();

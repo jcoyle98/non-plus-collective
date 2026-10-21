@@ -607,8 +607,11 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
   gap: .4rem clamp(1rem, 2.6vw, 2.4rem);
   font-size: clamp(.95rem, 1.5vw, 1.25rem);
 }
-.hurricane-draft .h-links a { color: var(--mark); text-decoration: none; }
-.hurricane-draft .h-links a:hover { text-decoration: underline; }
+.hurricane-draft .h-links a, .hurricane-draft .h-toggle { color: var(--word, #00e5ff); text-decoration: none; }   /* the same colour as "non plus" */
+.hurricane-draft .h-links a:hover, .hurricane-draft .h-toggle:hover { text-decoration: underline; }
+.hurricane-draft .h-toggle { font: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+/* "Hide options" hides the pickers (and the credit above them) */
+.hurricane-draft.options-hidden .h-controls, .hurricane-draft.options-hidden .h-credit { display: none; }
 .hurricane-draft .wordmark {
   /* placed by hurricane.js so it comes out of the hurricane's eye */
   position: absolute;
