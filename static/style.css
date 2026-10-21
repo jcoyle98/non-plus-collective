@@ -932,8 +932,12 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 }
 .chamber-draft .c-credit a { color: inherit; }
 .chamber-draft .c-filters { position: absolute; }
+/* on smaller screens the five links are spread evenly across the whole bar */
+@media (max-width: 900px) {
+  .chamber-draft .c-nav { flex: 1; justify-content: space-between; gap: .6rem; }
+}
 @media (max-width: 600px) {
   .chamber-draft .c-credit { display: none; }
-  .chamber-draft .c-nav { gap: .9rem; font-size: .85rem; }
+  .chamber-draft .c-nav { font-size: .85rem; }
   .chamber-draft .c-bar { overflow-x: auto; }
 }
