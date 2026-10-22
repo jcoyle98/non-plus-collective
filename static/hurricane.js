@@ -36,6 +36,7 @@
   function apply(key) {
     const look = LOOKS.find((l) => l.key === key) || LOOKS[0];
     img.style.filter = look.key === "original" ? "none" : `url(#hf-${look.key})`;
+    page.style.background = look.dark;          // what the image fades into (Image opacity)
     // the barred S and the menu take whichever end of the pair stands out from the page's main tone
     const pageIsLight = lum(look.dark) > 0.5;
     page.style.setProperty("--mark", pageIsLight ? "#1b1714" : look.key === "original" ? "#f4f1ea" : look.light);
@@ -249,4 +250,21 @@
   let savedOptions = null;
   try { savedOptions = localStorage.getItem("hurricane-options"); } catch (_) {}
   showOptions(savedOptions !== "hidden");
+
+  // "Image opacity": the image's light colour fades into its dark one (the page behind it), down to nothing
+  (function () {
+    const target = page.querySelector(".storm");
+    const range = page.querySelector(".h-fade input"), out = page.querySelector(".h-fade output");
+    function set(v) {
+      v = Math.max(0, Math.min(100, Math.round(+v)));
+      target.style.opacity = v / 100;
+      range.value = v;
+      out.textContent = `${v}%`;
+      try { localStorage.setItem("hurricane-opacity", String(v)); } catch (_) {}
+    }
+    range.addEventListener("input", () => set(range.value));
+    let saved = null;
+    try { saved = localStorage.getItem("hurricane-opacity"); } catch (_) {}
+    set(saved === null ? 100 : saved);
+  })();
 })();

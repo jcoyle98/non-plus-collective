@@ -61,6 +61,7 @@
   function setLook(key) {
     const look = LOOKS.find((l) => l.key === key) || LOOKS[0];
     img.style.filter = look.key === "original" ? "none" : `url(#cf-${look.key})`;
+    page.style.background = look.dark;          // what the image fades into (Image opacity)
     current = look;
     paintBar();
     looks.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.key === look.key));
@@ -251,4 +252,21 @@
   setLook(saved.look || "original");
   setFont(saved.font ? +saved.font : 0);
   placeTitle();
+
+  // "Image opacity": the image's light colour fades into its dark one (the page behind it), down to nothing
+  (function () {
+    const target = page.querySelector(".chamber");
+    const range = page.querySelector(".c-fade input"), out = page.querySelector(".c-fade output");
+    function set(v) {
+      v = Math.max(0, Math.min(100, Math.round(+v)));
+      target.style.opacity = v / 100;
+      range.value = v;
+      out.textContent = `${v}%`;
+      try { localStorage.setItem("chamber-opacity", String(v)); } catch (_) {}
+    }
+    range.addEventListener("input", () => set(range.value));
+    let saved = null;
+    try { saved = localStorage.getItem("chamber-opacity"); } catch (_) {}
+    set(saved === null ? 100 : saved);
+  })();
 })();

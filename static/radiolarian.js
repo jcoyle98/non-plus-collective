@@ -232,4 +232,20 @@
   try { savedOptions = localStorage.getItem("radiolarian-options"); } catch (_) {}
   showOptions(savedOptions !== "hidden");
 
+  // "Image opacity": the image's light colour fades into its dark one (the page behind it), down to nothing
+  (function () {
+    const target = page.querySelector(".specimen");
+    const range = page.querySelector(".r-fade input"), out = page.querySelector(".r-fade output");
+    function set(v) {
+      v = Math.max(0, Math.min(100, Math.round(+v)));
+      target.style.opacity = v / 100;
+      range.value = v;
+      out.textContent = `${v}%`;
+      try { localStorage.setItem("radiolarian-opacity", String(v)); } catch (_) {}
+    }
+    range.addEventListener("input", () => set(range.value));
+    let saved = null;
+    try { saved = localStorage.getItem("radiolarian-opacity"); } catch (_) {}
+    set(saved === null ? 100 : saved);
+  })();
 })();

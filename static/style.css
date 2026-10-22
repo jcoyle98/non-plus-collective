@@ -674,7 +674,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .hurricane-draft .h-credit {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 236px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 262px);
   margin: 0;
   max-width: 42vw;
   font-size: .7rem;
@@ -797,7 +797,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .radiolarian-draft[data-layout="corners"] .r-nav {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 200px);   /* above the controls and credit */
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 226px);   /* above the controls and credit */
   z-index: 2;
   flex-direction: column;
   gap: .35rem;
@@ -826,7 +826,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .radiolarian-draft .r-credit {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 170px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 196px);
   margin: 0;
   max-width: 40vw;
   font-size: .7rem;
@@ -1081,7 +1081,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .tracks-draft .t-credit {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 262px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 288px);
   margin: 0;
   max-width: 42vw;
   font-size: .7rem;
@@ -1093,3 +1093,140 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 @media (max-width: 600px) {
   .tracks-draft .t-credit { display: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   Draft: bubble (templates/draft-bubble.html, static/bubble.js)
+   Image 23, a round bubble chamber, as a stencil centred on a page of its own dark colour; links top
+   left; NON PLUS to drag, with its own colour, font, italics and box. Scoped to .bubble-draft. */
+.design main.bubble-draft {
+  position: fixed;
+  inset: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+  --mark: #f4f1ea;
+  --panel-bg: rgba(12, 10, 12, .86);
+  --panel-fg: #f4f1ea;
+}
+.bubble-draft .photo {
+  /* the chamber, as large as the window allows, centred; its colour shows through the stencil */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(96vw, 96vh * 2170 / 2222);
+  aspect-ratio: 2170 / 2222;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.bubble-draft .u-links {
+  /* the five sections, listed across the top */
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + clamp(14px, 2.6vw, 32px));
+  left: clamp(16px, 3vw, 36px);
+  right: clamp(16px, 3vw, 36px);
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem clamp(1rem, 2.6vw, 2.4rem);
+  font-size: clamp(.95rem, 1.5vw, 1.25rem);
+}
+.bubble-draft .u-links a, .bubble-draft .u-toggle { color: var(--links, var(--word, #00e5ff)); text-decoration: none; }   /* their own colour, or as "non plus" */
+.bubble-draft .u-label { margin: 0; font-size: .7rem; color: var(--mark); opacity: .8; }
+.bubble-draft .u-linkcolours { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 50vw; }
+.bubble-draft .u-linkcolours button { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(128,128,128,.6); padding: 0; cursor: pointer; }
+.bubble-draft .u-linkcolours button.auto { width: auto; border-radius: 3px; padding: 0 .4rem; font: .7rem -apple-system, Arial, sans-serif; background: none; color: inherit; }
+.bubble-draft .u-linkcolours button[aria-pressed="true"] { outline: 2px solid var(--mark); outline-offset: 2px; }
+
+.bubble-draft .u-links a:hover, .bubble-draft .u-toggle:hover { text-decoration: underline; }
+/* "Hide options" hides the pickers (and the credit above them) */
+.bubble-draft.options-hidden .u-controls, .bubble-draft.options-hidden .u-credit { display: none; }
+.bubble-draft .wordmark {
+  /* placed by bubble.js; dragged anywhere */
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  font-family: var(--word-font, "EB Garamond"), serif;
+  font-style: var(--word-style, normal);
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 5vw, 4.4rem);   /* between the first, large version and the small one */
+  letter-spacing: .12em;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--word, #00e5ff);
+  visibility: hidden;   /* until placed */
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+.bubble-draft .wordmark.dragging { cursor: grabbing; }
+/* the box around "non plus": none, an outline or filled, in the chosen colour (bubble.js) */
+.bubble-draft[data-box="outline"] .wordmark { padding: .18em .35em .2em; border: .05em solid var(--box-colour, #fff); }
+.bubble-draft[data-box="filled"] .wordmark { padding: .18em .35em .2em; background: var(--box-colour, #fff); }
+.bubble-draft .u-boxes { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .4rem; align-items: center; }
+.bubble-draft .u-boxes button { font: inherit; color: inherit; background: none; border: 1px solid rgba(128,128,128,.6); border-radius: 3px; padding: .1rem .5rem; cursor: pointer; }
+.bubble-draft .u-boxes button[aria-pressed="true"] { background: var(--mark); color: #000; }
+.bubble-draft .u-boxcolours { display: flex; flex-wrap: wrap; gap: 6px; max-width: 50vw; }
+.bubble-draft .u-boxcolours button { width: 18px; height: 18px; border-radius: 3px; border: 1px solid rgba(128,128,128,.6); padding: 0; cursor: pointer; }
+.bubble-draft .u-boxcolours button[aria-pressed="true"] { outline: 2px solid var(--mark); outline-offset: 2px; }
+.bubble-draft .u-pos { margin: 0; font-size: .7rem; color: var(--mark); opacity: .75; }
+.bubble-draft .u-pos output { font-family: ui-monospace, Menlo, monospace; }
+.bubble-draft .u-pos button { font: inherit; color: inherit; background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
+.bubble-draft .u-controls {
+  position: absolute;
+  left: clamp(16px, 3vw, 36px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px));
+  z-index: 2;
+  display: grid;
+  gap: 8px;
+  max-width: 50vw;
+}
+.bubble-draft .u-looks, .bubble-draft .u-words { display: flex; flex-wrap: wrap; gap: 6px; }
+.bubble-draft .u-italic { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .4rem; align-items: center; }
+.bubble-draft .u-font { font-size: .75rem; color: var(--mark); display: flex; gap: .5rem; align-items: center; }
+.bubble-draft .u-font select { font: inherit; font-size: .8rem; padding: .15rem .3rem; max-width: 14rem; }
+.bubble-draft .u-looks button, .bubble-draft .u-words button {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(128, 128, 128, .6);
+  padding: 0;
+  cursor: pointer;
+}
+.bubble-draft .u-looks button[aria-pressed="true"],
+.bubble-draft .u-words button[aria-pressed="true"] { outline: 2px solid var(--mark); outline-offset: 2px; }
+.bubble-draft .u-credit {
+  position: absolute;
+  left: clamp(16px, 3vw, 36px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 288px);
+  margin: 0;
+  max-width: 42vw;
+  font-size: .7rem;
+  color: var(--mark);
+  opacity: .55;
+}
+.bubble-draft .u-credit a { color: inherit; }
+@media (max-width: 600px) {
+  .bubble-draft .u-credit { display: none; }
+}
+.hurricane-draft .h-fade { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .5rem; align-items: center; }
+.hurricane-draft .h-fade input { width: min(12rem, 40vw); }
+.hurricane-draft .h-fade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
+.tracks-draft .t-fade { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .5rem; align-items: center; }
+.tracks-draft .t-fade input { width: min(12rem, 40vw); }
+.tracks-draft .t-fade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
+.bubble-draft .u-fade { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .5rem; align-items: center; }
+.bubble-draft .u-fade input { width: min(12rem, 40vw); }
+.bubble-draft .u-fade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
+.chamber-draft .c-fade { margin: 0; font-size: .75rem; color: inherit; display: flex; gap: .5rem; align-items: center; }
+.chamber-draft .c-fade input { width: min(12rem, 40vw); }
+.chamber-draft .c-fade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
+.radiolarian-draft .r-fade { margin: 0; font-size: .75rem; color: inherit; display: flex; gap: .5rem; align-items: center; }
+.radiolarian-draft .r-fade input { width: min(12rem, 40vw); }
+.radiolarian-draft .r-fade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
