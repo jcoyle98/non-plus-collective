@@ -840,7 +840,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 /* ---------------------------------------------------------------------------
    Draft: cloud chamber (templates/draft-chamber.html, static/chamber.js)
    Image 30, its labels cropped away, filling the window under a bar of links in the image's dark colour;
-   the chamber's two plates split it into three (columns on wide windows, rows on tall ones); NON PLUS
+   the chamber's two plates split it into three columns (on tall windows it is zoomed, not turned); NON PLUS
    floats over it, draggable, in a colour of its own.
    Scoped to .chamber-draft. */
 .design main.chamber-draft {
