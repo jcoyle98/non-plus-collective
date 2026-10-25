@@ -1,0 +1,2612 @@
+{
+ "note": "Copied from https://github.com/jcoyle98/non-plus-image-gallery (commit 72acc94). Credit each image's artist and licence wherever it is used; CC BY and CC BY-SA require it.",
+ "sections": {
+  "radar": "Radar & scopes",
+  "tracks": "Particle tracks",
+  "cells": "Cells, micrographs & radiolaria",
+  "womb": "Embryos & the womb"
+ },
+ "images": [
+  {
+   "id": 1,
+   "file": "radar/001-bell-telephone-magazine-1945-14569797239.jpg",
+   "section": "radar",
+   "title": "Bell telephone magazine (1945) (14569797239)",
+   "artist": "Internet Archive Book Images",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Bell_telephone_magazine_(1945)_(14569797239).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/0/01/Bell_telephone_magazine_%281945%29_%2814569797239%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2046,
+    1012
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 2,
+   "file": "radar/002-radar-racon-o.jpg",
+   "section": "radar",
+   "title": "Radar Racon O",
+   "artist": "Clipper",
+   "licence": "CC BY-SA 3.0",
+   "licence_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:Radar_Racon_O.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/0/07/Radar_Racon_O.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2048,
+    1536
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 3,
+   "file": "radar/003-wwii-comparison-of-aerial-radar-scope-photograph-of-nantucke.jpg",
+   "section": "radar",
+   "title": "WWII comparison of aerial radar scope photograph of Nantucket with actual chart of island (38628763390)",
+   "artist": "National Museum of the U.S. Navy",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:WWII_comparison_of_aerial_radar_scope_photograph_of_Nantucket_with_actual_chart_of_island_(38628763390).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/75/WWII_comparison_of_aerial_radar_scope_photograph_of_Nantucket_with_actual_chart_of_island_%2838628763390%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3031,
+    2268
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 4,
+   "file": "radar/004-hurricane-gracie-on-radar-scope-in-september-1959.jpg",
+   "section": "radar",
+   "title": "Hurricane Gracie on radar scope in September 1959",
+   "artist": "PH2 B.J. Dalma, USN",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Hurricane_Gracie_on_radar_scope_in_September_1959.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Hurricane_Gracie_on_radar_scope_in_September_1959.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1515,
+    1702
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 5,
+   "file": "radar/005-night-radar-scope-image-of-potomac-approach-to-washington-ww.jpg",
+   "section": "radar",
+   "title": "Night radar scope image of Potomac approach to Washington, WWII (39543289985)",
+   "artist": "National Museum of the U.S. Navy",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Night_radar_scope_image_of_Potomac_approach_to_Washington,_WWII_(39543289985).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/78/Night_radar_scope_image_of_Potomac_approach_to_Washington%2C_WWII_%2839543289985%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3131,
+    2392
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 6,
+   "file": "radar/006-radar-scope-1961969.jpg",
+   "section": "radar",
+   "title": "Radar Scope (1961969)",
+   "artist": "Dawn Endico from Menlo Park, California",
+   "licence": "CC BY-SA 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Radar_Scope_(1961969).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Radar_Scope_%281961969%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1600,
+    1200
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 7,
+   "file": "radar/007-radar-scope-nara-520692.jpg",
+   "section": "radar",
+   "title": "Radar scope. - NARA - 520692",
+   "artist": "Unknown authorUnknown author or not provided",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Radar_scope._-_NARA_-_520692.tif",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Radar_scope._-_NARA_-_520692.tif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3000,
+    2415
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 8,
+   "file": "radar/008-sr-t-plan-position-indicator.jpg",
+   "section": "radar",
+   "title": "SR&T Plan position indicator",
+   "artist": "Tekniska museet",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:SR%26T_Plan_position_indicator.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/e/e7/SR%26T_Plan_position_indicator.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2634,
+    3543
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 9,
+   "file": "radar/009-scope-of-an-artcc-controller.jpg",
+   "section": "radar",
+   "title": "Scope of an ARTCC controller",
+   "artist": "Federal Aviation Administration",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Scope_of_an_ARTCC_controller.png",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/1/15/Scope_of_an_ARTCC_controller.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1974,
+    1872
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 10,
+   "file": "radar/010-air-traffic-control-display.jpg",
+   "section": "radar",
+   "title": "Air Traffic Control Display",
+   "artist": "Dms489",
+   "licence": "CC BY 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Air_Traffic_Control_Display.JPG",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Air_Traffic_Control_Display.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1680,
+    2592
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 11,
+   "file": "radar/011-blackettradar1.jpg",
+   "section": "radar",
+   "title": "BlackettRadar1",
+   "artist": "Unknown",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:BlackettRadar1.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/6/6b/BlackettRadar1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3156,
+    3588
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 12,
+   "file": "radar/012-blackettradar2.jpg",
+   "section": "radar",
+   "title": "BlackettRadar2",
+   "artist": "Unknown",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:BlackettRadar2.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/0/0c/BlackettRadar2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3108,
+    3586
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 13,
+   "file": "radar/013-hurricane-flora-over-tobago-on-radar-1963-09-30.jpg",
+   "section": "radar",
+   "title": "Hurricane Flora over Tobago on radar 1963-09-30",
+   "artist": "U.S. Navy, National Archives",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Hurricane_Flora_over_Tobago_on_radar_1963-09-30.tif",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Hurricane_Flora_over_Tobago_on_radar_1963-09-30.tif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    5098,
+    4998
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 14,
+   "file": "radar/014-lissajous-figur-2020-7765.jpg",
+   "section": "radar",
+   "title": "Lissajous-Figur -- 2020 -- 7765",
+   "artist": "Dietmar Rabich",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Lissajous-Figur_--_2020_--_7765.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Lissajous-Figur_--_2020_--_7765.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    5254,
+    3941
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 15,
+   "file": "radar/015-lissajous-figur-2020-7766.jpg",
+   "section": "radar",
+   "title": "Lissajous-Figur -- 2020 -- 7766",
+   "artist": "Dietmar Rabich",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Lissajous-Figur_--_2020_--_7766.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/83/Lissajous-Figur_--_2020_--_7766.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    5357,
+    4018
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 16,
+   "file": "radar/016-lissajous-figur-2020-7767.jpg",
+   "section": "radar",
+   "title": "Lissajous-Figur -- 2020 -- 7767",
+   "artist": "Dietmar Rabich",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Lissajous-Figur_--_2020_--_7767.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Lissajous-Figur_--_2020_--_7767.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    6341,
+    3963
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 17,
+   "file": "radar/017-lissajous-figur-2020-7768.jpg",
+   "section": "radar",
+   "title": "Lissajous-Figur -- 2020 -- 7768",
+   "artist": "Dietmar Rabich",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Lissajous-Figur_--_2020_--_7768.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Lissajous-Figur_--_2020_--_7768.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    6073,
+    4049
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 18,
+   "file": "radar/018-lissajous-figur-2020-7769.jpg",
+   "section": "radar",
+   "title": "Lissajous-Figur -- 2020 -- 7769",
+   "artist": "Dietmar Rabich",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Lissajous-Figur_--_2020_--_7769.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Lissajous-Figur_--_2020_--_7769.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    6128,
+    4085
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 19,
+   "file": "radar/019-lissajous-figure.jpg",
+   "section": "radar",
+   "title": "Lissajous figure",
+   "artist": "Greg Francke",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Lissajous_figure.JPG",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/d/da/Lissajous_figure.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2048,
+    1463
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 20,
+   "file": "tracks/020-bubble-chamber-event-formula-demonstration-photograph-taken-.jpg",
+   "section": "tracks",
+   "title": "Bubble chamber event, formula demonstration. Photograph taken August 26, 1957. Bubble Chamber-315A - DPLA - aace197da4debc8b3ed9548c646e156c",
+   "artist": "Department of Energy. Lawrence Berkeley National Laboratory. Public Affairs Department. Strategic Resources Office. Photography Services. 2012",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Bubble_chamber_event,_formula_demonstration._Photograph_taken_August_26,_1957._Bubble_Chamber-315A_-_DPLA_-_aace197da4debc8b3ed9548c646e156c.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/96/Bubble_chamber_event%2C_formula_demonstration._Photograph_taken_August_26%2C_1957._Bubble_Chamber-315A_-_DPLA_-_aace197da4debc8b3ed9548c646e156c.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3200,
+    3212
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 21,
+   "file": "tracks/021-bubble-chamber-event-decay-of-neutral-lambda-anti-lambda-hyp.jpg",
+   "section": "tracks",
+   "title": "Bubble chamber event. Decay of neutral lambda, anti-lambda hyperons. Photograph circa July 1959. Bubble Chamber-772A - DPLA - 5141859e360581251906c073668c70de",
+   "artist": "Department of Energy. Lawrence Berkeley National Laboratory. Public Affairs Department. Strategic Resources Office. Photography Services. 2012",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Bubble_chamber_event._Decay_of_neutral_lambda,_anti-lambda_hyperons._Photograph_circa_July_1959._Bubble_Chamber-772A_-_DPLA_-_5141859e360581251906c073668c70de.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/4/44/Bubble_chamber_event._Decay_of_neutral_lambda%2C_anti-lambda_hyperons._Photograph_circa_July_1959._Bubble_Chamber-772A_-_DPLA_-_5141859e360581251906c073668c70de.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2430,
+    3000
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 22,
+   "file": "tracks/022-bubble-chamber-event-photograph-taken-december-16-1958-bubbl.jpg",
+   "section": "tracks",
+   "title": "Bubble chamber event. Photograph taken December 16, 1958. Bubble Chamber-315B - DPLA - 57790979981199894c1e2fa1b4bce5e8",
+   "artist": "Department of Energy. Lawrence Berkeley National Laboratory. Public Affairs Department. Strategic Resources Office. Photography Services. 2012",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Bubble_chamber_event._Photograph_taken_December_16,_1958._Bubble_Chamber-315B_-_DPLA_-_57790979981199894c1e2fa1b4bce5e8.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/80/Bubble_chamber_event._Photograph_taken_December_16%2C_1958._Bubble_Chamber-315B_-_DPLA_-_57790979981199894c1e2fa1b4bce5e8.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3529,
+    4000
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 23,
+   "file": "tracks/023-synchrotron-background-test-in-4-inch-bubble-chamber-photogr.jpg",
+   "section": "tracks",
+   "title": "Synchrotron background test in 4-inch bubble chamber. Photograph taken July 27, 1955. Bubble Chamber-27 - DPLA - b6d5a3ec40b03d8ae7481eb9912553ff",
+   "artist": "Department of Energy. Lawrence Berkeley National Laboratory. Public Affairs Department. Strategic Resources Office. Photography Services. 2012",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Synchrotron_background_test_in_4-inch_bubble_chamber._Photograph_taken_July_27,_1955._Bubble_Chamber-27_-_DPLA_-_b6d5a3ec40b03d8ae7481eb9912553ff.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Synchrotron_background_test_in_4-inch_bubble_chamber._Photograph_taken_July_27%2C_1955._Bubble_Chamber-27_-_DPLA_-_b6d5a3ec40b03d8ae7481eb9912553ff.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2170,
+    2222
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 24,
+   "file": "tracks/024-first-track-in-deuterium-photograph-taken-october-1955-bubbl.jpg",
+   "section": "tracks",
+   "title": "First track in deuterium. Photograph taken October 1955. Bubble Chamber-46 - DPLA - d553c1730076c531c844c8e5e1de1e6c",
+   "artist": "Department of Energy. Lawrence Berkeley National Laboratory. Public Affairs Department. Strategic Resources Office. Photography Services. 2012",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:First_track_in_deuterium._Photograph_taken_October_1955._Bubble_Chamber-46_-_DPLA_-_d553c1730076c531c844c8e5e1de1e6c.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/5/54/First_track_in_deuterium._Photograph_taken_October_1955._Bubble_Chamber-46_-_DPLA_-_d553c1730076c531c844c8e5e1de1e6c.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2400,
+    3000
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 25,
+   "file": "tracks/025-hd-6d-680-12000818023.jpg",
+   "section": "tracks",
+   "title": "HD.6D.680 (12000818023)",
+   "artist": "ENERGY.GOV",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:HD.6D.680_(12000818023).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/c/c6/HD.6D.680_%2812000818023%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3200,
+    1860
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 26,
+   "file": "tracks/026-leptonic-event-in-gargamelle-bubble-chamber.jpg",
+   "section": "tracks",
+   "title": "Leptonic event in Gargamelle bubble chamber",
+   "artist": "CERN",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Leptonic_event_in_Gargamelle_bubble_chamber.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Leptonic_event_in_Gargamelle_bubble_chamber.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1021,
+    1506
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 27,
+   "file": "tracks/027-production-and-decay-of-neutral-lambda-and-anti-lambda-hyper.jpg",
+   "section": "tracks",
+   "title": "Production and decay of neutral lambda and anti-lambda hyperons. Patent release 10-5-1962. Photograph taken July 8, 1959. Bubble Chamber-172A - DPLA - 48d28c1e94d935715c697adf9a6554c8",
+   "artist": "Department of Energy. Lawrence Berkeley National Laboratory. Public Affairs Department. Strategic Resources Office. Photography Services. 2012",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Production_and_decay_of_neutral_lambda_and_anti-lambda_hyperons._Patent_release_10-5-1962._Photograph_taken_July_8,_1959._Bubble_Chamber-172A_-_DPLA_-_48d28c1e94d935715c697adf9a6554c8.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/81/Production_and_decay_of_neutral_lambda_and_anti-lambda_hyperons._Patent_release_10-5-1962._Photograph_taken_July_8%2C_1959._Bubble_Chamber-172A_-_DPLA_-_48d28c1e94d935715c697adf9a6554c8.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1876,
+    2547
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 28,
+   "file": "tracks/028-alpha-radiation-in-a-cloud-chamber.jpg",
+   "section": "tracks",
+   "title": "Alpha radiation in a cloud chamber",
+   "artist": "Nuledo",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Alpha_radiation_in_a_cloud_chamber.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/2/27/Alpha_radiation_in_a_cloud_chamber.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1920,
+    1080
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 29,
+   "file": "tracks/029-beta-radiation-in-a-cloud-chamber.jpg",
+   "section": "tracks",
+   "title": "Beta radiation in a cloud chamber",
+   "artist": "Nuledo",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Beta_radiation_in_a_cloud_chamber.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/0/06/Beta_radiation_in_a_cloud_chamber.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1920,
+    1080
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 30,
+   "file": "tracks/030-cloud-chamber-photo-of-heavy-nucleus.jpg",
+   "section": "tracks",
+   "title": "Cloud Chamber Photo of Heavy Nucleus",
+   "artist": "James A. Earl",
+   "licence": "CC BY 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Cloud_Chamber_Photo_of_Heavy_Nucleus.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Cloud_Chamber_Photo_of_Heavy_Nucleus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1530,
+    1921
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 31,
+   "file": "tracks/031-experiments-by-blackett-in-a-wilson-cloud-chamber-wellcome-m.jpg",
+   "section": "tracks",
+   "title": "Experiments by Blackett in a Wilson Cloud Chamber. Wellcome M0015316",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Experiments_by_Blackett_in_a_Wilson_Cloud_Chamber._Wellcome_M0015316.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Experiments_by_Blackett_in_a_Wilson_Cloud_Chamber._Wellcome_M0015316.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3970,
+    2687
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 32,
+   "file": "tracks/032-particle-tracks-in-awan-expansion-cloud-chamber.jpg",
+   "section": "tracks",
+   "title": "Particle Tracks in AWAN Expansion Cloud Chamber",
+   "artist": "Kebuk awan",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Particle_Tracks_in_AWAN_Expansion_Cloud_Chamber.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/76/Particle_Tracks_in_AWAN_Expansion_Cloud_Chamber.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    5696,
+    4288
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 33,
+   "file": "tracks/033-radioactivity-of-a-thorite-mineral-seen-in-a-cloud-chamber.jpg",
+   "section": "tracks",
+   "title": "Radioactivity of a Thorite mineral seen in a cloud chamber",
+   "artist": "Cloudylabs",
+   "licence": "CC BY-SA 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Radioactivity_of_a_Thorite_mineral_seen_in_a_cloud_chamber.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/70/Radioactivity_of_a_Thorite_mineral_seen_in_a_cloud_chamber.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1816,
+    756
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 34,
+   "file": "tracks/034-radon-decay-in-a-cloud-chamber.jpg",
+   "section": "tracks",
+   "title": "Radon decay in a cloud chamber",
+   "artist": "Nuledo",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Radon_decay_in_a_cloud_chamber.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/6/69/Radon_decay_in_a_cloud_chamber.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1920,
+    1080
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 35,
+   "file": "tracks/035-vapor-being-used-in-a-cloud-chamber.jpg",
+   "section": "tracks",
+   "title": "Vapor being used in a cloud chamber",
+   "artist": "Nuledo",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Vapor_being_used_in_a_cloud_chamber.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Vapor_being_used_in_a_cloud_chamber.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    5760,
+    3840
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 36,
+   "file": "cells/036-confocal-micrograph-of-stained-hela.jpg",
+   "section": "cells",
+   "title": "Confocal micrograph of stained HeLa",
+   "artist": "Dedyseptiadi7",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Confocal_micrograph_of_stained_HeLa.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Confocal_micrograph_of_stained_HeLa.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1345,
+    1345
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 37,
+   "file": "cells/037-sk8-18-2-human-derived-cells-fluorescence-microscopy-2994210.jpg",
+   "section": "cells",
+   "title": "SK8-18-2 human derived cells, fluorescence microscopy (29942101073)",
+   "artist": "ZEISS Microscopy from Germany",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:SK8-18-2_human_derived_cells,_fluorescence_microscopy_(29942101073).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/a/ad/SK8-18-2_human_derived_cells%2C_fluorescence_microscopy_%2829942101073%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2758,
+    2214
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 38,
+   "file": "cells/038-cell-culture-hela-cells-261-16-cell-culture-hela-cells-metap.jpg",
+   "section": "cells",
+   "title": "Cell culture (HeLa cells) (261 16) Cell culture (HeLa cells) - metaphase, prophase",
+   "artist": "Doc. RNDr. Josef Reischig, CSc.",
+   "licence": "CC BY-SA 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Cell_culture_(HeLa_cells)_(261_16)_Cell_culture_(HeLa_cells)_-_metaphase,_prophase.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/76/Cell_culture_%28HeLa_cells%29_%28261_16%29_Cell_culture_%28HeLa_cells%29_-_metaphase%2C_prophase.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3751,
+    2401
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 39,
+   "file": "cells/039-cell-culture-hela-cells-261-17-cell-culture-hela-cells-anaph.jpg",
+   "section": "cells",
+   "title": "Cell culture (HeLa cells) (261 17) Cell culture (HeLa cells) - anaphase, metaphase",
+   "artist": "Doc. RNDr. Josef Reischig, CSc.",
+   "licence": "CC BY-SA 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Cell_culture_(HeLa_cells)_(261_17)_Cell_culture_(HeLa_cells)_-_anaphase,_metaphase.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/86/Cell_culture_%28HeLa_cells%29_%28261_17%29_Cell_culture_%28HeLa_cells%29_-_anaphase%2C_metaphase.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3751,
+    2401
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 40,
+   "file": "cells/040-cell-culture-hela-cells-261-18-cell-culture-hela-cells-metap.jpg",
+   "section": "cells",
+   "title": "Cell culture (HeLa cells) (261 18) Cell culture (HeLa cells) - metaphase, telophase",
+   "artist": "Doc. RNDr. Josef Reischig, CSc.",
+   "licence": "CC BY-SA 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Cell_culture_(HeLa_cells)_(261_18)_Cell_culture_(HeLa_cells)_-_metaphase,_telophase.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/96/Cell_culture_%28HeLa_cells%29_%28261_18%29_Cell_culture_%28HeLa_cells%29_-_metaphase%2C_telophase.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3751,
+    2401
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 41,
+   "file": "cells/041-hela-zellen.jpg",
+   "section": "cells",
+   "title": "HELA-Zellen",
+   "artist": "Fraunhofer-Institut für Biomedizinische Technik, St. Ingbert, Paul Anastasiadis, Eike Weiß",
+   "licence": "CC BY-SA 3.0",
+   "licence_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+   "source": "https://commons.wikimedia.org/wiki/File:HELA-Zellen.JPG",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/2/2e/HELA-Zellen.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1344,
+    1024
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 42,
+   "file": "cells/042-hela-cells-stained-with-dapi-and-phalloidin.jpg",
+   "section": "cells",
+   "title": "HELA cells stained with DAPI and Phalloidin",
+   "artist": "Arnatbio",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:HELA_cells_stained_with_DAPI_and_Phalloidin.tiff",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/e/ef/HELA_cells_stained_with_DAPI_and_Phalloidin.tiff?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1376,
+    1038
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 43,
+   "file": "cells/043-hela-i.jpg",
+   "section": "cells",
+   "title": "HeLa-I",
+   "artist": "National Institutes of Health (NIH)",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:HeLa-I.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/b3/HeLa-I.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2400,
+    1999
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 44,
+   "file": "cells/044-hela-tubulin-hsp60-fibrillarin-dna.jpg",
+   "section": "cells",
+   "title": "HeLa-Tubulin-HSP60-Fibrillarin-DNA",
+   "artist": "GerryShaw",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:HeLa-Tubulin-HSP60-Fibrillarin-DNA.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/0/03/HeLa-Tubulin-HSP60-Fibrillarin-DNA.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2968,
+    2976
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 45,
+   "file": "cells/045-hela-v.jpg",
+   "section": "cells",
+   "title": "HeLa-V",
+   "artist": "National Institutes of Health (NIH)",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:HeLa-V.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/fe/HeLa-V.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3200,
+    2409
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 46,
+   "file": "cells/046-frustules-of-diatoms-met-dp262066.jpg",
+   "section": "cells",
+   "title": "-Frustules of Diatoms- MET DP262066",
+   "artist": "Creator:Julius Wiesner",
+   "licence": "CC0",
+   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "source": "https://commons.wikimedia.org/wiki/File:-Frustules_of_Diatoms-_MET_DP262066.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/f0/-Frustules_of_Diatoms-_MET_DP262066.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2561,
+    2893
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 47,
+   "file": "cells/047-1-s2-0-s0025322720300566-pl1-fig22.jpg",
+   "section": "cells",
+   "title": "1-s2.0-S0025322720300566-pl1-fig22",
+   "artist": "Jakub Witkowski, David M. Harwood, Bridget S. Wade, Karolina Bryłka",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:1-s2.0-S0025322720300566-pl1-fig22.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/f9/1-s2.0-S0025322720300566-pl1-fig22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    762,
+    1208
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 48,
+   "file": "cells/048-1-s2-0-s0025322720300566-pl2-lrg.jpg",
+   "section": "cells",
+   "title": "1-s2.0-S0025322720300566-pl2 lrg",
+   "artist": "Jakub Witkowski, David M. Harwood, Bridget S. Wade, Karolina Bryłka",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:1-s2.0-S0025322720300566-pl2_lrg.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/90/1-s2.0-S0025322720300566-pl2_lrg.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2162,
+    2634
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 49,
+   "file": "cells/049-1-s2-0-s0025322720300566-pl3-lrg.jpg",
+   "section": "cells",
+   "title": "1-s2.0-S0025322720300566-pl3 lrg",
+   "artist": "Jakub Witkowski, David M. Harwood, Bridget S. Wade, Karolina Bryłka",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:1-s2.0-S0025322720300566-pl3_lrg.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/f4/1-s2.0-S0025322720300566-pl3_lrg.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2162,
+    2095
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 50,
+   "file": "cells/050-csiro-scienceimage-4905-diatom.jpg",
+   "section": "cells",
+   "title": "CSIRO ScienceImage 4905 diatom",
+   "artist": "CSIRO, CSIRO",
+   "licence": "CC BY 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:CSIRO_ScienceImage_4905_diatom.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/6/65/CSIRO_ScienceImage_4905_diatom.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1826,
+    1191
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 51,
+   "file": "cells/051-eocene-diatoms-western-north-atlantic.jpg",
+   "section": "cells",
+   "title": "Eocene diatoms - Western North Atlantic",
+   "artist": "Jakub Witkowski, David M. Harwood, Bridget S. Wade, Karolina Bryłka",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Eocene_diatoms_-_Western_North_Atlantic.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/1/18/Eocene_diatoms_-_Western_North_Atlantic.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2162,
+    2231
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 52,
+   "file": "cells/052-naviculoid-diatom.jpg",
+   "section": "cells",
+   "title": "Naviculoid diatom",
+   "artist": "Djpmapfer",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Naviculoid_diatom.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Naviculoid_diatom.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1500,
+    814
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 53,
+   "file": "cells/053-rheinberg-2-diatom.jpg",
+   "section": "cells",
+   "title": "Rheinberg 2 diatom",
+   "artist": "Frank Fox",
+   "licence": "CC BY-SA 3.0 de",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+   "source": "https://commons.wikimedia.org/wiki/File:Rheinberg_2_diatom.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Rheinberg_2_diatom.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1920,
+    1280
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 54,
+   "file": "cells/054-atypical-mitosis.jpg",
+   "section": "cells",
+   "title": "Atypical mitosis",
+   "artist": "Nephron",
+   "licence": "CC BY-SA 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Atypical_mitosis.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/3/31/Atypical_mitosis.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1842,
+    1402
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 55,
+   "file": "cells/055-histopathology-of-poorly-differentiated-lung-adenocarcinoma.jpg",
+   "section": "cells",
+   "title": "Histopathology of poorly differentiated lung adenocarcinoma",
+   "artist": "Mikael Häggström, M.D. Author info - Reusing images- Conflicts of interest: None Mikael Häggström, M.D.",
+   "licence": "CC0",
+   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "source": "https://commons.wikimedia.org/wiki/File:Histopathology_of_poorly_differentiated_lung_adenocarcinoma.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Histopathology_of_poorly_differentiated_lung_adenocarcinoma.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2048,
+    1532
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 56,
+   "file": "cells/056-kaposi-sarcoma-in-a-patient-with-hhv8-associated-mcd.jpg",
+   "section": "cells",
+   "title": "Kaposi sarcoma in a patient with HHV8-associated MCD",
+   "artist": "Amylacea",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Kaposi_sarcoma_in_a_patient_with_HHV8-associated_MCD.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Kaposi_sarcoma_in_a_patient_with_HHV8-associated_MCD.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2048,
+    1536
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 57,
+   "file": "cells/057-macrophages-undergo-mitosis-after-ingesting-a-fungal-cell.jpg",
+   "section": "cells",
+   "title": "Macrophages undergo mitosis after ingesting a fungal cell",
+   "artist": "Carolina Coelho",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Macrophages_undergo_mitosis_after_ingesting_a_fungal_cell.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Macrophages_undergo_mitosis_after_ingesting_a_fungal_cell.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2551,
+    3300
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 58,
+   "file": "cells/058-mitosis-1.jpg",
+   "section": "cells",
+   "title": "Mitosis (1)",
+   "artist": "Unknown photographer",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Mitosis_(1).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/6/63/Mitosis_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1800,
+    2255
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 59,
+   "file": "cells/059-mitosis-in-onion-root-various-stages-metaphase-and-telophase.jpg",
+   "section": "cells",
+   "title": "Mitosis in Onion Root - various stages (Metaphase and Telophase)",
+   "artist": "Natalierussell77",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Mitosis_in_Onion_Root_-_various_stages_(Metaphase_and_Telophase).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Mitosis_in_Onion_Root_-_various_stages_%28Metaphase_and_Telophase%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    4912,
+    3684
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 60,
+   "file": "cells/060-3d-print-models-of-sars-cov-2-virus-left-yellow-spike-protei.jpg",
+   "section": "cells",
+   "title": "3D print models of SARS-CoV-2 virus (left, yellow spike proteins on a gray virus surface) and a colorized scanning electron micrograph of a cell infected with SARS-CoV-2 virus particles (yellow)",
+   "artist": "NIAID",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:3D_print_models_of_SARS-CoV-2_virus_(left,_yellow_spike_proteins_on_a_gray_virus_surface)_and_a_colorized_scanning_electron_micrograph_of_a_cell_infected_with_SARS-CoV-2_virus_particles_(yellow).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/0/0f/3D_print_models_of_SARS-CoV-2_virus_%28left%2C_yellow_spike_proteins_on_a_gray_virus_surface%29_and_a_colorized_scanning_electron_micrograph_of_a_cell_infected_with_SARS-CoV-2_virus_particles_%28yellow%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3207,
+    2498
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 61,
+   "file": "cells/061-colorized-scanning-electron-micrograph-of-a-cell-teal-infect.jpg",
+   "section": "cells",
+   "title": "Colorized scanning electron micrograph of a cell (teal) infected with SARS-CoV-2 virus particles (orange), isolated from a patient sample",
+   "artist": "NIAID",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Colorized_scanning_electron_micrograph_of_a_cell_(teal)_infected_with_SARS-CoV-2_virus_particles_(orange),_isolated_from_a_patient_sample.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/94/Colorized_scanning_electron_micrograph_of_a_cell_%28teal%29_infected_with_SARS-CoV-2_virus_particles_%28orange%29%2C_isolated_from_a_patient_sample.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2719,
+    2118
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 62,
+   "file": "cells/062-ebola-virus-electron-micrograph.jpg",
+   "section": "cells",
+   "title": "Ebola Virus - Electron Micrograph",
+   "artist": "BernbaumJG",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Ebola_Virus_-_Electron_Micrograph.tiff",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/0/07/Ebola_Virus_-_Electron_Micrograph.tiff?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3604,
+    3518
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 63,
+   "file": "cells/063-hiv-1-virus-particles-colorized-scanning-electron-micrograph.jpg",
+   "section": "cells",
+   "title": "HIV-1 virus particles colorized scanning electron micrograph - 111",
+   "artist": "NIAID",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:HIV-1_virus_particles_colorized_scanning_electron_micrograph_-_111.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/95/HIV-1_virus_particles_colorized_scanning_electron_micrograph_-_111.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3406,
+    2648
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 64,
+   "file": "cells/064-hiv-1-virus-particles-colorized-scanning-electron-micrograph.jpg",
+   "section": "cells",
+   "title": "HIV-1 virus particles colorized scanning electron micrograph - 211",
+   "artist": "NIAID",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:HIV-1_virus_particles_colorized_scanning_electron_micrograph_-_211.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/1/18/HIV-1_virus_particles_colorized_scanning_electron_micrograph_-_211.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3406,
+    2648
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 65,
+   "file": "cells/065-hiv-1-virus-particles-colorized-scanning-electron-micrograph.jpg",
+   "section": "cells",
+   "title": "HIV-1 virus particles colorized scanning electron micrograph - 311",
+   "artist": "NIAID",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:HIV-1_virus_particles_colorized_scanning_electron_micrograph_-_311.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/b8/HIV-1_virus_particles_colorized_scanning_electron_micrograph_-_311.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3406,
+    2648
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 66,
+   "file": "cells/066-hiv-1-virus-particles-colorized-scanning-electron-micrograph.jpg",
+   "section": "cells",
+   "title": "HIV-1 virus particles colorized scanning electron micrograph - 411",
+   "artist": "NIAID",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:HIV-1_virus_particles_colorized_scanning_electron_micrograph_-_411.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/5/50/HIV-1_virus_particles_colorized_scanning_electron_micrograph_-_411.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3406,
+    2648
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 67,
+   "file": "cells/067-hiv-infected-t-cell-6813384933.jpg",
+   "section": "cells",
+   "title": "HIV-infected T cell (6813384933)",
+   "artist": "NIAID",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:HIV-infected_T_cell_(6813384933).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/a/a3/HIV-infected_T_cell_%286813384933%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2560,
+    2560
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 68,
+   "file": "cells/068-salmonella-typhimurium-invading-a-human-epithelial-cell-scan.jpg",
+   "section": "cells",
+   "title": "Salmonella Typhimurium invading a human epithelial cell - Scanning electron micrograph",
+   "artist": "NIAID",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Salmonella_Typhimurium_invading_a_human_epithelial_cell_-_Scanning_electron_micrograph.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Salmonella_Typhimurium_invading_a_human_epithelial_cell_-_Scanning_electron_micrograph.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1764,
+    2432
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 69,
+   "file": "cells/069-scanning-electron-micrograph-of-a-human-h9-t-cell-infected-w.jpg",
+   "section": "cells",
+   "title": "Scanning electron micrograph of a human H9 T cell infected with HIV virus particles",
+   "artist": "NIAID",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Scanning_electron_micrograph_of_a_human_H9_T_cell_infected_with_HIV_virus_particles.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Scanning_electron_micrograph_of_a_human_H9_T_cell_infected_with_HIV_virus_particles.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2361,
+    1771
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 70,
+   "file": "cells/070-frog-blastula-blastocoel.jpg",
+   "section": "cells",
+   "title": "Frog blastula blastocoel",
+   "artist": "Holmes, Samuel J.",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Frog_blastula_blastocoel.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Frog_blastula_blastocoel.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2208,
+    1092
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 71,
+   "file": "cells/071-frog-embryo-cleavage-stadia.jpg",
+   "section": "cells",
+   "title": "Frog embryo cleavage stadia",
+   "artist": "Mills, Wesley, 1847-1915",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Frog_embryo_cleavage_stadia.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/91/Frog_embryo_cleavage_stadia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1176,
+    1208
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 72,
+   "file": "cells/072-corte-cerebro-pez-cebra-visto-con-microscopio-confocal.jpg",
+   "section": "cells",
+   "title": "Corte cerebro pez cebra visto con microscopio confocal",
+   "artist": "Brandon Antonio Segura Torres &amp; Priscilla Vieto Bonilla",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Corte_cerebro_pez_cebra_visto_con_microscopio_confocal.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Corte_cerebro_pez_cebra_visto_con_microscopio_confocal.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    4069,
+    4069
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 73,
+   "file": "cells/073-cortical-neurons.jpg",
+   "section": "cells",
+   "title": "Cortical neurons",
+   "artist": "Luisa Demarchi, Ilaria Bertocchi, Alessandra Oberto",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Cortical_neurons.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Cortical_neurons.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2253,
+    2400
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 74,
+   "file": "cells/074-purkinje-neuron-cell-bodies-in-a-mouse-cerebellum-fold-ksena.jpg",
+   "section": "cells",
+   "title": "Purkinje neuron cell bodies in a mouse cerebellum fold - Ksena Longrin",
+   "artist": "Morne Arin",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Purkinje_neuron_cell_bodies_in_a_mouse_cerebellum_fold_-_Ksena_Longrin.png",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/6/61/Purkinje_neuron_cell_bodies_in_a_mouse_cerebellum_fold_-_Ksena_Longrin.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3082,
+    3082
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 75,
+   "file": "cells/075-sum-110913-cort-neurons-2-5d-in-vitro-488-phalloidin-no-perm.jpg",
+   "section": "cells",
+   "title": "SUM 110913 Cort Neurons 2.5d in vitro 488 Phalloidin no perm 4 cmle-2",
+   "artist": "Howard Vindin",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:SUM_110913_Cort_Neurons_2.5d_in_vitro_488_Phalloidin_no_perm_4_cmle-2.png",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/82/SUM_110913_Cort_Neurons_2.5d_in_vitro_488_Phalloidin_no_perm_4_cmle-2.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    4096,
+    2584
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 76,
+   "file": "cells/076-mouse-cerebellar-cortex-h-e-40x.jpg",
+   "section": "cells",
+   "title": "Mouse cerebellar cortex H&E 40x",
+   "artist": "Hesperides29",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Mouse_cerebellar_cortex_H%26E_40x.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Mouse_cerebellar_cortex_H%26E_40x.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2426,
+    2966
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 77,
+   "file": "cells/077-x100.jpg",
+   "section": "cells",
+   "title": "Мозжечковая кора кошки. Окраска гематоксилин-эозин. Увеличение x100",
+   "artist": "Polina DTsareva",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:%D0%9C%D0%BE%D0%B7%D0%B6%D0%B5%D1%87%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%BE%D1%80%D0%B0_%D0%BA%D0%BE%D1%88%D0%BA%D0%B8._%D0%9E%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0_%D0%B3%D0%B5%D0%BC%D0%B0%D1%82%D0%BE%D0%BA%D1%81%D0%B8%D0%BB%D0%B8%D0%BD-%D1%8D%D0%BE%D0%B7%D0%B8%D0%BD._%D0%A3%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D0%B5_x100.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/b3/%D0%9C%D0%BE%D0%B7%D0%B6%D0%B5%D1%87%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%BE%D1%80%D0%B0_%D0%BA%D0%BE%D1%88%D0%BA%D0%B8._%D0%9E%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0_%D0%B3%D0%B5%D0%BC%D0%B0%D1%82%D0%BE%D0%BA%D1%81%D0%B8%D0%BB%D0%B8%D0%BD-%D1%8D%D0%BE%D0%B7%D0%B8%D0%BD._%D0%A3%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D0%B5_x100.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1377,
+    1378
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 78,
+   "file": "cells/078-fluorescence-microscopy-of-the-dna-of-the-oral-cancer-cells.jpg",
+   "section": "cells",
+   "title": "Fluorescence microscopy of the DNA of the oral cancer cells",
+   "artist": "Korinna",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Fluorescence_microscopy_of_the_DNA_of_the_oral_cancer_cells.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Fluorescence_microscopy_of_the_DNA_of_the_oral_cancer_cells.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    4096,
+    3072
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 79,
+   "file": "cells/079-fluorescence-microscopy-of-the-oral-cancer-cells.jpg",
+   "section": "cells",
+   "title": "Fluorescence microscopy of the oral cancer cells",
+   "artist": "Korinna",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Fluorescence_microscopy_of_the_oral_cancer_cells.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/0/09/Fluorescence_microscopy_of_the_oral_cancer_cells.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    4096,
+    3072
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 80,
+   "file": "cells/080-fungi-seen-with-fluorescence-microscope.jpg",
+   "section": "cells",
+   "title": "Fungi seen with fluorescence microscope",
+   "artist": "Juan Carlos Fonseca Mata",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Fungi_seen_with_fluorescence_microscope.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/92/Fungi_seen_with_fluorescence_microscope.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1814,
+    1310
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 81,
+   "file": "cells/081-green-fluorescence-microscopy.jpg",
+   "section": "cells",
+   "title": "Green Fluorescence Microscopy",
+   "artist": "Jamil Baza",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Green_Fluorescence_Microscopy.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Green_Fluorescence_Microscopy.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3024,
+    4032
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 82,
+   "file": "cells/082-entire-blastomeres-are-excluded-upon-blastocyst-formation.jpg",
+   "section": "cells",
+   "title": "Entire blastomeres are excluded upon blastocyst formation",
+   "artist": "Cecchele, A.; Cermisoni, G.C.; Giacomini, E.; Pinna, M.; Vigano, P.",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Entire_blastomeres_are_excluded_upon_blastocyst_formation.png",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/74/Entire_blastomeres_are_excluded_upon_blastocyst_formation.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3130,
+    1809
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 83,
+   "file": "cells/083-inbound2890638149762117997.jpg",
+   "section": "cells",
+   "title": "Inbound2890638149762117997",
+   "artist": "Kurtyak",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Inbound2890638149762117997.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/0/07/Inbound2890638149762117997.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3000,
+    4000
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 84,
+   "file": "cells/084-red-blood-cells-2.jpg",
+   "section": "cells",
+   "title": "Red blood cells (2)",
+   "artist": "Scootdive (talk · contribs)",
+   "licence": "CC BY-SA 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Red_blood_cells_(2).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/1/14/Red_blood_cells_%282%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2400,
+    2000
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 85,
+   "file": "cells/085-red-blood-cells-infected-with-malaria.jpg",
+   "section": "cells",
+   "title": "Red blood cells infected with malaria",
+   "artist": "Rick Fairhurst and Jordan Zuspann, National Institute of Allergy and Infectious Diseases, National Institutes of Health",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Red_blood_cells_infected_with_malaria.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Red_blood_cells_infected_with_malaria.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1551,
+    1229
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 86,
+   "file": "cells/086-sem-blood-cells.jpg",
+   "section": "cells",
+   "title": "SEM blood cells",
+   "artist": "Bruce Wetzel (photographer). Harry Schaefer (photographer)",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:SEM_blood_cells.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/82/SEM_blood_cells.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1800,
+    2239
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 87,
+   "file": "cells/087-scanning-electron-microscope-sem-image-of-a-rbc-population-h.jpg",
+   "section": "cells",
+   "title": "Scanning electron microscope (SEM) image of a RBC population having different morphology stages of stomatocytosis and echinocytosis",
+   "artist": "Geekiyanage NM, Balanant MA, Sauret E, Saha S, Flower R, Lim CT, et al.",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Scanning_electron_microscope_(SEM)_image_of_a_RBC_population_having_different_morphology_stages_of_stomatocytosis_and_echinocytosis.png",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/76/Scanning_electron_microscope_%28SEM%29_image_of_a_RBC_population_having_different_morphology_stages_of_stomatocytosis_and_echinocytosis.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1500,
+    1177
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 88,
+   "file": "cells/088-chick-embryo-3d.jpg",
+   "section": "cells",
+   "title": "Chick embryo 3d",
+   "artist": "PaulT (Gunther Tschuch)",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Chick_embryo_3d.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Chick_embryo_3d.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1780,
+    1345
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 89,
+   "file": "cells/089-chick-embryo-4d.jpg",
+   "section": "cells",
+   "title": "Chick embryo 4d",
+   "artist": "PaulT (Gunther Tschuch)",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Chick_embryo_4d.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Chick_embryo_4d.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1926,
+    1637
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 90,
+   "file": "cells/090-chick-embryo-5d.jpg",
+   "section": "cells",
+   "title": "Chick embryo 5d",
+   "artist": "PaulT (Gunther Tschuch)",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Chick_embryo_5d.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Chick_embryo_5d.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1749,
+    2576
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 91,
+   "file": "cells/091-anthocyrtium-hispidum-haeckel-radiolarian-34986365113.jpg",
+   "section": "cells",
+   "title": "Anthocyrtium hispidum Haeckel - Radiolarian (34986365113)",
+   "artist": "Picturepest",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Anthocyrtium_hispidum_Haeckel_-_Radiolarian_(34986365113).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Anthocyrtium_hispidum_Haeckel_-_Radiolarian_%2834986365113%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    4252,
+    6863
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 92,
+   "file": "cells/092-caclocyma-halicalyptra-petalospyris-haeckel-radiolarian-3170.jpg",
+   "section": "cells",
+   "title": "Caclocyma ( = Halicalyptra) petalospyris HAECKEL - Radiolarian (31708336584)",
+   "artist": "Picturepest",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Caclocyma_(_%3D_Halicalyptra)_petalospyris_HAECKEL_-_Radiolarian_(31708336584).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Caclocyma_%28_%3D_Halicalyptra%29_petalospyris_HAECKEL_-_Radiolarian_%2831708336584%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1200,
+    2000
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 93,
+   "file": "cells/093-cladococcus-abietinus.jpg",
+   "section": "cells",
+   "title": "Cladococcus abietinus",
+   "artist": "tintinnidguy",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Cladococcus_abietinus.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Cladococcus_abietinus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2724,
+    2548
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 94,
+   "file": "cells/094-haeckel-acanthometra.jpg",
+   "section": "cells",
+   "title": "Haeckel Acanthometra",
+   "artist": "Ernst Haeckel",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Haeckel_Acanthometra.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/92/Haeckel_Acanthometra.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2346,
+    3294
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 95,
+   "file": "cells/095-haeckel-spumellaria.jpg",
+   "section": "cells",
+   "title": "Haeckel Spumellaria",
+   "artist": "Ernst Haeckel",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Haeckel_Spumellaria.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Haeckel_Spumellaria.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2344,
+    3324
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 96,
+   "file": "cells/096-phacodiscus-clypeus-haeckel-radiolarian-36086846420.jpg",
+   "section": "cells",
+   "title": "Phacodiscus clypeus Haeckel - Radiolarian (36086846420)",
+   "artist": "Picturepest",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Phacodiscus_clypeus_Haeckel_-_Radiolarian_(36086846420).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Phacodiscus_clypeus_Haeckel_-_Radiolarian_%2836086846420%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3500,
+    3400
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 97,
+   "file": "cells/097-radiolarian-dorataspida-sp.jpg",
+   "section": "cells",
+   "title": "Radiolarian - Dorataspida sp",
+   "artist": "Andreas Drews",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Radiolarian_-_Dorataspida_sp.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Radiolarian_-_Dorataspida_sp.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    5160,
+    5200
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 98,
+   "file": "cells/098-radiolarian-heliodiscus-umbonatus-ehr-haeckel-28187768550.jpg",
+   "section": "cells",
+   "title": "Radiolarian - Heliodiscus umbonatus (Ehr.), Haeckel (28187768550)",
+   "artist": "Picturepest",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Radiolarian_-_Heliodiscus_umbonatus_(Ehr.),_Haeckel_(28187768550).jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/2/27/Radiolarian_-_Heliodiscus_umbonatus_%28Ehr.%29%2C_Haeckel_%2828187768550%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2000,
+    2024
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 99,
+   "file": "womb/099-foetus-in-placenta-in-utero-wellcome-l0057759.jpg",
+   "section": "womb",
+   "title": "Foetus in placenta in utero. Wellcome L0057759",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Foetus_in_placenta_in_utero._Wellcome_L0057759.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/2/29/Foetus_in_placenta_in_utero._Wellcome_L0057759.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2953,
+    3713
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 100,
+   "file": "womb/100-foetus-in-utero-wellcome-l0004300.jpg",
+   "section": "womb",
+   "title": "Foetus in utero. Wellcome L0004300",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Foetus_in_utero._Wellcome_L0004300.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/71/Foetus_in_utero._Wellcome_L0004300.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1215,
+    1517
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 101,
+   "file": "womb/101-foetus-in-utero-wellcome-l0013508.jpg",
+   "section": "womb",
+   "title": "Foetus in utero. Wellcome L0013508",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Foetus_in_utero._Wellcome_L0013508.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/93/Foetus_in_utero._Wellcome_L0013508.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1154,
+    1600
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 102,
+   "file": "womb/102-foetus-in-utero-wellcome-l0013509.jpg",
+   "section": "womb",
+   "title": "Foetus in utero. Wellcome L0013509",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Foetus_in_utero._Wellcome_L0013509.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Foetus_in_utero._Wellcome_L0013509.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1166,
+    1650
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 103,
+   "file": "womb/103-foetus-in-utero-wellcome-l0013510.jpg",
+   "section": "womb",
+   "title": "Foetus in utero. Wellcome L0013510",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Foetus_in_utero._Wellcome_L0013510.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/88/Foetus_in_utero._Wellcome_L0013510.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1113,
+    1638
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 104,
+   "file": "womb/104-foetus-in-utero-wellcome-l0016391.jpg",
+   "section": "womb",
+   "title": "Foetus in utero. Wellcome L0016391",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Foetus_in_utero._Wellcome_L0016391.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Foetus_in_utero._Wellcome_L0016391.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1814,
+    1064
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 105,
+   "file": "womb/105-foetus-in-utero-wellcome-l0018065.jpg",
+   "section": "womb",
+   "title": "Foetus in utero. Wellcome L0018065",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Foetus_in_utero._Wellcome_L0018065.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Foetus_in_utero._Wellcome_L0018065.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1134,
+    1674
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 106,
+   "file": "womb/106-foetus-in-utero-from-rueff-expert-midwife-wellcome-l0014439.jpg",
+   "section": "womb",
+   "title": "Foetus in utero from Rueff \"Expert midwife\" Wellcome L0014439",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Foetus_in_utero_from_Rueff_%22Expert_midwife%22_Wellcome_L0014439.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Foetus_in_utero_from_Rueff_%22Expert_midwife%22_Wellcome_L0014439.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1108,
+    1675
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 107,
+   "file": "womb/107-the-anatomy-of-the-human-gravid-uterus-foetus-in-utero-wellc.jpg",
+   "section": "womb",
+   "title": "The anatomy of the human gravid uterus; foetus in utero. Wellcome L0004302",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:The_anatomy_of_the_human_gravid_uterus;_foetus_in_utero._Wellcome_L0004302.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/0/04/The_anatomy_of_the_human_gravid_uterus%3B_foetus_in_utero._Wellcome_L0004302.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2692,
+    4078
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 108,
+   "file": "womb/108-the-anatomy-of-the-human-gravid-uterus-foetus-in-utero-wellc.jpg",
+   "section": "womb",
+   "title": "The anatomy of the human gravid uterus; foetus in utero. Wellcome L0007000",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:The_anatomy_of_the_human_gravid_uterus;_foetus_in_utero._Wellcome_L0007000.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/88/The_anatomy_of_the_human_gravid_uterus%3B_foetus_in_utero._Wellcome_L0007000.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1152,
+    1708
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 109,
+   "file": "womb/109-viscera-with-fetus-in-utero-watercolour-persian-19th-c-wellc.jpg",
+   "section": "womb",
+   "title": "Viscera with fetus in utero, watercolour, Persian, 19th C Wellcome L0020503",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Viscera_with_fetus_in_utero,_watercolour,_Persian,_19th_C_Wellcome_L0020503.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/5/53/Viscera_with_fetus_in_utero%2C_watercolour%2C_Persian%2C_19th_C_Wellcome_L0020503.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1144,
+    1692
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 110,
+   "file": "womb/110-woodcut-of-foetus-in-utero-wellcome-l0014440.jpg",
+   "section": "womb",
+   "title": "Woodcut of foetus in utero Wellcome L0014440",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Woodcut_of_foetus_in_utero_Wellcome_L0014440.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/4/41/Woodcut_of_foetus_in_utero_Wellcome_L0014440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1275,
+    1536
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 111,
+   "file": "womb/111-page-from-the-anatomy-of-the-human-gravid-uterus-exhibited-i.jpg",
+   "section": "womb",
+   "title": "Page from \"The anatomy of the human gravid uterus exhibited in figures\"",
+   "artist": "Unknown",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Page_from_%22The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures%22.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Page_from_%22The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures%22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    724,
+    1208
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 112,
+   "file": "womb/112-the-anatomy-of-the-human-gravid-uterus-exhibited-in-figures-.jpg",
+   "section": "womb",
+   "title": "The anatomy of the human gravid uterus exhibited in figures Wellcome L0050943",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures_Wellcome_L0050943.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/92/The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures_Wellcome_L0050943.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    5042,
+    6666
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 113,
+   "file": "womb/113-the-anatomy-of-the-human-gravid-uterus-exhibited-in-figures-.jpg",
+   "section": "womb",
+   "title": "The anatomy of the human gravid uterus exhibited in figures Wellcome L0050946",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures_Wellcome_L0050946.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/2/28/The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures_Wellcome_L0050946.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    6656,
+    5042
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 114,
+   "file": "womb/114-the-anatomy-of-the-human-gravid-uterus-exhibited-in-figures-.jpg",
+   "section": "womb",
+   "title": "The anatomy of the human gravid uterus exhibited in figures Wellcome L0050958",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures_Wellcome_L0050958.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/b5/The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures_Wellcome_L0050958.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    5042,
+    6666
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 115,
+   "file": "womb/115-da-vinci-studies-of-embryos-luc-viatour.jpg",
+   "section": "womb",
+   "title": "Da Vinci Studies of Embryos Luc Viatour",
+   "artist": "Leonardo da Vinci",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Da_Vinci_Studies_of_Embryos_Luc_Viatour.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Da_Vinci_Studies_of_Embryos_Luc_Viatour.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1443,
+    2121
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 116,
+   "file": "womb/116-leonardo-da-vinci-rcin-919102-recto-the-fetus-in-the-womb.jpg",
+   "section": "womb",
+   "title": "Leonardo da Vinci - RCIN 919102, Recto The fetus in the womb",
+   "artist": "Leonardo da Vinci",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Leonardo_da_Vinci_-_RCIN_919102,_Recto_The_fetus_in_the_womb.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Leonardo_da_Vinci_-_RCIN_919102%2C_Recto_The_fetus_in_the_womb.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1498,
+    2000
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 117,
+   "file": "womb/117-leonardo-da-vinci-studies-of-the-foetus-in-the-womb.jpg",
+   "section": "womb",
+   "title": "Leonardo da Vinci - Studies of the foetus in the womb",
+   "artist": "Leonardo da Vinci",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Leonardo_da_Vinci_-_Studies_of_the_foetus_in_the_womb.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/6/63/Leonardo_da_Vinci_-_Studies_of_the_foetus_in_the_womb.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2289,
+    3136
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 118,
+   "file": "womb/118-the-babe-in-the-womb-leonardo-da-vinci-1511.jpg",
+   "section": "womb",
+   "title": "The babe in the womb; Leonardo da Vinci (1511)",
+   "artist": "Unknown",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:The_babe_in_the_womb;_Leonardo_da_Vinci_(1511).JPG",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/f1/The_babe_in_the_womb%3B_Leonardo_da_Vinci_%281511%29.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1071,
+    1492
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 119,
+   "file": "womb/119-obstetric-ultrasound-scan-monitor-showing-20-week-human-fetu.jpg",
+   "section": "womb",
+   "title": "Obstetric ultrasound scan monitor showing 20-week human fetus profile in Navi Mumbai 2015",
+   "artist": "Goleisureintl",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Obstetric_ultrasound_scan_monitor_showing_20-week_human_fetus_profile_in_Navi_Mumbai_2015.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Obstetric_ultrasound_scan_monitor_showing_20-week_human_fetus_profile_in_Navi_Mumbai_2015.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1300,
+    810
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 120,
+   "file": "womb/120-eleutherodactylus-planirostris-embryos.jpg",
+   "section": "womb",
+   "title": "Eleutherodactylus planirostris embryos",
+   "artist": "Alex Abair",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Eleutherodactylus_planirostris_embryos.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Eleutherodactylus_planirostris_embryos.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2048,
+    1536
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 121,
+   "file": "womb/121-human-blastoid-1.jpg",
+   "section": "womb",
+   "title": "Human blastoid - 1",
+   "artist": "Nicolasrivron",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Human_blastoid_-_1.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Human_blastoid_-_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2835,
+    2835
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 122,
+   "file": "womb/122-plaque-showing-the-development-of-a-human-embryo.jpg",
+   "section": "womb",
+   "title": "Plaque showing the development of a human embryo",
+   "artist": "Science Museum Group Studio",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Plaque_showing_the_development_of_a_human_embryo.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/90/Plaque_showing_the_development_of_a_human_embryo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1126,
+    1536
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 123,
+   "file": "womb/123-plaque-showing-the-development-of-a-human-embryo-2.jpg",
+   "section": "womb",
+   "title": "Plaque showing the development of a human embryo 2",
+   "artist": "Science Museum Group Studio",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Plaque_showing_the_development_of_a_human_embryo_2.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/98/Plaque_showing_the_development_of_a_human_embryo_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1208,
+    1536
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 124,
+   "file": "womb/124-embryo-copies.jpg",
+   "section": "womb",
+   "title": "Embryo - copies",
+   "artist": "Creator:Ernst haeckel",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Embryo_-_copies.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Embryo_-_copies.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2652,
+    2904
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 125,
+   "file": "womb/125-ernst-haeckel-anthropogenie-wellcome-l0027291.jpg",
+   "section": "womb",
+   "title": "Ernst Haeckel, Anthropogenie. Wellcome L0027291",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Ernst_Haeckel,_Anthropogenie._Wellcome_L0027291.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Ernst_Haeckel%2C_Anthropogenie._Wellcome_L0027291.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1102,
+    1716
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 126,
+   "file": "womb/126-ernst-haeckel-anthropogenie-wellcome-l0027292.jpg",
+   "section": "womb",
+   "title": "Ernst Haeckel, Anthropogenie. Wellcome L0027292",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Ernst_Haeckel,_Anthropogenie._Wellcome_L0027292.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/1/16/Ernst_Haeckel%2C_Anthropogenie._Wellcome_L0027292.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1360,
+    2070
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 127,
+   "file": "womb/127-haeckel-embryos-weeks4-6.jpg",
+   "section": "womb",
+   "title": "Haeckel-embryos-weeks4-6",
+   "artist": "Ernst Haeckel",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Haeckel-embryos-weeks4-6.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Haeckel-embryos-weeks4-6.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2698,
+    2218
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 128,
+   "file": "womb/128-haeckel-anthropogenie-1874.jpg",
+   "section": "womb",
+   "title": "Haeckel Anthropogenie 1874",
+   "artist": "Lithograph by J. G. Bach of Leipzig after drawings by Haeckel, from Anthropogenie published by Engelmann",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Haeckel_Anthropogenie_1874.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Haeckel_Anthropogenie_1874.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1501,
+    1045
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 129,
+   "file": "womb/129-haeckel-thoracostraca.jpg",
+   "section": "womb",
+   "title": "Haeckel Thoracostraca",
+   "artist": "Ernst Haeckel",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Haeckel_Thoracostraca.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/2/22/Haeckel_Thoracostraca.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2342,
+    3289
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 130,
+   "file": "womb/130-his-embryo.jpg",
+   "section": "womb",
+   "title": "His-Embryo",
+   "artist": "Wilhelm His",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:His-Embryo.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/3/3e/His-Embryo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2704,
+    1712
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 131,
+   "file": "womb/131-plate-iv-diagrammatic-transverse-sections-of-different-embry.jpg",
+   "section": "womb",
+   "title": "Plate IV. Diagrammatic transverse sections of different embryos",
+   "artist": "Haeckel, Ernst Heinrich Philipp August",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Plate_IV._Diagrammatic_transverse_sections_of_different_embryos.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Plate_IV._Diagrammatic_transverse_sections_of_different_embryos.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1071,
+    1648
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 132,
+   "file": "womb/132-plate-v-diagrammatic-longitudinal-sections-of-different-embr.jpg",
+   "section": "womb",
+   "title": "Plate V. Diagrammatic longitudinal sections of different embryos",
+   "artist": "Haeckel, Ernst Heinrich Philipp August",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Plate_V._Diagrammatic_longitudinal_sections_of_different_embryos.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Plate_V._Diagrammatic_longitudinal_sections_of_different_embryos.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1389,
+    2174
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 133,
+   "file": "womb/133-a-child-born-with-the-viscera-reversed-engraving-1749-wellco.jpg",
+   "section": "womb",
+   "title": "A child born with the viscera reversed. Engraving, 1749. Wellcome V0007821",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:A_child_born_with_the_viscera_reversed._Engraving,_1749._Wellcome_V0007821.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/8f/A_child_born_with_the_viscera_reversed._Engraving%2C_1749._Wellcome_V0007821.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2362,
+    3075
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 134,
+   "file": "womb/134-a-foetus-and-placenta-with-umbilical-cord-engraving-1686-wel.jpg",
+   "section": "womb",
+   "title": "A foetus and placenta with umbilical cord. Engraving, 1686, Wellcome V0007786ER",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:A_foetus_and_placenta_with_umbilical_cord._Engraving,_1686,_Wellcome_V0007786ER.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/2/27/A_foetus_and_placenta_with_umbilical_cord._Engraving%2C_1686%2C_Wellcome_V0007786ER.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1100,
+    1825
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 135,
+   "file": "womb/135-a-malformed-foetus-wood-engraving-wellcome-v0007401.jpg",
+   "section": "womb",
+   "title": "A malformed foetus. Wood engraving. Wellcome V0007401",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:A_malformed_foetus._Wood_engraving._Wellcome_V0007401.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/4/49/A_malformed_foetus._Wood_engraving._Wellcome_V0007401.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2126,
+    3295
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 136,
+   "file": "womb/136-a-monkey-foetus-engraving-by-tardieu-after-de-seve-wellcome-.jpg",
+   "section": "womb",
+   "title": "A monkey foetus. Engraving by Tardieu after De Seve. Wellcome V0021461",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:A_monkey_foetus._Engraving_by_Tardieu_after_De_Seve._Wellcome_V0021461.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/9c/A_monkey_foetus._Engraving_by_Tardieu_after_De_Seve._Wellcome_V0021461.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2300,
+    3162
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 137,
+   "file": "womb/137-an-abnormal-foetus-in-the-womb-which-is-about-to-be-natural-.jpg",
+   "section": "womb",
+   "title": "An abnormal foetus in the womb, which is about to be natural Wellcome V0014954",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:An_abnormal_foetus_in_the_womb,_which_is_about_to_be_natural_Wellcome_V0014954.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/8e/An_abnormal_foetus_in_the_womb%2C_which_is_about_to_be_natural_Wellcome_V0014954.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3136,
+    2412
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 138,
+   "file": "womb/138-dissected-foetus-seen-from-behind-with-arteries-and-muscles-.jpg",
+   "section": "womb",
+   "title": "Dissected foetus seen from behind, with arteries and muscles Wellcome V0007991",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Dissected_foetus_seen_from_behind,_with_arteries_and_muscles_Wellcome_V0007991.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/76/Dissected_foetus_seen_from_behind%2C_with_arteries_and_muscles_Wellcome_V0007991.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2125,
+    3573
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 139,
+   "file": "womb/139-dissected-foetus-seen-from-the-front-with-arteries-indicate-.jpg",
+   "section": "womb",
+   "title": "Dissected foetus seen from the front, with arteries indicate Wellcome V0007990",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Dissected_foetus_seen_from_the_front,_with_arteries_indicate_Wellcome_V0007990.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/91/Dissected_foetus_seen_from_the_front%2C_with_arteries_indicate_Wellcome_V0007990.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2050,
+    3434
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 140,
+   "file": "womb/140-foetus-in-utero-six-figures-stipple-engraving-by-campbell-we.jpg",
+   "section": "womb",
+   "title": "Foetus in utero; six figures. Stipple engraving by Campbell( Wellcome V0008049",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Foetus_in_utero;_six_figures._Stipple_engraving_by_Campbell(_Wellcome_V0008049.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Foetus_in_utero%3B_six_figures._Stipple_engraving_by_Campbell%28_Wellcome_V0008049.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3124,
+    2420
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 141,
+   "file": "womb/141-jenty-anatomy-of-the-womb-and-foetus-wellcome-l0030022.jpg",
+   "section": "womb",
+   "title": "Jenty; anatomy of the womb and foetus Wellcome L0030022",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Jenty;_anatomy_of_the_womb_and_foetus_Wellcome_L0030022.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/5/57/Jenty%3B_anatomy_of_the_womb_and_foetus_Wellcome_L0030022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1176,
+    1851
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 142,
+   "file": "womb/142-the-arterial-system-of-human-foetus-engraving-1686-after-wel.jpg",
+   "section": "womb",
+   "title": "The arterial system of human foetus. Engraving, 1686, after Wellcome V0007779EC",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:The_arterial_system_of_human_foetus._Engraving,_1686,_after_Wellcome_V0007779EC.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/f/f0/The_arterial_system_of_human_foetus._Engraving%2C_1686%2C_after_Wellcome_V0007779EC.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2515,
+    4172
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 143,
+   "file": "womb/143-the-foetus-of-dogs-born-as-conjoint-twins-anterior-view-en-w.jpg",
+   "section": "womb",
+   "title": "The foetus of dogs born as conjoint twins, anterior view. En Wellcome V0007390",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:The_foetus_of_dogs_born_as_conjoint_twins,_anterior_view._En_Wellcome_V0007390.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/c/c7/The_foetus_of_dogs_born_as_conjoint_twins%2C_anterior_view._En_Wellcome_V0007390.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2284,
+    3076
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 144,
+   "file": "womb/144-the-foetus-of-dogs-born-as-conjoint-twins-engraving-by-p-s-w.jpg",
+   "section": "womb",
+   "title": "The foetus of dogs born as conjoint twins. Engraving by P. S Wellcome V0007391",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:The_foetus_of_dogs_born_as_conjoint_twins._Engraving_by_P._S_Wellcome_V0007391.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/a/af/The_foetus_of_dogs_born_as_conjoint_twins._Engraving_by_P._S_Wellcome_V0007391.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2394,
+    3167
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 145,
+   "file": "womb/145-illustration-of-a-placenta-wellcome-l0051128.jpg",
+   "section": "womb",
+   "title": "Illustration of a placenta Wellcome L0051128",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Illustration_of_a_placenta_Wellcome_L0051128.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/8/85/Illustration_of_a_placenta_Wellcome_L0051128.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    4477,
+    6613
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 146,
+   "file": "womb/146-illustration-of-male-foetus-with-placenta-wellcome-l0051127.jpg",
+   "section": "womb",
+   "title": "Illustration of male foetus with placenta Wellcome L0051127",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Illustration_of_male_foetus_with_placenta_Wellcome_L0051127.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Illustration_of_male_foetus_with_placenta_Wellcome_L0051127.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    4772,
+    6643
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 147,
+   "file": "womb/147-placenta-belonging-to-twins-wellcome-l0009816.jpg",
+   "section": "womb",
+   "title": "Placenta belonging to twins. Wellcome L0009816",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Placenta_belonging_to_twins._Wellcome_L0009816.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/3/35/Placenta_belonging_to_twins._Wellcome_L0009816.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1084,
+    1701
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 148,
+   "file": "womb/148-placenta-types-in-naucleeae-from-blumea-24-2-315-1978.jpg",
+   "section": "womb",
+   "title": "Placenta types in Naucleeae from Blumea 24(2) 315 (1978)",
+   "artist": "Illlustration: J. van Os",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Placenta_types_in_Naucleeae_from_Blumea_24(2)_315_(1978).png",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/70/Placenta_types_in_Naucleeae_from_Blumea_24%282%29_315_%281978%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1509,
+    1310
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 149,
+   "file": "womb/149-tab-iii-placenta-within-amneotic-sac-wellcome-l0064774.jpg",
+   "section": "womb",
+   "title": "Tab III; Placenta within amneotic sac Wellcome L0064774",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Tab_III;_Placenta_within_amneotic_sac_Wellcome_L0064774.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Tab_III%3B_Placenta_within_amneotic_sac_Wellcome_L0064774.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    3854,
+    6370
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 150,
+   "file": "womb/150-conjoined-x-ray.jpg",
+   "section": "womb",
+   "title": "Conjoined X-ray",
+   "artist": "Mae M. Bookmiller",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Conjoined_X-ray.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/75/Conjoined_X-ray.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    963,
+    1220
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 151,
+   "file": "womb/151-foetus-in-utero-wellcome-l0004300.jpg",
+   "section": "womb",
+   "title": "Foetus in utero. Wellcome L0004300",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Foetus_in_utero._Wellcome_L0004300.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/7/71/Foetus_in_utero._Wellcome_L0004300.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1215,
+    1517
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 152,
+   "file": "womb/152-foetus-in-utero-wellcome-l0013508.jpg",
+   "section": "womb",
+   "title": "Foetus in utero. Wellcome L0013508",
+   "artist": "Unknown",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Foetus_in_utero._Wellcome_L0013508.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/9/93/Foetus_in_utero._Wellcome_L0013508.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    1154,
+    1600
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  },
+  {
+   "id": 153,
+   "file": "womb/153-leonardo-da-vinci-studies-of-the-foetus-in-the-womb.jpg",
+   "section": "womb",
+   "title": "Leonardo da Vinci - Studies of the foetus in the womb",
+   "artist": "Leonardo da Vinci",
+   "licence": "Public domain",
+   "licence_url": "",
+   "source": "https://commons.wikimedia.org/wiki/File:Leonardo_da_Vinci_-_Studies_of_the_foetus_in_the_womb.jpg",
+   "original": "https://upload.wikimedia.org/wikipedia/commons/6/63/Leonardo_da_Vinci_-_Studies_of_the_foetus_in_the_womb.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "original_size": [
+    2289,
+    3136
+   ],
+   "contributor": "Wikimedia Commons",
+   "added": "2026-10-17"
+  }
+ ]
+}
