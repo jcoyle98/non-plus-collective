@@ -7,7 +7,22 @@
 // is the hurricane draft's, from static/hurricane.js.
 (function () {
   const page = document.querySelector(".flicker-draft");
-  if (!page || !window.FLICKER_IMAGES) return;
+  if (!page) return;
+
+  // where the links go: top, middle (stacked down an edge) or bottom; left, centre, right or spread across
+  const places = page.querySelector(".f-place");
+  function place(p) {
+    if (!places.querySelector(`[data-place="${p}"]`)) p = "top-left";
+    page.dataset.links = p;
+    places.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.place === p)));
+    try { localStorage.setItem("flicker-links-place", p); } catch (_) {}
+  }
+  places.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) place(b.dataset.place); });
+  let savedPlace = null;
+  try { savedPlace = localStorage.getItem("flicker-links-place"); } catch (_) {}
+  place(savedPlace || "top-left");
+
+  if (!window.FLICKER_IMAGES) return;
   const img = page.querySelector(".storm");
   const credit = page.querySelector(".h-credit");
   const status = page.querySelector(".f-status output");
