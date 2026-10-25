@@ -24,7 +24,6 @@
 
   if (!window.FLICKER_IMAGES) return;
   const img = page.querySelector(".storm");
-  const credit = page.querySelector(".h-credit");
   const status = page.querySelector(".f-status output");
   const hold = page.querySelector(".f-freeze input");
 
@@ -89,13 +88,6 @@
     shown = next;
     img.src = next.im.src;
     const photo = list[next.k];
-    credit.textContent = photo.credit + (photo.source ? ", via " : ".");
-    if (photo.source) {
-      const a = document.createElement("a");
-      a.href = photo.source;
-      a.textContent = "Wikimedia Commons";
-      credit.append(a, ".");
-    }
     img.alt = photo.credit;
     report();
   }

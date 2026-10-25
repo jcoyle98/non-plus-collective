@@ -1275,17 +1275,6 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .flicker-draft .f-status output { font-family: ui-monospace, Menlo, monospace; }
 .flicker-draft .f-freeze { cursor: pointer; }
 .flicker-draft .f-freeze input { vertical-align: -2px; margin: 0 .2rem 0 0; }
-/* each photo's credit, bottom right, on every screen size: most of these need crediting */
-.flicker-draft .h-credit {
-  left: auto;
-  right: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px));
-  max-width: 38vw;
-  text-align: right;
-  opacity: .7;
-}
-.flicker-draft.options-hidden .h-credit { display: block; }
-
 /* "Links position": the links' row moves with data-links on the page (set by flicker.js) */
 .flicker-draft .f-place {
   display: grid;
@@ -1305,24 +1294,8 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .flicker-draft[data-links^="bottom"] .h-links { top: auto; bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(14px, 2.6vw, 32px)); }
 .flicker-draft[data-links^="middle"] .h-links { top: 50%; right: auto; transform: translateY(-50%); flex-direction: column; }
 .flicker-draft[data-links="middle-right"] .h-links { left: auto; right: clamp(16px, 3vw, 36px); align-items: flex-end; }
-/* links down the left edge: the options move to the right side, the credit to the bottom left */
+/* links down the left edge: the options move to the right side */
 .flicker-draft[data-links="middle-left"] .h-controls { left: auto; right: clamp(16px, 3vw, 36px); max-width: min(50vw, calc(100vw - 13rem)); }
-.flicker-draft[data-links="middle-left"] .h-credit { right: auto; left: clamp(16px, 3vw, 36px); text-align: left; }
-/* links along the bottom: the options and the credit move up above them */
-.flicker-draft[data-links^="bottom"] .h-controls,
-.flicker-draft[data-links^="bottom"] .h-credit { bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 2.8rem); }   /* the credit stays when the options are hidden */
-@media (max-width: 600px) {
-  /* on phones, under the links, clear of the options */
-  .flicker-draft .h-credit {
-    display: block;
-    top: calc(env(safe-area-inset-top, 0px) + 56px);
-    bottom: auto;
-    left: 16px;
-    right: 16px;
-    max-width: none;
-    text-align: left;
-    font-size: .6rem;
-  }
-  /* links not along the top: the credit takes the top edge */
-  .flicker-draft:not([data-links^="top"]) .h-credit { top: calc(env(safe-area-inset-top, 0px) + 16px); bottom: auto; }
-}
+/* links along the bottom: the options move up above them */
+.flicker-draft[data-links^="bottom"] .h-controls { bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 2.8rem); }
+
