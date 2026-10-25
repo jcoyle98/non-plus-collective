@@ -1,0 +1,23 @@
+<dialog class="np-window" aria-label="non plus">
+<div class="np-bar">
+<div class="np-tabs" role="tablist">
+<button type="button" role="tab" id="np-tab-about" aria-controls="np-about" data-tab="about">About</button>
+<button type="button" role="tab" id="np-tab-directory" aria-controls="np-directory" data-tab="directory">Directory</button>
+<button type="button" role="tab" id="np-tab-writings" aria-controls="np-writings" data-tab="writings">Featured Writings</button>
+</div>
+<button type="button" class="np-close" aria-label="Close">×</button>
+</div>
+<div class="np-body">
+<section id="np-about" role="tabpanel" aria-labelledby="np-tab-about" hidden>
+<p class="np-placeholder">The collective’s About text goes here.</p>
+</section>
+<section id="np-directory" role="tabpanel" aria-labelledby="np-tab-directory" hidden>
+<ul class="sites">
+$sites
+</ul>
+</section>
+<section id="np-writings" role="tabpanel" aria-labelledby="np-tab-writings" hidden>
+<p class="np-placeholder">Featured writings will be listed here.</p>
+</section>
+</div>
+</dialog>

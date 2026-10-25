@@ -47,12 +47,12 @@ PAGES = [
     ("draft-disappearing-s", "Design", "draft-disappearing-s.html", "Design (draft)", ["palette.js", "reveal.js"]),
     ("draft-arterial", "Design", "draft-arterial.html", "Design (draft)", ["palette.js", "reveal.js", "looks.js"]),
     ("draft-newspaper", "Design", "draft-newspaper.html", "Design (draft)", ["palette.js", "reveal.js", "looks.js", "newspaper.js"]),
-    ("draft-hurricane", "Design", "draft-hurricane.html", "Design (draft)", ["hurricane.js"]),
-    ("draft-radiolarian", "Design", "draft-radiolarian.html", "Design (draft)", ["radiolarian.js"]),
-    ("draft-chamber", "Design", "draft-chamber.html", "Design (draft)", ["chamber.js"]),
-    ("draft-tracks", "Design", "draft-tracks.html", "Design (draft)", ["tracks.js"]),
-    ("draft-bubble", "Design", "draft-bubble.html", "Design (draft)", ["bubble.js"]),
-    ("draft-flicker", "Design", "draft-flicker.html", "Design (draft)", ["flicker-images.js", "hurricane.js", "flicker.js"]),
+    ("draft-hurricane", "Design", "draft-hurricane.html", "Design (draft)", ["hurricane.js", "panels.js"]),
+    ("draft-radiolarian", "Design", "draft-radiolarian.html", "Design (draft)", ["radiolarian.js", "panels.js"]),
+    ("draft-chamber", "Design", "draft-chamber.html", "Design (draft)", ["chamber.js", "panels.js"]),
+    ("draft-tracks", "Design", "draft-tracks.html", "Design (draft)", ["tracks.js", "panels.js"]),
+    ("draft-bubble", "Design", "draft-bubble.html", "Design (draft)", ["bubble.js", "panels.js"]),
+    ("draft-flicker", "Design", "draft-flicker.html", "Design (draft)", ["flicker-images.js", "hurricane.js", "flicker.js", "panels.js"]),
 ]
 DRAFTS = {   # each design, and what it tries, as listed on /design
     "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
@@ -85,6 +85,7 @@ def build():
         f'<li><a href="https://{html.escape(site)}">{html.escape(site)}</a></li>' for site in sorted(config["directory"], key=str.lower)  # alphabetical, whatever order config.json uses
     )
     palettes = json.dumps(config["palettes"])
+    panels = render("panels.html", sites=sites)   # the window the drafts' links open
     drafts = "\n".join(
         f'<li><a href="../{folder}/">{folder}</a><p>{html.escape(about)}</p></li>' for folder, about in DRAFTS.items()
     )
@@ -103,7 +104,7 @@ def build():
             root=root,
             page=label.lower(),
             menu="" if folder in HIDDEN else render("menu.html", nav=nav),
-            content=render(template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts),
+            content=render(template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts, panels=panels),
             scripts="\n".join(f'<script src="{root}static/{js}?v={version}"></script>' for js in scripts),
         )
         (OUT / folder).mkdir(parents=True, exist_ok=True)

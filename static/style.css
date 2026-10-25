@@ -1299,3 +1299,89 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 /* links along the bottom: the options move up above them */
 .flicker-draft[data-links^="bottom"] .h-controls { bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 2.8rem); }
 
+
+/* ---------------------------------------------------------------------------
+   The window the design drafts' About, Directory and Featured Writings links
+   open (templates/panels.html, static/panels.js): one tab for each, over a
+   shaded page. Its accent is the page's link colour where it has one. */
+.np-window {
+  --np-bg: #121012;
+  --np-fg: #f4f1ea;
+  --np-line: rgba(244, 241, 234, .22);
+  --np-accent: var(--links, var(--word, #00f0ff));
+  width: min(40rem, calc(100vw - 32px));
+  max-height: min(80vh, 44rem);
+  padding: 0;
+  display: none;
+  flex-direction: column;
+  background: var(--np-bg);
+  color: var(--np-fg);
+  border: 1px solid var(--np-line);
+  border-radius: 6px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .55);
+  font-family: "EB Garamond", Georgia, serif;
+  overflow: hidden;
+}
+.np-window[open] { display: flex; animation: np-open .16s ease-out; }
+.np-window::backdrop { background: rgba(0, 0, 0, .55); }
+@keyframes np-open { from { opacity: 0; transform: translateY(8px) scale(.98); } }
+@media (prefers-reduced-motion: reduce) { .np-window[open] { animation: none; } }
+
+.np-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 10px 10px 0 14px;
+  border-bottom: 1px solid var(--np-line);
+}
+.np-tabs { display: flex; flex-wrap: wrap; gap: 2px; min-width: 0; flex: 1; }
+.np-tabs button {
+  font: inherit;
+  font-size: 1.05rem;
+  color: inherit;
+  opacity: .65;
+  background: none;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
+  padding: .3rem .8rem .35rem;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+.np-tabs button:hover { opacity: 1; }
+.np-tabs button[aria-selected="true"] {
+  opacity: 1;
+  background: var(--np-bg);
+  border-color: var(--np-line);
+  box-shadow: inset 0 2px 0 var(--np-accent);
+}
+.np-close {
+  align-self: center;
+  margin-bottom: 8px;
+  font: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0 .3rem;
+  cursor: pointer;
+  opacity: .7;
+}
+.np-close:hover { opacity: 1; }
+.np-window button:focus-visible { outline: 2px solid var(--np-accent); outline-offset: 2px; }
+
+.np-body { overflow-y: auto; padding: 1.5rem clamp(16px, 4vw, 2rem) 1.75rem; }
+.np-body .sites { margin: 0; text-align: center; }
+.np-body .sites a { color: var(--np-fg); }
+.np-body .sites a:hover { color: var(--np-accent); }
+.np-placeholder { margin: 0; font-size: 1.15rem; font-style: italic; opacity: .6; text-align: center; }
+@media (max-width: 480px) {
+  .np-bar { padding: 8px 6px 0 8px; gap: 4px; }
+  .np-tabs { flex-wrap: nowrap; }
+  .np-tabs button { font-size: .95rem; padding: .25rem .5rem .3rem; white-space: nowrap; }
+}
+@media (max-width: 360px) {
+  .np-tabs { overflow-x: auto; scrollbar-width: none; }
+  .np-tabs button { font-size: .85rem; padding: .25rem .4rem .3rem; }
+}

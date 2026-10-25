@@ -107,8 +107,8 @@
     swap();
   }
   addEventListener("pointermove", (e) => { if (e.pointerType !== "touch") change(); });
-  // clicks and keys in the options panel work the options, without changing the photo
-  const inPanel = (e) => e.target.closest && e.target.closest(".h-controls");
+  // clicks and keys in the options panel, or in the window the links open, don't change the photo
+  const inPanel = (e) => e.target.closest && e.target.closest(".h-controls, .np-window");
   addEventListener("pointerdown", (e) => { if (!inPanel(e)) change(); });
   addEventListener("keydown", (e) => { if (!inPanel(e)) change(); });
   addEventListener("wheel", change, { passive: true });
