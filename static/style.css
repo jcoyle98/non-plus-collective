@@ -674,7 +674,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .hurricane-draft .h-credit {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 262px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 308px);
   margin: 0;
   max-width: 42vw;
   font-size: .7rem;
@@ -755,6 +755,15 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 }
 .radiolarian-draft .r-nav a { color: var(--links, var(--ink)); text-decoration: none; white-space: nowrap; }
 .radiolarian-draft .r-label { margin: 0; font-size: .7rem; opacity: .8; }
+/* the box around NON PLUS: none, an outline or filled, in the chosen colour and opacity (radiolarian.js) */
+.radiolarian-draft[data-box="outline"] .r-title { padding: .18em .35em .2em; border: .045em solid var(--box-colour, #fff); }
+.radiolarian-draft[data-box="filled"] .r-title { padding: .18em .35em .2em; background: var(--box-colour, #fff); }
+.radiolarian-draft .r-boxes { margin: 0; font-size: .75rem; display: flex; gap: .4rem; align-items: center; }
+.radiolarian-draft .r-boxes button { font: inherit; color: inherit; background: none; border: 1px solid rgba(128,128,128,.6); border-radius: 3px; padding: .1rem .5rem; cursor: pointer; }
+.radiolarian-draft .r-boxes button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
+.radiolarian-draft .r-boxcolours { display: flex; flex-wrap: wrap; }
+.radiolarian-draft .r-boxcolours button { border-radius: 3px; border: 1px solid rgba(128,128,128,.6); padding: 0; cursor: pointer; }
+.radiolarian-draft .r-boxcolours button[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 2px; }
 .radiolarian-draft .r-titlecolours { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 50vw; }
 .radiolarian-draft .r-titlecolours button { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(128,128,128,.6); padding: 0; cursor: pointer; }
 .radiolarian-draft .r-titlecolours button.auto { width: auto; border-radius: 3px; padding: 0 .4rem; font: .7rem -apple-system, Arial, sans-serif; background: none; color: inherit; }
@@ -797,7 +806,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .radiolarian-draft[data-layout="corners"] .r-nav {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 226px);   /* above the controls and credit */
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 336px);   /* above the controls and credit */
   z-index: 2;
   flex-direction: column;
   gap: .35rem;
@@ -826,7 +835,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .radiolarian-draft .r-credit {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 196px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 306px);
   margin: 0;
   max-width: 40vw;
   font-size: .7rem;
@@ -1081,7 +1090,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .tracks-draft .t-credit {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 288px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 334px);
   margin: 0;
   max-width: 42vw;
   font-size: .7rem;
@@ -1204,7 +1213,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .bubble-draft .u-credit {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 288px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 334px);
   margin: 0;
   max-width: 42vw;
   font-size: .7rem;
@@ -1230,3 +1239,28 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .radiolarian-draft .r-fade { margin: 0; font-size: .75rem; color: inherit; display: flex; gap: .5rem; align-items: center; }
 .radiolarian-draft .r-fade input { width: min(12rem, 40vw); }
 .radiolarian-draft .r-fade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
+.hurricane-draft .h-boxfade { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .5rem; align-items: center; }
+.hurricane-draft .h-boxfade input { width: min(12rem, 40vw); }
+.hurricane-draft .h-boxfade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
+.hurricane-draft .h-boxcolours { max-width: min(30rem, 60vw); gap: 5px; }
+.hurricane-draft .h-boxcolours button { width: 16px; height: 16px; }
+.chamber-draft .c-boxfade { margin: 0; font-size: .75rem; color: inherit; display: flex; gap: .5rem; align-items: center; }
+.chamber-draft .c-boxfade input { width: min(12rem, 40vw); }
+.chamber-draft .c-boxfade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
+.chamber-draft .c-boxcolours { max-width: min(30rem, 60vw); gap: 5px; }
+.chamber-draft .c-boxcolours button { width: 16px; height: 16px; }
+.tracks-draft .t-boxfade { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .5rem; align-items: center; }
+.tracks-draft .t-boxfade input { width: min(12rem, 40vw); }
+.tracks-draft .t-boxfade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
+.tracks-draft .t-boxcolours { max-width: min(30rem, 60vw); gap: 5px; }
+.tracks-draft .t-boxcolours button { width: 16px; height: 16px; }
+.bubble-draft .u-boxfade { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .5rem; align-items: center; }
+.bubble-draft .u-boxfade input { width: min(12rem, 40vw); }
+.bubble-draft .u-boxfade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
+.bubble-draft .u-boxcolours { max-width: min(30rem, 60vw); gap: 5px; }
+.bubble-draft .u-boxcolours button { width: 16px; height: 16px; }
+.radiolarian-draft .r-boxfade { margin: 0; font-size: .75rem; color: inherit; display: flex; gap: .5rem; align-items: center; }
+.radiolarian-draft .r-boxfade input { width: min(12rem, 40vw); }
+.radiolarian-draft .r-boxfade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
+.radiolarian-draft .r-boxcolours { max-width: min(30rem, 60vw); gap: 5px; }
+.radiolarian-draft .r-boxcolours button { width: 16px; height: 16px; }

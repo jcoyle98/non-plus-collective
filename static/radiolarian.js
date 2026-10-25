@@ -224,6 +224,62 @@
     set(saved);
   })();
 
+  // a box around NON PLUS: none, an outline or filled, in any of these colours
+  const BOX_COLOURS = [
+    // light to dark
+    ["white", "#ffffff"], ["paper", "#f4f1ea"], ["cream", "#f3efe6"], ["bone", "#d0ccbd"], ["light grey", "#c8c6c2"],
+    ["grey", "#8c8c8c"], ["warm grey", "#a39b8c"], ["sage", "#abac88"], ["dark grey", "#4a4848"], ["charcoal", "#2a2828"],
+    ["black", "#141214"], ["true black", "#000000"],
+    // bright
+    ["cyan", "#00e5ff"], ["site cyan", "#00f0ff"], ["blue", "#3d7bff"], ["purple", "#a259ff"], ["pink", "#ff5fa2"],
+    ["magenta", "#e0218a"], ["red", "#ff3b3b"], ["orange", "#ff7a1a"], ["yellow", "#ffcc33"], ["lime", "#b6e33b"], ["green", "#3ddc84"],
+    // from the image treatments
+    ["gold", "#e1b867"], ["honey", "#e8c273"], ["rose", "#cfa98d"], ["lilac", "#e0c9e3"], ["mint", "#8ec6ab"],
+    ["sky blue", "#6da7d0"], ["brick red", "#a43434"], ["oxblood", "#722b35"], ["deep maroon", "#6e0a0a"],
+    ["navy", "#3d4e78"], ["violet", "#43396a"], ["teal", "#274a49"], ["moss", "#1e1d19"], ["umber", "#100d12"], ["night", "#180826"],
+  ];
+  const boxes = page.querySelector(".r-boxes");
+  const boxColours = page.querySelector(".r-boxcolours");
+  boxColours.innerHTML = BOX_COLOURS.map(([name, c]) => `<button type="button" data-colour="${c}" title="${name}" aria-label="Box ${name}" style="background:${c}"></button>`).join("");
+  function setBox(name) {
+    if (!["none", "outline", "filled"].includes(name)) name = "none";
+    page.dataset.box = name;
+    boxes.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.box === name));
+    try { localStorage.setItem("radiolarian-box", name); } catch (_) {}
+    fitNav();   // the box changes the title's size
+  }
+  function setBoxColour(c) {
+    boxHex = c;
+    paintBox();
+    boxColours.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.colour === c));
+    try { localStorage.setItem("radiolarian-box-colour", c); } catch (_) {}
+  }
+  boxes.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setBox(b.dataset.box); });
+  boxColours.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setBoxColour(b.dataset.colour); });
+  let savedBox = null, savedBoxColour = null;
+  try { savedBox = localStorage.getItem("radiolarian-box"); savedBoxColour = localStorage.getItem("radiolarian-box-colour"); } catch (_) {}
+  // "Box opacity": the box (outline or fill) fades from solid to clear; the words stay solid
+  let boxHex = "#ffffff", boxAlpha = 1;
+  function paintBox() {
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(boxHex.slice(i, i + 2), 16));
+    page.style.setProperty("--box-colour", `rgba(${r}, ${g}, ${b}, ${boxAlpha})`);
+  }
+  const boxRange = page.querySelector(".r-boxfade input"), boxOut = page.querySelector(".r-boxfade output");
+  function setBoxAlpha(v) {
+    v = Math.max(0, Math.min(100, Math.round(+v)));
+    boxAlpha = v / 100;
+    boxRange.value = v;
+    boxOut.textContent = `${v}%`;
+    paintBox();
+    try { localStorage.setItem("radiolarian-box-opacity", String(v)); } catch (_) {}
+  }
+  boxRange.addEventListener("input", () => setBoxAlpha(boxRange.value));
+  let savedBoxAlpha = null;
+  try { savedBoxAlpha = localStorage.getItem("radiolarian-box-opacity"); } catch (_) {}
+  setBoxAlpha(savedBoxAlpha === null ? 100 : savedBoxAlpha);
+  setBoxColour(savedBoxColour || BOX_COLOURS[0][1]);
+  setBox(savedBox || "none");
+
   let saved = {};
   try { saved = { look: localStorage.getItem("radiolarian-look"), font: localStorage.getItem("radiolarian-font") }; } catch (_) {}
   setLook(saved.look || "original");
