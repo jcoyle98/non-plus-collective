@@ -16,7 +16,7 @@
       document.getElementById(tab.getAttribute("aria-controls")).hidden = !on;
       if (on && focus) tab.focus();
     });
-    win.querySelector(".np-body").scrollTop = 0;
+    win.querySelector(".np-scroll").scrollTop = 0;
   }
 
   // a link in the page's row of links opens the window at its tab
