@@ -1,7 +1,8 @@
 // The design drafts' About, Directory and Featured Writings links open a window
 // over the page (templates/panels.html) instead of going to another page. The
 // window has a tab for each, so you can move between them without closing it.
-// Close it with ×, Escape, or a click outside it.
+// Close it with ×, Escape, or a click outside it. While it is open, <html> has
+// .np-open, which fades the page's "non plus" away (see style.css).
 (function () {
   const win = document.querySelector(".np-window");
   if (!win) return;
@@ -24,7 +25,10 @@
     if (!link) return;
     e.preventDefault();
     select(link.dataset.panel);
-    if (!win.open) win.showModal();
+    if (!win.open) {
+      win.showModal();
+      document.documentElement.classList.add("np-open");
+    }
   });
 
   win.querySelector(".np-tabs").addEventListener("click", (e) => {
@@ -40,6 +44,7 @@
     e.preventDefault();
   });
 
+  win.addEventListener("close", () => document.documentElement.classList.remove("np-open"));
   win.querySelector(".np-close").addEventListener("click", () => win.close());
   win.addEventListener("click", (e) => { if (e.target === win) win.close(); });   // a click on the shade around it
 })();
