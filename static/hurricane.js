@@ -3,6 +3,9 @@
   const page = document.querySelector(".hurricane-draft");
   if (!page) return;
   const img = page.querySelector(".storm");
+  // Other drafts reuse this script: data-store keeps their saved settings apart,
+  // and data-anchor="window" places "non plus" against the window, not the eye
+  const STORE = page.dataset.store || "hurricane";
 
   // dark = what the photograph's black becomes, light = what its white becomes
   const LOOKS = [
@@ -44,7 +47,7 @@
     page.style.setProperty("--panel-fg", pageIsLight ? "#1b1714" : "#f4f1ea");
     page.dataset.look = look.key;
     bar.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.key === look.key));
-    try { localStorage.setItem("hurricane-look", look.key); } catch (_) {}
+    try { localStorage.setItem(`${STORE}-look`, look.key); } catch (_) {}
   }
 
   const bar = page.querySelector(".h-looks");
@@ -52,7 +55,7 @@
     `<button type="button" data-key="${l.key}" title="${l.label}" aria-label="${l.label}" style="background:linear-gradient(135deg, ${l.dark} 50%, ${l.light} 50%)"></button>`).join("");
   bar.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) apply(b.dataset.key); });
   let saved = null;
-  try { saved = localStorage.getItem("hurricane-look"); } catch (_) {}
+  try { saved = localStorage.getItem(`${STORE}-look`); } catch (_) {}
   apply(saved || "original");
 
   // the colour of "non plus": one colour at a time
@@ -65,11 +68,11 @@
   function setWord(c) {
     page.style.setProperty("--word", c);
     words.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.colour === c));
-    try { localStorage.setItem("hurricane-word", c); } catch (_) {}
+    try { localStorage.setItem(`${STORE}-word`, c); } catch (_) {}
   }
   words.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setWord(b.dataset.colour); });
   let savedWord = null;
-  try { savedWord = localStorage.getItem("hurricane-word"); } catch (_) {}
+  try { savedWord = localStorage.getItem(`${STORE}-word`); } catch (_) {}
   setWord(savedWord || WORDS[0][1]);
 
   // "non plus" comes out of the hurricane's eye: find where the eye lands on screen
@@ -81,10 +84,11 @@
   const word = page.querySelector(".wordmark");
   const readout = page.querySelector(".h-pos output");
   let offset = { ...DEFAULT };
-  try { const o = JSON.parse(localStorage.getItem("hurricane-word-pos")); if (o) offset = o; } catch (_) {}
+  try { const o = JSON.parse(localStorage.getItem(`${STORE}-word-pos`)); if (o) offset = o; } catch (_) {}
   let geo = null;
   function measure() {
     const W = page.clientWidth, H = page.clientHeight;
+    if (page.dataset.anchor === "window") return { W, H, dw: W, ex: W * 0.5, ey: H * 0.5 };
     const nw = img.naturalWidth, nh = img.naturalHeight;
     if (!nw) return null;
     const s = Math.max(W / nw, H / nh);           // object-fit: cover
@@ -126,14 +130,14 @@
     if (!drag) return;
     drag = null;
     word.classList.remove("dragging");
-    try { localStorage.setItem("hurricane-word-pos", JSON.stringify(offset)); } catch (_) {}
+    try { localStorage.setItem(`${STORE}-word-pos`, JSON.stringify(offset)); } catch (_) {}
     placeWord();
   };
   word.addEventListener("pointerup", drop);
   word.addEventListener("pointercancel", drop);
   page.querySelector(".h-pos button").addEventListener("click", () => {
     offset = { ...DEFAULT };
-    try { localStorage.removeItem("hurricane-word-pos"); } catch (_) {}
+    try { localStorage.removeItem(`${STORE}-word-pos`); } catch (_) {}
     placeWord();
   });
   if (img.complete) placeWord(); else img.addEventListener("load", placeWord);
@@ -161,19 +165,19 @@
     if (!["none", "outline", "filled"].includes(name)) name = "none";
     page.dataset.box = name;
     boxes.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.box === name));
-    try { localStorage.setItem("hurricane-box", name); } catch (_) {}
+    try { localStorage.setItem(`${STORE}-box`, name); } catch (_) {}
     placeWord();   // the box changes the title's size
   }
   function setBoxColour(c) {
     boxHex = c;
     paintBox();
     boxColours.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.colour === c));
-    try { localStorage.setItem("hurricane-box-colour", c); } catch (_) {}
+    try { localStorage.setItem(`${STORE}-box-colour`, c); } catch (_) {}
   }
   boxes.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setBox(b.dataset.box); });
   boxColours.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setBoxColour(b.dataset.colour); });
   let savedBox = null, savedBoxColour = null;
-  try { savedBox = localStorage.getItem("hurricane-box"); savedBoxColour = localStorage.getItem("hurricane-box-colour"); } catch (_) {}
+  try { savedBox = localStorage.getItem(`${STORE}-box`); savedBoxColour = localStorage.getItem(`${STORE}-box-colour`); } catch (_) {}
   // "Box opacity": the box (outline or fill) fades from solid to clear; the words stay solid
   let boxHex = "#ffffff", boxAlpha = 1;
   function paintBox() {
@@ -187,11 +191,11 @@
     boxRange.value = v;
     boxOut.textContent = `${v}%`;
     paintBox();
-    try { localStorage.setItem("hurricane-box-opacity", String(v)); } catch (_) {}
+    try { localStorage.setItem(`${STORE}-box-opacity`, String(v)); } catch (_) {}
   }
   boxRange.addEventListener("input", () => setBoxAlpha(boxRange.value));
   let savedBoxAlpha = null;
-  try { savedBoxAlpha = localStorage.getItem("hurricane-box-opacity"); } catch (_) {}
+  try { savedBoxAlpha = localStorage.getItem(`${STORE}-box-opacity`); } catch (_) {}
   setBoxAlpha(savedBoxAlpha === null ? 100 : savedBoxAlpha);
   setBoxColour(savedBoxColour || BOX_COLOURS[0][1]);
   setBox(savedBox || "none");
@@ -210,11 +214,11 @@
     function set(c) {
       if (c) page.style.setProperty("--links", c); else page.style.removeProperty("--links");
       row.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.colour === c));
-      try { localStorage.setItem("hurricane-links", c); } catch (_) {}
+      try { localStorage.setItem(`${STORE}-links`, c); } catch (_) {}
     }
     row.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) set(b.dataset.colour); });
     let saved = "";
-    try { saved = localStorage.getItem("hurricane-links") || ""; } catch (_) {}
+    try { saved = localStorage.getItem(`${STORE}-links`) || ""; } catch (_) {}
     set(saved);
   })();
 
@@ -252,7 +256,7 @@
     }
     page.style.setProperty("--word-font", family ? `"${family}"` : '"EB Garamond"');
     select.value = String(i);
-    try { localStorage.setItem("hurricane-font", String(i)); } catch (_) {}
+    try { localStorage.setItem(`${STORE}-font`, String(i)); } catch (_) {}
     if (family && document.fonts) {
       try { await document.fonts.load(`italic 32px "${family}"`, "NON PLUS"); } catch (_) {}
     }
@@ -260,7 +264,7 @@
   }
   select.addEventListener("change", () => setFont(+select.value));
   let savedFont = null;
-  try { savedFont = localStorage.getItem("hurricane-font"); } catch (_) {}
+  try { savedFont = localStorage.getItem(`${STORE}-font`); } catch (_) {}
   setFont(savedFont ? +savedFont : 0);
 
   page.addEventListener("click", (e) => { if (e.target.closest('a[href="#"]')) e.preventDefault(); });   // placeholder links
@@ -271,11 +275,11 @@
     page.classList.toggle("options-hidden", !show);
     toggle.textContent = show ? "Hide options" : "Show options";
     toggle.setAttribute("aria-pressed", String(!show));
-    try { localStorage.setItem("hurricane-options", show ? "shown" : "hidden"); } catch (_) {}
+    try { localStorage.setItem(`${STORE}-options`, show ? "shown" : "hidden"); } catch (_) {}
   }
   toggle.addEventListener("click", (e) => { e.preventDefault(); showOptions(page.classList.contains("options-hidden")); });
   let savedOptions = null;
-  try { savedOptions = localStorage.getItem("hurricane-options"); } catch (_) {}
+  try { savedOptions = localStorage.getItem(`${STORE}-options`); } catch (_) {}
   showOptions(savedOptions !== "hidden");
 
   // "Image opacity": the image's light colour fades into its dark one (the page behind it), down to nothing
@@ -287,11 +291,11 @@
       target.style.opacity = v / 100;
       range.value = v;
       out.textContent = `${v}%`;
-      try { localStorage.setItem("hurricane-opacity", String(v)); } catch (_) {}
+      try { localStorage.setItem(`${STORE}-opacity`, String(v)); } catch (_) {}
     }
     range.addEventListener("input", () => set(range.value));
     let saved = null;
-    try { saved = localStorage.getItem("hurricane-opacity"); } catch (_) {}
+    try { saved = localStorage.getItem(`${STORE}-opacity`); } catch (_) {}
     set(saved === null ? 100 : saved);
   })();
 })();

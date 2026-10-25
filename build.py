@@ -52,6 +52,7 @@ PAGES = [
     ("draft-chamber", "Design", "draft-chamber.html", "Design (draft)", ["chamber.js"]),
     ("draft-tracks", "Design", "draft-tracks.html", "Design (draft)", ["tracks.js"]),
     ("draft-bubble", "Design", "draft-bubble.html", "Design (draft)", ["bubble.js"]),
+    ("draft-flicker", "Design", "draft-flicker.html", "Design (draft)", ["flicker-images.js", "hurricane.js", "flicker.js"]),
 ]
 DRAFTS = {   # each design, and what it tries, as listed on /design
     "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
@@ -63,6 +64,7 @@ DRAFTS = {   # each design, and what it tries, as listed on /design
     "draft-chamber": "Image 30, a cloud chamber, its labels removed, turned so the chamber's two plates split the window into three columns (rows on tall windows), under a bar of links (About, Directory, Featured Writings, and a switch to hide the options) in the image's dark colour; NON PLUS floats over it, draggable, in its own colour; colour treatments, bar colours and fonts.",
     "draft-tracks": "Image 25, bubble-chamber tracks, its border cut away and its uneven exposure evened, filling the window; About, Directory, Featured Writings top left; NON PLUS to drag, with its own colour, font, italics and an optional box; the same colour treatments.",
     "draft-bubble": "Image 23, a round bubble chamber from 1955, as a stencil centred on a page of its own colour, so its surround always matches; links top left; NON PLUS to drag, with its own colour, font, italics and an optional box; the same colour treatments.",
+    "draft-flicker": "The hurricane draft's page and options, but the photo changes on every mouse move, key press or click (on a phone, every scroll or swipe), cycling at once through all 155 photos: the whole image gallery plus the two in this repo; each photo's credit bottom right, and a switch to hold one.",
 }
 HIDDEN = {"design", "drafts", *DRAFTS}   # pages with no menu, left out of the menu
 

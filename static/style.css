@@ -1264,3 +1264,37 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .radiolarian-draft .r-boxfade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
 .radiolarian-draft .r-boxcolours { max-width: min(30rem, 60vw); gap: 5px; }
 .radiolarian-draft .r-boxcolours button { width: 16px; height: 16px; }
+
+/* ---------------------------------------------------------------------------
+   Draft: flicker (templates/draft-flicker.html, static/flicker.js)
+   The hurricane draft's page and options (it also has .hurricane-draft), with a
+   photo that changes on every mouse move, key press, click, scroll or swipe. */
+.flicker-draft { overscroll-behavior: none; touch-action: none; }   /* swipes swap photos rather than move the page */
+.flicker-draft .h-controls { touch-action: auto; }
+.flicker-draft .f-status { margin: 0; font-size: .7rem; color: var(--mark); opacity: .75; }
+.flicker-draft .f-status output { font-family: ui-monospace, Menlo, monospace; }
+.flicker-draft .f-freeze { cursor: pointer; }
+.flicker-draft .f-freeze input { vertical-align: -2px; margin: 0 .2rem 0 0; }
+/* each photo's credit, bottom right, on every screen size: most of these need crediting */
+.flicker-draft .h-credit {
+  left: auto;
+  right: clamp(16px, 3vw, 36px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px));
+  max-width: 38vw;
+  text-align: right;
+  opacity: .7;
+}
+.flicker-draft.options-hidden .h-credit { display: block; }   /* the credit stays when the options are hidden */
+@media (max-width: 600px) {
+  /* on phones, under the links, clear of the options */
+  .flicker-draft .h-credit {
+    display: block;
+    top: calc(env(safe-area-inset-top, 0px) + 56px);
+    bottom: auto;
+    left: 16px;
+    right: 16px;
+    max-width: none;
+    text-align: left;
+    font-size: .6rem;
+  }
+}
