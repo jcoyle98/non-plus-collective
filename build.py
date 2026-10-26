@@ -93,7 +93,15 @@ def build():
     drafts = "\n".join(
         f'<li><a href="../{folder}/">{folder}</a><p>{html.escape(about)}</p></li>' for folder, about in DRAFTS.items()
     )
-    for folder, label, template, title, scripts in PAGES:
+    featured = json.loads((ROOT / "content" / "featured.json").read_text(encoding="utf-8"))["pieces"]
+    featured_list = "\n".join(   # the one-page draft's Featured section: each title links to the piece's own page
+        f'<li class="sd-entry"><a class="sd-entry-link" href="featured/{p["slug"]}/">'
+        f'<span class="sd-title">{html.escape(p["title"])}</span>'
+        f'<span class="sd-meta">{html.escape(p["author"])} · {html.escape(p["date"])}</span></a></li>'
+        for p in featured
+    )
+
+    def write(folder, label, title, content, scripts):
         root = "../" * (folder.count("/") + 1) if folder else "./"  # relative links work under any base path
         nav = "\n".join(
             f'<a href="{root}{f + "/" if f else ""}"' + (' aria-current="page"' if f == folder else "") + f">{l}</a>"
@@ -107,20 +115,36 @@ def build():
             static_version=version,
             root=root,
             page=label.lower(),
-            menu="" if folder in HIDDEN else render("menu.html", nav=nav),
-            content=render(template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts, panels=panels,
-                           scroll_page=render("draft-scroll.html", root=root, sites=sites)),   # the lab version wraps the one-page draft
+            menu="" if folder in HIDDEN or "/" in folder else render("menu.html", nav=nav),
+            content=content(root),
             scripts="\n".join(f'<script src="{root}static/{js}?v={version}"></script>' for js in scripts),
         )
         (OUT / folder).mkdir(parents=True, exist_ok=True)
         (OUT / folder / "index.html").write_text(page, encoding="utf-8")
+
+    for folder, label, template, title, scripts in PAGES:
+        write(folder, label, title, lambda root, template=template: render(
+            template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts, panels=panels, featured=featured_list,
+            scroll_page=render("draft-scroll.html", root=root, sites=sites, featured=featured_list),   # the lab version wraps the one-page draft
+            lab_sheet=render("scroll-lab-sheet.html"),
+        ), scripts)
+
+    # each featured piece's own page, under both versions of the one-page draft (the lab's keeps its Options)
+    for draft, lab in (("draft-scroll", False), ("draft-scroll-lab", True)):
+        for p in featured:
+            body = "\n".join(f"<p>{html.escape(par)}</p>" for par in p["text"])
+            write(f"{draft}/featured/{p['slug']}", "Design", f"{p['title']} (draft)", lambda root, p=p, body=body, lab=lab: render(
+                "scroll-piece.html", root=root, title=html.escape(p["title"]), author=html.escape(p["author"]),
+                date=html.escape(p["date"]), body=body, lab_sheet=render("scroll-lab-sheet.html") if lab else "",
+            ), ["flicker-images.js", "scroll-piece.js"] + (["scroll-lab.js"] if lab else []))
+
     (OUT / ".nojekyll").touch()
     print("Built _site/")
 
 
 def snapshot():
     watched = [ROOT / "config.json", ROOT / "build.py"]
-    for folder in ("templates", "static"):
+    for folder in ("templates", "static", "content"):
         watched += (ROOT / folder).rglob("*")
     return {p: p.stat().st_mtime for p in watched if p.is_file()}
 

@@ -4,21 +4,24 @@
 // one from the shared deck (static/photo-deck.js), at most a few times a second.
 // The links along the top glide down to their section and mark the one you're
 // reading; the veil over the photo darkens once the opening screen has scrolled away.
+// A featured title opens that piece's own page, taking the photo along.
 (function () {
   const page = document.querySelector(".scroll-draft");
   if (!page) return;
   const still = matchMedia("(prefers-reduced-motion: reduce)");
 
-  // "Close" at the end of a featured piece: fold it up and go back to its title
-  page.addEventListener("click", (e) => {
-    const close = e.target.closest("a[data-close]");
-    if (!close) return;
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    const piece = close.closest("details");
-    piece.open = false;
-    piece.scrollIntoView({ behavior: still.matches ? "auto" : "smooth", block: "start" });
-  });
+  // a featured piece opens on its own page, over the photo that's showing now
+  function carryPhoto(e) {
+    const link = e.target.closest("a.sd-entry-link");
+    if (!link) return;
+    const name = page.querySelector(".sd-photo").src.split("/").pop();
+    const url = new URL(link.getAttribute("href").split("?")[0], location.href);
+    if (/^\d{3}\.jpg$/.test(name)) url.searchParams.set("photo", name);
+    link.href = url.href;
+  }
+  page.addEventListener("click", carryPhoto);
+  page.addEventListener("auxclick", carryPhoto);       // opened in a new tab with the middle button
+  page.addEventListener("contextmenu", carryPhoto);    // or from the long-press / right-click menu
 
   // links to a section on this page: glide there (the sections leave room for the links, see style.css)
   page.addEventListener("click", (e) => {
