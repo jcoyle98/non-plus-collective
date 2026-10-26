@@ -1521,6 +1521,19 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   pointer-events: none;   /* only the links themselves catch taps */
 }
 .scroll-draft .sd-nav { display: flex; gap: clamp(1.1rem, 5vw, 2.4rem); pointer-events: auto; }
+/* where the links sit (the Layout options): along the top or the bottom; left, centre, right or spread across */
+.scroll-draft[data-links-row="bottom"] .sd-bar {
+  top: auto;
+  bottom: 0;
+  height: calc(var(--sd-bar) + env(safe-area-inset-bottom, 0px));
+  padding-top: 0;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.scroll-draft[data-links-row="bottom"] .sd-section, .scroll-draft[data-links-row="bottom"] .sd-entry { scroll-margin-top: 1rem; }
+.scroll-draft[data-links-row="bottom"] .sd-foot { padding-bottom: calc(2.5rem + var(--sd-bar) + env(safe-area-inset-bottom, 0px)); }
+.scroll-draft[data-links-align="left"] .sd-bar { justify-content: flex-start; }
+.scroll-draft[data-links-align="right"] .sd-bar { justify-content: flex-end; }
+.scroll-draft[data-links-align="spread"] .sd-nav { flex: 1; justify-content: space-between; max-width: var(--sd-col, 36rem); margin: 0 auto; }
 .scroll-draft .sd-nav a {
   position: relative;
   color: var(--sd-link, var(--sd-fg));
@@ -1545,9 +1558,10 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   min-height: 100vh;
   min-height: 100svh;
   display: grid;
-  place-items: center;
+  align-items: var(--sd-word-v, center);
+  justify-items: var(--sd-word-h, center);
   box-sizing: border-box;
-  padding: var(--sd-bar) 16px 3rem;
+  padding: calc(var(--sd-bar) + 1.5rem) max(16px, env(safe-area-inset-right, 0px)) 3rem max(16px, env(safe-area-inset-left, 0px));
 }
 .scroll-draft .sd-word {
   margin: 0;
@@ -1555,7 +1569,7 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   font-style: var(--sd-word-style, italic);
   font-size: calc(clamp(3.2rem, 15vw, 8rem) * var(--sd-word-scale, 1));
   line-height: 1.05;
-  text-align: center;
+  text-align: var(--sd-word-align, center);
   letter-spacing: .06em;
   text-transform: var(--sd-word-case, uppercase);
   color: var(--sd-accent);
@@ -1568,7 +1582,7 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   padding: 4.5rem max(16px, env(safe-area-inset-right, 0px)) 3.5rem max(16px, env(safe-area-inset-left, 0px));
 }
 .scroll-draft .sd-section h2 {
-  max-width: 36rem;
+  max-width: var(--sd-col, 36rem);
   margin: 0 auto 2rem;
   padding: .55rem 0 .45rem;
   border-top: 2px solid var(--sd-rule);
@@ -1578,10 +1592,10 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   font-size: calc(clamp(1.6rem, 6vw, 2.2rem) * var(--sd-text-scale, 1));
   letter-spacing: .03em;
 }
-.scroll-draft .sd-text { max-width: 36rem; margin: 0 auto; font-size: calc(clamp(1.1rem, 4.2vw, 1.25rem) * var(--sd-text-scale, 1)); line-height: 1.6; }
+.scroll-draft .sd-text { max-width: var(--sd-col, 36rem); margin: 0 auto; text-align: var(--sd-align, left); hyphens: var(--sd-hyphens, manual); font-size: calc(clamp(1.1rem, 4.2vw, 1.25rem) * var(--sd-text-scale, 1)); line-height: 1.6; }
 .scroll-draft .sd-text p { margin: 0 0 1.1em; }
 .scroll-draft .sd-lede { font-size: 1.2em; line-height: 1.45; font-style: italic; }
-.scroll-draft .sites { max-width: 36rem; margin: 0 auto; padding: 0; list-style: none; font-size: calc(clamp(1.25rem, 5vw, 1.6rem) * var(--sd-text-scale, 1)); line-height: 2.1; }
+.scroll-draft .sites { max-width: var(--sd-col, 36rem); margin: 0 auto; padding: 0; list-style: none; font-size: calc(clamp(1.25rem, 5vw, 1.6rem) * var(--sd-text-scale, 1)); line-height: 2.1; }
 .scroll-draft .sites a { color: var(--sd-fg); text-decoration: none; border-bottom: 1px solid var(--sd-fine); }
 .scroll-draft .sites a:hover { color: var(--sd-accent); border-bottom-color: currentColor; }
 /* Featured: a list of titles, each with its author and date; a title opens the piece on its own page (it turns the accent colour on hover) */
@@ -1603,7 +1617,7 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 /* a featured piece's own page (templates/scroll-piece.html): the same page, with the piece where the sections were */
 .scroll-draft .sd-article { padding-top: calc(var(--sd-bar) + 2.5rem); }
 .scroll-draft .sd-article h1 {
-  max-width: 36rem;
+  max-width: var(--sd-col, 36rem);
   margin: 0 auto .6rem;
   padding: .55rem 0 .45rem;
   border-top: 2px solid var(--sd-rule);
@@ -1617,13 +1631,13 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   color: var(--sd-fg);   /* not the colour-palette page's headline colour */
 }
 .scroll-draft .sd-byline {
-  max-width: 36rem;
+  max-width: var(--sd-col, 36rem);
   margin: 0 auto 2rem;
   font-size: calc(clamp(1rem, 3.8vw, 1.1rem) * var(--sd-text-scale, 1));
   font-style: italic;
   color: var(--sd-dim);
 }
-.scroll-draft .sd-back { max-width: 36rem; margin: 0 auto 1.2rem; font-style: italic; }
+.scroll-draft .sd-back { max-width: var(--sd-col, 36rem); margin: 0 auto 1.2rem; font-style: italic; }
 .scroll-draft .sd-back-end { margin-top: 2rem; text-align: right; }
 .scroll-draft .sd-back a { color: var(--sd-dim); text-decoration: none; }
 .scroll-draft .sd-back a:hover { color: var(--sd-accent); }
@@ -1631,7 +1645,7 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 .scroll-draft .sd-foot {
   display: flex;
   justify-content: space-between;
-  max-width: 36rem;
+  max-width: var(--sd-col, 36rem);
   margin: 0 auto;
   padding: 2rem max(16px, env(safe-area-inset-right, 0px)) calc(2.5rem + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
   border-top: 1px solid var(--sd-fine);
@@ -1685,8 +1699,16 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   box-shadow: 0 -10px 40px rgba(0, 0, 0, .5);
 }
 .sl-sheet[hidden] { display: none; }
-/* while the sheet is open, "non plus" moves up into the part of the opening screen still in view */
-.sl-sheet-open .scroll-draft .sd-hero { align-items: start; padding-top: calc(var(--sd-bar) + 6vh); }
+/* while the sheet is open on a phone, "non plus" moves up into the part of the opening screen still in view */
+@media (max-width: 899px) {
+  .sl-sheet-open .scroll-draft .sd-hero { align-items: start; padding-top: calc(var(--sd-bar) + 6vh); }
+}
+/* on wider screens the sheet is a column down the right, the full height of the window */
+@media (min-width: 900px) {
+  .sl-sheet { top: 0; left: auto; width: 380px; max-height: none; border-top: 0; border-left: 1px solid rgba(242, 237, 226, .45); border-radius: 0; box-shadow: -10px 0 40px rgba(0, 0, 0, .5); }
+}
+/* with the links along the bottom, the Options button moves to the top */
+.scroll-draft[data-links-row="bottom"] ~ .sl-open { bottom: auto; top: calc(16px + env(safe-area-inset-top, 0px)); }
 .sl-head {
   display: flex;
   align-items: center;

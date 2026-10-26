@@ -1,5 +1,7 @@
-// The lab version of the one-page draft: an Options sheet, made for a phone, for
-// trying the photo's colour treatment, opacity and veils, how often it changes,
+// The one-page draft's Options sheet (on draft-scroll and draft-scroll-lab alike): made
+// for a phone, and a column down the right on a computer, for trying the layout (where the
+// links and "non plus" sit, the text column's width and alignment), the photo's colour
+// treatment, opacity and veils, how often it changes,
 // "non plus" (font, colour, size, italic, capitals), the links (colour, size) and
 // the text (fonts, size, colour). Each option sets a variable on the page's <main>
 // (see the one-page draft's styles in style.css). Choices are kept on this device;
@@ -74,6 +76,21 @@
 
   // every option: how it is shown, its default (the draft as it is), and what it changes
   const OPTIONS = [
+    { group: "Layout" },
+    { key: "linksRow", type: "segments", label: "Links", def: "top", choices: [["top", "Along the top"], ["bottom", "Along the bottom"]],
+      apply: (v) => { page.dataset.linksRow = v; } },
+    { key: "linksAlign", type: "segments", label: "Links placed", def: "center",
+      choices: [["left", "Left"], ["center", "Centre"], ["right", "Right"], ["spread", "Spread"]], apply: (v) => { page.dataset.linksAlign = v; } },
+    { key: "col", type: "segments", label: "Text column", def: "36rem",
+      choices: [["28rem", "Narrow"], ["36rem", "Medium"], ["48rem", "Wide"], ["100%", "Full"]], apply: (v) => set("--sd-col", v) },
+    { key: "align", type: "segments", label: "Text alignment", def: "left",
+      choices: [["left", "Left"], ["center", "Centred"], ["justify", "Justified"]],
+      apply: (v) => { set("--sd-align", v); set("--sd-hyphens", v === "justify" ? "auto" : "manual"); } },
+    { key: "wordV", type: "segments", label: "“non plus” on the opening screen", def: "center",
+      choices: [["start", "Top"], ["center", "Middle"], ["end", "Bottom"]], apply: (v) => set("--sd-word-v", v) },
+    { key: "wordH", type: "segments", label: "…and across", def: "center",
+      choices: [["start", "Left"], ["center", "Centre"], ["end", "Right"]],
+      apply: (v) => { set("--sd-word-h", v); set("--sd-word-align", { start: "left", center: "center", end: "right" }[v]); } },
     { group: "Photo" },
     { key: "hold", type: "check", label: "Hold this photo", def: false, apply: (v) => { page.dataset.hold = v ? "on" : "off"; } },
     { key: "look", type: "swatches", label: "Colour", def: "original",
