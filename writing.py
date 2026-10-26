@@ -10,7 +10,8 @@ Each piece is a text file in content/archive/, named YYYY-MM-DD-slug.txt:
 
     The text...
 
-Pieces are poems unless the file starts with a <prose> line. Poems keep their line breaks and indentation
+Pieces are poems unless the file starts with a <prose> line, or a <poems> line: several poems as one piece,
+each beginning with a <title>...</title> line and optionally a <date>YYYY-MM-DD</date> line (set under it). Poems keep their line breaks and indentation
 (leading spaces indent; a long line wraps with its overflow indented under it); a blank line starts a stanza;
 "| text" centres a line; <annotation>...</annotation> sets a note flush right. Prose: a blank line starts a
 paragraph (set like a book: justified, first lines indented); \"\"\"...\"\"\" is a block quote and <poem>...</poem>
@@ -159,6 +160,28 @@ def render_prose(text):
     return "\n".join(html_parts)
 
 
+PART_TITLE_RE = re.compile(r"^[ \t]*<title>(.*?)<[/\\]title>[ \t]*\n?", re.M)
+PART_DATE_RE = re.compile(r"[ \t]*<date>(.*?)<[/\\]date>[ \t]*\n?")
+
+
+def render_sequence(body):
+    """Several poems set as one piece (a file starting with a <poems> line). Each poem begins with a
+    <title>...</title> line, then optionally a <date>YYYY-MM-DD</date> line, then its text, laid out like a
+    poem file; its date is set under it. Text before the first <title> is set as a poem, as a preface."""
+    parts = PART_TITLE_RE.split(body)
+    out = [render_poem(parts[0])] if parts[0].strip() else []
+    for title, text in zip(parts[1::2], parts[2::2]):
+        when = ""
+        m = PART_DATE_RE.match(text)
+        if m:
+            when = fmt_date(date.fromisoformat(m.group(1).strip()))
+            text = text[m.end():]
+        dated = f'\n<p class="part-date">{when}</p>' if when else ""
+        out.append(f'<section class="part">\n<h2 class="part-title">{inline(title.strip())}</h2>\n'
+                   f'{render_poem(text)}{dated}\n</section>')
+    return "\n".join(out)
+
+
 HEADER_KEYS = ("date", "author", "link")
 TAG_RE = {k: re.compile(rf"<{k}>(.*?)<[/\\\\]{k}>[ \t]*\n?", re.S) for k in ("subtitle", "epigraph")}
 DATE_PREFIX_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})-")
@@ -173,10 +196,10 @@ def parse_piece(path):
     lines, blank line, text."""
     text = read_text(path).strip()
     kind = "poem"
-    m = re.match(r"<(poem|prose)>[ \t]*\n", text)
+    m = re.match(r"<(poems|poem|prose)>[ \t]*\n", text)
     if m:
-        kind = "poem" if m.group(1) == "poem" else "essay"
-        text = re.sub(r"\n[ \t]*<[/\\](poem|prose)>$", "", text[m.end():])
+        kind = {"poem": "poem", "prose": "essay", "poems": "sequence"}[m.group(1)]
+        text = re.sub(r"\n[ \t]*<[/\\](poems|poem|prose)>$", "", text[m.end():])
     tags = {}
     for k, rx in TAG_RE.items():
         m2 = rx.search(text)
@@ -205,7 +228,7 @@ def parse_piece(path):
         "when": d,
         "date": fmt_date(d) if d else "",
         "kind": kind,
-        "html": (render_poem if kind == "poem" else render_prose)(body),
+        "html": {"poem": render_poem, "essay": render_prose, "sequence": render_sequence}[kind](body),
         "example": path.name.startswith("_"),
         "subtitle": tags.get("subtitle", ""),
         "epigraph": tags.get("epigraph", ""),

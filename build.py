@@ -42,12 +42,14 @@ def hz_article(p, back):
     if p["epigraph"]:
         lines = "<br>".join(writing.inline(l.strip()) for l in p["epigraph"].splitlines() if l.strip())
         epigraph = f'<blockquote class="epigraph"><p>{lines}</p></blockquote>\n'
-    kind = "prose essay" if p["kind"] == "essay" else "verse"
+    kind = {"essay": "prose essay", "sequence": "verse sequence"}.get(p["kind"], "verse")
+    # several poems as one piece carry their dates under each poem, not at the foot
+    date = "" if p["kind"] == "sequence" else f'<span class="hz-date">{html.escape(p["date"])}</span>'
     return (f'<article class="humanize-article {kind}">\n<header>\n'
             f'<h2 class="hz-piece-title" id="hz-t-{p["slug"]}">{html.escape(p["title"])}</h2>\n{subtitle}'
             f'<p class="humanize-byline">{author_html(p)}</p>\n</header>\n'
             f'{epigraph}<div class="hz-poem">\n{p["html"]}\n</div>\n'
-            f'<footer class="hz-foot">{back}<span class="hz-date">{html.escape(p["date"])}</span></footer>\n</article>')
+            f'<footer class="hz-foot">{back}{date}</footer>\n</article>')
 
 
 def author_html(p):

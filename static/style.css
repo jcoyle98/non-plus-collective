@@ -2159,7 +2159,7 @@ main.hz {
   text-align: center;
 }
 .hz .hz-screen + .hz-screen { margin-top: var(--hz-gap); }
-.hz .hz-screen h2 { margin: 0 0 1.2rem; font-size: 1.5rem; font-weight: 400; }
+.hz .hz-screen h2 { margin: 0 0 2.6rem; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; }   /* About, Directory...: room before what follows */
 .hz .hz-screen p { margin: 0; max-width: 34rem; }
 
 /* "non plus": in the middle of the home screen, at the top of every other; it glides between the two */
@@ -2202,7 +2202,7 @@ main.hz {
 .hz .hz-home .hz-menu {
   grid-row: 3;
   align-self: start;
-  margin: 1.2rem 0 0;
+  margin: 2.6rem 0 0;   /* a little air between "non plus" and the menu */
   display: flex;
   flex-direction: column;   /* stacked, one under another, centred */
   align-items: center;
@@ -2226,7 +2226,7 @@ main.hz {
 
 /* Humanize 2.0's poem pages: "non plus" at the top, scrolling away with the page (never over the poem);
    the poem in EB Garamond with its discretionary ligatures (st, ct); Archive and the date italic, along the foot */
-.hz-reading .hz-mark-top { position: static; transform: none; margin: max(16px, calc(9svh - .55em)) 0 0; }
+.hz-reading .hz-mark-top { position: relative; top: 0; z-index: 1; transform: none; margin: max(16px, calc(9svh - .55em)) 0 0; }   /* in its place, above the photograph's shade */
 .hz-reading .humanize-article .hz-piece-title,
 .hz-reading .humanize-article .hz-poem {
   font-family: "EB Garamond St", "EB Garamond", "Tiro Devanagari Sanskrit", Garamond, Georgia, serif;
@@ -2299,7 +2299,7 @@ main.hz {
      and each screen's heading */
   .hz .hz-home .hz-mark { font-size: 19vw; }
   .hz .hz-mark-top { font-size: 2.6rem; }
-  .hz .hz-screen h2 { font-size: 1.95rem; }
+  .hz .hz-screen h2 { font-size: 2.2rem; }
 }
 
 /* ---------------------------------------------------------------------------
@@ -2310,9 +2310,9 @@ main.hz {
 .hz .hz-piece p { max-width: none; }
 .hz-reading .humanize-article header { margin-bottom: 2.5rem; }
 .hz-reading .humanize-article .hz-piece-title,
-.hz .hz-piece .humanize-article .hz-piece-title { font-size: 2.125rem; line-height: 1.2; margin: 0 0 .375rem; }
+.hz .hz-piece .humanize-article .hz-piece-title { font-size: 2.6rem; line-height: 1.15; margin: 0 0 .375rem; }
 .hz-reading .humanize-article .hz-poem { font-size: 1em; }
-.hz-reading .humanize-byline { font-size: 1em; margin: .375rem 0 0; }
+.hz-reading .humanize-byline { font-size: .8em; margin: .5rem 0 0; }   /* the author: smaller than the text */
 .hz-reading .subtitle { font-style: italic; font-size: 1.1em; margin: .375rem 0 0; }
 .hz-reading .epigraph { margin: 0 0 2.75rem; font-style: italic; text-align: right; }
 .hz-reading .epigraph p { margin: 0; text-indent: 0; text-align: right; }
@@ -2342,5 +2342,15 @@ main.hz {
 @media (max-width: 480px) {
   .hz-reading .humanize-article { font-size: 1.125rem; }
   .hz-reading .humanize-article .hz-piece-title,
-  .hz .hz-piece .humanize-article .hz-piece-title { font-size: 1.9rem; }
+  .hz .hz-piece .humanize-article .hz-piece-title { font-size: 2.2rem; }
+}
+
+/* several poems as one piece (<poems>): each poem's title smaller than the piece's, its date under it */
+.hz-reading .sequence .part + .part { margin-top: 6rem; }   /* plenty of room between the poems */
+.hz-reading .sequence .part-title,
+.hz .hz-piece .sequence .part-title { font-family: inherit; font-size: 2.125rem; font-weight: 400; line-height: 1.2; margin: 0 0 1.2rem; }
+.hz-reading .sequence .part-date { font-family: "EB Garamond", Garamond, Georgia, serif; font-style: italic; text-align: right; margin: 0; font-size: .9em; }
+@media (max-width: 480px) {
+  .hz-reading .sequence .part-title, .hz .hz-piece .sequence .part-title { font-size: 1.8rem; }
+  .hz-reading .sequence .part + .part { margin-top: 4.5rem; }
 }
