@@ -1707,10 +1707,10 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 
 /* ---------------------------------------------------------------------------
    Draft: the Archive as the whole site (templates/draft-archive.html; it uses the one-page
-   draft's styles, scroll.js and Options). On a computer, "Archive" and the pieces' titles
-   stand in a column down the left that never scrolls; the right opens on "non plus", then
-   every piece in full. The email stays at the bottom centre of the screen. On a phone the
-   titles come after "non plus", then the pieces. */
+   draft's styles, scroll.js and Options). On a computer, a Directory link, "Archive" and the
+   pieces' titles stand in a column down the left that never scrolls; the right opens on
+   "non plus", then the Directory, then every piece in full. The email stays at the bottom
+   centre of the screen. On a phone: "non plus", the Directory, the titles, then the pieces. */
 .design main.scroll-draft.ar-layout > .ar-contact {
   position: fixed;
   left: 0;
@@ -1751,6 +1751,16 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
 }
 .ar-layout .ar-titles { display: flex; flex-direction: column; align-items: flex-start; gap: .85rem; }
+/* the Directory link in the column (on a computer): the size of the Archive heading, above it */
+.ar-layout .ar-dirlink { margin: 0 0 1rem; }
+.ar-layout .ar-dirlink a {
+  font-family: var(--sd-head-font, inherit), Georgia, serif;
+  font-size: calc(clamp(1.9rem, 7vw, 2.6rem) * var(--sd-text-scale, 1));
+  line-height: 1.15;
+  letter-spacing: .03em;
+}
+.ar-layout .ar-dirlink a:hover { color: var(--sd-accent); }
+.ar-layout #directory { scroll-margin-top: 1.5rem; }
 .ar-layout .ar-titles a {
   white-space: normal;
   font-size: calc(clamp(1.1rem, 4.4vw, 1.3rem) * var(--sd-link-scale, 1));
@@ -1765,6 +1775,8 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 @media (max-width: 899px) {
   .ar-layout .ar-index { padding: 3.5rem max(16px, env(safe-area-inset-right, 0px)) 1rem max(16px, env(safe-area-inset-left, 0px)); max-width: var(--sd-col, 36rem); margin: 0 auto; }
   .ar-layout .ar-titles a { padding-left: .1rem; }
+  .ar-layout .ar-dirlink { display: none; }   /* on a phone the Directory is just above the list, so no link to it */
+  .ar-layout #directory { padding-bottom: 0; }
   .ar-layout ~ .sl-open { bottom: auto; top: calc(16px + env(safe-area-inset-top, 0px)); }   /* clear of the email at the bottom */
 }
 @media (min-width: 900px) {
@@ -1786,7 +1798,7 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
     justify-content: center;
     overflow-y: auto;   /* a long archive scrolls inside the column */
   }
-  .ar-layout .ar-piece { padding-top: 3rem; }
+  .ar-layout .ar-piece, .ar-layout #directory { padding-top: 3rem; }
 }
 
 /* ---------------------------------------------------------------------------
