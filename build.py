@@ -58,7 +58,18 @@ PAGES = [
     ("draft-scroll-lab", "Design", "draft-scroll-lab.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
     ("draft-archive", "Design", "draft-archive.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
     ("humanize", "Humanize", "draft-humanize.html", "Humanize", ["flicker-images.js", "photo-deck.js", "humanize.js"]),
+    ("scroll-static-final", "Design", "scroll-static-final.html", None, ["flicker-images.js", "photo-deck.js", "scroll.js"]),
 ]
+# The final version of draft-archive: the settings chosen in its Options, fixed (and no Options).
+# The photo in the "Night and blue" treatment (the filter is in templates/scroll-static-final.html)
+# at 35%, no shade on the opening screen and 50% behind the text, a new photo every 200px of
+# scrolling (data-step), IM Fell English throughout, every text colour white, "non plus" lower case.
+FINAL_SETTINGS = (
+    "--sd-photo-filter: url(#ssf-night-blue); --sd-ground: #180826; --sd-photo-opacity: .35; "
+    "--sd-veil-hero: 0; --sd-veil-text: .5; "
+    "--sd-word-font: 'IM Fell English'; --sd-head-font: 'IM Fell English'; --sd-text-font: 'IM Fell English'; "
+    "--sd-fg: #ffffff; --sd-dim: #ffffff; --sd-word: #ffffff; --sd-link: #ffffff; --sd-word-case: none"
+)
 DRAFTS = {   # each design, and what it tries, as listed on /design
     "humanize": "The white IM Fell English wordmark over blue-toned images that change as you move the mouse.",
     "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
@@ -74,6 +85,7 @@ DRAFTS = {   # each design, and what it tries, as listed on /design
     "draft-scroll": "For phones first, and on a computer too: the Archive (placeholder pieces for now), the Directory and Contact as sections of one long page that scrolls over a still photo; the photo changes every 200 px or so of scrolling, and on every movement of a mouse; the links glide to each section and mark the one being read: along the top on a phone, and on a computer in a column down the left that never scrolls, with the page scrolling on the right. An Options button opens a sheet (a column down the right on a computer) for the layout, the photo, 'non plus', the links and the text; choices are kept on your device, and Reset goes back to the draft.",
     "draft-scroll-lab": "The same as draft-scroll (it had the Options sheet first), kept so its address still works; the two share their saved choices.",
     "draft-archive": "The Archive as the whole site: on a computer, 'Archive' and the titles of the pieces in a column down the left that never scrolls; on the right the page opens on 'non plus', then the Directory (with a link to it above 'Archive'), then every piece in full, one after another, and a title glides down to its piece, marked with an asterisk while it's being read. editors@nonplusmagazine.com stays at the bottom centre of the screen. The photo changes as you scroll and move the mouse, and the one-page draft's Options are here too.",
+    "scroll-static-final": "The final version of draft-archive, with its settings fixed: the photo in the Night and blue treatment at 35%, no shade on the opening screen and 50% behind the text, a new photo every 200px of scrolling (and on mouse movement); IM Fell English throughout, all text white, 'non plus' in lower case. No Options.",
 }
 HIDDEN = {"design", "designs", "drafts", *DRAFTS}   # pages with no menu, left out of the menu
 
@@ -148,6 +160,9 @@ def build():
             template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts, panels=panels, archive=archive_list, archive_index=archive_index, archive_pieces=archive_pieces,
             scroll_page=render("draft-scroll.html", root=root, sites=sites, archive=archive_list),   # the lab version wraps the one-page draft
             lab_sheet=render("scroll-lab-sheet.html"),
+            archive_page=render("archive-page.html", root=root, sites=sites, archive_index=archive_index, archive_pieces=archive_pieces, main_attrs=""),
+            archive_page_final=render("archive-page.html", root=root, sites=sites, archive_index=archive_index, archive_pieces=archive_pieces,
+                                      main_attrs=f' style="{FINAL_SETTINGS}"'),
             humanize_background=render("humanize-background.html", root=root), humanize_works=humanize_works,
         ), scripts)
 
