@@ -58,11 +58,22 @@
     if (link) { e.preventDefault(); go(link.dataset.go); return; }
     if (!e.target.closest("a")) swap();   // clicking anywhere else changes the photograph
   });
-  // back and forward glide like a click on a computer. On a phone (a touch screen) they land on the screen at
-  // once: the browser animates a back swipe itself, and a glide after it would be a second, unwanted slide
-  const touch = matchMedia("(pointer: coarse)");
-  addEventListener("popstate", (e) => go(location.hash.slice(1) || "home",
-    { record: false, animate: !(e.hasUAVisualTransition || touch.matches) }));
+  // back and forward glide like a click, everywhere, except after a swipe from the edge of a phone's screen:
+  // the browser slides the previous view in itself, so then the page lands at once instead of gliding again.
+  // (A swipe starts with a finger at the very edge; the back arrow is tapped outside the page.)
+  let edge = { on: false, at: -Infinity };
+  addEventListener("touchstart", (e) => {
+    const x = e.touches[0].clientX;
+    if (x < 40 || x > innerWidth - 40) edge = { on: true, at: performance.now() };
+  }, { passive: true, capture: true });
+  const offEdge = () => { if (edge.on) edge = { on: false, at: performance.now() }; };
+  addEventListener("touchend", offEdge, { passive: true, capture: true });
+  addEventListener("touchcancel", offEdge, { passive: true, capture: true });
+  addEventListener("popstate", (e) => {
+    const swiped = e.hasUAVisualTransition || edge.on || performance.now() - edge.at < 1500;
+    edge = { on: false, at: -Infinity };
+    go(location.hash.slice(1) || "home", { record: false, animate: !swiped });
+  });
 
   // nothing scrolls by hand: wheel, keys and touch don't move it, and if the browser ever scrolls the
   // window (to show something focused, say) it is put straight back
