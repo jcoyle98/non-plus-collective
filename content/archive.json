@@ -1,58 +1,57 @@
 {
-  "_about": "The pieces in the one-page draft's Archive section, newest first. Each becomes its own page at <draft>/archive/<slug>/. 'text' is a list of paragraphs. These are placeholders until there are real pieces.",
+  "_about": "Original English placeholder writing with fictional bylines, newest first. Replace with real submissions when ready. Each piece becomes its own page; text is a list of paragraphs.",
   "pieces": [
     {
       "slug": "lorem-ipsum-dolor-sit-amet",
-      "title": "Lorem ipsum dolor sit amet",
-      "author": "Consectetur Adipiscing",
+      "title": "A Small Fire in the Kitchen",
+      "author": "Mara Vale",
       "date": "October 2026",
       "text": [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus, posuere velit aliquet. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum.",
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.",
-        "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
-        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
-        "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus."
+        "By the time the toast caught fire, we had been arguing for forty minutes about a chair. It belonged to neither of us. The previous tenant had left it beside the refrigerator with a folded newspaper on the seat, and for three years we had treated it as something that would eventually be collected.",
+        "I carried the pan to the sink. Outside, the man in the opposite building was watering his plants in a dressing gown. He moved from pot to pot without looking down at the street. I had seen him do this in winter, too, when there was nothing in the pots but sticks.",
+        "You opened the window and took the battery out of the alarm. Then you put the battery on the table, carefully, as though someone had asked you to demonstrate how a battery should be put on a table.",
+        "We ate the unburned slices standing up. There was marmalade left in the jar, but the knife could not reach it. You went into the other room and came back with a smaller spoon.",
+        "The chair was still between us. One leg had been repaired with a strip of green tape. I could not remember when the tape had appeared, or which of us had put it there. We had both started using the chair without noticing."
       ]
     },
     {
       "slug": "de-finibus-bonorum-et-malorum",
-      "title": "De finibus bonorum et malorum",
-      "author": "Marcus Tullius",
+      "title": "The Night Clerk",
+      "author": "Elias Reed",
       "date": "September 2026",
       "text": [
-        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.",
-        "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.",
-        "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.",
-        "Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Nullam quis risus eget urna mollis ornare vel eu leo.",
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+        "At eleven the relief clerk arrived with a paper bag of oranges. He placed them in the drawer where we kept the spare keys and asked whether anyone had called for him. Nobody had, but he checked the message book anyway.",
+        "The hotel had nineteen rooms and a lift that stopped half a floor short of the third. Guests learned to climb out without being told. Once a month an engineer came to inspect it. He would leave his tools at reception and take the stairs.",
+        "That evening a woman in a wet coat asked for a room facing the station. She paid in cash and gave an address so close to the hotel that I could see the building through the glass doors. I copied it into the register.",
+        "She came down again just after midnight to borrow a pair of scissors. The clerk watched her go upstairs, then took an orange from the drawer. He peeled it in one piece and set the peel on the open register.",
+        "In the morning, the scissors were on the desk with a short length of blue thread wound around one handle. Her key was still missing. I went upstairs and knocked, but the room had already been cleaned."
       ]
     },
     {
       "slug": "vestibulum-ante-ipsum-primis",
-      "title": "Vestibulum ante ipsum primis",
-      "author": "Faucibus Orci",
+      "title": "Low Water",
+      "author": "Ada North",
       "date": "August 2026",
       "text": [
-        "Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Nullam quis risus eget urna mollis ornare vel eu leo.",
-        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus, posuere velit aliquet. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum.",
-        "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.",
-        "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
-        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.",
-        "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus."
+        "When the reservoir fell, the old road came back. We went out on Sunday to see it, following the fence until the ground was firm enough to walk on. My father had brought a map, although he said he knew exactly where we were.",
+        "There were no houses. I had expected doorways, at least, or a chimney standing above the mud. Instead there were rectangular patches of stone and a concrete step with a rusted hinge at one end. Someone had placed a drinks can on it.",
+        "My father kept pointing toward a stand of trees on the far bank. The school had been there, he said. Then he unfolded the map and turned it around. My sister asked him where they used to buy milk.",
+        "We found the bridge at two. It was smaller than it looked in the photograph my grandmother kept above her television. The stream underneath was still running, carrying bits of white foam between the stones.",
+        "On the way back we passed a man with a metal detector. He showed us a handful of nails and a spoon with its bowl bent flat. He said he had found a wedding ring the previous week, but he could not show it to us because he had sold it.",
+        "My father folded the map along the wrong creases. In the car he asked whether we wanted to stop somewhere for lunch. Neither of us answered immediately, and he named the place we always went."
       ]
     },
     {
       "slug": "aenean-lacinia-bibendum-nulla",
-      "title": "Aenean lacinia bibendum nulla",
-      "author": "Maecenas Faucibus",
+      "title": "Room 6, Facing the Tracks",
+      "author": "June Calder",
       "date": "July 2026",
       "text": [
-        "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
-        "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.",
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-        "Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur. Nullam quis risus eget urna mollis ornare vel eu leo."
+        "The room had two lamps, but only one socket. To read in bed I had to unplug the refrigerator, which began to drip within an hour. I put a towel underneath it and read until the train came through at twelve seventeen.",
+        "Across the tracks there was a yard full of white vans. Each morning a man walked between them with a clipboard, opening the same three doors. On Thursday he brought a dog. The dog waited by the gate while he worked.",
+        "I was supposed to be looking for an apartment. There were four telephone numbers written on the back of an envelope, and by Friday I had called three of them. The fourth had been crossed out so heavily that I could no longer read it.",
+        "At the reception desk, the owner asked how much longer I would need the room. I said another week. He made a mark in his book and handed me a clean towel, still warm from the dryer.",
+        "That night I moved the refrigerator so I could reach behind the bedside table. There was a second socket, hidden by the headboard. I plugged in the lamp and lay down with my book. The refrigerator hummed beside me."
       ]
     }
   ]

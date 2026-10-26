@@ -42,6 +42,7 @@ PAGES = [
     # so only a link reaches them; /design lists them all (and /drafts, its old
     # address, forwards there)
     ("design", "Drafts", "drafts.html", "Designs", []),
+    ("designs", "Drafts", "drafts.html", "Designs", []),
     ("drafts", "Drafts", "forward.html", "Designs", []),
     ("color-palette-design", "Design", "design.html", "Colour palettes", ["palette.js"]),
     ("draft-disappearing-s", "Design", "draft-disappearing-s.html", "Design (draft)", ["palette.js", "reveal.js"]),
@@ -56,8 +57,10 @@ PAGES = [
     ("draft-scroll", "Design", "draft-scroll-lab.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
     ("draft-scroll-lab", "Design", "draft-scroll-lab.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
     ("draft-archive", "Design", "draft-archive.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
+    ("humanize", "Humanize", "draft-humanize.html", "Humanize", ["flicker-images.js", "photo-deck.js", "humanize.js"]),
 ]
 DRAFTS = {   # each design, and what it tries, as listed on /design
+    "humanize": "The white IM Fell English wordmark over blue-toned images that change as you move the mouse.",
     "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
     "draft-disappearing-s": "The barred S hidden in the background colour: hover to see it, click to draw the bar and open the directory.",
     "draft-arterial": "Image 142's arterial engraving in place of the S, as ink or a negative, with a frame switch and a grain slider.",
@@ -72,7 +75,7 @@ DRAFTS = {   # each design, and what it tries, as listed on /design
     "draft-scroll-lab": "The same as draft-scroll (it had the Options sheet first), kept so its address still works; the two share their saved choices.",
     "draft-archive": "The Archive as the whole site: on a computer, 'Archive' and the titles of the pieces in a column down the left that never scrolls; on the right the page opens on 'non plus', then the Directory (with a link to it above 'Archive'), then every piece in full, one after another, and a title glides down to its piece, marked with an asterisk while it's being read. editors@nonplusmagazine.com stays at the bottom centre of the screen. The photo changes as you scroll and move the mouse, and the one-page draft's Options are here too.",
 }
-HIDDEN = {"design", "drafts", *DRAFTS}   # pages with no menu, left out of the menu
+HIDDEN = {"design", "designs", "drafts", *DRAFTS}   # pages with no menu, left out of the menu
 
 
 def render(template, **values):
@@ -96,6 +99,11 @@ def build():
         f'<li><a href="../{folder}/">{folder}</a><p>{html.escape(about)}</p></li>' for folder, about in DRAFTS.items()
     )
     archive = json.loads((ROOT / "content" / "archive.json").read_text(encoding="utf-8"))["pieces"]
+    humanize_works = "\n".join(
+        f'<li><a href="works/{html.escape(p["slug"], quote=True)}/">'
+        f'{html.escape(p["title"])} - {html.escape(p["author"])}</a></li>'
+        for p in archive
+    )
     archive_list = "\n".join(   # the one-page draft's Archive section: each title links to the piece's own page
         f'<li class="sd-entry"><a class="sd-entry-link" href="archive/{p["slug"]}/">'
         f'<span class="sd-title">{html.escape(p["title"])}</span>'
@@ -140,7 +148,23 @@ def build():
             template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts, panels=panels, archive=archive_list, archive_index=archive_index, archive_pieces=archive_pieces,
             scroll_page=render("draft-scroll.html", root=root, sites=sites, archive=archive_list),   # the lab version wraps the one-page draft
             lab_sheet=render("scroll-lab-sheet.html"),
+            humanize_background=render("humanize-background.html", root=root), humanize_works=humanize_works,
         ), scripts)
+
+    # Humanize has its own directory and a permanent reading page for every work.
+    write("humanize/directory", "Humanize", "Directory", lambda root: render(
+        "humanize-page.html", root=root, humanize_background=render("humanize-background.html", root=root),
+        title="directory", byline="", body=f'<ul class="humanize-directory">{sites}</ul>',
+        directory_current=' aria-current="page"', back_link="",
+    ), [])
+    for p in archive:
+        write(f"humanize/works/{p['slug']}", "Humanize", p["title"], lambda root, p=p: render(
+            "humanize-page.html", root=root, humanize_background=render("humanize-background.html", root=root),
+            title=html.escape(p["title"]),
+            byline=f'<p class="humanize-byline">{html.escape(p["author"])} · {html.escape(p["date"])}</p>',
+            body="\n".join(f'<p>{html.escape(par)}</p>' for par in p["text"]), directory_current="",
+            back_link=f'<p class="humanize-back"><a href="{root}humanize/#humanize-works-heading">all works</a></p>',
+        ), [])
 
     # each Archive piece's own page, under both addresses of the one-page draft (both have the Options sheet)
     for draft, lab in (("draft-scroll", True), ("draft-scroll-lab", True)):
