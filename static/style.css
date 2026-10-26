@@ -1274,6 +1274,8 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .flicker-draft .f-status { margin: 0; font-size: .7rem; color: var(--mark); opacity: .75; }
 .flicker-draft .f-status output { font-family: ui-monospace, Menlo, monospace; }
 .flicker-draft .f-freeze { cursor: pointer; }
+.flicker-draft .f-pace { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .5rem; align-items: center; }
+.flicker-draft .f-pace input { width: min(12rem, 40vw); }
 .flicker-draft .f-freeze input { vertical-align: -2px; margin: 0 .2rem 0 0; }
 /* "Links position": the links' row moves with data-links on the page (set by flicker.js) */
 .flicker-draft .f-place {
@@ -1442,4 +1444,161 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 @media (prefers-reduced-motion: reduce) {
   .np-window[open] { animation: none; }
   .wordmark, .r-title, .c-title { transition: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   Draft: one page (templates/draft-scroll.html, static/scroll.js)
+   Mobile first: About, Directory and Featured Writings as sections of one long
+   page, scrolling over a still photo that changes as you scroll. A bar along
+   the top holds the links; past the opening screen it turns solid, shows a
+   small "non plus" and marks the section being read. */
+body.design:has(.scroll-draft) { background: #0e0d0e; }
+.design main.scroll-draft {
+  --sd-fg: #f2ede2;
+  --sd-dim: rgba(242, 237, 226, .62);
+  --sd-rule: rgba(242, 237, 226, .82);
+  --sd-fine: rgba(242, 237, 226, .32);
+  --sd-accent: #00e5ff;
+  --sd-bar: 56px;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  color: var(--sd-fg);
+  font-family: "EB Garamond", Georgia, serif;
+}
+/* the photo and the veil over it stay put; everything else scrolls over them */
+.scroll-draft .sd-photo { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.scroll-draft .sd-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to bottom, rgba(10, 9, 10, .45), rgba(10, 9, 10, .15) 35%, rgba(10, 9, 10, .55));
+  transition: background-color .4s;
+}
+.scroll-draft.past-hero .sd-veil { background-color: rgba(10, 9, 10, .62); }
+.scroll-draft > :not(.sd-photo):not(.sd-veil):not(.sd-bar) { position: relative; z-index: 1; }
+
+/* the bar */
+.scroll-draft .sd-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  height: calc(var(--sd-bar) + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid transparent;
+  transition: background-color .3s, border-color .3s;
+}
+.scroll-draft.past-hero .sd-bar { background: rgba(14, 13, 14, .9); border-bottom-color: var(--sd-fine); }
+.scroll-draft .sd-mark {
+  font-style: italic;
+  font-size: 1.2rem;
+  letter-spacing: .04em;
+  color: var(--sd-accent);
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+}
+.scroll-draft.past-hero .sd-mark { opacity: 1; pointer-events: auto; }
+.scroll-draft .sd-nav { margin-left: auto; display: flex; gap: clamp(.9rem, 4vw, 2rem); }
+.scroll-draft .sd-nav a { position: relative; color: var(--sd-fg); text-decoration: none; font-size: clamp(1rem, 3.6vw, 1.15rem); white-space: nowrap; }
+.scroll-draft .sd-nav a[aria-current]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: var(--sd-accent);
+}
+
+/* the opening screen: just the photo and "non plus" */
+.scroll-draft .sd-hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  padding: var(--sd-bar) 16px 3rem;
+}
+.scroll-draft .sd-word {
+  margin: 0;
+  font-style: italic;
+  font-size: clamp(3.2rem, 15vw, 8rem);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--sd-accent);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, .45);
+}
+.scroll-draft .sd-down {
+  position: absolute;
+  left: 50%;
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  color: var(--sd-fg);
+  text-decoration: none;
+  border: 1px solid var(--sd-fine);
+  border-radius: 50%;
+}
+
+/* the sections: a heading between a heavy and a fine rule, then the text in a readable column */
+.scroll-draft .sd-section {
+  scroll-margin-top: var(--sd-bar);
+  padding: 4.5rem max(16px, env(safe-area-inset-right, 0px)) 3.5rem max(16px, env(safe-area-inset-left, 0px));
+}
+.scroll-draft .sd-section h2 {
+  max-width: 36rem;
+  margin: 0 auto 2rem;
+  padding: .55rem 0 .45rem;
+  border-top: 2px solid var(--sd-rule);
+  border-bottom: 1px solid var(--sd-fine);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  letter-spacing: .03em;
+}
+.scroll-draft .sd-text { max-width: 36rem; margin: 0 auto; font-size: clamp(1.1rem, 4.2vw, 1.25rem); line-height: 1.6; }
+.scroll-draft .sd-text p { margin: 0 0 1.1em; }
+.scroll-draft .sd-lede { font-size: 1.2em; line-height: 1.45; font-style: italic; }
+.scroll-draft .sites { max-width: 36rem; margin: 0 auto; padding: 0; list-style: none; font-size: clamp(1.25rem, 5vw, 1.6rem); line-height: 2.1; }
+.scroll-draft .sites a { color: var(--sd-fg); text-decoration: none; border-bottom: 1px solid var(--sd-fine); }
+.scroll-draft .sites a:hover { color: var(--sd-accent); border-bottom-color: currentColor; }
+.scroll-draft .sd-entry { padding: 0 0 1.4rem; margin: 0 0 1.6rem; border-bottom: 1px solid var(--sd-fine); }
+.scroll-draft .sd-entry:last-child { border-bottom: 0; margin-bottom: 0; }
+.scroll-draft .sd-entry h3 { margin: 0 0 .2rem; font-weight: 400; font-size: 1.3em; line-height: 1.3; }
+.scroll-draft .sd-entry h3 a { color: var(--sd-fg); text-decoration: none; }
+.scroll-draft .sd-entry h3 a:hover { color: var(--sd-accent); }
+.scroll-draft .sd-meta { margin: 0 0 .6rem !important; font-size: .85em; font-style: italic; color: var(--sd-dim); }
+
+.scroll-draft .sd-foot {
+  display: flex;
+  justify-content: space-between;
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 2rem max(16px, env(safe-area-inset-right, 0px)) calc(2.5rem + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  border-top: 1px solid var(--sd-fine);
+  color: var(--sd-dim);
+  font-style: italic;
+}
+.scroll-draft .sd-foot a { color: var(--sd-dim); }
+.scroll-draft a:focus-visible { outline: 2px solid var(--sd-accent); outline-offset: 3px; }
+
+@media (max-width: 380px) {
+  .scroll-draft .sd-bar { gap: .5rem; }
+  .scroll-draft .sd-nav { gap: .7rem; }
+  .scroll-draft .sd-nav a { font-size: .95rem; }
+  .scroll-draft .sd-mark { font-size: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-draft .sd-veil, .scroll-draft .sd-bar, .scroll-draft .sd-mark { transition: none; }
 }
