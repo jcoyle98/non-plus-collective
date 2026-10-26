@@ -55,6 +55,7 @@ PAGES = [
     ("draft-flicker", "Design", "draft-flicker.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "hurricane.js", "flicker.js", "panels.js"]),
     ("draft-scroll", "Design", "draft-scroll-lab.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
     ("draft-scroll-lab", "Design", "draft-scroll-lab.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
+    ("draft-archive", "Design", "draft-archive.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
 ]
 DRAFTS = {   # each design, and what it tries, as listed on /design
     "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
@@ -69,6 +70,7 @@ DRAFTS = {   # each design, and what it tries, as listed on /design
     "draft-flicker": "The hurricane draft's page and options, but the photo changes on every mouse move, key press or click (on a phone, every scroll or swipe), cycling through all 155 photos, with a Pace slider to slow it down: the whole image gallery plus the two in this repo; a switch to hold one, and ten places to try for the links (top, middle or bottom; left, centre, right or spread).",
     "draft-scroll": "For phones first, and on a computer too: the Archive (placeholder pieces for now), the Directory and Contact as sections of one long page that scrolls over a still photo; the photo changes every 200 px or so of scrolling, and on every movement of a mouse; the links glide to each section and mark the one being read: along the top on a phone, and on a computer in a column down the left that never scrolls, with the page scrolling on the right. An Options button opens a sheet (a column down the right on a computer) for the layout, the photo, 'non plus', the links and the text; choices are kept on your device, and Reset goes back to the draft.",
     "draft-scroll-lab": "The same as draft-scroll (it had the Options sheet first), kept so its address still works; the two share their saved choices.",
+    "draft-archive": "The Archive as the whole site: on a computer, 'Archive' and the titles of the pieces in a column down the left that never scrolls; on the right the page opens on 'non plus', then every piece in full, one after another, and a title glides down to its piece, marked with an asterisk while it's being read. editors@nonplusmagazine.com stays at the bottom centre of the screen. The photo changes as you scroll and move the mouse, and the one-page draft's Options are here too.",
 }
 HIDDEN = {"design", "drafts", *DRAFTS}   # pages with no menu, left out of the menu
 
@@ -101,6 +103,17 @@ def build():
         for p in archive
     )
 
+    archive_index = "\n".join(   # the archive draft's list of titles, each linking down to its piece
+        f'<a href="#piece-{p["slug"]}">{html.escape(p["title"])}</a>' for p in archive
+    )
+    archive_pieces = "\n".join(   # ...and the pieces themselves, one after another
+        f'<article class="sd-section ar-piece" id="piece-{p["slug"]}" aria-labelledby="h-{p["slug"]}">\n'
+        f'<h2 id="h-{p["slug"]}">{html.escape(p["title"])}</h2>\n'
+        f'<p class="sd-byline">{html.escape(p["author"])} · {html.escape(p["date"])}</p>\n'
+        f'<div class="sd-text">\n' + "\n".join(f"<p>{html.escape(par)}</p>" for par in p["text"]) + "\n</div>\n</article>"
+        for p in archive
+    )
+
     def write(folder, label, title, content, scripts):
         root = "../" * (folder.count("/") + 1) if folder else "./"  # relative links work under any base path
         nav = "\n".join(
@@ -124,7 +137,7 @@ def build():
 
     for folder, label, template, title, scripts in PAGES:
         write(folder, label, title, lambda root, template=template: render(
-            template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts, panels=panels, archive=archive_list,
+            template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts, panels=panels, archive=archive_list, archive_index=archive_index, archive_pieces=archive_pieces,
             scroll_page=render("draft-scroll.html", root=root, sites=sites, archive=archive_list),   # the lab version wraps the one-page draft
             lab_sheet=render("scroll-lab-sheet.html"),
         ), scripts)

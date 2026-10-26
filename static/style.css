@@ -1669,13 +1669,13 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
    Archive, Directory and Contact stand in a column down the left that never scrolls, and the
    page scrolls on the right: "non plus" first, then the sections. Phones keep the links along the top. */
 @media (min-width: 900px) {
-  .design main.scroll-draft[data-desk="side"] {
+  .design main.scroll-draft[data-desk="side"]:not(.ar-layout) {
     --sd-side: clamp(220px, 24vw, 340px);
     display: flex;
     flex-direction: column;
     padding-left: var(--sd-side);   /* everything that scrolls sits to the right of the column */
   }
-  .scroll-draft[data-desk="side"] .sd-bar {
+  .scroll-draft[data-desk="side"]:not(.ar-layout) .sd-bar {
     top: 0;
     bottom: 0;
     left: 0;
@@ -1686,7 +1686,7 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
     justify-content: flex-start;
     align-items: center;
   }
-  .scroll-draft[data-desk="side"] .sd-nav {
+  .scroll-draft[data-desk="side"]:not(.ar-layout) .sd-nav {
     flex: none;
     max-width: none;
     margin: 0;
@@ -1695,14 +1695,98 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
     justify-content: flex-start;
     gap: 1.1rem;
   }
-  .scroll-draft[data-desk="side"] .sd-nav a { font-size: calc(clamp(1.35rem, 1.9vw, 1.75rem) * var(--sd-link-scale, 1)); }
-  .scroll-draft[data-desk="side"] > .sd-foot { width: 100%; box-sizing: border-box; }
-  .scroll-draft[data-desk="side"] > #contact { min-height: 100vh; }
-  .scroll-draft[data-desk="side"] .sd-section, .scroll-draft[data-desk="side"] .sd-entry { scroll-margin-top: 1.5rem; }
-  .scroll-draft[data-desk="side"] .sd-section { padding-top: 3rem; }
-  .scroll-draft[data-desk="side"] .sd-article { padding-top: 4rem; }
-  .scroll-draft[data-desk="side"] .sd-hero { padding-top: 3rem; }
-  .scroll-draft[data-desk="side"] .sd-foot { padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px)); }
+  .scroll-draft[data-desk="side"]:not(.ar-layout) .sd-nav a { font-size: calc(clamp(1.35rem, 1.9vw, 1.75rem) * var(--sd-link-scale, 1)); }
+  .scroll-draft[data-desk="side"]:not(.ar-layout) > .sd-foot { width: 100%; box-sizing: border-box; }
+  .scroll-draft[data-desk="side"]:not(.ar-layout) > #contact { min-height: 100vh; }
+  .scroll-draft[data-desk="side"]:not(.ar-layout) .sd-section, .scroll-draft[data-desk="side"]:not(.ar-layout) .sd-entry { scroll-margin-top: 1.5rem; }
+  .scroll-draft[data-desk="side"]:not(.ar-layout) .sd-section { padding-top: 3rem; }
+  .scroll-draft[data-desk="side"]:not(.ar-layout) .sd-article { padding-top: 4rem; }
+  .scroll-draft[data-desk="side"]:not(.ar-layout) .sd-hero { padding-top: 3rem; }
+  .scroll-draft[data-desk="side"]:not(.ar-layout) .sd-foot { padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* ---------------------------------------------------------------------------
+   Draft: the Archive as the whole site (templates/draft-archive.html; it uses the one-page
+   draft's styles, scroll.js and Options). On a computer, "Archive" and the pieces' titles
+   stand in a column down the left that never scrolls; the right opens on "non plus", then
+   every piece in full. The email stays at the bottom centre of the screen. On a phone the
+   titles come after "non plus", then the pieces. */
+.design main.scroll-draft.ar-layout > .ar-contact {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  z-index: 4;
+  margin: 0;
+  text-align: center;
+  font-size: calc(clamp(1rem, 3.6vw, 1.15rem) * var(--sd-link-scale, 1));
+  pointer-events: none;   /* only the address itself catches clicks */
+}
+.ar-layout .ar-contact a {
+  pointer-events: auto;
+  color: var(--sd-link, var(--sd-fg));
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .85), 0 0 14px rgba(0, 0, 0, .7);
+}
+.ar-layout .ar-contact a:hover { color: var(--sd-accent); }
+/* a short fade along the bottom of the screen, behind the email, so the text scrolling under it fades out and the address always reads */
+.design main.scroll-draft.ar-layout::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  height: calc(92px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(to bottom, rgba(10, 9, 10, 0), rgba(10, 9, 10, .85) 35%, rgb(10, 9, 10) 62%);
+  pointer-events: none;
+}
+.ar-layout .ar-index h2 {
+  margin: 0 0 1.2rem;
+  font-family: var(--sd-head-font, inherit), Georgia, serif;
+  font-weight: 400;
+  font-size: calc(clamp(1.9rem, 7vw, 2.6rem) * var(--sd-text-scale, 1));
+  line-height: 1.15;
+  letter-spacing: .03em;
+  color: var(--sd-fg);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+}
+.ar-layout .ar-titles { display: flex; flex-direction: column; align-items: flex-start; gap: .85rem; }
+.ar-layout .ar-titles a {
+  white-space: normal;
+  font-size: calc(clamp(1.1rem, 4.4vw, 1.3rem) * var(--sd-link-scale, 1));
+  line-height: 1.3;
+}
+.ar-layout .ar-titles a:hover { color: var(--sd-accent); }
+.ar-layout .ar-piece { scroll-margin-top: 1.5rem; }
+.ar-layout .ar-piece h2 { margin-bottom: .5rem; line-height: 1.15; text-wrap: balance; }
+.ar-layout .ar-piece .sd-byline { margin-bottom: 1.8rem; }
+.ar-layout .ar-piece:last-child { min-height: 100vh; min-height: 100svh; box-sizing: border-box; }   /* so the last title can bring its piece to the top */
+.ar-layout .ar-pieces { padding-bottom: 4rem; }   /* clear of the email */
+@media (max-width: 899px) {
+  .ar-layout .ar-index { padding: 3.5rem max(16px, env(safe-area-inset-right, 0px)) 1rem max(16px, env(safe-area-inset-left, 0px)); max-width: var(--sd-col, 36rem); margin: 0 auto; }
+  .ar-layout .ar-titles a { padding-left: .1rem; }
+  .ar-layout ~ .sl-open { bottom: auto; top: calc(16px + env(safe-area-inset-top, 0px)); }   /* clear of the email at the bottom */
+}
+@media (min-width: 900px) {
+  .design main.scroll-draft.ar-layout {
+    --ar-side: clamp(260px, 30vw, 440px);
+    padding-left: var(--ar-side);   /* everything that scrolls sits to the right of the column */
+  }
+  .design main.scroll-draft.ar-layout > .ar-index {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    width: var(--ar-side);
+    box-sizing: border-box;
+    padding: 2rem 2rem 4rem clamp(36px, 4vw, 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;   /* a long archive scrolls inside the column */
+  }
+  .ar-layout .ar-piece { padding-top: 3rem; }
 }
 
 /* ---------------------------------------------------------------------------
