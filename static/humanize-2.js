@@ -58,7 +58,9 @@
     if (link) { e.preventDefault(); go(link.dataset.go); return; }
     if (!e.target.closest("a")) swap();   // clicking anywhere else changes the photograph
   });
-  addEventListener("popstate", () => go(location.hash.slice(1) || "home", { record: false }));
+  // back and forward glide like a click, except when the browser has already animated the step itself (a
+  // swipe back on a phone slides the previous view in): then land there at once, rather than glide twice
+  addEventListener("popstate", (e) => go(location.hash.slice(1) || "home", { record: false, animate: !e.hasUAVisualTransition }));
 
   // nothing scrolls by hand: wheel, keys and touch don't move it, and if the browser ever scrolls the
   // window (to show something focused, say) it is put straight back
