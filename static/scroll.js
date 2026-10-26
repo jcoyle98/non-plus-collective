@@ -1,17 +1,17 @@
-// The one-page draft: About, Directory and Featured Writings are sections of one
+// The one-page draft: About, Directory and the Archive are sections of one
 // long page that scrolls over a still photo, and every stretch of scrolling
 // (data-step pixels on the page, 200 by default; data-hold="on" stops it) swaps the photo for the next
 // one from the shared deck (static/photo-deck.js), at most a few times a second;
 // with a mouse, every movement of it swaps the photo too.
 // The links along the top glide down to their section and mark the one you're
 // reading; the veil over the photo darkens once the opening screen has scrolled away.
-// A featured title opens that piece's own page, taking the photo along.
+// A title in the Archive opens that piece's own page, taking the photo along.
 (function () {
   const page = document.querySelector(".scroll-draft");
   if (!page) return;
   const still = matchMedia("(prefers-reduced-motion: reduce)");
 
-  // a featured piece opens on its own page, over the photo that's showing now
+  // a piece in the Archive opens on its own page, over the photo that's showing now
   function carryPhoto(e) {
     const link = e.target.closest("a.sd-entry-link");
     if (!link) return;

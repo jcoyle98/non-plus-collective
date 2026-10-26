@@ -1457,8 +1457,9 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 .design main.scroll-draft {
   --sd-fg: #f2ede2;
   --sd-dim: color-mix(in srgb, var(--sd-fg) 62%, transparent);
-  --sd-rule: color-mix(in srgb, var(--sd-fg) 82%, transparent);
-  --sd-fine: color-mix(in srgb, var(--sd-fg) 32%, transparent);
+  /* the rules are solid, not see-through, so every line looks the same over any part of any photo */
+  --sd-rule: color-mix(in srgb, var(--sd-fg) 82%, #0e0d0e);
+  --sd-fine: color-mix(in srgb, var(--sd-fg) 40%, #0e0d0e);
   --sd-accent: var(--sd-word, #00e5ff);
   --sd-bar: 56px;
   max-width: none;
@@ -1598,14 +1599,16 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 .scroll-draft .sites { max-width: var(--sd-col, 36rem); margin: 0 auto; padding: 0; list-style: none; font-size: calc(clamp(1.25rem, 5vw, 1.6rem) * var(--sd-text-scale, 1)); line-height: 2.1; }
 .scroll-draft .sites a { color: var(--sd-fg); text-decoration: none; border-bottom: 1px solid var(--sd-fine); }
 .scroll-draft .sites a:hover { color: var(--sd-accent); border-bottom-color: currentColor; }
-/* Featured: a list of titles, each with its author and date; a title opens the piece on its own page (it turns the accent colour on hover) */
+/* The Archive: a list of titles, each with its author and date; a title opens the piece on its own page (it turns the accent colour on hover) */
 /* at least a screen tall, so its link can always bring it to the top, even when the list is short */
-.scroll-draft #writings { min-height: calc(100vh - var(--sd-bar)); min-height: calc(100svh - var(--sd-bar)); box-sizing: border-box; }
-.scroll-draft .sd-entries { padding: 0; list-style: none; }
+.scroll-draft #archive { min-height: calc(100vh - var(--sd-bar)); min-height: calc(100svh - var(--sd-bar)); box-sizing: border-box; }
+/* every title sits the same distance below the line above it, the heading's line included */
+.scroll-draft .sd-archive h2 { margin-bottom: 0; }
+.scroll-draft .sd-entries { margin-top: 0; padding: 0; list-style: none; }
 .scroll-draft .sd-entry { border-bottom: 1px solid var(--sd-fine); }
 .scroll-draft .sd-entry-link {
   display: grid;
-  padding: 1.1rem 0;
+  padding: 1.1rem 0 .85rem;   /* less below: the date's line leaves more room under its letters than the title's does above */
   color: inherit;
   text-decoration: none;
 }
@@ -1614,7 +1617,7 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 .scroll-draft .sd-entry-link:hover .sd-title { color: var(--sd-accent); }
 .scroll-draft .sd-meta { margin-top: .2rem; font-size: .85em; font-style: italic; color: var(--sd-dim); }
 
-/* a featured piece's own page (templates/scroll-piece.html): the same page, with the piece where the sections were */
+/* an Archive piece's own page (templates/scroll-piece.html): the same page, with the piece where the sections were */
 .scroll-draft .sd-article { padding-top: calc(var(--sd-bar) + 2.5rem); }
 .scroll-draft .sd-article h1 {
   max-width: var(--sd-col, 36rem);

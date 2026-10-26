@@ -1,5 +1,5 @@
 {
-  "_about": "The pieces in the one-page draft's Featured section, newest first. Each becomes its own page at <draft>/featured/<slug>/. 'text' is a list of paragraphs. These are placeholders until there are real pieces.",
+  "_about": "The pieces in the one-page draft's Archive section, newest first. Each becomes its own page at <draft>/archive/<slug>/. 'text' is a list of paragraphs. These are placeholders until there are real pieces.",
   "pieces": [
     {
       "slug": "lorem-ipsum-dolor-sit-amet",

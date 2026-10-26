@@ -67,7 +67,7 @@ DRAFTS = {   # each design, and what it tries, as listed on /design
     "draft-tracks": "Image 25, bubble-chamber tracks, its border cut away and its uneven exposure evened, filling the window; About, Directory, Featured Writings top left; NON PLUS to drag, with its own colour, font, italics and an optional box; the same colour treatments.",
     "draft-bubble": "Image 23, a round bubble chamber from 1955, as a stencil centred on a page of its own colour, so its surround always matches; links top left; NON PLUS to drag, with its own colour, font, italics and an optional box; the same colour treatments.",
     "draft-flicker": "The hurricane draft's page and options, but the photo changes on every mouse move, key press or click (on a phone, every scroll or swipe), cycling through all 155 photos, with a Pace slider to slow it down: the whole image gallery plus the two in this repo; a switch to hold one, and ten places to try for the links (top, middle or bottom; left, centre, right or spread).",
-    "draft-scroll": "For phones first, and on a computer too: About, Directory and Featured as sections of one long page (with placeholder text for now) that scrolls over a still photo; the photo changes every 200 px or so of scrolling, and on every movement of a mouse; the links glide to each section and mark the one being read. An Options button opens a sheet (a column down the right on a computer) for the layout, the photo, 'non plus', the links and the text; choices are kept on your device, and Reset goes back to the draft.",
+    "draft-scroll": "For phones first, and on a computer too: About, Directory and the Archive as sections of one long page (with placeholder text for now) that scrolls over a still photo; the photo changes every 200 px or so of scrolling, and on every movement of a mouse; the links glide to each section and mark the one being read. An Options button opens a sheet (a column down the right on a computer) for the layout, the photo, 'non plus', the links and the text; choices are kept on your device, and Reset goes back to the draft.",
     "draft-scroll-lab": "The same as draft-scroll (it had the Options sheet first), kept so its address still works; the two share their saved choices.",
 }
 HIDDEN = {"design", "drafts", *DRAFTS}   # pages with no menu, left out of the menu
@@ -93,12 +93,12 @@ def build():
     drafts = "\n".join(
         f'<li><a href="../{folder}/">{folder}</a><p>{html.escape(about)}</p></li>' for folder, about in DRAFTS.items()
     )
-    featured = json.loads((ROOT / "content" / "featured.json").read_text(encoding="utf-8"))["pieces"]
-    featured_list = "\n".join(   # the one-page draft's Featured section: each title links to the piece's own page
-        f'<li class="sd-entry"><a class="sd-entry-link" href="featured/{p["slug"]}/">'
+    archive = json.loads((ROOT / "content" / "archive.json").read_text(encoding="utf-8"))["pieces"]
+    archive_list = "\n".join(   # the one-page draft's Archive section: each title links to the piece's own page
+        f'<li class="sd-entry"><a class="sd-entry-link" href="archive/{p["slug"]}/">'
         f'<span class="sd-title">{html.escape(p["title"])}</span>'
         f'<span class="sd-meta">{html.escape(p["author"])} · {html.escape(p["date"])}</span></a></li>'
-        for p in featured
+        for p in archive
     )
 
     def write(folder, label, title, content, scripts):
@@ -124,16 +124,16 @@ def build():
 
     for folder, label, template, title, scripts in PAGES:
         write(folder, label, title, lambda root, template=template: render(
-            template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts, panels=panels, featured=featured_list,
-            scroll_page=render("draft-scroll.html", root=root, sites=sites, featured=featured_list),   # the lab version wraps the one-page draft
+            template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts, panels=panels, archive=archive_list,
+            scroll_page=render("draft-scroll.html", root=root, sites=sites, archive=archive_list),   # the lab version wraps the one-page draft
             lab_sheet=render("scroll-lab-sheet.html"),
         ), scripts)
 
-    # each featured piece's own page, under both addresses of the one-page draft (both have the Options sheet)
+    # each Archive piece's own page, under both addresses of the one-page draft (both have the Options sheet)
     for draft, lab in (("draft-scroll", True), ("draft-scroll-lab", True)):
-        for p in featured:
+        for p in archive:
             body = "\n".join(f"<p>{html.escape(par)}</p>" for par in p["text"])
-            write(f"{draft}/featured/{p['slug']}", "Design", f"{p['title']} (draft)", lambda root, p=p, body=body, lab=lab: render(
+            write(f"{draft}/archive/{p['slug']}", "Design", f"{p['title']} (draft)", lambda root, p=p, body=body, lab=lab: render(
                 "scroll-piece.html", root=root, title=html.escape(p["title"]), author=html.escape(p["author"]),
                 date=html.escape(p["date"]), body=body, lab_sheet=render("scroll-lab-sheet.html") if lab else "",
             ), ["flicker-images.js", "scroll-piece.js"] + (["scroll-lab.js"] if lab else []))
