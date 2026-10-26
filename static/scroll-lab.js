@@ -77,7 +77,9 @@
   // every option: how it is shown, its default (the draft as it is), and what it changes
   const OPTIONS = [
     { group: "Layout" },
-    { key: "linksRow", type: "segments", label: "Links", def: "top", choices: [["top", "Along the top"], ["bottom", "Along the bottom"]],
+    { key: "desk", type: "segments", label: "On a computer", def: "side",
+      choices: [["side", "Links in a side column"], ["across", "Links across"]], apply: (v) => { page.dataset.desk = v; } },
+    { key: "linksRow", type: "segments", label: "Links (across, and on phones)", def: "top", choices: [["top", "Along the top"], ["bottom", "Along the bottom"]],
       apply: (v) => { page.dataset.linksRow = v; } },
     { key: "linksAlign", type: "segments", label: "Links placed", def: "center",
       choices: [["left", "Left"], ["center", "Centre"], ["right", "Right"], ["spread", "Spread"]], apply: (v) => { page.dataset.linksAlign = v; } },

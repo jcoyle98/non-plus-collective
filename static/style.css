@@ -1666,6 +1666,55 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   .scroll-draft .sd-veil { transition: none; }
 }
 
+/* On a computer (data-desk="side", the default; the Layout options can switch to "across"):
+   About, Archive and Directory stand in a column down the left that never scrolls, and the
+   page scrolls on the right: "non plus" first, then About, the Archive and the Directory,
+   in the order of the links. Phones keep the links along the top. */
+@media (min-width: 900px) {
+  .design main.scroll-draft[data-desk="side"] {
+    --sd-side: clamp(220px, 24vw, 340px);
+    display: flex;
+    flex-direction: column;
+    padding-left: var(--sd-side);   /* everything that scrolls sits to the right of the column */
+  }
+  .scroll-draft[data-desk="side"] .sd-bar {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: var(--sd-side);
+    height: auto;
+    padding: 0 0 0 clamp(28px, 3.5vw, 56px);
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .scroll-draft[data-desk="side"] .sd-nav {
+    flex: none;
+    max-width: none;
+    margin: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1.1rem;
+  }
+  .scroll-draft[data-desk="side"] .sd-nav a { font-size: calc(clamp(1.35rem, 1.9vw, 1.75rem) * var(--sd-link-scale, 1)); }
+  .scroll-draft[data-desk="side"] .sd-nav a[aria-current]::after { bottom: -5px; }
+  /* About, Archive, Directory: the links and the sections in the same order */
+  .scroll-draft[data-desk="side"] .sd-nav a[href$="#about"] { order: 1; }
+  .scroll-draft[data-desk="side"] .sd-nav a[href$="#archive"] { order: 2; }
+  .scroll-draft[data-desk="side"] .sd-nav a[href$="#directory"] { order: 3; }
+  .scroll-draft[data-desk="side"] > .sd-hero { order: 0; }
+  .scroll-draft[data-desk="side"] > #about { order: 1; }
+  .scroll-draft[data-desk="side"] > #archive { order: 2; }
+  .scroll-draft[data-desk="side"] > #directory { order: 3; min-height: 100vh; box-sizing: border-box; }   /* last here, so a screen tall: its link can bring it to the top */
+  .scroll-draft[data-desk="side"] > .sd-foot { order: 4; width: 100%; box-sizing: border-box; }
+  .scroll-draft[data-desk="side"] .sd-section, .scroll-draft[data-desk="side"] .sd-entry { scroll-margin-top: 1.5rem; }
+  .scroll-draft[data-desk="side"] .sd-section { padding-top: 3rem; }
+  .scroll-draft[data-desk="side"] .sd-article { padding-top: 4rem; }
+  .scroll-draft[data-desk="side"] .sd-hero { padding-top: 3rem; }
+  .scroll-draft[data-desk="side"] .sd-foot { padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px)); }
+}
+
 /* ---------------------------------------------------------------------------
    Draft: one page, lab version (templates/draft-scroll-lab.html, static/scroll-lab.js)
    The one-page draft with an Options button bottom right that opens a sheet
