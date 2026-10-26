@@ -742,6 +742,53 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .hurricane-draft .h-linkcolours button[aria-pressed="true"] { outline: 2px solid var(--mark); outline-offset: 2px; }
 
 .hurricane-draft .h-links a:hover, .hurricane-draft .h-toggle:hover { text-decoration: underline; }
+/* the menu, three ways (hurricane.js): a row along the top on the left (as before), the same row on the
+   right, or stacked in a box that can be dragged anywhere */
+.hurricane-draft[data-menu="right"] .h-links { justify-content: flex-end; }
+.hurricane-draft[data-menu="box"] .h-links {
+  right: auto;
+  left: 0;
+  top: 0;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: .45rem;
+  width: max-content;
+  padding: .7em 1.1em .8em;
+  border: 1px solid transparent;
+  cursor: move;
+  user-select: none;
+  touch-action: none;
+  visibility: hidden;   /* until placed */
+}
+.hurricane-draft[data-menu="box"] .h-links a { cursor: pointer; -webkit-user-drag: none; }
+/* the menu box's own outline or fill: its colour ("auto" = the links' colour) at its own opacity */
+.hurricane-draft { --mbox-paint: color-mix(in srgb, var(--mbox-base, var(--links, var(--word, #00e5ff)))
+  calc(var(--mbox-alpha, 1) * 100%), transparent); }
+.hurricane-draft[data-menu="box"][data-mbox="outline"] .h-links { border-color: var(--mbox-paint); }
+.hurricane-draft[data-menu="box"][data-mbox="filled"] .h-links { background: var(--mbox-paint); }
+.hurricane-draft .h-links.dragging { cursor: grabbing; }
+.hurricane-draft:not([data-menu="box"]) .h-mbox { display: none; }
+.hurricane-draft .h-mbox { display: grid; gap: 8px; }
+.hurricane-draft .h-mboxes { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .4rem; align-items: center; }
+.hurricane-draft .h-mboxes button { font: inherit; color: inherit; background: none; border: 1px solid rgba(128,128,128,.6); border-radius: 3px; padding: .1rem .5rem; cursor: pointer; }
+.hurricane-draft .h-mboxes button[aria-pressed="true"] { background: var(--mark); color: #000; }
+.hurricane-draft .h-mboxcolours { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; max-width: min(30rem, 60vw); }
+.hurricane-draft .h-mboxcolours button { width: 16px; height: 16px; border-radius: 3px; border: 1px solid rgba(128,128,128,.6); padding: 0; cursor: pointer; }
+.hurricane-draft .h-mboxcolours button.auto { width: auto; padding: 0 .4rem; font: .7rem -apple-system, Arial, sans-serif; background: none; color: var(--mark); }
+.hurricane-draft .h-mboxcolours button[aria-pressed="true"] { outline: 2px solid var(--mark); outline-offset: 2px; }
+.hurricane-draft .h-mboxfade { margin: 0; font-size: .75rem; color: var(--mark); display: flex; gap: .5rem; align-items: center; }
+.hurricane-draft .h-mboxfade input { width: min(12rem, 40vw); }
+.hurricane-draft .h-mboxfade output { font-family: ui-monospace, Menlo, monospace; min-width: 3.2em; }
+.hurricane-draft .h-menus { margin: 0; font-size: .75rem; color: var(--mark); display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; }
+.hurricane-draft .h-menus button { font: inherit; color: inherit; background: none; border: 1px solid rgba(128,128,128,.6); border-radius: 3px; padding: .1rem .5rem; cursor: pointer; }
+.hurricane-draft .h-menus button[aria-pressed="true"] { background: var(--mark); color: #000; }
+.hurricane-draft .h-menus .h-menu-reset { border: 0; padding: 0; text-decoration: underline; }
+.hurricane-draft:not([data-menu="box"]) .h-menu-reset { display: none; }
+@media (max-width: 600px) {
+  /* phones: the menu row is centred across the top (the box and NON PLUS are centred by hurricane.js) */
+  .hurricane-draft[data-menu="left"] .h-links, .hurricane-draft[data-menu="right"] .h-links { justify-content: center; text-align: center; }
+  .hurricane-draft[data-menu="box"] .h-links { align-items: center; }
+}
 /* "Hide options" hides the pickers (and the credit above them) */
 .hurricane-draft.options-hidden .h-controls, .hurricane-draft.options-hidden .h-credit { display: none; }
 .hurricane-draft .wordmark {
@@ -801,7 +848,7 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 .hurricane-draft .h-credit {
   position: absolute;
   left: clamp(16px, 3vw, 36px);
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 308px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 3vw, 36px) + 338px);
   margin: 0;
   max-width: 42vw;
   font-size: .7rem;
@@ -2048,3 +2095,175 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 .sl-segments button:last-child { border-radius: 0 6px 6px 0; }
 .sl-segments button[aria-pressed="true"] { background: #f2ede2; color: #141214; }
 .sl-sheet button:focus-visible, .sl-open:focus-visible, .sl-row select:focus-visible { outline: 2px solid #00e5ff; outline-offset: 2px; }
+.hurricane-draft[data-menu="box"] .h-credit { transform: translateY(-96px); }
+
+/* ---------------------------------------------------------------------------
+   Humanize 2.0 (templates/draft-humanize-2.html, static/humanize-2.js)
+   Humanize's look (body.humanize, its photographs and shade), with the screens stacked and moved by clicks
+   only: the rail is shifted up by one window-height per screen, gliding over --hz-ms. */
+body.humanize:has(main.hz) {
+  overflow: hidden;
+  overscroll-behavior: none;
+  /* the colour scheme, changed by tapping "non plus" on the home screen (humanize-2.js) */
+  background: var(--hz-bg, #180826);
+  color: var(--hz-text, #ffffff);
+  transition: background-color .4s, color .4s;
+}
+.hz .humanize-shade { background-color: var(--hz-shade, rgba(10, 9, 10, .5)); transition: background-color .4s; }
+.hz .hz-schemer { cursor: pointer; user-select: none; }
+.hz .hz-schemer:focus-visible { outline: 1px solid currentColor; outline-offset: 6px; }
+main.hz {
+  --hz-ms: 0ms;
+  --hz-at: 0;
+  --hz-ease: cubic-bezier(.83, 0, .17, 1);   /* a quick start and a quick stop, very fast in between */
+  --hz-gap: 400vh;     /* the empty stretch between one screen and the next, so a click travels a long way */
+  --hz-gap: 400svh;
+}
+.hz .hz-window {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+.hz .hz-rail {
+  transform: translateY(calc(var(--hz-at) * -1 * (100vh + var(--hz-gap))));
+  transform: translateY(calc(var(--hz-at) * -1 * (100svh + var(--hz-gap))));
+  transition: transform var(--hz-ms) var(--hz-ease);
+  will-change: transform;
+}
+.hz .hz-screen {
+  box-sizing: border-box;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: calc(14svh + 2rem) 24px 8svh;   /* clear of "non plus" at the top */
+  font-family: "Cardo", "Times New Roman", serif;
+  font-style: normal;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: center;
+}
+.hz .hz-screen + .hz-screen { margin-top: var(--hz-gap); }
+.hz .hz-screen h2 { margin: 0 0 1.2rem; font-size: 1.5rem; font-weight: 400; }
+.hz .hz-screen p { margin: 0; max-width: 34rem; }
+
+/* "non plus": in the middle of the home screen, at the top of every other; it glides between the two */
+.hz-mark {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50vh;
+  top: 50svh;
+  z-index: 2;
+  margin: 0;
+  transform: translateY(-50%);
+  font-family: "IM Fell English", Georgia, serif;
+  font-size: clamp(3.2rem, 15vw, 8rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: .06em;
+  text-align: center;
+  pointer-events: none;
+  transition: top var(--hz-ms, 0ms) var(--hz-ease, ease), font-size var(--hz-ms, 0ms) var(--hz-ease, ease);
+}
+.hz-mark a { pointer-events: auto; }
+.hz-mark-top { top: 9vh; top: 9svh; font-size: clamp(2rem, 6vw, 3.4rem); }
+/* on the screens it belongs to its screen, and moves with it */
+.hz .hz-screen { position: relative; }
+.hz .hz-screen .hz-mark { position: absolute; transition: none; max-width: none; }   /* full width, so truly centred */
+
+/* the home screen: the menu, centred, just under "non plus" */
+.hz .hz-home { justify-content: flex-start; padding: 0 24px; }
+.hz .hz-menu {
+  margin-top: calc(50svh + clamp(3.2rem, 15vw, 8rem) * .62 + 1.2rem);
+  display: flex;
+  flex-direction: column;   /* stacked, one under another, centred */
+  align-items: center;
+  gap: .55rem;
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+}
+
+.hz .hz-directory { list-style: none; margin: 0; padding: 0; }
+.hz .hz-directory li { margin: 0 0 .6rem; }
+.hz .hz-works { width: min(64vw, 64rem); }
+
+/* a work's own page, reached from the Archive */
+.hz-reading .humanize-article { padding-top: calc(14svh + 3rem); }
+.hz-reading .hz-piece-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; line-height: 1.2; margin: 0 0 1rem; }
+/* archive poems (build.py piece_html): each line on its own; a "|" line centred */
+.poem-stanza { text-align: left; }
+.poem-stanza .pl { display: block; }
+.poem-stanza .pl-c { text-align: center; }
+.hz-reading .humanize-article .poem-stanza { margin: 0 0 1.4em; line-height: 1.55; }
+.hz .hz-works li a + a, .humanize-byline a { text-decoration: none; }
+
+/* Humanize 2.0's poem pages: "non plus" at the top, scrolling away with the page (never over the poem);
+   the poem in EB Garamond with its discretionary ligatures (st, ct); Archive and the date italic, along the foot */
+.hz-reading .hz-mark-top { position: absolute; }
+.hz-reading .humanize-article .hz-piece-title,
+.hz-reading .humanize-article .hz-poem {
+  font-family: "EB Garamond St", "EB Garamond", Garamond, Georgia, serif;
+  font-variant-ligatures: common-ligatures discretionary-ligatures;
+  font-feature-settings: "liga" 1, "dlig" 1;
+}
+.hz-reading .humanize-article .hz-poem { font-size: 1.4rem; }
+.hz-reading .humanize-byline { font-size: 1.15rem; }
+.hz-reading .hz-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-top: 3.5rem;
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+.hz-reading .hz-date { margin-left: auto; text-align: right; }
+
+/* Humanize 2.0's links: on hover they turn the blue of the photographs' treatment, never underlined.
+   In the Archive, hovering a work turns its title and author blue together. */
+.hz a, .hz-reading a { transition: color .15s; }
+.hz a:hover, .hz-reading a:hover,
+.hz .hz-works li:hover a { color: var(--hz-accent, #6da7d0); text-decoration: none; }
+.hz .hz-works li { transition: color .15s; }
+.hz .hz-works li:hover { color: var(--hz-accent, #6da7d0); }               /* the dash between title and author too... */
+.hz .hz-works li::after { color: var(--hz-text, #ffffff); }              /* ...but not the // to the next work */
+
+/* Humanize 2.0's works as screens of the stack: a work taller than the window scrolls inside its own
+   screen ("non plus" going with it), and nowhere else does */
+.hz .hz-piece {
+  display: block;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 24px;
+  text-align: left;
+  font-size: 1.3rem;
+}
+.hz .hz-piece .humanize-article { padding: calc(14svh + 3rem) 0 4rem; }
+.hz .hz-piece .hz-piece-title { margin: 0 0 1rem; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; }
+.hz .hz-piece .humanize-byline { max-width: none; }
+.hz .hz-piece .hz-poem p { max-width: none; }
+
+/* the colour schemes, held open from any empty spot: a column of two-colour circles where the press is */
+.hz .hz-schemes[hidden] { display: none; }   /* hidden until held open */
+.hz .hz-schemes {
+  position: fixed;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.hz .hz-schemes button {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(128, 128, 128, .55);
+  cursor: pointer;
+}
+.hz .hz-schemes button[aria-pressed="true"] { outline: 1px solid currentColor; outline-offset: 3px; }
+.hz .hz-schemes button:hover { transform: scale(1.12); }

@@ -81,6 +81,7 @@
   // on-screen width, so it stays put relative to the storm when the window changes.
   const EYE = { x: 0.652, y: 0.659 };           // the eye's centre, as a fraction of the photograph
   const DEFAULT = { dx: -0.035, dy: -0.02 };    // where the words start, relative to the eye
+  const phone = matchMedia("(max-width: 600px)");   // on phones NON PLUS and the menu are centred across
   const word = page.querySelector(".wordmark");
   const readout = page.querySelector(".h-pos output");
   let offset = { ...DEFAULT };
@@ -103,7 +104,8 @@
     geo = measure();
     if (!geo) return;
     const r = word.getBoundingClientRect();
-    const x = Math.min(Math.max(8, geo.ex + offset.dx * geo.dw), geo.W - r.width - 8);
+    const x = phone.matches ? (geo.W - r.width) / 2       // phones: centred across; it still moves up and down
+      : Math.min(Math.max(8, geo.ex + offset.dx * geo.dw), geo.W - r.width - 8);
     const y = Math.min(Math.max(8, geo.ey + offset.dy * geo.dw), geo.H - r.height - 8);
     word.style.transform = `translate(${x}px, ${y}px)`;
     word.style.visibility = "visible";
@@ -121,8 +123,8 @@
   });
   word.addEventListener("pointermove", (e) => {
     if (!drag || e.pointerId !== drag.id) return;
-    const x = drag.x + e.clientX - drag.sx, y = drag.y + e.clientY - drag.sy;
-    offset = { dx: (x - geo.ex) / geo.dw, dy: (y - geo.ey) / geo.dw };
+    const x = phone.matches ? drag.x : drag.x + e.clientX - drag.sx, y = drag.y + e.clientY - drag.sy;
+    offset = { dx: phone.matches ? offset.dx : (x - geo.ex) / geo.dw, dy: (y - geo.ey) / geo.dw };
     word.style.transform = `translate(${x}px, ${y}px)`;
     show();
   });
@@ -297,5 +299,123 @@
     let saved = null;
     try { saved = localStorage.getItem(`${STORE}-opacity`); } catch (_) {}
     set(saved === null ? 100 : saved);
+  })();
+
+  // the menu, three ways: "left" (a row along the top), "right" (the same row, right-justified) or "box"
+  // (stacked in a box that can be dragged anywhere; its place is kept as fractions of the window)
+  (function () {
+    const menu = page.querySelector(".h-links");
+    const buttons = page.querySelector(".h-menus");
+    const DEFAULT_POS = { x: 0.03, y: 0.04 };
+    let pos = { ...DEFAULT_POS };
+    try { const p = JSON.parse(localStorage.getItem("hurricane-menu-pos")); if (p) pos = p; } catch (_) {}
+    function placeMenu() {
+      if (page.dataset.menu !== "box") { menu.style.transform = ""; menu.style.visibility = ""; return; }
+      const W = page.clientWidth, H = page.clientHeight, r = menu.getBoundingClientRect();
+      const x = phone.matches ? (W - r.width) / 2 : Math.min(Math.max(8, pos.x * W), W - r.width - 8);
+      const y = Math.min(Math.max(8, pos.y * H), H - r.height - 8);
+      menu.style.transform = `translate(${x}px, ${y}px)`;
+      menu.style.visibility = "visible";
+    }
+    function setMenu(name) {
+      if (!["left", "right", "box"].includes(name)) name = "left";
+      page.dataset.menu = name;
+      buttons.querySelectorAll("button[data-menu]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.menu === name));
+      try { localStorage.setItem("hurricane-menu", name); } catch (_) {}
+      placeMenu();
+    }
+    buttons.addEventListener("click", (e) => { const b = e.target.closest("button[data-menu]"); if (b) setMenu(b.dataset.menu); });
+    page.querySelector(".h-menu-reset").addEventListener("click", () => {
+      pos = { ...DEFAULT_POS };
+      try { localStorage.removeItem("hurricane-menu-pos"); } catch (_) {}
+      placeMenu();
+    });
+    // drag the box from anywhere on it, links included: a press that moves more than a few pixels is a
+    // drag (and the click that follows is ignored); a press that doesn't is an ordinary click
+    menu.querySelectorAll("a").forEach((a) => { a.draggable = false; });
+    let drag = null, dragged = false;
+    menu.addEventListener("pointerdown", (e) => {
+      if (page.dataset.menu !== "box" || e.button > 0) return;
+      const m = /translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(menu.style.transform) || [0, 0, 0];
+      drag = { id: e.pointerId, sx: e.clientX, sy: e.clientY, x: +m[1], y: +m[2], moving: false };
+      dragged = false;
+    });
+    menu.addEventListener("pointermove", (e) => {
+      if (!drag || e.pointerId !== drag.id) return;
+      if (!drag.moving) {
+        if (Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy) < 5) return;
+        drag.moving = true;
+        menu.setPointerCapture(e.pointerId);
+        menu.classList.add("dragging");
+      }
+      pos = { x: phone.matches ? pos.x : (drag.x + e.clientX - drag.sx) / page.clientWidth, y: (drag.y + e.clientY - drag.sy) / page.clientHeight };
+      placeMenu();
+      e.preventDefault();
+    });
+    const drop = () => {
+      if (!drag) return;
+      if (drag.moving) {
+        dragged = true;
+        menu.classList.remove("dragging");
+        try { localStorage.setItem("hurricane-menu-pos", JSON.stringify(pos)); } catch (_) {}
+      }
+      drag = null;
+    };
+    menu.addEventListener("pointerup", drop);
+    menu.addEventListener("pointercancel", drop);
+    menu.addEventListener("click", (e) => {
+      if (dragged) { e.preventDefault(); e.stopPropagation(); dragged = false; }
+    }, true);
+    addEventListener("resize", placeMenu);
+    phone.addEventListener("change", placeMenu);
+    document.fonts && document.fonts.ready.then(placeMenu);
+    // the menu box's own box: none, outline or filled, a colour ("auto" = the links' colour), an opacity
+    const MBOX_COLOURS = [
+    // light to dark
+    ["white", "#ffffff"], ["paper", "#f4f1ea"], ["cream", "#f3efe6"], ["bone", "#d0ccbd"], ["light grey", "#c8c6c2"],
+    ["grey", "#8c8c8c"], ["warm grey", "#a39b8c"], ["sage", "#abac88"], ["dark grey", "#4a4848"], ["charcoal", "#2a2828"],
+    ["black", "#141214"], ["true black", "#000000"],
+    // bright
+    ["cyan", "#00e5ff"], ["site cyan", "#00f0ff"], ["blue", "#3d7bff"], ["purple", "#a259ff"], ["pink", "#ff5fa2"],
+    ["magenta", "#e0218a"], ["red", "#ff3b3b"], ["orange", "#ff7a1a"], ["yellow", "#ffcc33"], ["lime", "#b6e33b"], ["green", "#3ddc84"],
+    // from the image treatments
+    ["gold", "#e1b867"], ["honey", "#e8c273"], ["rose", "#cfa98d"], ["lilac", "#e0c9e3"], ["mint", "#8ec6ab"],
+    ["sky blue", "#6da7d0"], ["brick red", "#a43434"], ["oxblood", "#722b35"], ["deep maroon", "#6e0a0a"],
+    ["navy", "#3d4e78"], ["violet", "#43396a"], ["teal", "#274a49"], ["moss", "#1e1d19"], ["umber", "#100d12"], ["night", "#180826"],
+  ];
+    const mboxes = page.querySelector(".h-mboxes"), mcolours = page.querySelector(".h-mboxcolours");
+    mcolours.innerHTML = `<button type="button" class="auto" data-colour="">auto</button>` +
+      MBOX_COLOURS.map(([name, c]) => `<button type="button" data-colour="${c}" title="${name}" aria-label="Menu box ${name}" style="background:${c}"></button>`).join("");
+    function setMbox(name) {
+      if (!["none", "outline", "filled"].includes(name)) name = "outline";
+      page.dataset.mbox = name;
+      mboxes.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.mbox === name));
+      try { localStorage.setItem("hurricane-mbox", name); } catch (_) {}
+    }
+    function setMboxColour(c) {
+      if (c) page.style.setProperty("--mbox-base", c); else page.style.removeProperty("--mbox-base");
+      mcolours.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.colour === c));
+      try { localStorage.setItem("hurricane-mbox-colour", c); } catch (_) {}
+    }
+    const mrange = page.querySelector(".h-mboxfade input"), mout = page.querySelector(".h-mboxfade output");
+    function setMboxAlpha(v) {
+      v = Math.max(0, Math.min(100, Math.round(+v)));
+      page.style.setProperty("--mbox-alpha", v / 100);
+      mrange.value = v;
+      mout.textContent = `${v}%`;
+      try { localStorage.setItem("hurricane-mbox-opacity", String(v)); } catch (_) {}
+    }
+    mboxes.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setMbox(b.dataset.mbox); });
+    mcolours.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setMboxColour(b.dataset.colour); });
+    mrange.addEventListener("input", () => setMboxAlpha(mrange.value));
+    let ms = {};
+    try { ms = { box: localStorage.getItem("hurricane-mbox"), colour: localStorage.getItem("hurricane-mbox-colour"), alpha: localStorage.getItem("hurricane-mbox-opacity") }; } catch (_) {}
+    setMbox(ms.box || "outline");
+    setMboxColour(ms.colour || "");
+    setMboxAlpha(ms.alpha === null || ms.alpha === undefined ? 100 : ms.alpha);
+
+    let saved = null;
+    try { saved = localStorage.getItem("hurricane-menu"); } catch (_) {}
+    setMenu(saved || "left");
   })();
 })();

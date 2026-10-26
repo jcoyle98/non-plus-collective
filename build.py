@@ -15,6 +15,7 @@ palettes are in config.json.
 import hashlib
 import html
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -23,6 +24,36 @@ from string import Template
 ROOT = Path(__file__).parent
 OUT = ROOT / "_site"
 PORT = 8001  # not 8000, so it can run alongside other local previews
+
+
+
+def piece_html(p):
+    """An archive piece's text: paragraphs, or for a poem ("form": "poem") stanzas whose lines are kept.
+    In a poem a line starting with "|" is centred, leading spaces indent, and **bold** / *italic* work."""
+    if p.get("form") != "poem":
+        return "\n".join(f"<p>{html.escape(par)}</p>" for par in p["text"])
+    stanzas = []
+    for stanza in p["text"]:
+        lines = []
+        for line in stanza.split("\n"):
+            centred = line.startswith("|")
+            if centred:
+                line = line[1:]
+            indent = len(line) - len(line.lstrip(" "))
+            text = html.escape(line.strip())
+            text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
+            text = re.sub(r"\*(.+?)\*", r"<em>\1</em>", text)
+            style = f' style="padding-left:{indent / 2:g}em"' if indent else ""
+            lines.append(f'<span class="pl{" pl-c" if centred else ""}"{style}>{text or "&nbsp;"}</span>')
+        stanzas.append('<p class="poem-stanza">' + "".join(lines) + "</p>")
+    return "\n".join(stanzas)
+
+
+def author_html(p):
+    """The author's name, linked to their site when the archive gives one."""
+    name = html.escape(p["author"])
+    url = p.get("author_url")
+    return f'<a href="{html.escape(url, quote=True)}">{name}</a>' if url else name
 
 
 def static_version():
@@ -58,6 +89,7 @@ PAGES = [
     ("draft-scroll-lab", "Design", "draft-scroll-lab.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
     ("draft-archive", "Design", "draft-archive.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
     ("humanize", "Humanize", "draft-humanize.html", "Humanize", ["flicker-images.js", "photo-deck.js", "humanize.js"]),
+    ("humanize-2", "Humanize", "draft-humanize-2.html", "Humanize 2.0", ["flicker-images.js", "photo-deck.js", "humanize-2.js"]),
     ("scroll-static-final", "Design", "scroll-static-final.html", None, ["flicker-images.js", "photo-deck.js", "scroll.js"]),
 ]
 # The final version of draft-archive: the settings chosen in its Options, fixed (and no Options).
@@ -72,6 +104,7 @@ FINAL_SETTINGS = (
 )
 DRAFTS = {   # each design, and what it tries, as listed on /design
     "humanize": "The white IM Fell English wordmark over blue-toned images that change as you move the mouse.",
+    "humanize-2": "Humanize 2.0: 'non plus' with About, Directory, Archive and Contact beneath; a click glides the page to that screen (no scrolling by hand) while the photographs flicker past; 'non plus' rises to the top and leads back.",
     "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
     "draft-disappearing-s": "The barred S hidden in the background colour: hover to see it, click to draw the bar and open the directory.",
     "draft-arterial": "Image 142's arterial engraving in place of the S, as ink or a negative, with a frame switch and a grain slider.",
@@ -116,6 +149,25 @@ def build():
         f'{html.escape(p["title"])} - {html.escape(p["author"])}</a></li>'
         for p in archive
     )
+    hz_works = "\n".join(   # Humanize 2.0's Archive: title and author together glide to the work's screen (the name links to the author's site only there)
+        f'<li><a href="#w-{html.escape(p["slug"], quote=True)}" data-go="w-{html.escape(p["slug"], quote=True)}">{html.escape(p["title"])} - {html.escape(p["author"])}</a></li>'
+        for p in archive
+    )
+    hz_pieces = "\n\n".join(   # ...and each work's screen, just below the Archive's
+        f'<section class="hz-screen hz-piece hz-reading" id="w-{p["slug"]}" aria-labelledby="hz-t-{p["slug"]}">\n'
+        f'<p class="hz-mark hz-mark-top"><a href="./" data-go="home">non plus</a></p>\n'
+        f'<article class="humanize-article">\n<header>\n<h2 class="hz-piece-title" id="hz-t-{p["slug"]}">{html.escape(p["title"])}</h2>\n'
+        f'<p class="humanize-byline">{author_html(p)}</p>\n</header>\n'
+        f'<div class="hz-poem">\n{piece_html(p)}\n</div>\n'
+        f'<footer class="hz-foot"><a class="hz-back" href="#archive" data-go="archive">Archive</a>'
+        f'<span class="hz-date">{html.escape(p["date"])}</span></footer>\n</article>\n</section>'
+        for p in archive
+    )
+    people = config.get("people", {})   # site -> person, for Humanize 2.0's Directory (by last name)
+    hz_directory = "\n".join(
+        f'<li><a href="https://{html.escape(site)}">{html.escape(people.get(site, site))}</a></li>'
+        for site in sorted(config["directory"], key=lambda site: (people.get(site, site).split()[-1].lower(), people.get(site, site).lower()))
+    )
     archive_list = "\n".join(   # the one-page draft's Archive section: each title links to the piece's own page
         f'<li class="sd-entry"><a class="sd-entry-link" href="archive/{p["slug"]}/">'
         f'<span class="sd-title">{html.escape(p["title"])}</span>'
@@ -130,7 +182,7 @@ def build():
         f'<article class="sd-section ar-piece" id="piece-{p["slug"]}" aria-labelledby="h-{p["slug"]}">\n'
         f'<h2 id="h-{p["slug"]}">{html.escape(p["title"])}</h2>\n'
         f'<p class="sd-byline">{html.escape(p["author"])} · {html.escape(p["date"])}</p>\n'
-        f'<div class="sd-text">\n' + "\n".join(f"<p>{html.escape(par)}</p>" for par in p["text"]) + "\n</div>\n</article>"
+        f'<div class="sd-text">\n' + piece_html(p) + "\n</div>\n</article>"
         for p in archive
     )
 
@@ -164,6 +216,7 @@ def build():
             archive_page_final=render("archive-page.html", root=root, sites=sites, archive_index=archive_index, archive_pieces=archive_pieces,
                                       main_attrs=f' style="{FINAL_SETTINGS}"'),
             humanize_background=render("humanize-background.html", root=root), humanize_works=humanize_works,
+            hz_works=hz_works, hz_directory=hz_directory, hz_pieces=hz_pieces,
         ), scripts)
 
     # Humanize has its own directory and a permanent reading page for every work.
@@ -177,14 +230,23 @@ def build():
             "humanize-page.html", root=root, humanize_background=render("humanize-background.html", root=root),
             title=html.escape(p["title"]),
             byline=f'<p class="humanize-byline">{html.escape(p["author"])} · {html.escape(p["date"])}</p>',
-            body="\n".join(f'<p>{html.escape(par)}</p>' for par in p["text"]), directory_current="",
+            body=piece_html(p), directory_current="",
             back_link=f'<p class="humanize-back"><a href="{root}humanize/#humanize-works-heading">all works</a></p>',
+        ), [])
+
+    # Humanize 2.0: a reading page for every work, leading back to its Archive screen
+    for p in archive:
+        write(f"humanize-2/works/{p['slug']}", "Humanize", p["title"], lambda root, p=p: render(
+            "humanize-2-page.html", root=root, humanize_background=render("humanize-background.html", root=root),
+            title=html.escape(p["title"]),
+            byline=f'<p class="humanize-byline">{author_html(p)}</p>', date=html.escape(p["date"]),
+            body=piece_html(p),
         ), [])
 
     # each Archive piece's own page, under both addresses of the one-page draft (both have the Options sheet)
     for draft, lab in (("draft-scroll", True), ("draft-scroll-lab", True)):
         for p in archive:
-            body = "\n".join(f"<p>{html.escape(par)}</p>" for par in p["text"])
+            body = piece_html(p)
             write(f"{draft}/archive/{p['slug']}", "Design", f"{p['title']} (draft)", lambda root, p=p, body=body, lab=lab: render(
                 "scroll-piece.html", root=root, title=html.escape(p["title"]), author=html.escape(p["author"]),
                 date=html.escape(p["date"]), body=body, lab_sheet=render("scroll-lab-sheet.html") if lab else "",
