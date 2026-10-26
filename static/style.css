@@ -61,7 +61,7 @@ body.humanize {
 }
 .humanize-photo {
   object-fit: cover;
-  filter: url(#humanize-night-blue) blur(.65px);
+  filter: url(#humanize-night-blue) contrast(1.4) blur(.65px);
   transform: scale(1.01); /* keep the softened edges outside the viewport */
   opacity: .4;
 }
