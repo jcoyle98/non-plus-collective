@@ -1543,16 +1543,20 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   white-space: nowrap;
   text-shadow: 0 1px 2px rgba(0, 0, 0, .85), 0 0 14px rgba(0, 0, 0, .7);   /* readable over the photo and the text */
 }
+/* the section being read: a small asterisk just to the left of its name (it takes no room, so nothing shifts) */
 .scroll-draft .sd-nav a[aria-current]::after {
-  content: "";
+  content: "*";
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -4px;
-  height: 2px;
-  background: var(--sd-accent);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+  right: 100%;
+  top: 50%;
+  transform: translateY(-35%);
+  margin-right: .35em;
+  font-size: .5em;
+  line-height: 1;
+  color: var(--sd-accent);
 }
+/* no underlines anywhere on the page */
+.scroll-draft a { text-decoration: none; }
 
 /* the opening screen: just the photo and "non plus" */
 .scroll-draft .sd-hero {
@@ -1596,18 +1600,17 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 .scroll-draft .sd-text p { margin: 0 0 1.1em; }
 .scroll-draft .sd-lede { font-size: 1.2em; line-height: 1.45; font-style: italic; }
 .scroll-draft .sites { max-width: var(--sd-col, 36rem); margin: 0 auto; padding: 0; list-style: none; font-size: calc(clamp(1.25rem, 5vw, 1.6rem) * var(--sd-text-scale, 1)); line-height: 2.1; }
-.scroll-draft .sites a { color: var(--sd-fg); text-decoration: none; border-bottom: 1px solid var(--sd-fine); }
-.scroll-draft .sites a:hover { color: var(--sd-accent); border-bottom-color: currentColor; }
+.scroll-draft .sites a { color: var(--sd-fg); }
+.scroll-draft .sites a:hover { color: var(--sd-accent); }
 /* The Archive: a list of titles, each with its author and date; a title opens the piece on its own page (it turns the accent colour on hover) */
 /* at least a screen tall, so its link can always bring it to the top, even when the list is short */
 .scroll-draft #archive { min-height: calc(100vh - var(--sd-bar)); min-height: calc(100svh - var(--sd-bar)); box-sizing: border-box; }
-/* every title sits the same distance below the line above it, the heading's line included */
-.scroll-draft .sd-archive h2 { margin-bottom: 0; }
+/* the space under the heading matches the space between the titles */
+.scroll-draft .sd-archive h2 { margin-bottom: .6rem; }
 .scroll-draft .sd-entries { margin-top: 0; padding: 0; list-style: none; }
-.scroll-draft .sd-entry { border-bottom: 1px solid var(--sd-fine); }
 .scroll-draft .sd-entry-link {
   display: grid;
-  padding: 1.1rem 0 .85rem;   /* less below: the date's line leaves more room under its letters than the title's does above */
+  padding: .75rem 0;
   color: inherit;
   text-decoration: none;
 }
@@ -1694,19 +1697,6 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
     gap: 1.1rem;
   }
   .scroll-draft[data-desk="side"] .sd-nav a { font-size: calc(clamp(1.35rem, 1.9vw, 1.75rem) * var(--sd-link-scale, 1)); }
-  /* the section being read: an asterisk just to the right of its name, not an underline (it takes no room, so nothing shifts) */
-  .scroll-draft[data-desk="side"] .sd-nav a[aria-current]::after {
-    content: "*";
-    left: 100%;
-    right: auto;
-    top: -.05em;
-    bottom: auto;
-    height: auto;
-    margin-left: .2em;
-    background: none;
-    box-shadow: none;
-    color: var(--sd-accent);
-  }
   /* About, Archive, Directory: the links and the sections in the same order */
   .scroll-draft[data-desk="side"] .sd-nav a[href$="#about"] { order: 1; }
   .scroll-draft[data-desk="side"] .sd-nav a[href$="#archive"] { order: 2; }
