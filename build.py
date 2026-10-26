@@ -54,6 +54,7 @@ PAGES = [
     ("draft-bubble", "Design", "draft-bubble.html", "Design (draft)", ["bubble.js", "panels.js"]),
     ("draft-flicker", "Design", "draft-flicker.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "hurricane.js", "flicker.js", "panels.js"]),
     ("draft-scroll", "Design", "draft-scroll.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js"]),
+    ("draft-scroll-lab", "Design", "draft-scroll-lab.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
 ]
 DRAFTS = {   # each design, and what it tries, as listed on /design
     "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
@@ -66,7 +67,8 @@ DRAFTS = {   # each design, and what it tries, as listed on /design
     "draft-tracks": "Image 25, bubble-chamber tracks, its border cut away and its uneven exposure evened, filling the window; About, Directory, Featured Writings top left; NON PLUS to drag, with its own colour, font, italics and an optional box; the same colour treatments.",
     "draft-bubble": "Image 23, a round bubble chamber from 1955, as a stencil centred on a page of its own colour, so its surround always matches; links top left; NON PLUS to drag, with its own colour, font, italics and an optional box; the same colour treatments.",
     "draft-flicker": "The hurricane draft's page and options, but the photo changes on every mouse move, key press or click (on a phone, every scroll or swipe), cycling through all 155 photos, with a Pace slider to slow it down: the whole image gallery plus the two in this repo; a switch to hold one, and ten places to try for the links (top, middle or bottom; left, centre, right or spread).",
-    "draft-scroll": "For phones first: About, Directory and Featured Writings as sections of one long page (with placeholder text for now) that scrolls over a still photo; the photo changes every 200 px or so of scrolling; the links, centred along the top with no bar, glide to each section and mark the one being read.",
+    "draft-scroll": "For phones first: About, Directory and Featured as sections of one long page (with placeholder text for now) that scrolls over a still photo; the photo changes every 200 px or so of scrolling; the links, centred along the top with no bar, glide to each section and mark the one being read.",
+    "draft-scroll-lab": "The one-page draft with an Options sheet for trying it on a phone: the photo's colour treatment, opacity, shade and how often it changes (or hold it); the font, colour, size, italics and capitals of 'non plus'; the links' colour and size; the text's fonts, size and colour. Kept on your device; Reset goes back to the draft.",
 }
 HIDDEN = {"design", "drafts", *DRAFTS}   # pages with no menu, left out of the menu
 
@@ -106,7 +108,8 @@ def build():
             root=root,
             page=label.lower(),
             menu="" if folder in HIDDEN else render("menu.html", nav=nav),
-            content=render(template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts, panels=panels),
+            content=render(template, root=root, barred_s=barred_s, sites=sites, palettes=palettes, drafts=drafts, panels=panels,
+                           scroll_page=render("draft-scroll.html", root=root, sites=sites)),   # the lab version wraps the one-page draft
             scripts="\n".join(f'<script src="{root}static/{js}?v={version}"></script>' for js in scripts),
         )
         (OUT / folder).mkdir(parents=True, exist_ok=True)

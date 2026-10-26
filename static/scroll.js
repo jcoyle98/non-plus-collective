@@ -1,6 +1,6 @@
 // The one-page draft: About, Directory and Featured Writings are sections of one
 // long page that scrolls over a still photo, and every stretch of scrolling
-// (data-step pixels on the page, 200 by default) swaps the photo for the next
+// (data-step pixels on the page, 200 by default; data-hold="on" stops it) swaps the photo for the next
 // one from the shared deck (static/photo-deck.js), at most a few times a second.
 // The links along the top glide down to their section and mark the one you're
 // reading; the veil over the photo darkens once the opening screen has scrolled away.
@@ -9,7 +9,18 @@
   if (!page) return;
   const still = matchMedia("(prefers-reduced-motion: reduce)");
 
-  // links to a section on this page: glide there (the sections leave room for the bar, see style.css)
+  // "Close" at the end of a featured piece: fold it up and go back to its title
+  page.addEventListener("click", (e) => {
+    const close = e.target.closest("a[data-close]");
+    if (!close) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const piece = close.closest("details");
+    piece.open = false;
+    piece.scrollIntoView({ behavior: still.matches ? "auto" : "smooth", block: "start" });
+  });
+
+  // links to a section on this page: glide there (the sections leave room for the links, see style.css)
   page.addEventListener("click", (e) => {
     const link = e.target.closest('a[href^="#"]');
     if (!link) return;
@@ -43,14 +54,14 @@
   const photo = page.querySelector(".sd-photo");
   if (window.PhotoDeck && window.FLICKER_IMAGES) {
     const deck = PhotoDeck(photo.dataset.base);
-    const step = +page.dataset.step || 200;
     const MIN_MS = 160;
     let lastY = scrollY, travelled = 0, lastSwap = -Infinity;
     addEventListener("scroll", () => {
       travelled += Math.abs(scrollY - lastY);
       lastY = scrollY;
       const now = performance.now();
-      if (travelled < step || now - lastSwap < MIN_MS) return;
+      if (page.dataset.hold === "on") return;
+      if (travelled < (+page.dataset.step || 200) || now - lastSwap < MIN_MS) return;
       const next = deck.next();
       if (!next) return;
       travelled = 0;
