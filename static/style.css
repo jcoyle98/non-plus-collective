@@ -2267,3 +2267,15 @@ main.hz {
 }
 .hz .hz-schemes button[aria-pressed="true"] { outline: 1px solid currentColor; outline-offset: 3px; }
 .hz .hz-schemes button:hover { transform: scale(1.12); }
+
+/* phones: the Archive's list runs nearly to the edges of the screen */
+@media (max-width: 600px) {
+  .hz #archive { padding-left: 10px; padding-right: 10px; }
+  .hz .hz-works { width: 100%; }
+  /* ...and the titles a little larger: "non plus" on the home screen and at the top of the others,
+     and each screen's heading */
+  .hz .hz-home .hz-mark { font-size: 19vw; }
+  .hz .hz-menu { margin-top: calc(50svh + 19vw * .62 + 1.2rem); }
+  .hz .hz-mark-top { font-size: 2.6rem; }
+  .hz .hz-screen h2 { font-size: 1.95rem; }
+}
