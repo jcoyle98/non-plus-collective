@@ -8,7 +8,10 @@
   const rail = page.querySelector(".hz-rail");
   const windowEl = page.querySelector(".hz-window");
   const screens = [...page.querySelectorAll(".hz-screen")];
-  const names = screens.map((s) => s.id);
+  // each screen's name, as in the address (#about). Deliberately not an id: the browser would jump to an
+  // element with that id on back and forward, before the glide, and the glide would stutter
+  const names = screens.map((s) => s.dataset.screen);
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   const photo = page.querySelector(".humanize-photo");
   const deck = window.PhotoDeck && window.FLICKER_IMAGES && photo ? window.PhotoDeck(photo.dataset.base) : null;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");

@@ -160,7 +160,7 @@ def build():
         for p in hz_archive
     )
     hz_pieces = "\n\n".join(   # ...and each work's screen, just below the Archive's
-        f'<section class="hz-screen hz-piece hz-reading" id="w-{p["slug"]}" aria-labelledby="hz-t-{p["slug"]}">\n'
+        f'<section class="hz-screen hz-piece hz-reading" data-screen="w-{p["slug"]}" aria-labelledby="hz-t-{p["slug"]}">\n'
         f'<p class="hz-mark hz-mark-top"><a href="./" data-go="home">non plus</a></p>\n'
         + hz_article(p, '<a class="hz-back" href="#archive" data-go="archive">Archive</a>') + "\n</section>"
         for p in hz_archive
@@ -257,7 +257,7 @@ def build():
 
 
 def snapshot():
-    watched = [ROOT / "config.json", ROOT / "build.py"]
+    watched = [ROOT / "config.json", ROOT / "build.py", ROOT / "writing.py"]
     for folder in ("templates", "static", "content"):
         watched += (ROOT / folder).rglob("*")
     return {p: p.stat().st_mtime for p in watched if p.is_file()}
@@ -283,8 +283,8 @@ def serve():
             time.sleep(1)
             current = snapshot()
             if current != last:
-                if current.get(ROOT / "build.py") != last.get(ROOT / "build.py"):
-                    print("build.py changed; restarting")
+                if any(current.get(ROOT / f) != last.get(ROOT / f) for f in ("build.py", "writing.py")):
+                    print("build.py or writing.py changed; restarting")   # so the new code is the code that runs
                     server.server_close()
                     os.execv(sys.executable, [sys.executable, *sys.argv])
                 last = current

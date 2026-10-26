@@ -110,7 +110,7 @@ def render_poem(body):
                 lines.append(f'<span class="line center">{notes}{inline(stripped[1:].strip())}</span>')
                 continue
             indent = len(line[: len(line) - len(stripped)].expandtabs(4))
-            style = f' style="margin-left:{indent * 0.5:g}em"' if indent else ""
+            style = f' style="--indent:{indent * 0.5:g}em"' if indent else ""   # capped by the stylesheet
             text = inline(stripped) or "&nbsp;"
             lines.append(f'<span class="line"{style}>{notes}{text}</span>')
         stanzas.append('<p class="stanza">\n' + "\n".join(lines) + "\n</p>")

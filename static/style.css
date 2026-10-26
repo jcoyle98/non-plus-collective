@@ -2188,7 +2188,7 @@ main.hz {
 .hz .hz-screen { position: relative; }
 /* ...and takes its own place at the top, with the screen's content after it, so the two never overlap
    (zoomed in, say); a screen whose content doesn't fit scrolls (humanize-2.js lets it) */
-.hz .hz-screen { justify-content: flex-start; padding-top: 0; overflow-y: auto; overscroll-behavior: contain; }
+.hz .hz-screen { justify-content: flex-start; padding-top: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; }   /* up and down only */
 .hz .hz-screen .hz-mark { position: static; transform: none; transition: none; max-width: none; flex: none;
   margin: max(16px, calc(9svh - .55em)) 0 0; }
 .hz .hz-screen > .hz-mark + * { margin-top: auto; }   /* the content centred in what's left... */
@@ -2202,7 +2202,7 @@ main.hz {
 .hz .hz-home .hz-menu {
   grid-row: 3;
   align-self: start;
-  margin: 2.6rem 0 0;   /* a little air between "non plus" and the menu */
+  margin: 4.4rem 0 0;   /* air between "non plus" and the menu */
   display: flex;
   flex-direction: column;   /* stacked, one under another, centred */
   align-items: center;
@@ -2293,7 +2293,7 @@ main.hz {
 
 /* phones: the Archive's list runs nearly to the edges of the screen */
 @media (max-width: 600px) {
-  .hz #archive { padding-left: 10px; padding-right: 10px; }
+  .hz [data-screen="archive"] { padding-left: 10px; padding-right: 10px; }
   .hz .hz-works { width: 100%; }
   /* ...and the titles a little larger: "non plus" on the home screen and at the top of the others,
      and each screen's heading */
@@ -2319,7 +2319,7 @@ main.hz {
 .hz-reading .epigraph em, .hz-reading .subtitle em { font-style: normal; }   /* *italics* inside read as roman */
 /* poems: lines kept; a long line wraps with its overflow indented under it */
 .hz-reading .poem .stanza { margin: 0 0 1.75rem; }
-.hz-reading .poem .line { display: block; padding-left: 2em; text-indent: -2em; }
+.hz-reading .poem .line { display: block; padding-left: 2em; text-indent: -2em; margin-left: min(var(--indent, 0em), 40%); }   /* an indent never takes more than 40% of the column */
 .hz-reading .poem .line.center { text-align: center; padding: 0 1em; text-indent: 0; }
 .hz-reading .poem .annot { float: right; margin-left: 1.5em; text-indent: 0; }
 /* prose: set like a book, justified and hyphenated, first lines indented, no space between paragraphs */
@@ -2354,3 +2354,7 @@ main.hz {
   .hz-reading .sequence .part-title, .hz .hz-piece .sequence .part-title { font-size: 1.8rem; }
   .hz-reading .sequence .part + .part { margin-top: 4.5rem; }
 }
+/* never sideways: nothing on Humanize 2.0's pages scrolls left and right */
+body.humanize:has(.hz, .hz-reading) { overflow-x: hidden; }
+.hz-reading { overflow-x: hidden; }
+.hz .hz-piece { overflow-x: hidden; }
