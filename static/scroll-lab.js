@@ -86,6 +86,7 @@
     { key: "photoOpacity", type: "range", label: "Photo opacity", min: 0, max: 100, def: 100, unit: "%", apply: (v) => set("--sd-photo-opacity", v / 100) },
     { key: "veilHero", type: "range", label: "Shade on the opening screen", min: 0, max: 90, def: 25, unit: "%", apply: (v) => set("--sd-veil-hero", v / 100) },
     { key: "veilText", type: "range", label: "Shade behind the text", min: 0, max: 95, def: 62, unit: "%", apply: (v) => set("--sd-veil-text", v / 100) },
+    { key: "mouse", type: "check", label: "Moving the mouse changes the photo (computers)", def: true, apply: (v) => { page.dataset.mouse = v ? "on" : "off"; } },
     { key: "step", type: "range", label: "New photo every", min: 40, max: 800, step: 20, def: 200, unit: " px of scrolling", apply: (v) => { page.dataset.step = v; } },
     { group: "non plus" },
     { key: "wordFont", type: "font", label: "Font", def: 0, apply: (v) => set("--sd-word-font", font(v)) },

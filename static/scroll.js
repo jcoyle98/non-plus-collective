@@ -1,7 +1,8 @@
 // The one-page draft: About, Directory and Featured Writings are sections of one
 // long page that scrolls over a still photo, and every stretch of scrolling
 // (data-step pixels on the page, 200 by default; data-hold="on" stops it) swaps the photo for the next
-// one from the shared deck (static/photo-deck.js), at most a few times a second.
+// one from the shared deck (static/photo-deck.js), at most a few times a second;
+// with a mouse, every movement of it swaps the photo too.
 // The links along the top glide down to their section and mark the one you're
 // reading; the veil over the photo darkens once the opening screen has scrolled away.
 // A featured title opens that piece's own page, taking the photo along.
@@ -53,23 +54,34 @@
   }, { rootMargin: "-40% 0px -55% 0px" });
   sections.forEach((s) => watcher.observe(s));
 
-  // the photo: the next one every `step` pixels scrolled, and no more often than every MIN_MS
+  // the photo: the next one every `step` pixels scrolled (no more often than every MIN_MS),
+  // and, with a mouse, on every movement of it (as the flicker draft does) unless data-mouse="off"
   const photo = page.querySelector(".sd-photo");
   if (window.PhotoDeck && window.FLICKER_IMAGES) {
     const deck = PhotoDeck(photo.dataset.base);
     const MIN_MS = 160;
     let lastY = scrollY, travelled = 0, lastSwap = -Infinity;
+    function swap(now) {
+      const next = deck.next();
+      if (!next) return false;
+      lastSwap = now;
+      photo.src = next.src;
+      return true;
+    }
     addEventListener("scroll", () => {
       travelled += Math.abs(scrollY - lastY);
       lastY = scrollY;
       const now = performance.now();
       if (page.dataset.hold === "on") return;
       if (travelled < (+page.dataset.step || 200) || now - lastSwap < MIN_MS) return;
-      const next = deck.next();
-      if (!next) return;
-      travelled = 0;
-      lastSwap = now;
-      photo.src = next.src;
+      if (swap(now)) travelled = 0;
+    }, { passive: true });
+    addEventListener("pointermove", (e) => {
+      if (e.pointerType === "touch" || page.dataset.hold === "on" || page.dataset.mouse === "off") return;
+      if (e.target.closest && e.target.closest(".sl-sheet")) return;   // not while working the lab's options
+      const now = performance.now();
+      if (now - lastSwap < 10) return;   // screens show one picture a frame
+      swap(now);
     }, { passive: true });
   }
 
