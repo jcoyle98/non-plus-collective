@@ -1561,24 +1561,6 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   color: var(--sd-accent);
   text-shadow: 0 2px 30px rgba(0, 0, 0, .45);
 }
-.scroll-draft .sd-down {
-  position: absolute;
-  left: 50%;
-  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%);
-  width: 2.6rem;
-  height: 2.6rem;
-  display: grid;
-  place-items: center;
-  font-size: 1.3rem;
-  color: var(--sd-fg);
-  text-decoration: none;
-  border: 1px solid var(--sd-fine);
-  border-radius: 50%;
-}
-
-.scroll-draft .sd-down { transition: opacity .3s; }
-.scroll-draft.past-hero .sd-down { opacity: 0; pointer-events: none; }   /* gone before it can pass under the links */
 
 /* the sections: a heading between a heavy and a fine rule, then the text in a readable column */
 .scroll-draft .sd-section {
@@ -1675,7 +1657,7 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   .scroll-draft .sd-nav a { font-size: calc(.95rem * var(--sd-link-scale, 1)); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .scroll-draft .sd-veil, .scroll-draft .sd-down { transition: none; }
+  .scroll-draft .sd-veil { transition: none; }
   .scroll-draft .sd-entry-link::after { transition: none; }
 }
 
