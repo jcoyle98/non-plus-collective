@@ -1469,11 +1469,16 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   font-family: var(--sd-text-font, "EB Garamond"), Georgia, serif;
 }
 /* the photo and the veil over it stay put; everything else scrolls over them */
+/* Sized to the tallest the screen gets (lvh: with the browser's bars tucked away), not to the
+   visible height, which changes as a phone's address bar and toolbar slide away on scrolling and
+   would make the photo resize, so seem to zoom. While the bars show, its bottom sits behind them. */
 .scroll-draft .sd-photo {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  height: 100lvh;
   object-fit: cover;
   z-index: 0;
   filter: var(--sd-photo-filter, none);
@@ -1482,7 +1487,11 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 /* the veil: light over the opening screen (a little darker at the top and bottom), darker behind the text */
 .scroll-draft .sd-veil {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;   /* the same as the photo, for the same reason */
   z-index: 0;
   background-color: rgba(10, 9, 10, var(--sd-veil-hero, .25));
   transition: background-color .4s;
