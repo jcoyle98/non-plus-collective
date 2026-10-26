@@ -1,4 +1,4 @@
-// The one-page draft: About, Directory and the Archive are sections of one
+// The one-page draft: the Archive, the Directory and Contact are sections of one
 // long page that scrolls over a still photo, and every stretch of scrolling
 // (data-step pixels on the page, 200 by default; data-hold="on" stops it) swaps the photo for the next
 // one from the shared deck (static/photo-deck.js), at most a few times a second;

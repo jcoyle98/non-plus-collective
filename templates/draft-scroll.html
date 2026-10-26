@@ -2,21 +2,18 @@
 <img class="sd-photo" src="${root}static/images/flicker/s/004.jpg" data-base="${root}static/images/flicker/" alt="">
 <div class="sd-veil"></div>
 <header class="sd-bar">
-<nav class="sd-nav" aria-label="Sections"><a href="#about">About</a><a href="#directory">Directory</a><a href="#archive">Archive</a></nav>
+<nav class="sd-nav" aria-label="Sections"><a href="#archive">Archive</a><a href="#directory">Directory</a><a href="#contact">Contact</a></nav>
 </header>
 
 <section class="sd-hero" id="top">
 <p class="sd-word">non plus</p>
 </section>
 
-<section class="sd-section" id="about" aria-labelledby="sd-about">
-<h2 id="sd-about">About</h2>
-<div class="sd-text">
-<p class="sd-lede">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus, posuere velit aliquet.</p>
-<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
-<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.</p>
-</div>
+<section class="sd-section sd-archive" id="archive" aria-labelledby="sd-archive">
+<h2 id="sd-archive">Archive</h2>
+<ul class="sd-text sd-entries">
+$archive
+</ul>
 </section>
 
 <section class="sd-section" id="directory" aria-labelledby="sd-directory">
@@ -26,10 +23,10 @@ $sites
 </ul>
 </section>
 
-<section class="sd-section sd-archive" id="archive" aria-labelledby="sd-archive">
-<h2 id="sd-archive">Archive</h2>
-<ul class="sd-text sd-entries">
-$archive
+<section class="sd-section sd-contact" id="contact" aria-labelledby="sd-contact">
+<h2 id="sd-contact">Contact</h2>
+<ul class="sites">
+<li><a href="mailto:editors@nonplusmagazine.com">editors@nonplusmagazine.com</a></li>
 </ul>
 </section>
 

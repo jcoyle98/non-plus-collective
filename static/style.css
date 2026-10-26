@@ -1603,8 +1603,8 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 .scroll-draft .sites a { color: var(--sd-fg); }
 .scroll-draft .sites a:hover { color: var(--sd-accent); }
 /* The Archive: a list of titles, each with its author and date; a title opens the piece on its own page (it turns the accent colour on hover) */
-/* at least a screen tall, so its link can always bring it to the top, even when the list is short */
-.scroll-draft #archive { min-height: calc(100vh - var(--sd-bar)); min-height: calc(100svh - var(--sd-bar)); box-sizing: border-box; }
+/* Contact comes last and is short: at least a screen tall, so its link can bring it to the top */
+.scroll-draft #contact { min-height: calc(100vh - var(--sd-bar)); min-height: calc(100svh - var(--sd-bar)); box-sizing: border-box; }
 /* the space under the heading matches the space between the titles */
 .scroll-draft .sd-archive h2 { margin-bottom: .6rem; }
 .scroll-draft .sd-entries { margin-top: 0; padding: 0; list-style: none; }
@@ -1666,9 +1666,8 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 }
 
 /* On a computer (data-desk="side", the default; the Layout options can switch to "across"):
-   About, Archive and Directory stand in a column down the left that never scrolls, and the
-   page scrolls on the right: "non plus" first, then About, the Archive and the Directory,
-   in the order of the links. Phones keep the links along the top. */
+   Archive, Directory and Contact stand in a column down the left that never scrolls, and the
+   page scrolls on the right: "non plus" first, then the sections. Phones keep the links along the top. */
 @media (min-width: 900px) {
   .design main.scroll-draft[data-desk="side"] {
     --sd-side: clamp(220px, 24vw, 340px);
@@ -1697,15 +1696,8 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
     gap: 1.1rem;
   }
   .scroll-draft[data-desk="side"] .sd-nav a { font-size: calc(clamp(1.35rem, 1.9vw, 1.75rem) * var(--sd-link-scale, 1)); }
-  /* About, Archive, Directory: the links and the sections in the same order */
-  .scroll-draft[data-desk="side"] .sd-nav a[href$="#about"] { order: 1; }
-  .scroll-draft[data-desk="side"] .sd-nav a[href$="#archive"] { order: 2; }
-  .scroll-draft[data-desk="side"] .sd-nav a[href$="#directory"] { order: 3; }
-  .scroll-draft[data-desk="side"] > .sd-hero { order: 0; }
-  .scroll-draft[data-desk="side"] > #about { order: 1; }
-  .scroll-draft[data-desk="side"] > #archive { order: 2; }
-  .scroll-draft[data-desk="side"] > #directory { order: 3; min-height: 100vh; box-sizing: border-box; }   /* last here, so a screen tall: its link can bring it to the top */
-  .scroll-draft[data-desk="side"] > .sd-foot { order: 4; width: 100%; box-sizing: border-box; }
+  .scroll-draft[data-desk="side"] > .sd-foot { width: 100%; box-sizing: border-box; }
+  .scroll-draft[data-desk="side"] > #contact { min-height: 100vh; }
   .scroll-draft[data-desk="side"] .sd-section, .scroll-draft[data-desk="side"] .sd-entry { scroll-margin-top: 1.5rem; }
   .scroll-draft[data-desk="side"] .sd-section { padding-top: 3rem; }
   .scroll-draft[data-desk="side"] .sd-article { padding-top: 4rem; }
