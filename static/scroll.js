@@ -2,9 +2,8 @@
 // long page that scrolls over a still photo, and every stretch of scrolling
 // (data-step pixels on the page, 200 by default) swaps the photo for the next
 // one from the shared deck (static/photo-deck.js), at most a few times a second.
-// The links in the bar glide down to their section; the bar gains a background
-// and a small "non plus" once the opening screen has scrolled away, and marks the
-// section you're reading.
+// The links along the top glide down to their section and mark the one you're
+// reading; the veil over the photo darkens once the opening screen has scrolled away.
 (function () {
   const page = document.querySelector(".scroll-draft");
   if (!page) return;
@@ -21,7 +20,7 @@
     history.replaceState(null, "", link.getAttribute("href") === "#top" ? location.pathname : link.getAttribute("href"));
   });
 
-  // the bar and the veil: light over the opening screen, solid after it
+  // the veil: light over the opening screen, darker after it
   new IntersectionObserver(([entry]) => {
     page.classList.toggle("past-hero", !entry.isIntersecting);
   }, { rootMargin: "-64px 0px 0px 0px" }).observe(page.querySelector(".sd-hero"));

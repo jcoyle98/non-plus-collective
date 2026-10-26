@@ -1449,9 +1449,8 @@ main.paper .art { height: var(--art-h, 60vh); width: auto; }
 /* ---------------------------------------------------------------------------
    Draft: one page (templates/draft-scroll.html, static/scroll.js)
    Mobile first: About, Directory and Featured Writings as sections of one long
-   page, scrolling over a still photo that changes as you scroll. A bar along
-   the top holds the links; past the opening screen it turns solid, shows a
-   small "non plus" and marks the section being read. */
+   page, scrolling over a still photo that changes as you scroll. The links sit
+   centred along the top, with no bar behind them, and mark the section being read. */
 body.design:has(.scroll-draft) { background: #0e0d0e; }
 .design main.scroll-draft {
   --sd-fg: #f2ede2;
@@ -1478,7 +1477,7 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 .scroll-draft.past-hero .sd-veil { background-color: rgba(10, 9, 10, .62); }
 .scroll-draft > :not(.sd-photo):not(.sd-veil):not(.sd-bar) { position: relative; z-index: 1; }
 
-/* the bar */
+/* the links: centred along the top, over the page, with no bar behind them */
 .scroll-draft .sd-bar {
   position: fixed;
   top: 0;
@@ -1490,24 +1489,18 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  border-bottom: 1px solid transparent;
-  transition: background-color .3s, border-color .3s;
+  justify-content: center;
+  pointer-events: none;   /* only the links themselves catch taps */
 }
-.scroll-draft.past-hero .sd-bar { background: rgba(14, 13, 14, .9); border-bottom-color: var(--sd-fine); }
-.scroll-draft .sd-mark {
-  font-style: italic;
-  font-size: 1.2rem;
-  letter-spacing: .04em;
-  color: var(--sd-accent);
+.scroll-draft .sd-nav { display: flex; gap: clamp(1.1rem, 5vw, 2.4rem); pointer-events: auto; }
+.scroll-draft .sd-nav a {
+  position: relative;
+  color: var(--sd-fg);
   text-decoration: none;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .3s;
+  font-size: clamp(1.05rem, 3.8vw, 1.2rem);
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .85), 0 0 14px rgba(0, 0, 0, .7);   /* readable over the photo and the text */
 }
-.scroll-draft.past-hero .sd-mark { opacity: 1; pointer-events: auto; }
-.scroll-draft .sd-nav { margin-left: auto; display: flex; gap: clamp(.9rem, 4vw, 2rem); }
-.scroll-draft .sd-nav a { position: relative; color: var(--sd-fg); text-decoration: none; font-size: clamp(1rem, 3.6vw, 1.15rem); white-space: nowrap; }
 .scroll-draft .sd-nav a[aria-current]::after {
   content: "";
   position: absolute;
@@ -1516,6 +1509,7 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   bottom: -4px;
   height: 2px;
   background: var(--sd-accent);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .6);
 }
 
 /* the opening screen: just the photo and "non plus" */
@@ -1551,6 +1545,9 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   border: 1px solid var(--sd-fine);
   border-radius: 50%;
 }
+
+.scroll-draft .sd-down { transition: opacity .3s; }
+.scroll-draft.past-hero .sd-down { opacity: 0; pointer-events: none; }   /* gone before it can pass under the links */
 
 /* the sections: a heading between a heavy and a fine rule, then the text in a readable column */
 .scroll-draft .sd-section {
@@ -1594,11 +1591,9 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
 .scroll-draft a:focus-visible { outline: 2px solid var(--sd-accent); outline-offset: 3px; }
 
 @media (max-width: 380px) {
-  .scroll-draft .sd-bar { gap: .5rem; }
-  .scroll-draft .sd-nav { gap: .7rem; }
+  .scroll-draft .sd-nav { gap: .8rem; }
   .scroll-draft .sd-nav a { font-size: .95rem; }
-  .scroll-draft .sd-mark { font-size: 1rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .scroll-draft .sd-veil, .scroll-draft .sd-bar, .scroll-draft .sd-mark { transition: none; }
+  .scroll-draft .sd-veil, .scroll-draft .sd-down { transition: none; }
 }

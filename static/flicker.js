@@ -1,5 +1,5 @@
-// The flicker draft: mouse moves, key presses and clicks (on a phone, scrolls and
-// swipes) swap the photo for the next one, at once, up to "Pace" photos a second.
+// The flicker draft: every mouse move, key press and click (on a phone, every scroll
+// and swipe) swaps the photo for the next one, at once; "Pace" can slow it down.
 // The photos come from the shared deck in static/photo-deck.js. The rest of the
 // page (colours, "non plus", the box, the options) is the hurricane draft's,
 // from static/hurricane.js.
@@ -41,20 +41,22 @@
     status.textContent = deck.loaded < deck.total ? `${deck.loaded} of ${deck.total} photos loaded` : `${deck.total} photos`;
   }
 
-  // "Pace": at most this many photos a second; the first movement after a pause swaps at once
+  // "Pace": a new photo on every movement (as at first; one per 10 ms at most, since
+  // screens show one picture a frame), or at most so many photos a second
   const paceRange = page.querySelector(".f-pace input"), paceOut = page.querySelector(".f-pace output");
-  let gap = 0;
+  const EVERY = +paceRange.max;   // the top of the slider: every movement
+  let gap = 10;
   function setPace(v) {
-    v = Math.max(1, Math.min(30, Math.round(+v)));
-    gap = 1000 / v;
+    v = Math.max(1, Math.min(EVERY, Math.round(+v)));
+    gap = v === EVERY ? 10 : 1000 / v;
     paceRange.value = v;
-    paceOut.textContent = `${v} a second`;
-    try { localStorage.setItem("flicker-pace", String(v)); } catch (_) {}
+    paceOut.textContent = v === EVERY ? "every movement" : `${v} a second`;
+    try { localStorage.setItem("flicker-pace-2", String(v)); } catch (_) {}
   }
   paceRange.addEventListener("input", () => setPace(paceRange.value));
   let savedPace = null;
-  try { savedPace = localStorage.getItem("flicker-pace"); } catch (_) {}
-  setPace(savedPace === null ? 6 : savedPace);
+  try { savedPace = localStorage.getItem("flicker-pace-2"); } catch (_) {}
+  setPace(savedPace === null ? EVERY : savedPace);
 
   let lastSwap = -Infinity;
   function change() {
