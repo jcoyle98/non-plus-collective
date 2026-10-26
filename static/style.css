@@ -1577,7 +1577,7 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   text-shadow: 0 2px 30px rgba(0, 0, 0, .45);
 }
 
-/* the sections: a heading between a heavy and a fine rule, then the text in a readable column */
+/* the sections: a heading, then the text in a readable column (no rules between sections) */
 .scroll-draft .sd-section {
   scroll-margin-top: var(--sd-bar);
   padding: 4.5rem max(16px, env(safe-area-inset-right, 0px)) 3.5rem max(16px, env(safe-area-inset-left, 0px));
@@ -1586,11 +1586,10 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   max-width: var(--sd-col, 36rem);
   margin: 0 auto 2rem;
   padding: .55rem 0 .45rem;
-  border-top: 2px solid var(--sd-rule);
-  border-bottom: 1px solid var(--sd-fine);
   font-family: var(--sd-head-font, inherit), Georgia, serif;
   font-weight: 400;
-  font-size: calc(clamp(1.6rem, 6vw, 2.2rem) * var(--sd-text-scale, 1));
+  font-size: calc(clamp(1.9rem, 7vw, 2.6rem) * var(--sd-text-scale, 1));
+  line-height: 1.15;
   letter-spacing: .03em;
 }
 .scroll-draft .sd-text { max-width: var(--sd-col, 36rem); margin: 0 auto; text-align: var(--sd-align, left); hyphens: var(--sd-hyphens, manual); font-size: calc(clamp(1.1rem, 4.2vw, 1.25rem) * var(--sd-text-scale, 1)); line-height: 1.6; }
@@ -1623,8 +1622,6 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   max-width: var(--sd-col, 36rem);
   margin: 0 auto .6rem;
   padding: .55rem 0 .45rem;
-  border-top: 2px solid var(--sd-rule);
-  border-bottom: 1px solid var(--sd-fine);
   font-family: var(--sd-head-font, inherit), Georgia, serif;
   font-weight: 400;
   font-size: calc(clamp(1.9rem, 8vw, 2.8rem) * var(--sd-text-scale, 1));
@@ -1651,7 +1648,6 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
   max-width: var(--sd-col, 36rem);
   margin: 0 auto;
   padding: 2rem max(16px, env(safe-area-inset-right, 0px)) calc(2.5rem + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
-  border-top: 1px solid var(--sd-fine);
   color: var(--sd-dim);
   font-style: italic;
 }
@@ -1698,7 +1694,19 @@ body.design:has(.scroll-draft) { background: #0e0d0e; }
     gap: 1.1rem;
   }
   .scroll-draft[data-desk="side"] .sd-nav a { font-size: calc(clamp(1.35rem, 1.9vw, 1.75rem) * var(--sd-link-scale, 1)); }
-  .scroll-draft[data-desk="side"] .sd-nav a[aria-current]::after { bottom: -5px; }
+  /* the section being read: an asterisk just to the right of its name, not an underline (it takes no room, so nothing shifts) */
+  .scroll-draft[data-desk="side"] .sd-nav a[aria-current]::after {
+    content: "*";
+    left: 100%;
+    right: auto;
+    top: -.05em;
+    bottom: auto;
+    height: auto;
+    margin-left: .2em;
+    background: none;
+    box-shadow: none;
+    color: var(--sd-accent);
+  }
   /* About, Archive, Directory: the links and the sections in the same order */
   .scroll-draft[data-desk="side"] .sd-nav a[href$="#about"] { order: 1; }
   .scroll-draft[data-desk="side"] .sd-nav a[href$="#archive"] { order: 2; }
