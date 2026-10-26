@@ -28,6 +28,13 @@
   font-display: swap;
   src: url("fonts/eb-garamond-latin-400-st.woff2") format("woff2");
 }
+@font-face {   /* its italic, so *italics* in a poem are true italics, not slanted roman */
+  font-family: "EB Garamond St";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/eb-garamond-latin-400-italic.woff2") format("woff2");
+}
 
 :root {
   --mauve: #3a2240;   /* background: very dark purple */
@@ -538,7 +545,7 @@ body.design[data-paper] { overflow-x: clip; }   /* the Modern version's engravin
 
 .design main.paper {
   --gutter: 24px;
-  font-family: "EB Garamond St", "EB Garamond", Garamond, Georgia, serif;
+  font-family: "EB Garamond St", "EB Garamond", "Tiro Devanagari Sanskrit", Garamond, Georgia, serif;
   font-variant-ligatures: common-ligatures discretionary-ligatures;   /* the st and ct ligatures */
   max-width: 76rem;
   padding: 24px var(--gutter) 0;   /* no room needed below: newspaper.js fits the page above the panel */
@@ -2120,8 +2127,13 @@ main.hz {
   --hz-gap: 400svh;
 }
 .hz .hz-window {
+  /* exactly the part of the window that's always visible: on phones, above the browser's own bars */
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   z-index: 1;
 }
@@ -2174,12 +2186,23 @@ main.hz {
 .hz-mark-top { top: 9vh; top: 9svh; font-size: clamp(2rem, 6vw, 3.4rem); }
 /* on the screens it belongs to its screen, and moves with it */
 .hz .hz-screen { position: relative; }
-.hz .hz-screen .hz-mark { position: absolute; transition: none; max-width: none; }   /* full width, so truly centred */
+/* ...and takes its own place at the top, with the screen's content after it, so the two never overlap
+   (zoomed in, say); a screen whose content doesn't fit scrolls (humanize-2.js lets it) */
+.hz .hz-screen { justify-content: flex-start; padding-top: 0; overflow-y: auto; overscroll-behavior: contain; }
+.hz .hz-screen .hz-mark { position: static; transform: none; transition: none; max-width: none; flex: none;
+  margin: max(16px, calc(9svh - .55em)) 0 0; }
+.hz .hz-screen > .hz-mark + * { margin-top: auto; }   /* the content centred in what's left... */
+.hz .hz-screen > :last-child { margin-bottom: auto; }   /* ...or, when it doesn't fit, simply below */
 
 /* the home screen: the menu, centred, just under "non plus" */
-.hz .hz-home { justify-content: flex-start; padding: 0 24px; }
-.hz .hz-menu {
-  margin-top: calc(50svh + clamp(3.2rem, 15vw, 8rem) * .62 + 1.2rem);
+/* the home screen: "non plus" in the middle, the menu below it; when they don't fit, it scrolls */
+.hz .hz-home { display: grid; grid-template-rows: 1fr auto 1fr; grid-template-columns: minmax(0, 1fr);
+  justify-content: stretch; justify-items: center; padding: 24px; }   /* one full-width column, its contents centred */
+.hz .hz-home .hz-mark { grid-row: 2; margin: 0; }
+.hz .hz-home .hz-menu {
+  grid-row: 3;
+  align-self: start;
+  margin: 1.2rem 0 0;
   display: flex;
   flex-direction: column;   /* stacked, one under another, centred */
   align-items: center;
@@ -2192,7 +2215,7 @@ main.hz {
 .hz .hz-works { width: min(64vw, 64rem); }
 
 /* a work's own page, reached from the Archive */
-.hz-reading .humanize-article { padding-top: calc(14svh + 3rem); }
+.hz-reading .humanize-article { padding-top: 3rem; }
 .hz-reading .hz-piece-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; line-height: 1.2; margin: 0 0 1rem; }
 /* archive poems (build.py piece_html): each line on its own; a "|" line centred */
 .poem-stanza { text-align: left; }
@@ -2203,10 +2226,10 @@ main.hz {
 
 /* Humanize 2.0's poem pages: "non plus" at the top, scrolling away with the page (never over the poem);
    the poem in EB Garamond with its discretionary ligatures (st, ct); Archive and the date italic, along the foot */
-.hz-reading .hz-mark-top { position: absolute; }
+.hz-reading .hz-mark-top { position: static; transform: none; margin: max(16px, calc(9svh - .55em)) 0 0; }
 .hz-reading .humanize-article .hz-piece-title,
 .hz-reading .humanize-article .hz-poem {
-  font-family: "EB Garamond St", "EB Garamond", Garamond, Georgia, serif;
+  font-family: "EB Garamond St", "EB Garamond", "Tiro Devanagari Sanskrit", Garamond, Georgia, serif;
   font-variant-ligatures: common-ligatures discretionary-ligatures;
   font-feature-settings: "liga" 1, "dlig" 1;
 }
@@ -2243,7 +2266,7 @@ main.hz {
   text-align: left;
   font-size: 1.3rem;
 }
-.hz .hz-piece .humanize-article { padding: calc(14svh + 3rem) 0 4rem; }
+.hz .hz-piece .humanize-article { padding: 3rem 0 calc(5rem + env(safe-area-inset-bottom, 0px)); }   /* room below Archive and the date */
 .hz .hz-piece .hz-piece-title { margin: 0 0 1rem; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; }
 .hz .hz-piece .humanize-byline { max-width: none; }
 .hz .hz-piece .hz-poem p { max-width: none; }
@@ -2275,7 +2298,49 @@ main.hz {
   /* ...and the titles a little larger: "non plus" on the home screen and at the top of the others,
      and each screen's heading */
   .hz .hz-home .hz-mark { font-size: 19vw; }
-  .hz .hz-menu { margin-top: calc(50svh + 19vw * .62 + 1.2rem); }
   .hz .hz-mark-top { font-size: 2.6rem; }
   .hz .hz-screen h2 { font-size: 1.95rem; }
+}
+
+/* ---------------------------------------------------------------------------
+   Humanize 2.0's pieces, set as on Desiring Machines (its sizes, and its rules for poems and prose;
+   the HTML comes from writing.py). Text 20px (18px on phones), titles 34px, a 720px column. */
+.hz-reading .humanize-article { width: min(45rem, calc(100% - 48px)); font-size: 1.25rem; line-height: 1.55; }
+.hz .hz-piece .humanize-article { width: min(45rem, 100%); margin: 0 auto; }
+.hz .hz-piece p { max-width: none; }
+.hz-reading .humanize-article header { margin-bottom: 2.5rem; }
+.hz-reading .humanize-article .hz-piece-title,
+.hz .hz-piece .humanize-article .hz-piece-title { font-size: 2.125rem; line-height: 1.2; margin: 0 0 .375rem; }
+.hz-reading .humanize-article .hz-poem { font-size: 1em; }
+.hz-reading .humanize-byline { font-size: 1em; margin: .375rem 0 0; }
+.hz-reading .subtitle { font-style: italic; font-size: 1.1em; margin: .375rem 0 0; }
+.hz-reading .epigraph { margin: 0 0 2.75rem; font-style: italic; text-align: right; }
+.hz-reading .epigraph p { margin: 0; text-indent: 0; text-align: right; }
+.hz-reading .epigraph em, .hz-reading .subtitle em { font-style: normal; }   /* *italics* inside read as roman */
+/* poems: lines kept; a long line wraps with its overflow indented under it */
+.hz-reading .poem .stanza { margin: 0 0 1.75rem; }
+.hz-reading .poem .line { display: block; padding-left: 2em; text-indent: -2em; }
+.hz-reading .poem .line.center { text-align: center; padding: 0 1em; text-indent: 0; }
+.hz-reading .poem .annot { float: right; margin-left: 1.5em; text-indent: 0; }
+/* prose: set like a book, justified and hyphenated, first lines indented, no space between paragraphs */
+.hz-reading .prose p { text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
+.hz-reading .essay p { margin: 0; text-indent: 1.5em; }
+.hz-reading .essay .hz-poem > p:first-child,
+.hz-reading .essay p.center + p,
+.hz-reading .essay p.cont,
+.hz-reading .essay blockquote p:first-child,
+.hz-reading .essay p.center { text-indent: 0; }
+.hz-reading .essay p.center { margin: 1.25rem 0; text-align: center; }
+.hz-reading .essay header p,
+.hz-reading .essay .epigraph p { text-indent: 0; text-align: left; }   /* the byline and subtitle aren't paragraphs of the text */
+.hz-reading .essay .epigraph p { text-align: right; }
+.hz-reading .prose .poem p { text-align: left; text-indent: 0; -webkit-hyphens: manual; hyphens: manual; }
+.hz-reading .prose .poem .stanza { margin-bottom: 1.25rem; }
+.hz-reading .prose .poem .stanza:last-child { margin-bottom: 0; }
+.hz-reading .humanize-article blockquote { margin: 1.5rem 2em; padding: 0; }
+.hz-reading .hz-foot { font-size: 1em; margin-top: 2.5rem; }
+@media (max-width: 480px) {
+  .hz-reading .humanize-article { font-size: 1.125rem; }
+  .hz-reading .humanize-article .hz-piece-title,
+  .hz .hz-piece .humanize-article .hz-piece-title { font-size: 1.9rem; }
 }

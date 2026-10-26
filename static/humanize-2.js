@@ -60,8 +60,13 @@
   // nothing scrolls by hand: wheel, keys and touch don't move it, and if the browser ever scrolls the
   // window (to show something focused, say) it is put straight back
   windowEl.addEventListener("scroll", () => { windowEl.scrollTop = 0; windowEl.scrollLeft = 0; });
-  // ...except inside a work's own screen, when it is the one in view: a long work scrolls there
-  const inWork = (e) => screens[at].classList.contains("hz-piece") && (!e.target.closest || e.target.closest(".hz-piece") === screens[at] || e.type === "keydown");
+  // ...except inside the screen in view when its content doesn't fit (a long work, or any screen zoomed in):
+  // that screen scrolls by itself
+  const inWork = (e) => {
+    const el = screens[at];
+    if (el.scrollHeight <= el.clientHeight + 1) return false;
+    return e.type === "keydown" || (e.target instanceof Node && el.contains(e.target));
+  };
   addEventListener("wheel", (e) => { if (!inWork(e)) e.preventDefault(); }, { passive: false });
   addEventListener("touchmove", (e) => { if (!inWork(e)) e.preventDefault(); }, { passive: false });
   addEventListener("keydown", (e) => {

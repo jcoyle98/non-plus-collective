@@ -21,6 +21,8 @@ import sys
 from pathlib import Path
 from string import Template
 
+import writing   # the archive's format, shared with Desiring Machines
+
 ROOT = Path(__file__).parent
 OUT = ROOT / "_site"
 PORT = 8001  # not 8000, so it can run alongside other local previews
@@ -28,25 +30,24 @@ PORT = 8001  # not 8000, so it can run alongside other local previews
 
 
 def piece_html(p):
-    """An archive piece's text: paragraphs, or for a poem ("form": "poem") stanzas whose lines are kept.
-    In a poem a line starting with "|" is centred, leading spaces indent, and **bold** / *italic* work."""
-    if p.get("form") != "poem":
-        return "\n".join(f"<p>{html.escape(par)}</p>" for par in p["text"])
-    stanzas = []
-    for stanza in p["text"]:
-        lines = []
-        for line in stanza.split("\n"):
-            centred = line.startswith("|")
-            if centred:
-                line = line[1:]
-            indent = len(line) - len(line.lstrip(" "))
-            text = html.escape(line.strip())
-            text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
-            text = re.sub(r"\*(.+?)\*", r"<em>\1</em>", text)
-            style = f' style="padding-left:{indent / 2:g}em"' if indent else ""
-            lines.append(f'<span class="pl{" pl-c" if centred else ""}"{style}>{text or "&nbsp;"}</span>')
-        stanzas.append('<p class="poem-stanza">' + "".join(lines) + "</p>")
-    return "\n".join(stanzas)
+    """An archive piece's text, already set by writing.py in Desiring Machines' format."""
+    return p["html"]
+
+
+def hz_article(p, back):
+    """A piece as Humanize 2.0 shows it, laid out like Desiring Machines: the title, its subtitle, the author,
+    an epigraph, the text (a poem, or prose set like a book), and along the foot the way back and the date."""
+    subtitle = f'<p class="subtitle">{writing.inline(p["subtitle"])}</p>\n' if p["subtitle"] else ""
+    epigraph = ""
+    if p["epigraph"]:
+        lines = "<br>".join(writing.inline(l.strip()) for l in p["epigraph"].splitlines() if l.strip())
+        epigraph = f'<blockquote class="epigraph"><p>{lines}</p></blockquote>\n'
+    kind = "prose essay" if p["kind"] == "essay" else "verse"
+    return (f'<article class="humanize-article {kind}">\n<header>\n'
+            f'<h2 class="hz-piece-title" id="hz-t-{p["slug"]}">{html.escape(p["title"])}</h2>\n{subtitle}'
+            f'<p class="humanize-byline">{author_html(p)}</p>\n</header>\n'
+            f'{epigraph}<div class="hz-poem">\n{p["html"]}\n</div>\n'
+            f'<footer class="hz-foot">{back}<span class="hz-date">{html.escape(p["date"])}</span></footer>\n</article>')
 
 
 def author_html(p):
@@ -143,7 +144,10 @@ def build():
     drafts = "\n".join(
         f'<li><a href="../{folder}/">{folder}</a><p>{html.escape(about)}</p></li>' for folder, about in DRAFTS.items()
     )
-    archive = json.loads((ROOT / "content" / "archive.json").read_text(encoding="utf-8"))["pieces"]
+    # the archive: content/archive/*.txt, newest first. Examples (files starting "_") show only on Humanize 2.0
+    pieces = writing.load_archive(ROOT / "content" / "archive")
+    archive = [p for p in pieces if not p["example"]]
+    hz_archive = pieces
     humanize_works = "\n".join(
         f'<li><a href="works/{html.escape(p["slug"], quote=True)}/">'
         f'{html.escape(p["title"])} - {html.escape(p["author"])}</a></li>'
@@ -151,17 +155,13 @@ def build():
     )
     hz_works = "\n".join(   # Humanize 2.0's Archive: title and author together glide to the work's screen (the name links to the author's site only there)
         f'<li><a href="#w-{html.escape(p["slug"], quote=True)}" data-go="w-{html.escape(p["slug"], quote=True)}">{html.escape(p["title"])} - {html.escape(p["author"])}</a></li>'
-        for p in archive
+        for p in hz_archive
     )
     hz_pieces = "\n\n".join(   # ...and each work's screen, just below the Archive's
         f'<section class="hz-screen hz-piece hz-reading" id="w-{p["slug"]}" aria-labelledby="hz-t-{p["slug"]}">\n'
         f'<p class="hz-mark hz-mark-top"><a href="./" data-go="home">non plus</a></p>\n'
-        f'<article class="humanize-article">\n<header>\n<h2 class="hz-piece-title" id="hz-t-{p["slug"]}">{html.escape(p["title"])}</h2>\n'
-        f'<p class="humanize-byline">{author_html(p)}</p>\n</header>\n'
-        f'<div class="hz-poem">\n{piece_html(p)}\n</div>\n'
-        f'<footer class="hz-foot"><a class="hz-back" href="#archive" data-go="archive">Archive</a>'
-        f'<span class="hz-date">{html.escape(p["date"])}</span></footer>\n</article>\n</section>'
-        for p in archive
+        + hz_article(p, '<a class="hz-back" href="#archive" data-go="archive">Archive</a>') + "\n</section>"
+        for p in hz_archive
     )
     people = config.get("people", {})   # site -> person, for Humanize 2.0's Directory (by last name)
     hz_directory = "\n".join(
@@ -235,12 +235,10 @@ def build():
         ), [])
 
     # Humanize 2.0: a reading page for every work, leading back to its Archive screen
-    for p in archive:
+    for p in hz_archive:
         write(f"humanize-2/works/{p['slug']}", "Humanize", p["title"], lambda root, p=p: render(
             "humanize-2-page.html", root=root, humanize_background=render("humanize-background.html", root=root),
-            title=html.escape(p["title"]),
-            byline=f'<p class="humanize-byline">{author_html(p)}</p>', date=html.escape(p["date"]),
-            body=piece_html(p),
+            article=hz_article(p, f'<a class="hz-back" href="{root}humanize-2/#archive">Archive</a>'),
         ), [])
 
     # each Archive piece's own page, under both addresses of the one-page draft (both have the Options sheet)

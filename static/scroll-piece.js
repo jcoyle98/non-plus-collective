@@ -1,5 +1,5 @@
 // An Archive piece's own page (templates/scroll-piece.html), made from
-// content/archive.json. It shows the photo that was behind the one-page draft
+// the archive (content/archive/). It shows the photo that was behind the one-page draft
 // when its title was tapped: the link carries it as ?photo=NNN.jpg (see
 // scroll.js). The photo stays put here; with no photo given, it shows the
 // hurricane, as the draft does at first.

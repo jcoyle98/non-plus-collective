@@ -1,0 +1,74 @@
+<prose>
+Example Essay
+author: Pedro Telos
+link: https://aboutblank.li
+
+This file shows the essay format, and its paragraphs run long on purpose so you can judge how a full page of text sits in the column. Its name starts with an underscore, so it is an example: it appears on the design pages, to show the format, and nowhere else. Line breaks inside a paragraph are ignored when the page is built,
+so you can wrap lines in the file however you like,
+or not at all, and the paragraph will still be set as a single block of justified text with its first line indented, the way it would be in a printed book.
+
+A blank line in the file starts a new paragraph. On the page there is no gap between paragraphs; instead each one begins with an indented first line, except the very first paragraph of the essay, which begins flush with the margin as is conventional. Because the text is fully justified, the spacing between words stretches slightly from line to line so that both edges of the column stay straight, and long words are hyphenated automatically where the browser knows how to break them, which keeps the stretching modest. Use *asterisks* for italics, as in *Phänomenologie des Geistes* or *ad hoc*, and they will be set in the italic of the same typeface.
+
+| * * *
+
+A paragraph starting with a bar is centered, which is handy for a section break like the one above. The paragraph that follows a section break begins flush, without an indent, just as the first paragraph of the essay does. After that, indentation resumes as normal, and the rhythm of the page returns to the steady pattern of justified blocks separated only by the small indent at the start of each one. This is the paragraph to look at if you want to see how several long lines of justified text read at this size and measure.
+
+Verse can be quoted inside an essay with poem tags: it keeps its line breaks, indentation, and stanzas, exactly as in a poem file, and is inset a little on each side, while the essay around it stays in book paragraphs. Here is the whole of the first hymn of the Ṛgveda, to Agni. In the file it is typed in SLP1 between sanskrit tags, and the build converts it to Devanagari, dandas and verse numbers included:
+
+<poem><sanskrit>
+agnimILe purohitaM yajYasya devamftvijam |
+hotAraM ratnaDAtamam || 1 ||
+
+agniH pUrveBirfziBirIqyo nUtanEruta |
+sa devA~ eha vakzati || 2 ||
+
+agninA rayimaSnavatpozameva divedive |
+yaSasaM vIravattamam || 3 ||
+
+agne yaM yajYamaDvaraM viSvataH pariBUrasi |
+sa iddevezu gacCati || 4 ||
+
+agnirhotA kavikratuH satyaScitraSravastamaH |
+devo deveBirA gamat || 5 ||
+
+yadaNga dASuze tvamagne BadraM karizyasi |
+tavettatsatyamaNgiraH || 6 ||
+
+upa tvAgne divedive dozAvastarDiyA vayam |
+namo Baranta emasi || 7 ||
+
+rAjantamaDvarARAM gopAmftasya dIdivim |
+varDamAnaM sve dame || 8 ||
+
+sa naH piteva sUnave'gne sUpAyano Bava |
+sacasvA naH svastaye || 9 ||
+</sanskrit></poem>
+which continues the paragraph above, unindented, because there is no blank line after the closing quote. The sentence simply carries on from where it was interrupted, as it would in a book when a quotation is set off from the text but the author's own sentence has not yet finished. The transliteration of the first verse, *agnim īḷe purohitaṃ yajñasya devam ṛtvijam*, uses the same diacritics you would find in a Sanskrit grammar, and the Vedic ḷ comes through in both scripts.
+
+Greek verse works the same way. Here are the opening lines of the *Iliad*, which also show that polytonic Greek, with its breathings, accents, and iota subscripts, is set in the same typeface as the English around it:
+
+<poem>
+μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος
+οὐλομένην, ἣ μυρί᾽ Ἀχαιοῖς ἄλγε᾽ ἔθηκε,
+πολλὰς δ᾽ ἰφθίμους ψυχὰς Ἄϊδι προΐαψεν
+ἡρώων, αὐτοὺς δὲ ἑλώρια τεῦχε κύνεσσιν
+οἰωνοῖσί τε πᾶσι, Διὸς δ᾽ ἐτελείετο βουλή.
+</poem>
+
+This paragraph follows a blank line after the verse, so it starts fresh and is indented. Latin with marked vowel quantities works too, as in Lucretius: *Aeneadum genetrix, hominum dīvumque voluptās, alma Venus*. So do the accents of the modern languages, from French (où, déjà, naïve, cœur) and German (Übung, Straße) to Polish (źdźbło, łąka), Czech (příliš žluťoučký kůň), and Vietnamese (Tiếng Việt).
+
+Greek and Sanskrit words can also sit inside an ordinary English sentence, and this paragraph is here to show how they mix. Aristotle's ἀρετή is not quite "virtue," any more than εὐδαιμονία is quite "happiness"; the λόγος of a thing is at once its account, its ratio, and its reason, and the Delphic γνῶθι σεαυτόν asks for a kind of ἀλήθεια that is less a property of statements than an unconcealment. Even a longer phrase, like Aristotle's τὸ τί ἦν εἶναι, should keep the same size, colour, and baseline as the English around it. In italics, too: *the ψυχή is in a sense all existing things*.
+
+The same goes for Sanskrit. The Vedic <sanskrit>fta</sanskrit> (ṛta) names the order that later thought calls <sanskrit>Darma</sanskrit> (dharma); the Upaniṣads identify <sanskrit>Atman</sanskrit> with <sanskrit>brahman</sanskrit>, and the goal of the path is <sanskrit>mokzaH</sanskrit>, release. A compound such as <sanskrit>karmaPalahetuH</sanskrit> or a phrase like <sanskrit>tat tvam asi</sanskrit> should sit on the line without disturbing the spacing above or below it, and a single word can even appear in italics: *the <sanskrit>yogaH</sanskrit> of action*. Here, finally, all three scripts share one sentence: the λόγος of the Greeks, the <sanskrit>vAk</sanskrit> of the Vedic poets, and the *verbum* of the Latin Fathers are not the same word, but they have been made to stand in for one another.
+
+Prose is quoted with triple quotes instead, which give a block quote set like the rest of the essay (justified, hyphenated, in paragraphs) but inset a little on each side:
+
+"""
+This is a quoted passage of prose. It can run to several paragraphs, and the lines inside it in the file can wrap however you like, because, as in the essay itself, a single line break is ignored and only a blank line starts a new paragraph.
+
+This is its second paragraph, to show how a multi-paragraph quotation is set.
+"""
+
+"""A shorter quote, written on a single line in the file."""
+
+Essays are always fully justified, with automatic hyphenation, on every screen size. This last paragraph is here so that you can see how the essay ends: the date of the piece sits below the final paragraph, in italics, separated from the text by a little space.
