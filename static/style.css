@@ -2479,6 +2479,10 @@ body.humanize:has(main.eye) { background: #180826; color: #fff; overflow: hidden
 @media (max-width: 700px) {
   .eye-panel { width: auto; max-width: none; right: 12px; top: auto; margin: 0; height: 58svh; max-height: none; padding: 1.8rem 1.4rem 2.4rem; }   /* phones: a sheet along the bottom */
   .eye-step { top: calc(100svh - 12px - 29svh); }
+  /* phones: "non plus" with Work and Directory in the top left corner, left-justified, at two thirds the size */
+  .eye-boxes { left: 16px !important; top: calc(env(safe-area-inset-top, 0px) + 14px) !important; }
+  .eye-mark { font-size: 1.67rem; }       /* two thirds of 2.5rem */
+  .eye-menu { font-size: .8rem; gap: 1rem; padding-left: .1em; }
   .eye-next { left: auto; right: calc(12px + .35rem); }
   .eye-credit { display: none; }
 }
