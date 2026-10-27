@@ -2590,4 +2590,5 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
   .eye .eye-prev { left: var(--sheet-gap); right: auto; justify-content: flex-start; }
   .eye .eye-next { left: auto; right: var(--sheet-gap); justify-content: flex-end; }
   .eye .eye-panel, .eye[data-open^="w-"] .eye-panel { padding-left: 1.15rem; padding-right: 1.15rem; }   /* the text close to the box's edges */
+  .eye .eye-close { display: none; }   /* no "close" on phones */
 }
