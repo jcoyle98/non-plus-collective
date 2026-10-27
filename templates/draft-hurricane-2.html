@@ -18,9 +18,6 @@
 <!-- what the menu opens, on the left, over the hurricane -->
 <aside class="eye-panel" aria-live="polite" hidden>
 <a class="eye-close" href="./" data-open="">close</a>
-<!-- on a work (the "flow", which is where the site opens): another work, at random, either way -->
-<a class="eye-step eye-prev" href="#" data-step="-1" aria-label="Another work">&lt;</a>
-<a class="eye-step eye-next" href="#" data-step="1" aria-label="Another work">&gt;</a>
 
 <section class="eye-section" data-panel="directory" hidden>
 <p>Non Plus is an archive of poetic practice.</p>
@@ -39,5 +36,9 @@ $eye_works
 
 $eye_pieces
 </aside>
+
+<!-- outside the panel (Safari would clip them to it), but placed on it: on a work (the "flow", which is where the site opens), another work, at random, either way -->
+<a class="eye-step eye-prev" href="#" data-step="-1" aria-label="Another work">&lt;</a>
+<a class="eye-step eye-next" href="#" data-step="1" aria-label="Another work">&gt;</a>
 
 </main>

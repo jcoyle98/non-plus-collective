@@ -98,11 +98,25 @@
     place();   // and the panel is fitted beside the title
   }
   // < and >: another work, chosen at random (never the one showing)
+  function step() {
+    const others = works.filter((w) => w !== page.dataset.open);
+    if (others.length) open(others[Math.floor(Math.random() * others.length)]);
+  }
   page.addEventListener("click", (e) => {
     if (!e.target.closest(".eye-step")) return;
     e.preventDefault();
-    const others = works.filter((w) => w !== page.dataset.open);
-    if (others.length) open(others[Math.floor(Math.random() * others.length)]);
+    step();
+  });
+  // on a phone, a tap anywhere in the lower half of the screen does the same (left half <, right half >),
+  // except on anything that does something of its own: a link, a button, a player or an embed. (A tap only:
+  // a swipe to scroll the text is not a click.)
+  const phoneSized = matchMedia("(max-width: 700px)");
+  page.addEventListener("click", (e) => {
+    if (!phoneSized.matches || !page.dataset.open.startsWith("w-")) return;
+    if (e.clientY < innerHeight / 2) return;
+    if (e.target.closest("a, button, iframe, video, audio, input, select, textarea, label, [role=button], .bc-card, .eye-boxes")) return;
+    if (String(getSelection()).length) return;   // not when choosing text to copy
+    step();
   });
   page.addEventListener("click", (e) => {
     const a = e.target.closest("a[data-open]");   // only links that open something (the page itself carries data-open too)

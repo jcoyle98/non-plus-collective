@@ -2506,11 +2506,11 @@ body.humanize:has(main.eye) { background: #180826; color: #fff; overflow: hidden
   transform: translateY(-50%);
   z-index: 3;
   display: none;
-  padding: .6rem .5rem;
+  padding: 2.2rem 1rem;   /* a generous area to click, well beyond the sign itself */
   font: 1.7rem/1 "EB Garamond", Garamond, Georgia, serif;
 }
-.eye-prev { left: calc(var(--panel-left) + .35rem); }
-.eye-next { left: calc(var(--panel-right, calc(var(--panel-left) + var(--panel-width))) - 2.2rem); }
+.eye-prev { left: var(--panel-left); }
+.eye-next { left: calc(var(--panel-right, calc(var(--panel-left) + var(--panel-width))) - 2.9rem); }
 .eye[data-open^="w-"] .eye-step { display: block; }
 .eye[data-open^="w-"] .eye-panel { padding-left: 3.2rem; padding-right: 3.2rem; }
 /* each author's colour, as a small circle by their name */
@@ -2569,9 +2569,25 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
 /* Hurricane 2.0 on phones, last so it wins over the rules above: < and > in the panel's bottom corners (on a
    black ground, so the text scrolling under them doesn't show), leaving the text the full width */
 @media (max-width: 700px) {
-  .eye .eye-step { top: calc(var(--sheet-h) - var(--sheet-gap) - 3.3rem); bottom: auto; transform: none;
-    background: #000; padding: .55rem .8rem; }
-  .eye .eye-prev { left: calc(var(--sheet-gap) + .3rem); right: auto; }
-  .eye .eye-next { left: auto; right: calc(var(--sheet-gap) + .3rem); }
+  /* on a work the panel ends in a strip of its own for < and >: the text scrolls above it, never under them */
+  .eye { --bar: 3.4rem; }
+  .eye[data-open^="w-"] .eye-panel { height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap) - var(--bar)); padding-bottom: 2rem; }
+  .eye[data-open^="w-"]::after {
+    content: "";
+    position: fixed;
+    left: var(--sheet-gap);
+    right: var(--sheet-gap);
+    top: calc(var(--sheet-h) - var(--sheet-gap) - var(--bar));
+    height: var(--bar);
+    z-index: 1;   /* under the panel's layer, which holds the arrows */
+    background: #000;
+  }
+  /* each arrow is the whole of its half of the strip, not just the sign */
+  .eye .eye-step { top: calc(var(--sheet-h) - var(--sheet-gap) - var(--bar)); bottom: auto; transform: none;
+    height: var(--bar); width: calc(50vw - var(--sheet-gap)); box-sizing: border-box;
+    align-items: center; padding: 0 1.15rem; background: none; }
+  .eye[data-open^="w-"] .eye-step { display: flex; }
+  .eye .eye-prev { left: var(--sheet-gap); right: auto; justify-content: flex-start; }
+  .eye .eye-next { left: auto; right: var(--sheet-gap); justify-content: flex-end; }
   .eye .eye-panel, .eye[data-open^="w-"] .eye-panel { padding-left: 1.15rem; padding-right: 1.15rem; }   /* the text close to the box's edges */
 }
