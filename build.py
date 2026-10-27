@@ -109,6 +109,7 @@ PAGES = [
     ("draft-archive", "Design", "draft-archive.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
     ("humanize", "Humanize", "draft-humanize.html", "Humanize", ["flicker-images.js", "photo-deck.js", "humanize.js"]),
     ("humanize-2", "Humanize", "draft-humanize-2.html", "Humanize 2.0", ["flicker-images.js", "photo-deck.js", "humanize-2.js"]),
+    ("one-pager", "Humanize", "draft-one-pager.html", "One-Pager", []),
     ("humanize-3", "Humanize", "draft-humanize-3.html", "Humanize 3.0", ["flicker-images.js", "humanize-3.js"]),
     ("hurricane-2", "Humanize", "draft-hurricane-2.html", "Hurricane 2.0", ["flicker-images.js", "photo-deck.js", "hurricane-2.js"]),
     ("scroll-static-final", "Design", "scroll-static-final.html", None, ["flicker-images.js", "photo-deck.js", "scroll.js"]),
@@ -126,6 +127,7 @@ FINAL_SETTINGS = (
 DRAFTS = {   # each design, and what it tries, as listed on /design
     "humanize": "The white IM Fell English wordmark over blue-toned images that change as you move the mouse.",
     "humanize-2": "Humanize 2.0: 'non plus' with About, Directory, Archive and Contact beneath; a click glides the page to that screen (no scrolling by hand) while the photographs flicker past; 'non plus' rises to the top and leads back.",
+    "one-pager": "Works on the left; 'non plus' and contributor links arranged across the right, with contact in the lower corner, over a still Hurricane Gracie photograph.",
     "humanize-3": "Humanize 3.0: 'non plus' at the top and, in a small black box in the middle, one of the archive's texts, a different one on each visit; no menu.",
     "hurricane-2": "Hurricane 2.0: Hurricane Gracie with a black box over its eye ('non plus', Directory, Work); the menu opens a panel on the left, over the hurricane: the Directory (About, the people, Contact) or the Work, and its pieces.",
     "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
@@ -166,7 +168,7 @@ def build():
     drafts = "\n".join(
         f'<li><a href="../{folder}/">{folder}</a><p>{html.escape(about)}</p></li>' for folder, about in DRAFTS.items()
     )
-    # the archive: content/archive/*.txt, newest first. Examples (files starting "_") show only on Humanize 2.0
+    # the archive: content/archive/*.txt, newest first. Examples (files starting "_") appear in experimental designs.
     pieces = writing.load_archive(ROOT / "content" / "archive")
     archive = [p for p in pieces if not p["example"]]
     hz_archive = pieces
@@ -204,6 +206,11 @@ def build():
     hz_directory = "\n".join(
         f'<li><a href="https://{html.escape(site)}">{html.escape(people.get(site, site))}</a></li>'
         for site in sorted(config["directory"], key=lambda site: people.get(site, site).lower())   # by first name
+    )
+    onepager_works = "\n".join(
+        f'<li><a href="works/{html.escape(p["slug"], quote=True)}/">{html.escape(p["title"])}'
+        f'<span class="op-author">{html.escape(p["author"])}</span></a></li>'
+        for p in hz_archive
     )
     eye_directory = "\n".join(   # ...and on Hurricane 2.0, each name in their colour
         f'<li><a href="https://{html.escape(site)}" style="--c:{COLOURS.get(people.get(site, site), "#fff")}">{html.escape(people.get(site, site))}</a></li>'
@@ -258,6 +265,7 @@ def build():
                                       main_attrs=f' style="{FINAL_SETTINGS}"'),
             humanize_background=render("humanize-background.html", root=root), humanize_works=humanize_works,
             hz_works=hz_works, hz_directory=hz_directory, hz_pieces=hz_pieces, hz3_pieces=hz3_pieces, eye_works=eye_works, eye_pieces=eye_pieces, eye_directory=eye_directory,
+            onepager_works=onepager_works, onepager_background=render("one-pager-background.html", root=root),
         ), scripts)
 
     # Humanize has its own directory and a permanent reading page for every work.
@@ -280,6 +288,12 @@ def build():
         write(f"humanize-2/works/{p['slug']}", "Humanize", p["title"], lambda root, p=p: render(
             "humanize-2-page.html", root=root, humanize_background=render("humanize-background.html", root=root),
             article=hz_article(p, f'<a class="hz-back" href="{root}humanize-2/#archive">Archive</a>'),
+        ), [])
+
+    for p in hz_archive:
+        write(f"one-pager/works/{p['slug']}", "Humanize", p["title"], lambda root, p=p: render(
+            "one-pager-work.html", root=root, onepager_background=render("one-pager-background.html", root=root),
+            article=hz_article(p, f'<a href="{root}one-pager/">Works</a>'),
         ), [])
 
     # each Archive piece's own page, under both addresses of the one-page draft (both have the Options sheet)

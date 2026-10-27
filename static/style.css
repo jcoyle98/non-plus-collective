@@ -2359,6 +2359,54 @@ body.humanize:has(.hz, .hz-reading) { overflow-x: hidden; }
 .hz-reading { overflow-x: hidden; }
 .hz .hz-piece { overflow-x: hidden; }
 
+/* One-Pager: Humanize 2.0's type and night-blue treatment, with one still photograph. */
+body.humanize:has(.one-pager) { background: #180826; color: #fff; overflow-x: hidden; }
+.one-pager { position: relative; min-height: 100svh; font-family: "Cardo", "Times New Roman", serif; font-style: normal; }
+.one-pager a { color: inherit; text-decoration: none; transition: color .15s; }
+.one-pager a:hover { color: #6da7d0; }
+.one-pager a:focus-visible { outline: 1px solid currentColor; outline-offset: 5px; }
+.op-filters { position: absolute; pointer-events: none; }
+.op-photo, .op-shade { position: fixed; inset: 0; width: 100%; height: 100lvh; pointer-events: none; }
+.op-photo { object-fit: cover; object-position: center; filter: url(#op-night-blue) contrast(1.4) blur(.65px); opacity: .4; transform: scale(1.01); }
+.op-shade { background: rgba(10, 9, 10, .5); }
+.op-shade::after { content: ""; position: absolute; inset: 0; background: url("images/humanize-grain.svg") repeat; opacity: .3; }
+.op-layout { position: relative; display: grid; grid-template-columns: minmax(16rem, 32%) minmax(0, 1fr); min-height: 100svh; }
+.op-index { box-sizing: border-box; position: sticky; top: 0; height: 100svh; overflow-y: auto; padding: clamp(3rem, 13svh, 8rem) clamp(1.5rem, 4vw, 5rem) 3rem; }
+.op-index h2 { margin: 0 0 .7rem; font-size: clamp(1.3rem, 2vw, 1.65rem); font-weight: 400; line-height: 1.1; }
+.op-index ol, .op-intro ul { list-style: none; padding: 0; margin: 0; }
+.op-index li { margin: 0 0 .45rem; font-size: clamp(.95rem, 1.2vw, 1.08rem); line-height: 1.25; }
+.op-index li a { display: block; }
+.op-author { display: block; opacity: .7; font-size: .86em; }
+.op-main { min-width: 0; }
+.op-intro { position: relative; box-sizing: border-box; min-height: 100svh; padding: clamp(3rem, 13svh, 8rem) clamp(2rem, 8vw, 9rem) 3rem; }
+.op-intro h1 { margin: 0 0 .4rem; font-family: "IM Fell English", Georgia, serif; font-style: italic; font-weight: 400; font-size: clamp(3.5rem, 7vw, 6rem); line-height: 1.05; letter-spacing: .06em; }
+.op-intro li { margin: 0; font-size: 1rem; line-height: 1.25; }
+.op-contact { margin: 2.5rem 0 0; font-size: .9rem; line-height: 1.4; }
+@media (min-width: 761px) {
+  .op-intro h1 { position: absolute; top: 26%; left: 18%; white-space: nowrap; }
+  .op-intro li { position: absolute; white-space: nowrap; }
+  .op-intro li:nth-child(1) { top: 41%; left: 45%; }
+  .op-intro li:nth-child(2) { top: 52%; left: 3%; }
+  .op-intro li:nth-child(3) { top: 44%; left: 11%; }
+  .op-intro li:nth-child(4) { top: 58%; left: 26%; }
+  .op-intro li:nth-child(5) { top: 48%; left: 20%; }
+  .op-intro li:nth-child(6) { top: 49%; left: 48%; }
+  .op-intro li:nth-child(7) { top: 65%; left: 10%; }
+  .op-contact { position: absolute; right: 2.5%; bottom: 6%; margin: 0; white-space: nowrap; }
+}
+.op-work-content { position: relative; box-sizing: border-box; min-height: 100svh; padding: clamp(3rem, 9svh, 6rem) 1.5rem 2rem; }
+.op-work-mark { margin: 0 auto 3rem; text-align: center; font-family: "IM Fell English", Georgia, serif; font-style: italic; font-size: clamp(2.5rem, 5vw, 3.5rem); letter-spacing: .06em; line-height: 1.1; }
+.op-work-page .hz-reading .humanize-article { width: min(45rem, 100%); padding: 0 0 4rem; }
+@media (max-width: 760px) {
+  .op-layout { display: block; }
+  .op-index { position: relative; height: auto; overflow: visible; padding: 2.5rem 1.5rem; }
+  .op-index ol { columns: 2; column-gap: 1.5rem; }
+  .op-index li { break-inside: avoid; font-size: 1rem; }
+  .op-intro { min-height: 0; padding: 3rem 1.5rem 5rem; }
+  .op-intro h1 { font-size: clamp(3.8rem, 12vw, 5.5rem); }
+}
+@media (max-width: 460px) { .op-index ol { columns: 1; } }
+
 /* ---------------------------------------------------------------------------
    Humanize 3.0 (templates/draft-humanize-3.html, static/humanize-3.js): Humanize's photographs and shade,
    "non plus" at the top, and one text from the archive in a small black box in the middle (set as on
