@@ -2477,8 +2477,12 @@ body.humanize:has(main.eye) { background: #180826; color: #fff; overflow: hidden
 .eye-panel .sequence .part-title { font-size: 1.5rem; }
 .eye-credit { position: fixed; right: 12px; bottom: 8px; z-index: 1; margin: 0; font: italic .7rem "EB Garamond", Georgia, serif; color: rgba(255, 255, 255, .6); }
 @media (max-width: 700px) {
-  .eye-panel { width: auto; max-width: none; right: 12px; top: auto; margin: 0; height: 58svh; max-height: none; padding: 1.8rem 1.4rem 2.4rem; }   /* phones: a sheet along the bottom */
-  .eye-step { top: calc(100svh - 12px - 29svh); }
+  /* phones: the panel runs from just under the title block to a margin above the bottom of the screen
+     (the visible screen, above the browser's own bars) */
+  .eye { --sheet-top: calc(env(safe-area-inset-top, 0px) + 5.8rem); --sheet-gap: 14px; }
+  .eye-panel { width: auto; max-width: none; left: 12px; right: 12px; top: var(--sheet-top); bottom: auto; margin: 0;
+    height: calc(100svh - var(--sheet-top) - var(--sheet-gap)); max-height: none; padding: 1.8rem 1.4rem 2.4rem; }
+  .eye-step { top: calc(var(--sheet-top) + (100svh - var(--sheet-top) - var(--sheet-gap)) / 2); }
   /* phones: "non plus" with Work and Directory in the top left corner, left-justified, at two thirds the size */
   .eye-boxes { left: 16px !important; top: calc(env(safe-area-inset-top, 0px) + 14px) !important; }
   .eye-mark { font-size: 1.67rem; }       /* two thirds of 2.5rem */
