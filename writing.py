@@ -10,7 +10,9 @@ Each piece is a text file in content/archive/, named YYYY-MM-DD-slug.txt:
 
     The text...
 
-Pieces are poems unless the file starts with a <prose> line, or a <poems> line: several poems as one piece,
+A file starting with a <music> line is a track on Bandcamp, shown as a player card: give "url:" (the
+track's page), "album:", "bandcamp:" (the track's number, from its embed code) and "art:" (a file in
+static/images/). Otherwise pieces are poems unless the file starts with a <prose> line, or a <poems> line: several poems as one piece,
 each beginning with a <title>...</title> line and optionally a <date>YYYY-MM-DD</date> line (set under it). Poems keep their line breaks and indentation
 (leading spaces indent; a long line wraps with its overflow indented under it); a blank line starts a stanza;
 "| text" centres a line; <annotation>...</annotation> sets a note flush right. Prose: a blank line starts a
@@ -182,9 +184,23 @@ def render_sequence(body):
     return "\n".join(out)
 
 
-HEADER_KEYS = ("date", "author", "link")
+HEADER_KEYS = ("date", "author", "link", "url", "album", "bandcamp", "art")
 TAG_RE = {k: re.compile(rf"<{k}>(.*?)<[/\\\\]{k}>[ \t]*\n?", re.S) for k in ("subtitle", "epigraph")}
 DATE_PREFIX_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})-")
+
+
+def render_music(meta, body):
+    """A track on Bandcamp, as a card like Bandcamp Daily's: the cover, Bandcamp's own player (in black and
+    white), and Buy / wishlist / Go to album. Any text after the header is set below it, as a poem."""
+    track, url, album = meta.get("bandcamp", ""), meta.get("url", ""), meta.get("album", "") or meta.get("url", "")
+    art = f'<img class="bc-art" src="/static/images/{html.escape(meta["art"])}" alt="">' if meta.get("art") else ""
+    player = (f'<iframe title="Bandcamp player" loading="lazy" '
+              f'src="https://bandcamp.com/EmbeddedPlayer/track={html.escape(track)}/size=large/bgcol=000000/linkcol=ffffff/'
+              f'artwork=none/transparent=true/"></iframe>') if track else ""
+    side = (f'<a href="{html.escape(url)}">Buy</a><a href="{html.escape(url)}" aria-label="Wishlist, on Bandcamp">&#9825;</a>'
+            f'<a href="{html.escape(album)}">Go to album</a>')
+    card = f'<figure class="bc-card">{art}<div class="bc-player">{player}</div><nav class="bc-side">{side}</nav></figure>'
+    return card + ("\n" + render_poem(body) if body.strip() else "")
 
 
 def fmt_date(d):
@@ -196,10 +212,10 @@ def parse_piece(path):
     lines, blank line, text."""
     text = read_text(path).strip()
     kind = "poem"
-    m = re.match(r"<(poems|poem|prose)>[ \t]*\n", text)
+    m = re.match(r"<(poems|poem|prose|music)>[ \t]*\n", text)
     if m:
-        kind = {"poem": "poem", "prose": "essay", "poems": "sequence"}[m.group(1)]
-        text = re.sub(r"\n[ \t]*<[/\\](poems|poem|prose)>$", "", text[m.end():])
+        kind = {"poem": "poem", "prose": "essay", "poems": "sequence", "music": "music"}[m.group(1)]
+        text = re.sub(r"\n[ \t]*<[/\\](poems|poem|prose|music)>$", "", text[m.end():])
     tags = {}
     for k, rx in TAG_RE.items():
         m2 = rx.search(text)
@@ -228,7 +244,8 @@ def parse_piece(path):
         "when": d,
         "date": fmt_date(d) if d else "",
         "kind": kind,
-        "html": {"poem": render_poem, "essay": render_prose, "sequence": render_sequence}[kind](body),
+        "html": render_music(meta, body) if kind == "music" else
+                {"poem": render_poem, "essay": render_prose, "sequence": render_sequence}[kind](body),
         "example": path.name.startswith("_"),
         "subtitle": tags.get("subtitle", ""),
         "epigraph": tags.get("epigraph", ""),

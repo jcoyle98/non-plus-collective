@@ -1,0 +1,9 @@
+<music>
+Untitled 3
+author: CO/WA
+link: https://cowamusic.bandcamp.com
+url: https://cowamusic.bandcamp.com/track/untitled-3
+album: https://cowamusic.bandcamp.com/album/co-wa
+bandcamp: 508879938
+art: cowa-untitled-3.jpg
+

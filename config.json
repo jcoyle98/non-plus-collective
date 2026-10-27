@@ -7,7 +7,8 @@
     "marykatetankard.com",
     "naterthought.com",
     "brookecorso.com",
-    "macksrothman.com"
+    "macksrothman.com",
+    "cowamusic.bandcamp.com"
   ],
   "palettes": [
     {
@@ -135,9 +136,20 @@
   "people": {
     "alexwennerberg.com": "Alex Wennerberg",
     "brookecorso.com": "Brooke Corso",
-    "desiringmachines.com": "John Coyle",
+    "desiringmachines.com": "Desiring Machines",
     "macksrothman.com": "Max Rothman",
     "marykatetankard.com": "Mary Kate Tankard",
-    "naterthought.com": "Nathan Johnson"
+    "naterthought.com": "Nathan Johnson",
+    "cowamusic.bandcamp.com": "CO/WA"
+  },
+  "colours": {
+    "Alex Wennerberg": "#b0d7e0",
+    "Brooke Corso": "#e78961",
+    "CO/WA": "#d8c164",
+    "Desiring Machines": "#c15043",
+    "Mary Kate Tankard": "#cfa98d",
+    "Max Rothman": "#abac88",
+    "Nathan Johnson": "#5f779c",
+    "Pedro Telos": "#8d949c"
   }
 }

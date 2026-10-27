@@ -34,7 +34,7 @@ def piece_html(p):
     return p["html"]
 
 
-def hz_article(p, back):
+def hz_article(p, back, author_at_foot=False):
     """A piece as Humanize 2.0 shows it, laid out like Desiring Machines: the title, its subtitle, the author,
     an epigraph, the text (a poem, or prose set like a book), and along the foot the way back and the date."""
     subtitle = f'<p class="subtitle">{writing.inline(p["subtitle"])}</p>\n' if p["subtitle"] else ""
@@ -44,12 +44,28 @@ def hz_article(p, back):
         epigraph = f'<blockquote class="epigraph"><p>{lines}</p></blockquote>\n'
     kind = {"essay": "prose essay", "sequence": "verse sequence"}.get(p["kind"], "verse")
     # several poems as one piece carry their dates under each poem, not at the foot
-    date = "" if p["kind"] == "sequence" else f'<span class="hz-date">{html.escape(p["date"])}</span>'
+    date = "" if p["kind"] == "sequence" else html.escape(p["date"])
+    if author_at_foot:   # the author kept quiet: small, under the date, at the foot
+        date = f'<span class="hz-date">{date}{"<br>" if date else ""}<span class="hz-by">{dot(p["author"])}{author_html(p)}</span></span>'
+    elif date:
+        date = f'<span class="hz-date">{date}</span>'
+    if p["kind"] == "music":   # the card carries the title itself
+        return (f'<article class="humanize-article music">\n<h2 class="visually-hidden" id="hz-t-{p["slug"]}">{html.escape(p["title"])}</h2>\n'
+                f'{p["html"]}\n<footer class="hz-foot">{back}{date}</footer>\n</article>')
     return (f'<article class="humanize-article {kind}">\n<header>\n'
             f'<h2 class="hz-piece-title" id="hz-t-{p["slug"]}">{html.escape(p["title"])}</h2>\n{subtitle}'
-            f'<p class="humanize-byline">{author_html(p)}</p>\n</header>\n'
+            + ("" if author_at_foot else f'<p class="humanize-byline">{author_html(p)}</p>\n') + '</header>\n'
             f'{epigraph}<div class="hz-poem">\n{p["html"]}\n</div>\n'
             f'<footer class="hz-foot">{back}{date}</footer>\n</article>')
+
+
+COLOURS, ALIASES = {}, {}   # filled in from config.json by build()
+
+
+def dot(name):
+    """A small circle in this author's colour (config.json "colours"), or nothing if they have none."""
+    c = COLOURS.get(ALIASES.get(name, name))
+    return f'<span class="dot" style="--dot:{c}" aria-hidden="true"></span>' if c else ""
 
 
 def author_html(p):
@@ -93,6 +109,8 @@ PAGES = [
     ("draft-archive", "Design", "draft-archive.html", "Design (draft)", ["flicker-images.js", "photo-deck.js", "scroll.js", "scroll-lab.js"]),
     ("humanize", "Humanize", "draft-humanize.html", "Humanize", ["flicker-images.js", "photo-deck.js", "humanize.js"]),
     ("humanize-2", "Humanize", "draft-humanize-2.html", "Humanize 2.0", ["flicker-images.js", "photo-deck.js", "humanize-2.js"]),
+    ("humanize-3", "Humanize", "draft-humanize-3.html", "Humanize 3.0", ["flicker-images.js", "humanize-3.js"]),
+    ("hurricane-2", "Humanize", "draft-hurricane-2.html", "Hurricane 2.0", ["flicker-images.js", "photo-deck.js", "hurricane-2.js"]),
     ("scroll-static-final", "Design", "scroll-static-final.html", None, ["flicker-images.js", "photo-deck.js", "scroll.js"]),
 ]
 # The final version of draft-archive: the settings chosen in its Options, fixed (and no Options).
@@ -108,6 +126,8 @@ FINAL_SETTINGS = (
 DRAFTS = {   # each design, and what it tries, as listed on /design
     "humanize": "The white IM Fell English wordmark over blue-toned images that change as you move the mouse.",
     "humanize-2": "Humanize 2.0: 'non plus' with About, Directory, Archive and Contact beneath; a click glides the page to that screen (no scrolling by hand) while the photographs flicker past; 'non plus' rises to the top and leads back.",
+    "humanize-3": "Humanize 3.0: 'non plus' at the top and, in a small black box in the middle, one of the archive's texts, a different one on each visit; no menu.",
+    "hurricane-2": "Hurricane 2.0: Hurricane Gracie with a black box over its eye ('non plus', Directory, Work); the menu opens a panel on the left, over the hurricane: the Directory (About, the people, Contact) or the Work, and its pieces.",
     "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
     "draft-disappearing-s": "The barred S hidden in the background colour: hover to see it, click to draw the bar and open the directory.",
     "draft-arterial": "Image 142's arterial engraving in place of the S, as ink or a negative, with a frame switch and a grain slider.",
@@ -165,10 +185,29 @@ def build():
         + hz_article(p, '<a class="hz-back" href="#archive" data-go="archive">Archive</a>') + "\n</section>"
         for p in hz_archive
     )
+    hz3_pieces = "\n".join(   # Humanize 3.0: every text, hidden; the page shows one at random
+        f'<div class="hz3-piece" data-slug="{p["slug"]}" hidden>\n' + hz_article(p, "") + "\n</div>"
+        for p in hz_archive
+    )
+    COLOURS.update(config.get("colours", {}))
+    ALIASES.update(config.get("aliases", {}))
+    eye_works = "\n".join(   # Hurricane 2.0's Work list: by title, each with its author's colour (no name)
+        f'<li><a href="#w-{p["slug"]}" data-open="w-{p["slug"]}">{html.escape(p["title"])}</a>{dot(p["author"])}</li>'
+        for p in sorted(hz_archive, key=lambda p: p["title"].lower())
+    )
+    eye_pieces = "\n".join(
+        f'<section class="eye-section hz-reading" data-panel="w-{p["slug"]}" hidden>\n'
+        + hz_article(p, "", author_at_foot=True) + "\n</section>"
+        for p in hz_archive
+    )
     people = config.get("people", {})   # site -> person, for Humanize 2.0's Directory (by last name)
     hz_directory = "\n".join(
         f'<li><a href="https://{html.escape(site)}">{html.escape(people.get(site, site))}</a></li>'
-        for site in sorted(config["directory"], key=lambda site: (people.get(site, site).split()[-1].lower(), people.get(site, site).lower()))
+        for site in sorted(config["directory"], key=lambda site: people.get(site, site).lower())   # by first name
+    )
+    eye_directory = "\n".join(   # ...and on Hurricane 2.0, each name in their colour
+        f'<li><a href="https://{html.escape(site)}" style="--c:{COLOURS.get(people.get(site, site), "#fff")}">{html.escape(people.get(site, site))}</a></li>'
+        for site in sorted(config["directory"], key=lambda site: people.get(site, site).lower())
     )
     archive_list = "\n".join(   # the one-page draft's Archive section: each title links to the piece's own page
         f'<li class="sd-entry"><a class="sd-entry-link" href="archive/{p["slug"]}/">'
@@ -218,7 +257,7 @@ def build():
             archive_page_final=render("archive-page.html", root=root, sites=sites, archive_index=archive_index, archive_pieces=archive_pieces,
                                       main_attrs=f' style="{FINAL_SETTINGS}"'),
             humanize_background=render("humanize-background.html", root=root), humanize_works=humanize_works,
-            hz_works=hz_works, hz_directory=hz_directory, hz_pieces=hz_pieces,
+            hz_works=hz_works, hz_directory=hz_directory, hz_pieces=hz_pieces, hz3_pieces=hz3_pieces, eye_works=eye_works, eye_pieces=eye_pieces, eye_directory=eye_directory,
         ), scripts)
 
     # Humanize has its own directory and a permanent reading page for every work.

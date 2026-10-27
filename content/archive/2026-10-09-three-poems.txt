@@ -1,6 +1,6 @@
 <poems>
 Three Poems
-author: John Coyle
+author: Desiring Machines
 link: https://desiringmachines.com
 
 <title>Savitr of the Triple Fold</title>

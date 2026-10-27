@@ -1,0 +1,14 @@
+Field Recording
+author: Nathan Johnson
+link: https://naterthought.com
+<epigraph>Listen to the room before you listen to the voice.
+— advice to a sound engineer</epigraph>
+
+<annotation>[0:00]</annotation>A field at dusk, and under it a road.
+<annotation>[0:41]</annotation>Crickets, which begin all at once, as if on a signal.
+<annotation>[1:12]</annotation>A dog, far off, considers barking and does not.
+
+<annotation>[2:30]</annotation>Then the wind, which the microphone hears as weather
+            and the ear hears as distance.
+
+| (placeholder text, with notes set on the right)
