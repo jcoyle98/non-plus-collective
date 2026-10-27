@@ -2481,9 +2481,9 @@ body.humanize:has(main.eye) { background: #180826; color: #fff; overflow: hidden
      (the visible screen, above the browser's own bars) */
   /* the same 12px below as at the sides, measured against the screen as it is now (dvh follows the browser's
      bars as they shrink and grow) */
-  .eye { --sheet-top: calc(env(safe-area-inset-top, 0px) + 5.9rem); --sheet-gap: 12px; --sheet-h: 100svh; }
+  .eye { --sheet-top: calc(env(safe-area-inset-top, 0px) + 5.9rem); --sheet-gap: 28px; --sheet-h: 100svh; }   /* a wider margin: more of the photograph */
   @supports (height: 100dvh) { .eye { --sheet-h: 100dvh; } }
-  .eye-panel { width: auto; max-width: none; left: 12px; right: 12px; top: var(--sheet-top); bottom: auto; margin: 0;
+  .eye-panel { width: auto; max-width: none; left: var(--sheet-gap); right: var(--sheet-gap); top: var(--sheet-top); bottom: auto; margin: 0;
     height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap)); max-height: none; padding: 2.8rem 1.4rem 4.6rem; }
 
   /* phones: "non plus", Work and Directory on one line across the top left, with tap targets at least 44px
@@ -2571,7 +2571,7 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
 @media (max-width: 700px) {
   .eye .eye-step { top: calc(var(--sheet-h) - var(--sheet-gap) - 3.3rem); bottom: auto; transform: none;
     background: #000; padding: .55rem .8rem; }
-  .eye .eye-prev { left: calc(12px + .4rem); right: auto; }
-  .eye .eye-next { left: auto; right: calc(12px + .4rem); }
-  .eye[data-open^="w-"] .eye-panel { padding-left: 1.4rem; padding-right: 1.4rem; }
+  .eye .eye-prev { left: calc(var(--sheet-gap) + .3rem); right: auto; }
+  .eye .eye-next { left: auto; right: calc(var(--sheet-gap) + .3rem); }
+  .eye .eye-panel, .eye[data-open^="w-"] .eye-panel { padding-left: 1.15rem; padding-right: 1.15rem; }   /* the text close to the box's edges */
 }
