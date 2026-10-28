@@ -83,8 +83,8 @@
   // the works, newest first. The site opens on the newest, in the "flow": a work with < and > for another,
   // at random. "Work" in the menu opens the list of every work, by title.
   const works = sections.filter((s) => s.dataset.panel.startsWith("w-")).map((s) => s.dataset.panel);
-  // the flow goes through the works and the featured pieces (several works as one, newest first); featured
-  // pieces are reached only this way, never from the Work list
+  // the site opens on the newest featured piece (several works as one); < and > then go through the works at
+  // random, and "non plus" brings the featured piece back. It is never in the Work list or the shuffle.
   const featured = sections.filter((s) => s.dataset.panel.startsWith("f-")).map((s) => s.dataset.panel);
   const flow = [...featured, ...works];
   function open(name, record = true) {
@@ -103,7 +103,7 @@
   }
   // < and >: another work, chosen at random (never the one showing)
   function step() {
-    const others = flow.filter((w) => w !== page.dataset.open);
+    const others = works.filter((w) => w !== page.dataset.open);   // works only: the featured piece is reached through "non plus"
     if (others.length) open(others[Math.floor(Math.random() * others.length)]);
   }
   page.addEventListener("click", (e) => {
@@ -142,8 +142,8 @@
   open(start, false);
   history.replaceState(null, "", start ? `#${start}` : location.pathname);
 
-  // "non plus" is a link to the colours: each click steps to the next scheme (the photograph's two colours
-  // and the ground behind it), and shuffles which colour belongs to which author
+  // "non plus" is a link to the colours: each click steps to the next scheme (the photograph's two colours,
+  // the ground behind them, and the authors' gradient)
   const SCHEMES = [   // the dark ones from the other drafts (white text stays readable on all of them)
     { dark: "#0c0513", light: "#6da7d0", bg: "#180826" },   // night and blue
     { dark: "#274a49", light: "#e0c9e3" },                  // teal and lilac
@@ -163,12 +163,20 @@
   const contrast = (a, b) => { const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
   const readable = (ground) => (contrast("#ffffff", ground) >= contrast("#000000", ground) ? "#ffffff" : "#000000");
   const funcs = ["feFuncR", "feFuncG", "feFuncB"].map((f) => document.querySelector(`#eye-night-blue ${f}`));
-  // every coloured thing, keyed by the colour it started with (which says whose it is)
-  const painted = [...page.querySelectorAll('[style*="--dot"], .eye-people a[style*="--c"]')].map((el) => ({
-    el, prop: el.style.getPropertyValue("--dot") ? "--dot" : "--c",
-    own: (el.style.getPropertyValue("--dot") || el.style.getPropertyValue("--c")).trim(),
-  }));
-  const palette = [...new Set(painted.map((p) => p.own))];
+  // the authors' colours: a gradient of the scheme's own colour (its light one, the tint of the photograph),
+  // palest for the first name in the Directory, deepest for the last. Each author keeps their place in it, so
+  // their name, their titles (in the Work list and over their work) and their name at its foot share a shade.
+  const members = [...page.querySelectorAll(".eye-people a[data-author]")].map((a) => a.dataset.author);
+  const authored = [...page.querySelectorAll("[data-author]")];
+  const toHex = (rgb) => "#" + rgb.map((v) => Math.round(v * 255).toString(16).padStart(2, "0")).join("");
+  const mix = (a, b, t) => toHex(hex(a).map(Number).map((v, i) => v + (Number(hex(b)[i]) - v) * t));
+  function shades(s) {
+    const top = mix(s.light, "#ffffff", 0.7);
+    // a colour already near white deepens towards grey instead, so the gradient still shows
+    const bottom = luminance(s.light) > 0.8 ? mix(s.light, "#000000", 0.45) : s.light;
+    const n = Math.max(members.length - 1, 1);
+    return { at: new Map(members.map((m, i) => [m, mix(top, bottom, i / n)])), rest: bottom };
+  }
   let scheme = 0;
   function nextScheme() { setScheme(scheme + 1); }
   function setScheme(k) {
@@ -185,13 +193,14 @@
     page.style.setProperty("--panel-bg-80", `rgba(${hex(ground).map((v) => Math.round(v * 255)).join(", ")}, .95)`);   // 95%
     page.style.setProperty("--panel-fg", s.text || readable(ground));
     photo.style.filter = "none"; void photo.offsetWidth; photo.style.filter = "";   // repaint with the new colours
-    // a new owner for each colour
-    const shuffled = palette.slice();
-    for (let i = shuffled.length - 1; i > 0; i--) { const k = Math.floor(Math.random() * (i + 1)); [shuffled[i], shuffled[k]] = [shuffled[k], shuffled[i]]; }
-    const to = new Map(palette.map((c, i) => [c, shuffled[i]]));
-    painted.forEach((p) => p.el.style.setProperty(p.prop, to.get(p.own)));
+    // the authors' shades, from this scheme (anyone not in the Directory takes the deepest)
+    const { at, rest } = shades(s);
+    authored.forEach((el) => {
+      const c = at.get(el.dataset.author) || rest;
+      el.style.color = c;
+    });
   }
-  // every visit opens on a scheme of its own, at random (and its own shuffle of the authors' colours)
+  // every visit opens on a scheme of its own, at random
   setScheme(Math.floor(Math.random() * SCHEMES.length));
 
   const mark = page.querySelector(".eye-mark");

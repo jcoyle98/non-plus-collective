@@ -2561,10 +2561,7 @@ body.humanize:has(main.eye) { background: #180826; color: var(--panel-fg, #fff);
 .eye-next { left: calc(var(--panel-right, calc(var(--panel-left) + var(--panel-width))) - 2.9rem); }
 .eye[data-open^="w-"] .eye-step, .eye[data-open^="f-"] .eye-step { display: block; }
 .eye[data-open^="w-"] .eye-panel, .eye[data-open^="f-"] .eye-panel { padding-left: 3.2rem; padding-right: 3.2rem; }
-/* each author's colour, as a small circle by their name */
-.dot { display: inline-block; width: .6em; height: .6em; border-radius: 50%; background: var(--dot); margin-right: .55em; vertical-align: .05em; }
-.eye-works .dot { margin: 0 0 0 .7em; }   /* after the title */
-.eye-people a { color: var(--c, #fff); }   /* each name in its author's colour */
+/* the names and titles are coloured by hurricane-2.js (a gradient of the colour scheme) */
 
 
 /* a track on Bandcamp (<music>), as a card like Bandcamp Daily's: the cover hanging over the left edge,
@@ -2680,3 +2677,5 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
   .eye-panel .featured .feat-part .humanize-article .hz-piece-title { font-size: 1.45rem; }
   .eye-panel .featured .feat-part + .feat-part { margin-top: 4rem; }
 }
+.eye .hz-by a, .eye .hz-by { color: inherit; }   /* the author's name at the foot takes the author's colour (set on .hz-by) */
+.eye .hz-by[data-author] a { color: inherit; }

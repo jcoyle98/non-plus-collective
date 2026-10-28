@@ -43,29 +43,26 @@ def hz_article(p, back, author_at_foot=False, heading_id=None):
         lines = "<br>".join(writing.inline(l.strip()) for l in p["epigraph"].splitlines() if l.strip())
         epigraph = f'<blockquote class="epigraph"><p>{lines}</p></blockquote>\n'
     kind = {"essay": "prose essay", "sequence": "verse sequence"}.get(p["kind"], "verse")
+    # with the author at the foot (Hurricane 2.0), the title and the author's name take the author's colour
+    author_mark = f' data-author="{html.escape(p["author"], quote=True)}"' if author_at_foot else ""
     # several poems as one piece carry their dates under each poem, not at the foot
     date = "" if p["kind"] == "sequence" else html.escape(p["date"])
     if author_at_foot:   # the author kept quiet: small, under the date, at the foot
-        date = f'<span class="hz-date">{date}{"<br>" if date else ""}<span class="hz-by">{dot(p["author"])}{author_html(p)}</span></span>'
+        date = (f'<span class="hz-date">{date}{"<br>" if date else ""}'
+                f'<span class="hz-by" data-author="{html.escape(p["author"], quote=True)}">{author_html(p)}</span></span>')
     elif date:
         date = f'<span class="hz-date">{date}</span>'
     if p["kind"] == "music":   # the card carries the title itself
         return (f'<article class="humanize-article music">\n<h2 class="visually-hidden" id="{heading_id or "hz-t-" + p["slug"]}">{html.escape(p["title"])}</h2>\n'
                 f'{p["html"]}\n<footer class="hz-foot">{back}{date}</footer>\n</article>')
     return (f'<article class="humanize-article {kind}">\n<header>\n'
-            f'<h2 class="hz-piece-title" id="{heading_id or "hz-t-" + p["slug"]}">{html.escape(p["title"])}</h2>\n{subtitle}'
+            f'<h2 class="hz-piece-title" id="{heading_id or "hz-t-" + p["slug"]}"{author_mark}>{html.escape(p["title"])}</h2>\n{subtitle}'
             + ("" if author_at_foot else f'<p class="humanize-byline">{author_html(p)}</p>\n') + '</header>\n'
             f'{epigraph}<div class="hz-poem">\n{p["html"]}\n</div>\n'
             f'<footer class="hz-foot">{back}{date}</footer>\n</article>')
 
 
 COLOURS, ALIASES = {}, {}   # filled in from config.json by build()
-
-
-def dot(name):
-    """A small circle in this author's colour (config.json "colours"), or nothing if they have none."""
-    c = COLOURS.get(ALIASES.get(name, name))
-    return f'<span class="dot" style="--dot:{c}" aria-hidden="true"></span>' if c else ""
 
 
 def author_html(p):
@@ -195,8 +192,8 @@ def build():
     )
     COLOURS.update(config.get("colours", {}))
     ALIASES.update(config.get("aliases", {}))
-    eye_works = "\n".join(   # Hurricane 2.0's Work list: by title, each with its author's colour (no name)
-        f'<li><a href="#w-{p["slug"]}" data-open="w-{p["slug"]}">{html.escape(p["title"])}</a>{dot(p["author"])}</li>'
+    eye_works = "\n".join(   # Hurricane 2.0's Work list: by title, each title in its author's colour (set by the page)
+        f'<li><a href="#w-{p["slug"]}" data-open="w-{p["slug"]}" data-author="{html.escape(p["author"], quote=True)}">{html.escape(p["title"])}</a></li>'
         for p in sorted(hz_archive, key=lambda p: p["title"].lower())
     )
     def feat_part(f, p):
@@ -228,8 +225,8 @@ def build():
         f'<span class="op-author">{html.escape(p["author"])}</span></a></li>'
         for p in hz_archive
     )
-    eye_directory = "\n".join(   # ...and on Hurricane 2.0, each name in their colour
-        f'<li><a href="https://{html.escape(site)}" style="--c:{COLOURS.get(people.get(site, site), "#fff")}">{html.escape(people.get(site, site))}</a></li>'
+    eye_directory = "\n".join(   # ...and on Hurricane 2.0, the names in a gradient of the colour scheme (set by the page)
+        f'<li><a href="https://{html.escape(site)}" data-author="{html.escape(people.get(site, site), quote=True)}">{html.escape(people.get(site, site))}</a></li>'
         for site in sorted(config["directory"], key=lambda site: people.get(site, site).lower())
     )
     archive_list = "\n".join(   # the one-page draft's Archive section: each title links to the piece's own page
