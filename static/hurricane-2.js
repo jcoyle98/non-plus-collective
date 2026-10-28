@@ -36,7 +36,10 @@
   // keep the box over the eye (a little above its centre), wherever the photograph's cropping puts it
   // the panel fits what it shows, so its right edge moves: the > arrow follows it
   function edges() {
-    if (!panel.hidden) page.style.setProperty("--panel-right", `${panel.getBoundingClientRect().right}px`);
+    if (panel.hidden) return;
+    const r = panel.getBoundingClientRect();
+    page.style.setProperty("--panel-right", `${r.right}px`);
+    page.style.setProperty("--panel-bottom", `${r.bottom}px`);   // on phones the < > strip hangs from here
   }
   addEventListener("resize", edges);
 
@@ -54,8 +57,8 @@
     fitPanel(left);
   }
 
-  // the panel sits in the space between the left edge of the screen and "non plus": no wider than that space
-  // (less an even margin each side), as narrow as what it shows, centred across it and up and down.
+  // the panel fills the space between the left edge of the screen and "non plus", with an even margin each
+  // side; it is only as tall as what it shows, and sits in the middle of the screen up and down.
   // On phones it is the sheet along the bottom instead (the stylesheet's).
   const narrow = { matches: isPhone };
   function fitPanel(titleLeft) {
@@ -63,13 +66,9 @@
       ["left", "width"].forEach((p) => panel.style.removeProperty(p));
       ["--panel-left", "--panel-width"].forEach((p) => page.style.removeProperty(p));
     } else {
-      // at most the whole of that space (less a margin each side); narrower when what it shows is narrower,
-      // so a short list or poem gets a box to its own size; centred in the space either way
+      // the width of that space, less an even margin each side (the height follows what it shows)
       const gap = Math.max(20, titleLeft * 0.05);
-      const most = Math.max(240, titleLeft - 2 * gap);
-      panel.style.width = "max-content";   // measure what it shows at its natural width
-      const natural = panel.hidden ? most : Math.ceil(panel.getBoundingClientRect().width) + 2;
-      const width = Math.min(most, Math.max(240, natural));
+      const width = Math.max(240, titleLeft - 2 * gap);
       const left = Math.max(8, (titleLeft - width) / 2);
       panel.style.left = `${left}px`;
       panel.style.width = `${width}px`;
