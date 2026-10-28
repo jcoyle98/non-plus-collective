@@ -35,6 +35,8 @@
 
   // keep the box over the eye (a little above its centre), wherever the photograph's cropping puts it
   // the panel fits what it shows, so its right edge moves: the > arrow follows it
+  // a cover arriving after the box has been fitted fits it again
+  panel.querySelectorAll(".bc-art").forEach((a) => a.addEventListener("load", () => edges()));
   function edges() {
     if (panel.hidden) return;
     if (isPhone && !page.classList.contains("eye-framed")) {
@@ -42,6 +44,13 @@
       // (on a work, together with the < > strip under it: the space for the box already leaves room for it)
       panel.style.removeProperty("top");
       const cs = getComputedStyle(panel);
+      // a Bandcamp card must fit whole: its cover shrinks by exactly as much as the box would overflow
+      const art = [...panel.querySelectorAll(".bc-art")].find((a) => a.offsetParent);
+      if (art) {
+        art.style.removeProperty("max-height");
+        const over = panel.scrollHeight - parseFloat(cs.maxHeight);
+        if (over > 0) art.style.maxHeight = `${Math.max(80, art.getBoundingClientRect().height - over - 1)}px`;
+      }
       const top = parseFloat(cs.top), most = parseFloat(cs.maxHeight), h = panel.getBoundingClientRect().height;
       if (most > h) panel.style.top = `${top + (most - h) / 2}px`;
     }

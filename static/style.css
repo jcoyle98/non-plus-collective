@@ -2715,3 +2715,9 @@ html.phone .eye:not(.eye-framed) .eye-step { top: var(--panel-bottom, calc(var(-
 /* phones only: a Bandcamp card starts right at the top, with just a sliver of margin (the computer is unchanged) */
 html.phone .eye .bc-card { margin-top: .5rem; }
 html.phone .eye .eye-panel:has(> .eye-section:not([hidden]) > .humanize-article.music) { padding-top: .6rem; }
+/* phones: the whole Bandcamp card fits in the box without scrolling: the cover keeps its full size where it
+   can, and gives way (square and centred) only as much as needed for the player, the Buy / wishlist / album
+   row, and the date and name below */
+html.phone .eye .bc-art { width: auto; height: auto; max-width: 100%; aspect-ratio: auto; margin: 0 auto; }   /* hurricane-2.js shrinks it only if the card would not fit */
+html.phone .eye .bc-card { justify-items: center; }
+html.phone .eye .bc-player, html.phone .eye .bc-side { justify-self: stretch; width: 100%; }
