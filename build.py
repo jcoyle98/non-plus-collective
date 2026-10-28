@@ -83,11 +83,13 @@ def static_version():
 
 PAGES = [
     # (output folder, menu label, content template, title, scripts)
-    ("", "Home", "home.html", None, ["rotate.js"]),
+    # the home page is Hurricane 2.0 (also at /hurricane-2/); the old one, the turning barred S, is at /barred-s/
+    ("", "Humanize", "draft-hurricane-2.html", None, ["flicker-images.js", "photo-deck.js", "hurricane-2.js"]),
     ("directory", "Directory", "directory.html", "Directory", []),
     # Designs: built like any page but with no menu, and left out of everyone else's,
     # so only a link reaches them; /design lists them all (and /drafts, its old
     # address, forwards there)
+    ("barred-s", "Home", "home.html", "The barred S", ["rotate.js"]),
     ("design", "Drafts", "drafts.html", "Designs", []),
     ("designs", "Drafts", "drafts.html", "Designs", []),
     ("drafts", "Drafts", "forward.html", "Designs", []),
@@ -123,6 +125,7 @@ FINAL_SETTINGS = (
     "--sd-fg: #ffffff; --sd-dim: #ffffff; --sd-word: #ffffff; --sd-link: #ffffff; --sd-word-case: none"
 )
 DRAFTS = {   # each design, and what it tries, as listed on /design
+    "barred-s": "The first home page: the barred S filling the window, turning as you scroll.",
     "humanize": "The white IM Fell English wordmark over blue-toned images that change as you move the mouse.",
     "humanize-2": "Humanize 2.0: 'non plus' with About, Directory, Archive and Contact beneath; a click glides the page to that screen (no scrolling by hand) while the photographs flicker past; 'non plus' rises to the top and leads back.",
     "one-pager": "Works on the left; 'non plus' and contributor links arranged across the right, with contact in the lower corner, over a still Hurricane Gracie photograph.",
@@ -254,7 +257,7 @@ def build():
     def write(folder, label, title, content, scripts):
         root = "../" * (folder.count("/") + 1) if folder else "./"  # relative links work under any base path
         nav = "\n".join(
-            f'<a href="{root}{f + "/" if f else ""}"' + (' aria-current="page"' if f == folder else "") + f">{l}</a>"
+            f'<a href="{root}{f + "/" if f else ""}"' + (' aria-current="page"' if f == folder else "") + f">{l if f else 'Home'}</a>"
             for f, l, *_ in PAGES
             if f not in HIDDEN
         )
@@ -265,7 +268,7 @@ def build():
             static_version=version,
             root=root,
             page=label.lower(),
-            menu="" if folder in HIDDEN or "/" in folder else render("menu.html", nav=nav),
+            menu="" if folder in HIDDEN or "/" in folder or folder == "" else render("menu.html", nav=nav),
             content=content(root),
             scripts="\n".join(f'<script src="{root}static/{js}?v={version}"></script>' for js in scripts),
         )
