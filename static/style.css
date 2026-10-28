@@ -2710,3 +2710,7 @@ html.phone .eye:not(.eye-framed)[data-open^="w-"] .eye-panel, html.phone .eye:no
   max-height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap) - var(--bar)); }
 html.phone .eye:not(.eye-framed)[data-open^="w-"]::after, html.phone .eye:not(.eye-framed)[data-open^="f-"]::after,
 html.phone .eye:not(.eye-framed) .eye-step { top: var(--panel-bottom, calc(var(--sheet-h) - var(--sheet-gap) - var(--bar))); }
+
+/* phones only: a Bandcamp card starts right at the top, with just a sliver of margin (the computer is unchanged) */
+html.phone .eye .bc-card { margin-top: .5rem; }
+html.phone .eye .eye-panel:has(> .eye-section:not([hidden]) > .humanize-article.music) { padding-top: .6rem; }

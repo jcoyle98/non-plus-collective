@@ -37,6 +37,14 @@
   // the panel fits what it shows, so its right edge moves: the > arrow follows it
   function edges() {
     if (panel.hidden) return;
+    if (isPhone && !page.classList.contains("eye-framed")) {
+      // a phone: the box, as tall as what it shows, sits in the middle of the space the full-sized box takes
+      // (on a work, together with the < > strip under it: the space for the box already leaves room for it)
+      panel.style.removeProperty("top");
+      const cs = getComputedStyle(panel);
+      const top = parseFloat(cs.top), most = parseFloat(cs.maxHeight), h = panel.getBoundingClientRect().height;
+      if (most > h) panel.style.top = `${top + (most - h) / 2}px`;
+    }
     const r = panel.getBoundingClientRect();
     page.style.setProperty("--panel-right", `${r.right}px`);
     page.style.setProperty("--panel-bottom", `${r.bottom}px`);   // on phones the < > strip hangs from here
