@@ -2698,3 +2698,4 @@ html.phone .eye[data-intro] .eye-boxes { top: 50% !important; transform: transla
    colour is that same light one) */
 .eye a.eye-step, .eye a.eye-close { color: var(--scheme-light, #fff); }
 .eye a.eye-step:hover, .eye a.eye-close:hover { color: var(--panel-fg, #fff) !important; }
+.eye-works li.next-author { margin-top: 1.3rem; }   /* a little space between one author's works and the next's */

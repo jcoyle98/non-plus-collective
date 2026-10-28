@@ -195,9 +195,15 @@ def build():
     )
     COLOURS.update(config.get("colours", {}))
     ALIASES.update(config.get("aliases", {}))
-    eye_works = "\n".join(   # Hurricane 2.0's Work list: by title, each title in its author's colour (set by the page)
-        f'<li><a href="#w-{p["slug"]}" data-open="w-{p["slug"]}" data-author="{html.escape(p["author"], quote=True)}">{html.escape(p["title"])}</a></li>'
-        for p in sorted(hz_archive, key=lambda p: p["title"].lower())
+    # Hurricane 2.0's Work list: by author, then by title, each title in its author's colour (set by the page),
+    # with a little space where one author's works give way to the next's
+    alpha = lambda t: re.sub(r"^\W+", "", t).lower()   # ignoring an opening quotation mark and the like
+    by_author = sorted(hz_archive, key=lambda p: (alpha(p["author"]), alpha(p["title"])))
+    next_author = ' class="next-author"'
+    eye_works = "\n".join(
+        f'<li{next_author if i and p["author"] != by_author[i - 1]["author"] else ""}>'
+        f'<a href="#w-{p["slug"]}" data-open="w-{p["slug"]}" data-author="{html.escape(p["author"], quote=True)}">{html.escape(p["title"])}</a></li>'
+        for i, p in enumerate(by_author)
     )
     def feat_author(f):
         """The featured title takes its author's colour: the one author, or (several) the first work's."""
