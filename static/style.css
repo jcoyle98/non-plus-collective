@@ -2321,6 +2321,7 @@ main.hz {
 .hz-reading .poem .stanza { margin: 0 0 1.75rem; }
 .hz-reading .poem .line { display: block; padding-left: 2em; text-indent: -2em; margin-left: min(var(--indent, 0em), 40%); }   /* an indent never takes more than 40% of the column */
 .hz-reading .poem .line.center { text-align: center; padding: 0 1em; text-indent: 0; }
+.hz-reading .poem .line.note { padding-left: 0; text-indent: 0; margin-left: 0; }
 .hz-reading .poem .annot { float: right; margin-left: 1.5em; text-indent: 0; }
 /* prose: set like a book, justified and hyphenated, first lines indented, no space between paragraphs */
 .hz-reading .prose p { text-align: justify; -webkit-hyphens: auto; hyphens: auto; }

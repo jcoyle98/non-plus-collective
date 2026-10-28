@@ -15,7 +15,8 @@ track's page), "album:", "bandcamp:" (the track's number, from its embed code) a
 static/images/). Otherwise pieces are poems unless the file starts with a <prose> line, or a <poems> line: several poems as one piece,
 each beginning with a <title>...</title> line and optionally a <date>YYYY-MM-DD</date> line (set under it). Poems keep their line breaks and indentation
 (leading spaces indent; a long line wraps with its overflow indented under it); a blank line starts a stanza;
-"| text" centres a line; <annotation>...</annotation> sets a note flush right. Prose: a blank line starts a
+"| text" centres a line; <annotation>...</annotation> sets a note flush right;
+<note>...</note> wraps a note flush left without a hanging indent. Prose: a blank line starts a
 paragraph (set like a book: justified, first lines indented); \"\"\"...\"\"\" is a block quote and <poem>...</poem>
 a passage of verse. Anywhere: *italic*, **bold**, <sanskrit>SLP1</sanskrit> (Devanagari), <epigraph>...</epigraph>.
 
@@ -103,6 +104,10 @@ def render_poem(body):
     for stanza in blocks(body):
         lines = []
         for line in stanza.rstrip().splitlines():
+            note = re.fullmatch(r"<note>(.*?)</note>", line.strip())
+            if note:
+                lines.append(f'<span class="line note">{inline(note.group(1))}</span>')
+                continue
             # <annotation>...</annotation>: set flush right, level with the line
             notes = "".join(f'<span class="annot">{inline(n.strip())}</span>'
                             for n in ANNOTATION_RE.findall(line))
