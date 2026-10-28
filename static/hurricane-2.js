@@ -54,8 +54,8 @@
     fitPanel(left);
   }
 
-  // the panel fills the space between the left edge of the screen and "non plus", with an even margin each
-  // side, and sits in the middle of it up and down.
+  // the panel sits in the space between the left edge of the screen and "non plus": no wider than that space
+  // (less an even margin each side), as narrow as what it shows, centred across it and up and down.
   // On phones it is the sheet along the bottom instead (the stylesheet's).
   const narrow = { matches: isPhone };
   function fitPanel(titleLeft) {
@@ -63,9 +63,13 @@
       ["left", "width"].forEach((p) => panel.style.removeProperty(p));
       ["--panel-left", "--panel-width"].forEach((p) => page.style.removeProperty(p));
     } else {
-      // filling most of that space: just a margin each side
+      // at most the whole of that space (less a margin each side); narrower when what it shows is narrower,
+      // so a short list or poem gets a box to its own size; centred in the space either way
       const gap = Math.max(20, titleLeft * 0.05);
-      const width = Math.max(240, titleLeft - 2 * gap);
+      const most = Math.max(240, titleLeft - 2 * gap);
+      panel.style.width = "max-content";   // measure what it shows at its natural width
+      const natural = panel.hidden ? most : Math.ceil(panel.getBoundingClientRect().width) + 2;
+      const width = Math.min(most, Math.max(240, natural));
       const left = Math.max(8, (titleLeft - width) / 2);
       panel.style.left = `${left}px`;
       panel.style.width = `${width}px`;
