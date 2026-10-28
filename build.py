@@ -53,10 +53,10 @@ def hz_article(p, back, author_at_foot=False, heading_id=None):
     elif date:
         date = f'<span class="hz-date">{date}</span>'
     if p["kind"] == "music":   # the card carries the title itself
-        return (f'<article class="humanize-article music">\n<h2 class="visually-hidden" id="{heading_id or "hz-t-" + p["slug"]}">{html.escape(p["title"])}</h2>\n'
+        return (f'<article class="humanize-article music">\n<h2 class="visually-hidden" id="{heading_id or "hz-t-" + p["slug"]}">{p["title_html"]}</h2>\n'
                 f'{p["html"]}\n<footer class="hz-foot">{back}{date}</footer>\n</article>')
     return (f'<article class="humanize-article {kind}">\n<header>\n'
-            f'<h2 class="hz-piece-title" id="{heading_id or "hz-t-" + p["slug"]}"{author_mark}>{html.escape(p["title"])}</h2>\n{subtitle}'
+            f'<h2 class="hz-piece-title" id="{heading_id or "hz-t-" + p["slug"]}"{author_mark}>{p["title_html"]}</h2>\n{subtitle}'
             + ("" if author_at_foot else f'<p class="humanize-byline">{author_html(p)}</p>\n') + '</header>\n'
             f'{epigraph}<div class="hz-poem">\n{p["html"]}\n</div>\n'
             f'<footer class="hz-foot">{back}{date}</footer>\n</article>')
@@ -176,11 +176,11 @@ def build():
     hz_archive = pieces
     humanize_works = "\n".join(
         f'<li><a href="works/{html.escape(p["slug"], quote=True)}/">'
-        f'{html.escape(p["title"])} - {html.escape(p["author"])}</a></li>'
+        f'{p["title_html"]} - {html.escape(p["author"])}</a></li>'
         for p in archive
     )
     hz_works = "\n".join(   # Humanize 2.0's Archive: title and author together glide to the work's screen (the name links to the author's site only there)
-        f'<li><a href="#w-{html.escape(p["slug"], quote=True)}" data-go="w-{html.escape(p["slug"], quote=True)}">{html.escape(p["title"])} - {html.escape(p["author"])}</a></li>'
+        f'<li><a href="#w-{html.escape(p["slug"], quote=True)}" data-go="w-{html.escape(p["slug"], quote=True)}">{p["title_html"]} - {html.escape(p["author"])}</a></li>'
         for p in hz_archive
     )
     hz_pieces = "\n\n".join(   # ...and each work's screen, just below the Archive's
@@ -202,7 +202,7 @@ def build():
     next_author = ' class="next-author"'
     eye_works = "\n".join(
         f'<li{next_author if i and p["author"] != by_author[i - 1]["author"] else ""}>'
-        f'<a href="#w-{p["slug"]}" data-open="w-{p["slug"]}" data-author="{html.escape(p["author"], quote=True)}">{html.escape(p["title"])}</a></li>'
+        f'<a href="#w-{p["slug"]}" data-open="w-{p["slug"]}" data-author="{html.escape(p["author"], quote=True)}">{p["title_html"]}</a></li>'
         for i, p in enumerate(by_author)
     )
     def feat_author(f):
@@ -234,7 +234,7 @@ def build():
         for site in sorted(config["directory"], key=lambda site: people.get(site, site).lower())   # by first name
     )
     onepager_works = "\n".join(
-        f'<li><a href="works/{html.escape(p["slug"], quote=True)}/">{html.escape(p["title"])}'
+        f'<li><a href="works/{html.escape(p["slug"], quote=True)}/">{p["title_html"]}'
         f'<span class="op-author">{html.escape(p["author"])}</span></a></li>'
         for p in hz_archive
     )
@@ -244,17 +244,17 @@ def build():
     )
     archive_list = "\n".join(   # the one-page draft's Archive section: each title links to the piece's own page
         f'<li class="sd-entry"><a class="sd-entry-link" href="archive/{p["slug"]}/">'
-        f'<span class="sd-title">{html.escape(p["title"])}</span>'
+        f'<span class="sd-title">{p["title_html"]}</span>'
         f'<span class="sd-meta">{html.escape(p["author"])} · {html.escape(p["date"])}</span></a></li>'
         for p in archive
     )
 
     archive_index = "\n".join(   # the archive draft's list of titles, each linking down to its piece
-        f'<a href="#piece-{p["slug"]}">{html.escape(p["title"])}</a>' for p in archive
+        f'<a href="#piece-{p["slug"]}">{p["title_html"]}</a>' for p in archive
     )
     archive_pieces = "\n".join(   # ...and the pieces themselves, one after another
         f'<article class="sd-section ar-piece" id="piece-{p["slug"]}" aria-labelledby="h-{p["slug"]}">\n'
-        f'<h2 id="h-{p["slug"]}">{html.escape(p["title"])}</h2>\n'
+        f'<h2 id="h-{p["slug"]}">{p["title_html"]}</h2>\n'
         f'<p class="sd-byline">{html.escape(p["author"])} · {html.escape(p["date"])}</p>\n'
         f'<div class="sd-text">\n' + piece_html(p) + "\n</div>\n</article>"
         for p in archive
@@ -303,7 +303,7 @@ def build():
     for p in archive:
         write(f"humanize/works/{p['slug']}", "Humanize", p["title"], lambda root, p=p: render(
             "humanize-page.html", root=root, humanize_background=render("humanize-background.html", root=root),
-            title=html.escape(p["title"]),
+            title=p["title_html"],
             byline=f'<p class="humanize-byline">{html.escape(p["author"])} · {html.escape(p["date"])}</p>',
             body=piece_html(p), directory_current="",
             back_link=f'<p class="humanize-back"><a href="{root}humanize/#humanize-works-heading">all works</a></p>',
@@ -327,7 +327,7 @@ def build():
         for p in archive:
             body = piece_html(p)
             write(f"{draft}/archive/{p['slug']}", "Design", f"{p['title']} (draft)", lambda root, p=p, body=body, lab=lab: render(
-                "scroll-piece.html", root=root, title=html.escape(p["title"]), author=html.escape(p["author"]),
+                "scroll-piece.html", root=root, title=p["title_html"], author=html.escape(p["author"]),
                 date=html.escape(p["date"]), body=body, lab_sheet=render("scroll-lab-sheet.html") if lab else "",
             ), ["flicker-images.js", "scroll-piece.js"] + (["scroll-lab.js"] if lab else []))
 

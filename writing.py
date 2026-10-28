@@ -236,9 +236,12 @@ def parse_piece(path):
     m = DATE_PREFIX_RE.match(name)
     when = meta.get("date") or (m and m.group(1))
     d = date.fromisoformat(when) if when else None
+    rendered_title = inline(title.strip())
+    plain_title = html.unescape(re.sub(r"</?(?:em|strong)>", "", rendered_title))
     return {
         "slug": DATE_PREFIX_RE.sub("", name),
-        "title": title.strip(),
+        "title": plain_title,
+        "title_html": rendered_title,
         "author": meta.get("author", ""),
         "author_url": meta.get("link", ""),
         "when": d,
