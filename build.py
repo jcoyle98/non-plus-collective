@@ -196,6 +196,10 @@ def build():
         f'<li><a href="#w-{p["slug"]}" data-open="w-{p["slug"]}" data-author="{html.escape(p["author"], quote=True)}">{html.escape(p["title"])}</a></li>'
         for p in sorted(hz_archive, key=lambda p: p["title"].lower())
     )
+    def feat_author(f):
+        """The featured title takes its author's colour: the one author, or (several) the first work's."""
+        return f' data-author="{html.escape(f["works"][0]["author"], quote=True)}"' if f["works"] else ""
+
     def feat_part(f, p):
         """One work within a featured piece: as on its own, with its date and author at its foot."""
         heading = "hz-f-" + f["slug"] + "-" + p["slug"]
@@ -205,7 +209,7 @@ def build():
     featured = writing.load_featured(ROOT / "content" / "featured", pieces)
     eye_featured = "\n".join(
         f'<section class="eye-section hz-reading" data-panel="f-{f["slug"]}" hidden>\n'
-        f'<article class="humanize-article featured">\n<header><h2 class="hz-piece-title feat-title">{html.escape(f["title"])}</h2></header>\n'
+        f'<article class="humanize-article featured">\n<header><h2 class="hz-piece-title feat-title"{feat_author(f)}>{html.escape(f["title"])}</h2></header>\n'
         + "\n".join(feat_part(f, p) for p in f["works"])
         + "\n</article>\n</section>"
         for f in featured
