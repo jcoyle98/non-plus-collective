@@ -2606,8 +2606,8 @@ a, a:hover, a:focus, a:focus-visible, a:active { text-decoration: none !importan
 a:hover { color: var(--hover, #6da7d0) !important; }   /* Hurricane 2.0 sets --hover from its colour scheme */
 
 /* Hurricane 2.0's names keep their background-derived shade when hovered or focused. */
-.eye[data-open="directory"] .eye-panel { background: #000; color: #fff; }
-.eye [data-panel="directory"] > p, .eye [data-panel="directory"] a[href^="mailto:"] { color: #fff; }
+/* the Directory panel like the others: the scheme's colour, and its about line and address in the panel's text colour */
+.eye [data-panel="directory"] > p, .eye [data-panel="directory"] a[href^="mailto:"] { color: var(--panel-fg, #fff); }
 .eye .eye-people a:hover, .eye .eye-people a:focus-visible { color: var(--c-hover, var(--c, #fff)) !important; }
 .eye .eye-people a:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
 
