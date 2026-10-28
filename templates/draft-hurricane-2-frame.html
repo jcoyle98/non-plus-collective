@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cardo:wght@400&amp;family=IM+Fell+English:ital@1&amp;family=EB+Garamond:ital,wght@0,400;1,400&amp;family=Tiro+Devanagari+Sanskrit:ital@0;1&amp;display=swap">
+<main class="eye eye-framed" data-open="" data-boxes="on">
+<!-- the photograph in Humanize's night and blue -->
+<svg class="eye-filters" aria-hidden="true" width="0" height="0"><defs>
+<filter id="eye-night-blue" color-interpolation-filters="sRGB">
+<feColorMatrix type="matrix" values=".33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 1 0"/>
+<feComponentTransfer><feFuncR type="table" tableValues="0.047 0.427"/><feFuncG type="table" tableValues="0.020 0.655"/><feFuncB type="table" tableValues="0.075 0.816"/></feComponentTransfer>
+</filter></defs></svg>
+<img class="eye-photo" src="${root}static/images/hurricane-gracie-4k.jpg" data-base="${root}static/images/flicker/" alt="">
+
+<!-- "non plus", with Work and Directory beneath it, in white on the photograph: level with the middle of the
+     page, across from the hurricane's eye (placed by hurricane-2.js), always there -->
+<div class="eye-boxes eye-box">
+<p class="eye-mark" role="button" tabindex="0" title="Change the colours">non plus</p>
+<nav class="eye-menu" aria-label="Main"><a href="#work" data-open="work">Work</a><a href="#directory" data-open="directory">Directory</a></nav>
+</div>
+
+<!-- what the menu opens, on the left, over the hurricane -->
+<aside class="eye-panel" aria-live="polite" hidden>
+<a class="eye-close" href="./" data-open="">close</a>
+
+<section class="eye-section" data-panel="directory" hidden>
+<p>Non Plus is an archive of poetic practice.</p>
+<ul class="eye-people">
+$eye_directory
+</ul>
+<p><a href="mailto:editors@nonplusmagazine.com">editors@nonplusmagazine.com</a></p>
+</section>
+
+<!-- the Work list: every work by title, with its author -->
+<section class="eye-section" data-panel="work" hidden>
+<ul class="eye-works">
+$eye_works
+</ul>
+</section>
+
+$eye_pieces
+</aside>
+
+<!-- outside the panel (Safari would clip them to it), but placed on it: on a work (the "flow", which is where the site opens), another work, at random, either way -->
+<a class="eye-step eye-prev" href="#" data-step="-1" aria-label="Another work">&lt;</a>
+<a class="eye-step eye-next" href="#" data-step="1" aria-label="Another work">&gt;</a>
+
+</main>

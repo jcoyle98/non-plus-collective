@@ -2640,3 +2640,31 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
   .eye .eye-panel, .eye[data-open^="w-"] .eye-panel { padding-left: 1.15rem; padding-right: 1.15rem; }   /* the text close to the box's edges */
   .eye .eye-close { display: none; }   /* no "close" on phones */
 }
+
+/* ---------------------------------------------------------------------------
+   Hurricane 2.0, framed (templates/draft-hurricane-2-frame.html): Hurricane 2.0 with its black panel in a gilt
+   picture frame. The frame is static/images/gilt-frame.svg (made by tools/gilt_frame.py), used as a 9-slice
+   border image: the carved corners stay as drawn and the sides repeat, so the beads stay round at any size. */
+.eye-framed .eye-panel {
+  border: 34px solid transparent;
+  border-image: url("images/gilt-frame.svg") 100 / 34px round;
+  background: #000;
+  background-clip: padding-box;   /* black inside the frame only */
+  box-shadow: 0 14px 40px rgba(0, 0, 0, .65), 0 2px 6px rgba(0, 0, 0, .5);   /* hung a little off the wall */
+  padding: 1.9rem 2rem 2.4rem;
+}
+.eye-framed .eye-close { top: .5rem; right: .8rem; }
+@media (max-width: 700px) {
+  .eye-framed .eye-panel { border-width: 22px; border-image-width: 22px; padding: 2.2rem 1rem 3.6rem; }
+}
+
+/* framed, on phones: the strip for < and > sits inside the frame, at the foot of the panel, rather than
+   hanging below it */
+@media (max-width: 700px) {
+  .eye-framed[data-open^="w-"] .eye-panel { height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap)); padding-bottom: calc(var(--bar) + 1rem); }
+  .eye-framed[data-open^="w-"]::after { left: calc(var(--sheet-gap) + 22px); right: calc(var(--sheet-gap) + 22px);
+    top: calc(var(--sheet-h) - var(--sheet-gap) - 22px - var(--bar)); z-index: 2; }
+  .eye-framed .eye-step { top: calc(var(--sheet-h) - var(--sheet-gap) - 22px - var(--bar)); width: calc(50vw - var(--sheet-gap) - 22px); }
+  .eye-framed .eye-prev { left: calc(var(--sheet-gap) + 22px); }
+  .eye-framed .eye-next { right: calc(var(--sheet-gap) + 22px); }
+}
