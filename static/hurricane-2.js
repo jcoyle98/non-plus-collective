@@ -190,7 +190,7 @@
     page.style.setProperty("--panel-bg", ground);
     // links light up in the scheme's light colour (or its own "hover", where that would be the text colour)
     document.documentElement.style.setProperty("--hover", s.hover || s.light);
-    page.style.setProperty("--panel-bg-80", `rgba(${hex(ground).map((v) => Math.round(v * 255)).join(", ")}, .95)`);   // 95%
+    page.style.setProperty("--panel-bg-80", `rgba(${hex(ground).map((v) => Math.round(v * 255)).join(", ")}, .9)`);   // 90% opacity
     page.style.setProperty("--panel-fg", s.text || readable(ground));
     photo.style.filter = "none"; void photo.offsetWidth; photo.style.filter = "";   // repaint with the new colours
     // the authors' shades, from this scheme (anyone not in the Directory takes the deepest)

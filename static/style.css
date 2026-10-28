@@ -2503,7 +2503,7 @@ body.humanize:has(main.eye) { background: #180826; color: var(--panel-fg, #fff);
   overflow-x: hidden;
   overscroll-behavior: contain;
   padding: 2.4rem 2.4rem 3rem;
-  background: var(--panel-bg-80, rgba(0, 0, 0, .95));   /* the colour scheme's main colour at 95% (hurricane-2.js); square corners */
+  background: var(--panel-bg-80, rgba(0, 0, 0, .9));   /* the colour scheme's main colour at 90% (hurricane-2.js); square corners */
   color: var(--panel-fg, #fff);        /* white or black, whichever reads on it */
   font-family: "Cardo", "Times New Roman", serif;
   font-style: normal;
@@ -2631,7 +2631,7 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
     top: calc(var(--sheet-h) - var(--sheet-gap) - var(--bar));
     height: var(--bar);
     z-index: 1;   /* under the panel's layer, which holds the arrows */
-    background: var(--panel-bg-80, rgba(0, 0, 0, .95));
+    background: var(--panel-bg-80, rgba(0, 0, 0, .9));
   }
   /* each arrow is the whole of its half of the strip, not just the sign */
   .eye .eye-step { top: calc(var(--sheet-h) - var(--sheet-gap) - var(--bar)); bottom: auto; transform: none;
