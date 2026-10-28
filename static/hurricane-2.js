@@ -196,6 +196,7 @@
     // the panel is the scheme's main colour, its text white or black: whichever reads better on it (a scheme
     // can name its own text colour as "text")
     page.style.setProperty("--panel-bg", ground);
+    page.style.setProperty("--scheme-light", s.light);   // the arrows and "close"
     // links light up in the scheme's light colour (or its own "hover", where that would be the text colour)
     document.documentElement.style.setProperty("--hover", s.hover || s.light);
     page.style.setProperty("--panel-bg-80", `rgba(${hex(ground).map((v) => Math.round(v * 255)).join(", ")}, .925)`);   // 92.5%

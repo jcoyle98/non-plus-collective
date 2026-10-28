@@ -2693,3 +2693,8 @@ html.phone .eye[data-intro] .eye-menu .eye-featured { display: inline-flex; }
 html.phone .eye:not([data-intro]) .eye-menu .eye-featured { display: none; }   /* once something's open: Work and Directory only */
 html.phone .eye[data-intro] .eye-menu a:not(.eye-featured) { display: none; }
 html.phone .eye[data-intro] .eye-boxes { top: 50% !important; transform: translateY(-50%); }
+
+/* < > and "close" in the colour scheme's light colour; on hover they turn the text colour (the usual hover
+   colour is that same light one) */
+.eye a.eye-step, .eye a.eye-close { color: var(--scheme-light, #fff); }
+.eye a.eye-step:hover, .eye a.eye-close:hover { color: var(--panel-fg, #fff) !important; }
