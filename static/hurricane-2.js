@@ -89,6 +89,7 @@
   // random, and "non plus" brings the featured piece back. It is never in the Work list or the shuffle.
   const featured = sections.filter((s) => s.dataset.panel.startsWith("f-")).map((s) => s.dataset.panel);
   const flow = [...featured, ...works];
+  let opened = false;
   function open(name, record = true) {
     if (name === "featured") name = flow[0] || "";   // "Featured" (phones' first screen): the newest featured piece
     const known = sections.some((s) => s.dataset.panel === name);
@@ -97,8 +98,10 @@
     panel.hidden = !name;
     panel.scrollTop = 0;
     page.dataset.open = name;
-    // a phone shows its first screen ("non plus", Featured) while nothing is open
-    page.toggleAttribute("data-intro", isPhone && !name);
+    // a phone shows its first screen ("non plus", Featured) only until something is first opened; after that,
+    // closing a panel leaves "non plus" with Work and Directory at the top
+    if (name) opened = true;
+    page.toggleAttribute("data-intro", isPhone && !name && !opened);
     page.querySelectorAll(".eye-menu a").forEach((a) => {
       const on = name === a.dataset.open;   // "Work" is lit only for the list, not in the flow
       a.toggleAttribute("aria-current", on);
