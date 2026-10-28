@@ -256,3 +256,28 @@ def load_archive(folder):
     """Every piece in the folder, newest first."""
     pieces = [parse_piece(p) for p in sorted(Path(folder).glob("*.txt"))]
     return sorted(pieces, key=lambda p: (p["when"] or date.min), reverse=True)
+
+
+def load_featured(folder, pieces):
+    """Featured pieces (content/featured/*.txt): several works shown together as one article, under a title of
+    their own. Each file: the title, a blank line, then the works in order, one slug per line. Newest first."""
+    by_slug = {p["slug"]: p for p in pieces}
+    featured = []
+    for path in sorted(Path(folder).glob("[0-9]*.txt")):
+        title, _, rest = path.read_text(encoding="utf-8").strip().partition("\n")
+        works = []
+        for slug in (l.strip() for l in rest.splitlines()):
+            if not slug:
+                continue
+            if slug in by_slug:
+                works.append(by_slug[slug])
+            else:
+                print(f"  warning: {path.name}: no work called {slug!r} in the archive")
+        m = DATE_PREFIX_RE.match(path.stem)
+        featured.append({
+            "slug": DATE_PREFIX_RE.sub("", path.stem),
+            "title": title.strip(),
+            "when": date.fromisoformat(m.group(1)) if m else date.min,
+            "works": works,
+        })
+    return sorted(featured, key=lambda f: f["when"], reverse=True)

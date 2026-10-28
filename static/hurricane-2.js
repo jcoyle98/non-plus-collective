@@ -83,6 +83,10 @@
   // the works, newest first. The site opens on the newest, in the "flow": a work with < and > for another,
   // at random. "Work" in the menu opens the list of every work, by title.
   const works = sections.filter((s) => s.dataset.panel.startsWith("w-")).map((s) => s.dataset.panel);
+  // the flow goes through the works and the featured pieces (several works as one, newest first); featured
+  // pieces are reached only this way, never from the Work list
+  const featured = sections.filter((s) => s.dataset.panel.startsWith("f-")).map((s) => s.dataset.panel);
+  const flow = [...featured, ...works];
   function open(name, record = true) {
     const known = sections.some((s) => s.dataset.panel === name);
     name = known ? name : "";
@@ -99,7 +103,7 @@
   }
   // < and >: another work, chosen at random (never the one showing)
   function step() {
-    const others = works.filter((w) => w !== page.dataset.open);
+    const others = flow.filter((w) => w !== page.dataset.open);
     if (others.length) open(others[Math.floor(Math.random() * others.length)]);
   }
   page.addEventListener("click", (e) => {
@@ -112,7 +116,7 @@
   // a swipe to scroll the text is not a click.)
   const phoneSized = matchMedia("(max-width: 700px)");
   page.addEventListener("click", (e) => {
-    if (!phoneSized.matches || !page.dataset.open.startsWith("w-")) return;
+    if (!phoneSized.matches || !/^[wf]-/.test(page.dataset.open)) return;
     if (e.clientY < innerHeight / 2) return;
     if (e.target.closest("a, button, iframe, video, audio, input, select, textarea, label, [role=button], .bc-card, .eye-boxes")) return;
     if (String(getSelection()).length) return;   // not when choosing text to copy
@@ -132,9 +136,11 @@
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
 
-  // every visit (and every reload) starts in the flow, on the newest work, whatever the address says
-  open(works[0] || "", false);
-  history.replaceState(null, "", works[0] ? `#${works[0]}` : location.pathname);
+  // every visit (and every reload) starts in the flow, on the newest featured piece (or else the newest work),
+  // whatever the address says
+  const start = flow[0] || "";
+  open(start, false);
+  history.replaceState(null, "", start ? `#${start}` : location.pathname);
 
   // "non plus" is a link to the colours: each click steps to the next scheme (the photograph's two colours
   // and the ground behind it), and shuffles which colour belongs to which author
@@ -145,11 +151,17 @@
     { dark: "#722b35", light: "#cfa98d" },                  // oxblood and rose
     { dark: "#100d12", light: "#e8c273" },                  // umber and gold
     { dark: "#1e1d19", light: "#abac88" },                  // moss and sage
-    { dark: "#000000", light: "#ffffff" },                  // original
+    { dark: "#000000", light: "#ffffff", hover: "#9a9a9a" },   // original (white text: a grey hover)
     { dark: "#a43434", light: "#e1b867" },                  // red and gold
     { dark: "#43396a", light: "#8ec6ab" },                  // violet and mint
   ];
   const hex = (h) => [1, 3, 5].map((i) => (parseInt(h.slice(i, i + 2), 16) / 255).toFixed(3));
+  const luminance = (h) => {
+    const [r, g, b] = hex(h).map(Number).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  const contrast = (a, b) => { const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+  const readable = (ground) => (contrast("#ffffff", ground) >= contrast("#000000", ground) ? "#ffffff" : "#000000");
   const funcs = ["feFuncR", "feFuncG", "feFuncB"].map((f) => document.querySelector(`#eye-night-blue ${f}`));
   // every coloured thing, keyed by the colour it started with (which says whose it is)
   const painted = [...page.querySelectorAll('[style*="--dot"], .eye-people a[style*="--c"]')].map((el) => ({
@@ -163,7 +175,15 @@
     scheme = (k + SCHEMES.length) % SCHEMES.length;
     const s = SCHEMES[scheme], d = hex(s.dark), l = hex(s.light);
     funcs.forEach((f, i) => f && f.setAttribute("tableValues", `${d[i]} ${l[i]}`));
-    document.body.style.background = s.bg || s.dark;
+    const ground = s.bg || s.dark;
+    document.body.style.background = ground;
+    // the panel is the scheme's main colour, its text white or black: whichever reads better on it (a scheme
+    // can name its own text colour as "text")
+    page.style.setProperty("--panel-bg", ground);
+    // links light up in the scheme's light colour (or its own "hover", where that would be the text colour)
+    document.documentElement.style.setProperty("--hover", s.hover || s.light);
+    page.style.setProperty("--panel-bg-80", `rgba(${hex(ground).map((v) => Math.round(v * 255)).join(", ")}, .95)`);   // 95%
+    page.style.setProperty("--panel-fg", s.text || readable(ground));
     photo.style.filter = "none"; void photo.offsetWidth; photo.style.filter = "";   // repaint with the new colours
     // a new owner for each colour
     const shuffled = palette.slice();
@@ -175,6 +195,11 @@
   setScheme(Math.floor(Math.random() * SCHEMES.length));
 
   const mark = page.querySelector(".eye-mark");
-  mark.addEventListener("click", nextScheme);
-  mark.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); nextScheme(); } });
+  // "non plus" also brings back the featured piece (the newest), wherever you are
+  function home() {
+    nextScheme();
+    if (flow[0] && page.dataset.open !== flow[0]) open(flow[0]);
+  }
+  mark.addEventListener("click", home);
+  mark.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); home(); } });
 })();

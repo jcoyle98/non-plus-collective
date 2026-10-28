@@ -2458,7 +2458,7 @@ body.humanize:has(main.hz3) { background: #180826; color: #ffffff; overflow: hid
    Hurricane 2.0 (templates/draft-hurricane-2.html, static/hurricane-2.js): Hurricane Gracie filling the
    window, a black box over its eye with "non plus" and the menu, and a black panel on the left for what the
    menu opens (the Directory, the Work list and the pieces, set as on Humanize 2.0). */
-body.humanize:has(main.eye) { background: #180826; color: #fff; overflow: hidden; overscroll-behavior: none; }
+body.humanize:has(main.eye) { background: #180826; color: var(--panel-fg, #fff); overflow: hidden; overscroll-behavior: none; }
 .eye-filters { position: absolute; pointer-events: none; }
 .eye-photo { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover;
   filter: url(#eye-night-blue) contrast(1.3); opacity: .2; }   /* Humanize's night and blue, at 20%: the text comes first */
@@ -2471,7 +2471,7 @@ body.humanize:has(main.eye) { background: #180826; color: #fff; overflow: hidden
   font-family: "EB Garamond", Garamond, Georgia, serif;
   font-style: normal;
 }
-.eye-box { margin: 0; padding: 0; color: #fff; }   /* no box: white text on the photograph */
+.eye-box { margin: 0; padding: 0; color: var(--panel-fg, #fff); }   /* no box: the scheme's text colour on the photograph */
 .eye-mark {
   /* Humanize's "non plus": IM Fell English italic */
   margin: 0 0 .5rem;
@@ -2484,8 +2484,8 @@ body.humanize:has(main.eye) { background: #180826; color: #fff; overflow: hidden
 }
 /* the menu under "non plus", from its left edge */
 .eye-menu { display: flex; justify-content: flex-start; gap: 1.4rem; padding-left: .15em; font-family: "Cardo", "Times New Roman", serif; font-size: clamp(1rem, 1.3vw, 1.2rem); }
-.eye a { color: #fff; text-decoration: none; transition: color .15s; }
-.eye a:hover, .eye a[aria-current] { color: #6da7d0; }
+.eye a { color: var(--panel-fg, #fff); text-decoration: none; transition: color .15s; }
+.eye a:hover, .eye a[aria-current] { color: var(--hover, #6da7d0); }
 .eye-panel {
   /* a fixed width; as tall as what it shows (up to the full height, then it scrolls); centred top to bottom, on the left */
   position: fixed;
@@ -2503,8 +2503,8 @@ body.humanize:has(main.eye) { background: #180826; color: #fff; overflow: hidden
   overflow-x: hidden;
   overscroll-behavior: contain;
   padding: 2.4rem 2.4rem 3rem;
-  background: #000;
-  color: #fff;
+  background: var(--panel-bg-80, rgba(0, 0, 0, .95));   /* the colour scheme's main colour at 95% (hurricane-2.js); square corners */
+  color: var(--panel-fg, #fff);        /* white or black, whichever reads on it */
   font-family: "Cardo", "Times New Roman", serif;
   font-style: normal;
   font-size: 1.15rem;
@@ -2559,8 +2559,8 @@ body.humanize:has(main.eye) { background: #180826; color: #fff; overflow: hidden
 }
 .eye-prev { left: var(--panel-left); }
 .eye-next { left: calc(var(--panel-right, calc(var(--panel-left) + var(--panel-width))) - 2.9rem); }
-.eye[data-open^="w-"] .eye-step { display: block; }
-.eye[data-open^="w-"] .eye-panel { padding-left: 3.2rem; padding-right: 3.2rem; }
+.eye[data-open^="w-"] .eye-step, .eye[data-open^="f-"] .eye-step { display: block; }
+.eye[data-open^="w-"] .eye-panel, .eye[data-open^="f-"] .eye-panel { padding-left: 3.2rem; padding-right: 3.2rem; }
 /* each author's colour, as a small circle by their name */
 .dot { display: inline-block; width: .6em; height: .6em; border-radius: 50%; background: var(--dot); margin-right: .55em; vertical-align: .05em; }
 .eye-works .dot { margin: 0 0 0 .7em; }   /* after the title */
@@ -2600,17 +2600,17 @@ body.humanize:has(main.eye) { background: #180826; color: #fff; overflow: hidden
 }
 /* every link on Hurricane 2.0: never underlined, turning blue on hover (beats Humanize's underline) */
 .eye a, .eye a:hover, .eye a:focus-visible { text-decoration: none; }
-.eye a:hover, .eye .eye-people a:hover, .eye .bc-side a:hover { color: #6da7d0; }
+.eye a:hover, .eye .eye-people a:hover, .eye .bc-side a:hover { color: var(--hover, #6da7d0); }
 
 /* ---------------------------------------------------------------------------
    Links, everywhere on the site: never underlined; on hover they turn blue (Humanize's blue). Last in the
    file and marked important, so it wins over every page's own link styles. */
 a, a:hover, a:focus, a:focus-visible, a:active { text-decoration: none !important; }
-a:hover { color: #6da7d0 !important; }
+a:hover { color: var(--hover, #6da7d0) !important; }   /* Hurricane 2.0 sets --hover from its colour scheme */
 
 /* "non plus" is a link to the colours */
 .eye-mark[role="button"] { cursor: pointer; transition: color .15s; }
-.eye-mark[role="button"]:hover { color: #6da7d0; }
+.eye-mark[role="button"]:hover { color: var(--hover, #6da7d0); }
 .eye-mark[role="button"]:focus-visible { outline: 1px solid currentColor; outline-offset: 6px; }
 body.humanize:has(main.eye) { transition: background-color .4s; }
 
@@ -2619,8 +2619,8 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
 @media (max-width: 700px) {
   /* on a work the panel ends in a strip of its own for < and >: the text scrolls above it, never under them */
   .eye { --bar: 3.4rem; }
-  .eye[data-open^="w-"] .eye-panel { height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap) - var(--bar)); padding-bottom: 2rem; }
-  .eye[data-open^="w-"]::after {
+  .eye[data-open^="w-"] .eye-panel, .eye[data-open^="f-"] .eye-panel { height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap) - var(--bar)); padding-bottom: 2rem; }
+  .eye[data-open^="w-"]::after, .eye[data-open^="f-"]::after {
     content: "";
     position: fixed;
     left: var(--sheet-gap);
@@ -2628,16 +2628,16 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
     top: calc(var(--sheet-h) - var(--sheet-gap) - var(--bar));
     height: var(--bar);
     z-index: 1;   /* under the panel's layer, which holds the arrows */
-    background: #000;
+    background: var(--panel-bg-80, rgba(0, 0, 0, .95));
   }
   /* each arrow is the whole of its half of the strip, not just the sign */
   .eye .eye-step { top: calc(var(--sheet-h) - var(--sheet-gap) - var(--bar)); bottom: auto; transform: none;
     height: var(--bar); width: calc(50vw - var(--sheet-gap)); box-sizing: border-box;
     align-items: center; padding: 0 1.15rem; background: none; }
-  .eye[data-open^="w-"] .eye-step { display: flex; }
+  .eye[data-open^="w-"] .eye-step, .eye[data-open^="f-"] .eye-step { display: flex; }
   .eye .eye-prev { left: var(--sheet-gap); right: auto; justify-content: flex-start; }
   .eye .eye-next { left: auto; right: var(--sheet-gap); justify-content: flex-end; }
-  .eye .eye-panel, .eye[data-open^="w-"] .eye-panel { padding-left: 1.15rem; padding-right: 1.15rem; }   /* the text close to the box's edges */
+  .eye .eye-panel, .eye[data-open^="w-"] .eye-panel, .eye[data-open^="f-"] .eye-panel { padding-left: 1.15rem; padding-right: 1.15rem; }   /* the text close to the box's edges */
   .eye .eye-close { display: none; }   /* no "close" on phones */
 }
 
@@ -2661,10 +2661,22 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
 /* framed, on phones: the strip for < and > sits inside the frame, at the foot of the panel, rather than
    hanging below it */
 @media (max-width: 700px) {
-  .eye-framed[data-open^="w-"] .eye-panel { height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap)); padding-bottom: calc(var(--bar) + 1rem); }
-  .eye-framed[data-open^="w-"]::after { left: calc(var(--sheet-gap) + 22px); right: calc(var(--sheet-gap) + 22px);
+  .eye-framed[data-open^="w-"] .eye-panel, .eye-framed[data-open^="f-"] .eye-panel { height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap)); padding-bottom: calc(var(--bar) + 1rem); }
+  .eye-framed[data-open^="w-"]::after, .eye-framed[data-open^="f-"]::after { left: calc(var(--sheet-gap) + 22px); right: calc(var(--sheet-gap) + 22px);
     top: calc(var(--sheet-h) - var(--sheet-gap) - 22px - var(--bar)); z-index: 2; }
   .eye-framed .eye-step { top: calc(var(--sheet-h) - var(--sheet-gap) - 22px - var(--bar)); width: calc(50vw - var(--sheet-gap) - 22px); }
   .eye-framed .eye-prev { left: calc(var(--sheet-gap) + 22px); }
   .eye-framed .eye-next { right: calc(var(--sheet-gap) + 22px); }
+}
+
+/* a featured piece (several works as one, under a title of their own): the overall title largest, each work's
+   own title a step down, with plenty of room between the works; each keeps its date and author at its foot */
+.eye-panel .featured > header { margin-bottom: 2.6rem; }
+.eye-panel .featured .feat-title { font-size: 2.6rem; line-height: 1.12; }
+.eye-panel .featured .feat-part .humanize-article .hz-piece-title { font-size: 1.6rem; }
+.eye-panel .featured .feat-part + .feat-part { margin-top: 5.5rem; }
+@media (max-width: 700px) {
+  .eye-panel .featured .feat-title { font-size: 2.1rem; }
+  .eye-panel .featured .feat-part .humanize-article .hz-piece-title { font-size: 1.45rem; }
+  .eye-panel .featured .feat-part + .feat-part { margin-top: 4rem; }
 }

@@ -34,7 +34,7 @@ def piece_html(p):
     return p["html"]
 
 
-def hz_article(p, back, author_at_foot=False):
+def hz_article(p, back, author_at_foot=False, heading_id=None):
     """A piece as Humanize 2.0 shows it, laid out like Desiring Machines: the title, its subtitle, the author,
     an epigraph, the text (a poem, or prose set like a book), and along the foot the way back and the date."""
     subtitle = f'<p class="subtitle">{writing.inline(p["subtitle"])}</p>\n' if p["subtitle"] else ""
@@ -50,10 +50,10 @@ def hz_article(p, back, author_at_foot=False):
     elif date:
         date = f'<span class="hz-date">{date}</span>'
     if p["kind"] == "music":   # the card carries the title itself
-        return (f'<article class="humanize-article music">\n<h2 class="visually-hidden" id="hz-t-{p["slug"]}">{html.escape(p["title"])}</h2>\n'
+        return (f'<article class="humanize-article music">\n<h2 class="visually-hidden" id="{heading_id or "hz-t-" + p["slug"]}">{html.escape(p["title"])}</h2>\n'
                 f'{p["html"]}\n<footer class="hz-foot">{back}{date}</footer>\n</article>')
     return (f'<article class="humanize-article {kind}">\n<header>\n'
-            f'<h2 class="hz-piece-title" id="hz-t-{p["slug"]}">{html.escape(p["title"])}</h2>\n{subtitle}'
+            f'<h2 class="hz-piece-title" id="{heading_id or "hz-t-" + p["slug"]}">{html.escape(p["title"])}</h2>\n{subtitle}'
             + ("" if author_at_foot else f'<p class="humanize-byline">{author_html(p)}</p>\n') + '</header>\n'
             f'{epigraph}<div class="hz-poem">\n{p["html"]}\n</div>\n'
             f'<footer class="hz-foot">{back}{date}</footer>\n</article>')
@@ -199,6 +199,20 @@ def build():
         f'<li><a href="#w-{p["slug"]}" data-open="w-{p["slug"]}">{html.escape(p["title"])}</a>{dot(p["author"])}</li>'
         for p in sorted(hz_archive, key=lambda p: p["title"].lower())
     )
+    def feat_part(f, p):
+        """One work within a featured piece: as on its own, with its date and author at its foot."""
+        heading = "hz-f-" + f["slug"] + "-" + p["slug"]
+        return '<div class="feat-part">\n' + hz_article(p, "", author_at_foot=True, heading_id=heading) + '\n</div>'
+
+    # featured: several works as one article under a title of their own (content/featured/); in the flow only
+    featured = writing.load_featured(ROOT / "content" / "featured", pieces)
+    eye_featured = "\n".join(
+        f'<section class="eye-section hz-reading" data-panel="f-{f["slug"]}" hidden>\n'
+        f'<article class="humanize-article featured">\n<header><h2 class="hz-piece-title feat-title">{html.escape(f["title"])}</h2></header>\n'
+        + "\n".join(feat_part(f, p) for p in f["works"])
+        + "\n</article>\n</section>"
+        for f in featured
+    )
     eye_pieces = "\n".join(
         f'<section class="eye-section hz-reading" data-panel="w-{p["slug"]}" hidden>\n'
         + hz_article(p, "", author_at_foot=True) + "\n</section>"
@@ -266,7 +280,7 @@ def build():
             archive_page_final=render("archive-page.html", root=root, sites=sites, archive_index=archive_index, archive_pieces=archive_pieces,
                                       main_attrs=f' style="{FINAL_SETTINGS}"'),
             humanize_background=render("humanize-background.html", root=root), humanize_works=humanize_works,
-            hz_works=hz_works, hz_directory=hz_directory, hz_pieces=hz_pieces, hz3_pieces=hz3_pieces, eye_works=eye_works, eye_pieces=eye_pieces, eye_directory=eye_directory,
+            hz_works=hz_works, hz_directory=hz_directory, hz_pieces=hz_pieces, hz3_pieces=hz3_pieces, eye_works=eye_works, eye_pieces=eye_pieces, eye_featured=eye_featured, eye_directory=eye_directory,
             onepager_works=onepager_works, onepager_background=render("one-pager-background.html", root=root),
         ), scripts)
 
