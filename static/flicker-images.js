@@ -556,21 +556,6 @@ window.FLICKER_IMAGES = [
 "source": "https://commons.wikimedia.org/wiki/File:Page_from_%22The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures%22.jpg"
 },
 {
-"f": "112.jpg",
-"credit": "The anatomy of the human gravid uterus exhibited in figures Wellcome L0050943. Unknown, CC BY 4.0",
-"source": "https://commons.wikimedia.org/wiki/File:The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures_Wellcome_L0050943.jpg"
-},
-{
-"f": "113.jpg",
-"credit": "The anatomy of the human gravid uterus exhibited in figures Wellcome L0050946. Unknown, CC BY 4.0",
-"source": "https://commons.wikimedia.org/wiki/File:The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures_Wellcome_L0050946.jpg"
-},
-{
-"f": "114.jpg",
-"credit": "The anatomy of the human gravid uterus exhibited in figures Wellcome L0050958. Unknown, CC BY 4.0",
-"source": "https://commons.wikimedia.org/wiki/File:The_anatomy_of_the_human_gravid_uterus_exhibited_in_figures_Wellcome_L0050958.jpg"
-},
-{
 "f": "115.jpg",
 "credit": "Da Vinci Studies of Embryos Luc Viatour. Leonardo da Vinci, Public domain",
 "source": "https://commons.wikimedia.org/wiki/File:Da_Vinci_Studies_of_Embryos_Luc_Viatour.jpg"
@@ -659,11 +644,6 @@ window.FLICKER_IMAGES = [
 "f": "132.jpg",
 "credit": "Plate V. Diagrammatic longitudinal sections of different embryos. Haeckel, Ernst Heinrich Philipp August, Public domain",
 "source": "https://commons.wikimedia.org/wiki/File:Plate_V._Diagrammatic_longitudinal_sections_of_different_embryos.jpg"
-},
-{
-"f": "133.jpg",
-"credit": "A child born with the viscera reversed. Engraving, 1749. Wellcome V0007821. Unknown, CC BY 4.0",
-"source": "https://commons.wikimedia.org/wiki/File:A_child_born_with_the_viscera_reversed._Engraving,_1749._Wellcome_V0007821.jpg"
 },
 {
 "f": "134.jpg",
