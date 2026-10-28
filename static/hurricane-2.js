@@ -146,14 +146,14 @@
   // the ground behind them, and the authors' gradient)
   const SCHEMES = [   // the dark ones from the other drafts (white text stays readable on all of them)
     { dark: "#0c0513", light: "#6da7d0", bg: "#180826" },   // night and blue
-    { dark: "#274a49", light: "#e0c9e3" },                  // teal and lilac
-    { dark: "#3d4e78", light: "#d0ccbd" },                  // navy and bone
-    { dark: "#722b35", light: "#cfa98d" },                  // oxblood and rose
+    { dark: "#274a49", light: "#e0c9e3", accent: "#609c98" }, // teal and lilac
+    { dark: "#3d4e78", light: "#d0ccbd", accent: "#7e94c5" }, // navy and bone
+    { dark: "#722b35", light: "#cfa98d", accent: "#c86f7c" }, // oxblood and rose
     { dark: "#100d12", light: "#e8c273" },                  // umber and gold
     { dark: "#1e1d19", light: "#abac88" },                  // moss and sage
-    { dark: "#000000", light: "#ffffff", hover: "#9a9a9a" },   // original (white text: a grey hover)
-    { dark: "#a43434", light: "#e1b867" },                  // red and gold
-    { dark: "#43396a", light: "#8ec6ab" },                  // violet and mint
+    { dark: "#000000", light: "#ffffff", accent: "#9b9b9b", hover: "#9a9a9a" }, // original
+    { dark: "#a43434", light: "#e1b867", accent: "#d87979" }, // red and gold
+    { dark: "#43396a", light: "#8ec6ab", accent: "#a397d0" }, // violet and mint
   ];
   const hex = (h) => [1, 3, 5].map((i) => (parseInt(h.slice(i, i + 2), 16) / 255).toFixed(3));
   const luminance = (h) => {
@@ -171,9 +171,9 @@
   const toHex = (rgb) => "#" + rgb.map((v) => Math.round(v * 255).toString(16).padStart(2, "0")).join("");
   const mix = (a, b, t) => toHex(hex(a).map(Number).map((v, i) => v + (Number(hex(b)[i]) - v) * t));
   function shades(s) {
-    const top = mix(s.light, "#ffffff", 0.7);
-    // a colour already near white deepens towards grey instead, so the gradient still shows
-    const bottom = luminance(s.light) > 0.8 ? mix(s.light, "#000000", 0.45) : s.light;
+    const bottom = s.accent || s.light;
+    // A visibly coloured light tint at the top, deepening to the background's dominant accent.
+    const top = mix(bottom, "#ffffff", 0.45);
     const n = Math.max(members.length - 1, 1);
     return { at: new Map(members.map((m, i) => [m, mix(top, bottom, i / n)])), rest: bottom };
   }
@@ -198,6 +198,8 @@
     authored.forEach((el) => {
       const c = at.get(el.dataset.author) || rest;
       el.style.color = c;
+      el.style.setProperty("--c", c);
+      el.style.setProperty("--c-hover", mix(c, "#ffffff", .3));
     });
   }
   // every visit opens on a scheme of its own, at random
