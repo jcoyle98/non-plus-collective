@@ -83,8 +83,9 @@ def static_version():
 
 PAGES = [
     # (output folder, menu label, content template, title, scripts)
-    # the home page is Hurricane 2.0 (also at /hurricane-2/); the old one, the turning barred S, is at /barred-s/
-    ("", "Humanize", "draft-hurricane-2.html", None, ["flicker-images.js", "photo-deck.js", "hurricane-2.js"]),
+    # the home page is no-box (also at /no-box/; Hurricane 2.0 with its box is at /hurricane-2/); the old one,
+    # the turning barred S, is at /barred-s/
+    ("", "Humanize", "draft-hurricane-2-bare.html", None, ["flicker-images.js", "photo-deck.js", "hurricane-2.js"]),
     ("directory", "Directory", "directory.html", "Directory", []),
     # Designs: built like any page but with no menu, and left out of everyone else's,
     # so only a link reaches them; /design lists them all (and /drafts, its old
