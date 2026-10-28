@@ -5,6 +5,8 @@
 (function () {
   const page = document.querySelector("main.eye");
   if (!page) return;
+  // a phone (decided in the page's first line, by its browser rather than the window's size)
+  const isPhone = document.documentElement.classList.contains("phone");
   const photo = page.querySelector(".eye-photo");
   const box = page.querySelector(".eye-boxes");
   const panel = page.querySelector(".eye-panel");
@@ -55,7 +57,7 @@
   // the panel fills the space between the left edge of the screen and "non plus", with an even margin each
   // side, and sits in the middle of it up and down.
   // On phones it is the sheet along the bottom instead (the stylesheet's).
-  const narrow = matchMedia("(max-width: 700px)");
+  const narrow = { matches: isPhone };
   function fitPanel(titleLeft) {
     if (narrow.matches) {
       ["left", "width"].forEach((p) => panel.style.removeProperty(p));
@@ -88,12 +90,15 @@
   const featured = sections.filter((s) => s.dataset.panel.startsWith("f-")).map((s) => s.dataset.panel);
   const flow = [...featured, ...works];
   function open(name, record = true) {
+    if (name === "featured") name = flow[0] || "";   // "Featured" (phones' first screen): the newest featured piece
     const known = sections.some((s) => s.dataset.panel === name);
     name = known ? name : "";
     sections.forEach((s) => { s.hidden = s.dataset.panel !== name; });
     panel.hidden = !name;
     panel.scrollTop = 0;
     page.dataset.open = name;
+    // a phone shows its first screen ("non plus", Featured) while nothing is open
+    page.toggleAttribute("data-intro", isPhone && !name);
     page.querySelectorAll(".eye-menu a").forEach((a) => {
       const on = name === a.dataset.open;   // "Work" is lit only for the list, not in the flow
       a.toggleAttribute("aria-current", on);
@@ -114,7 +119,7 @@
   // on a phone, a tap anywhere in the lower half of the screen does the same (left half <, right half >),
   // except on anything that does something of its own: a link, a button, a player or an embed. (A tap only:
   // a swipe to scroll the text is not a click.)
-  const phoneSized = matchMedia("(max-width: 700px)");
+  const phoneSized = { matches: isPhone };
   page.addEventListener("click", (e) => {
     if (!phoneSized.matches || !/^[wf]-/.test(page.dataset.open)) return;
     if (e.clientY < innerHeight / 2) return;
@@ -138,7 +143,7 @@
 
   // every visit (and every reload) starts in the flow, on the newest featured piece (or else the newest work),
   // whatever the address says
-  const start = flow[0] || "";
+  const start = isPhone ? "" : flow[0] || "";   // a phone starts on its first screen
   open(start, false);
   history.replaceState(null, "", start ? `#${start}` : location.pathname);
 
@@ -190,7 +195,7 @@
     page.style.setProperty("--panel-bg", ground);
     // links light up in the scheme's light colour (or its own "hover", where that would be the text colour)
     document.documentElement.style.setProperty("--hover", s.hover || s.light);
-    page.style.setProperty("--panel-bg-80", `rgba(${hex(ground).map((v) => Math.round(v * 255)).join(", ")}, .9)`);   // 90% opacity
+    page.style.setProperty("--panel-bg-80", `rgba(${hex(ground).map((v) => Math.round(v * 255)).join(", ")}, .925)`);   // 92.5%
     page.style.setProperty("--panel-fg", s.text || readable(ground));
     photo.style.filter = "none"; void photo.offsetWidth; photo.style.filter = "";   // repaint with the new colours
     // the authors' shades, from this scheme (anyone not in the Directory takes the deepest)

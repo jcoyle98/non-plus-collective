@@ -2503,7 +2503,7 @@ body.humanize:has(main.eye) { background: #180826; color: var(--panel-fg, #fff);
   overflow-x: hidden;
   overscroll-behavior: contain;
   padding: 2.4rem 2.4rem 3rem;
-  background: var(--panel-bg-80, rgba(0, 0, 0, .9));   /* the colour scheme's main colour at 90% (hurricane-2.js); square corners */
+  background: var(--panel-bg-80, rgba(0, 0, 0, .925));   /* the colour scheme's main colour at 92.5% (hurricane-2.js); square corners */
   color: var(--panel-fg, #fff);        /* white or black, whichever reads on it */
   font-family: "Cardo", "Times New Roman", serif;
   font-style: normal;
@@ -2524,26 +2524,26 @@ body.humanize:has(main.eye) { background: #180826; color: var(--panel-fg, #fff);
 .eye-panel .humanize-article .hz-piece-title { font-size: 2rem; }
 .eye-panel .sequence .part-title { font-size: 1.5rem; }
 .eye-credit { position: fixed; right: 12px; bottom: 8px; z-index: 1; margin: 0; font: italic .7rem "EB Garamond", Georgia, serif; color: rgba(255, 255, 255, .6); }
-@media (max-width: 700px) {
+/* phones (html.phone, set by the page for a phone, whatever its size) */
   /* phones: the panel runs from just under the title block to a margin above the bottom of the screen
      (the visible screen, above the browser's own bars) */
   /* the same 12px below as at the sides, measured against the screen as it is now (dvh follows the browser's
      bars as they shrink and grow) */
-  .eye { --sheet-top: calc(env(safe-area-inset-top, 0px) + 5.9rem); --sheet-gap: 28px; --sheet-h: 100svh; }   /* a wider margin: more of the photograph */
-  @supports (height: 100dvh) { .eye { --sheet-h: 100dvh; } }
-  .eye-panel { width: auto; max-width: none; left: var(--sheet-gap); right: var(--sheet-gap); top: var(--sheet-top); bottom: auto; margin: 0;
+  html.phone .eye { --sheet-top: calc(env(safe-area-inset-top, 0px) + 5.9rem + 10px); --sheet-gap: 28px; --sheet-h: 100svh; }   /* a wider margin: more of the photograph */
+  @supports (height: 100dvh) { html.phone .eye { --sheet-h: 100dvh; } }
+  html.phone .eye-panel { width: auto; max-width: none; left: var(--sheet-gap); right: var(--sheet-gap); top: var(--sheet-top); bottom: auto; margin: 0;
     height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap)); max-height: none; padding: 2.8rem 1.4rem 4.6rem; }
 
   /* phones: "non plus", Work and Directory on one line across the top left, with tap targets at least 44px
      tall and room between them for fingers */
   /* "non plus" centred at the top, Work and Directory centred under it (tap targets 44px tall) */
-  .eye-boxes { left: 0 !important; right: 0; top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+  html.phone .eye-boxes { left: 0 !important; right: 0; top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
     display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .eye-mark { font-size: 2rem; margin: 0; }
-  .eye-menu { font-size: 1rem; gap: 0; padding-left: 0; justify-content: center; }   /* closer: the tap areas (padding) still keep them apart */
-  .eye-menu a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .6rem; }
-  .eye-credit { display: none; }
-}
+  html.phone .eye-mark { font-size: 2rem; margin: 0; }
+  html.phone .eye-menu { font-size: 1rem; gap: 0; padding-left: 0; justify-content: center; }   /* closer: the tap areas (padding) still keep them apart */
+  html.phone .eye-menu a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .6rem; }
+  html.phone .eye-credit { display: none; }
+
 .eye-panel .hz-by { font-size: .8em; opacity: .75; font-style: normal; }   /* the author: small, under the date */
 /* on a work, < and > halfway down the panel's left and right edges bring another (staying put while the work
    scrolls); "close" stays at the top */
@@ -2619,11 +2619,11 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
 
 /* Hurricane 2.0 on phones, last so it wins over the rules above: < and > in the panel's bottom corners (on a
    black ground, so the text scrolling under them doesn't show), leaving the text the full width */
-@media (max-width: 700px) {
+/* phones (html.phone, set by the page for a phone, whatever its size) */
   /* on a work the panel ends in a strip of its own for < and >: the text scrolls above it, never under them */
-  .eye { --bar: 3.4rem; }
-  .eye[data-open^="w-"] .eye-panel, .eye[data-open^="f-"] .eye-panel { height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap) - var(--bar)); padding-bottom: 2rem; }
-  .eye[data-open^="w-"]::after, .eye[data-open^="f-"]::after {
+  html.phone .eye { --bar: 3.4rem; }
+  html.phone .eye[data-open^="w-"] .eye-panel, html.phone .eye[data-open^="f-"] .eye-panel { height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap) - var(--bar)); padding-bottom: 2rem; }
+  html.phone .eye[data-open^="w-"]::after, html.phone .eye[data-open^="f-"]::after {
     content: "";
     position: fixed;
     left: var(--sheet-gap);
@@ -2631,18 +2631,18 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
     top: calc(var(--sheet-h) - var(--sheet-gap) - var(--bar));
     height: var(--bar);
     z-index: 1;   /* under the panel's layer, which holds the arrows */
-    background: var(--panel-bg-80, rgba(0, 0, 0, .9));
+    background: var(--panel-bg-80, rgba(0, 0, 0, .925));
   }
   /* each arrow is the whole of its half of the strip, not just the sign */
-  .eye .eye-step { top: calc(var(--sheet-h) - var(--sheet-gap) - var(--bar)); bottom: auto; transform: none;
+  html.phone .eye .eye-step { top: calc(var(--sheet-h) - var(--sheet-gap) - var(--bar)); bottom: auto; transform: none;
     height: var(--bar); width: calc(50vw - var(--sheet-gap)); box-sizing: border-box;
     align-items: center; padding: 0 1.15rem; background: none; }
-  .eye[data-open^="w-"] .eye-step, .eye[data-open^="f-"] .eye-step { display: flex; }
-  .eye .eye-prev { left: var(--sheet-gap); right: auto; justify-content: flex-start; }
-  .eye .eye-next { left: auto; right: var(--sheet-gap); justify-content: flex-end; }
-  .eye .eye-panel, .eye[data-open^="w-"] .eye-panel, .eye[data-open^="f-"] .eye-panel { padding-left: 1.15rem; padding-right: 1.15rem; }   /* the text close to the box's edges */
-  .eye .eye-close { display: none; }   /* no "close" on phones */
-}
+  html.phone .eye[data-open^="w-"] .eye-step, html.phone .eye[data-open^="f-"] .eye-step { display: flex; }
+  html.phone .eye .eye-prev { left: var(--sheet-gap); right: auto; justify-content: flex-start; }
+  html.phone .eye .eye-next { left: auto; right: var(--sheet-gap); justify-content: flex-end; }
+  html.phone .eye .eye-panel, html.phone .eye[data-open^="w-"] .eye-panel, html.phone .eye[data-open^="f-"] .eye-panel { padding-left: 1.15rem; padding-right: 1.15rem; }   /* the text close to the box's edges */
+  html.phone .eye .eye-close { display: none; }   /* no "close" on phones */
+
 
 /* ---------------------------------------------------------------------------
    Hurricane 2.0, framed (templates/draft-hurricane-2-frame.html): Hurricane 2.0 with its black panel in a gilt
@@ -2657,20 +2657,20 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
   padding: 1.9rem 2rem 2.4rem;
 }
 .eye-framed .eye-close { top: .5rem; right: .8rem; }
-@media (max-width: 700px) {
-  .eye-framed .eye-panel { border-width: 22px; border-image-width: 22px; padding: 2.2rem 1rem 3.6rem; }
-}
+/* phones (html.phone, set by the page for a phone, whatever its size) */
+  html.phone .eye-framed .eye-panel { border-width: 22px; border-image-width: 22px; padding: 2.2rem 1rem 3.6rem; }
+
 
 /* framed, on phones: the strip for < and > sits inside the frame, at the foot of the panel, rather than
    hanging below it */
-@media (max-width: 700px) {
-  .eye-framed[data-open^="w-"] .eye-panel, .eye-framed[data-open^="f-"] .eye-panel { height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap)); padding-bottom: calc(var(--bar) + 1rem); }
-  .eye-framed[data-open^="w-"]::after, .eye-framed[data-open^="f-"]::after { left: calc(var(--sheet-gap) + 22px); right: calc(var(--sheet-gap) + 22px);
+/* phones (html.phone, set by the page for a phone, whatever its size) */
+  html.phone .eye-framed[data-open^="w-"] .eye-panel, html.phone .eye-framed[data-open^="f-"] .eye-panel { height: calc(var(--sheet-h) - var(--sheet-top) - var(--sheet-gap)); padding-bottom: calc(var(--bar) + 1rem); }
+  html.phone .eye-framed[data-open^="w-"]::after, html.phone .eye-framed[data-open^="f-"]::after { left: calc(var(--sheet-gap) + 22px); right: calc(var(--sheet-gap) + 22px);
     top: calc(var(--sheet-h) - var(--sheet-gap) - 22px - var(--bar)); z-index: 2; }
-  .eye-framed .eye-step { top: calc(var(--sheet-h) - var(--sheet-gap) - 22px - var(--bar)); width: calc(50vw - var(--sheet-gap) - 22px); }
-  .eye-framed .eye-prev { left: calc(var(--sheet-gap) + 22px); }
-  .eye-framed .eye-next { right: calc(var(--sheet-gap) + 22px); }
-}
+  html.phone .eye-framed .eye-step { top: calc(var(--sheet-h) - var(--sheet-gap) - 22px - var(--bar)); width: calc(50vw - var(--sheet-gap) - 22px); }
+  html.phone .eye-framed .eye-prev { left: calc(var(--sheet-gap) + 22px); }
+  html.phone .eye-framed .eye-next { right: calc(var(--sheet-gap) + 22px); }
+
 
 /* a featured piece (several works as one, under a title of their own): the overall title largest, each work's
    own title a step down, with plenty of room between the works; each keeps its date and author at its foot */
@@ -2678,10 +2678,18 @@ body.humanize:has(main.eye) { transition: background-color .4s; }
 .eye-panel .featured .feat-title { font-size: 2.6rem; line-height: 1.12; }
 .eye-panel .featured .feat-part .humanize-article .hz-piece-title { font-size: 1.6rem; }
 .eye-panel .featured .feat-part + .feat-part { margin-top: 5.5rem; }
-@media (max-width: 700px) {
-  .eye-panel .featured .feat-title { font-size: 2.1rem; }
-  .eye-panel .featured .feat-part .humanize-article .hz-piece-title { font-size: 1.45rem; }
-  .eye-panel .featured .feat-part + .feat-part { margin-top: 4rem; }
-}
+/* phones (html.phone, set by the page for a phone, whatever its size) */
+  html.phone .eye-panel .featured .feat-title { font-size: 2.1rem; }
+  html.phone .eye-panel .featured .feat-part .humanize-article .hz-piece-title { font-size: 1.45rem; }
+  html.phone .eye-panel .featured .feat-part + .feat-part { margin-top: 4rem; }
+
 .eye .hz-by a, .eye .hz-by { color: inherit; }   /* the author's name at the foot takes the author's colour (set on .hz-by) */
 .eye .hz-by[data-author] a { color: inherit; }
+
+/* phones open on "non plus" with only "Featured" under it, in the middle of the screen; once anything is open
+   it is the usual phone layout: "non plus" at the top, Work and Directory under it */
+.eye-menu .eye-featured { display: none; }
+html.phone .eye[data-intro] .eye-menu .eye-featured { display: inline-flex; }
+html.phone .eye:not([data-intro]) .eye-menu .eye-featured { display: none; }   /* once something's open: Work and Directory only */
+html.phone .eye[data-intro] .eye-menu a:not(.eye-featured) { display: none; }
+html.phone .eye[data-intro] .eye-boxes { top: 50% !important; transform: translateY(-50%); }
