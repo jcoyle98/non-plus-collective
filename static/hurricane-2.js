@@ -44,11 +44,13 @@
       // (on a work, together with the < > strip under it: the space for the box already leaves room for it)
       panel.style.removeProperty("top");
       const cs = getComputedStyle(panel);
-      // a Bandcamp card must fit whole: its cover shrinks by exactly as much as the box would overflow
+      // a Bandcamp card (the card itself; the date and name under it may scroll) must show whole: its cover
+      // shrinks by exactly as much as the card would run past the bottom of the box
       const art = [...panel.querySelectorAll(".bc-art")].find((a) => a.offsetParent);
       if (art) {
         art.style.removeProperty("max-height");
-        const over = panel.scrollHeight - parseFloat(cs.maxHeight);
+        const bottom = panel.getBoundingClientRect().top + parseFloat(cs.maxHeight) - parseFloat(cs.paddingBottom);
+        const over = art.closest(".bc-card").getBoundingClientRect().bottom - bottom;
         if (over > 0) art.style.maxHeight = `${Math.max(80, art.getBoundingClientRect().height - over - 1)}px`;
       }
       const top = parseFloat(cs.top), most = parseFloat(cs.maxHeight), h = panel.getBoundingClientRect().height;

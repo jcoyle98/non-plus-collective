@@ -112,6 +112,7 @@ PAGES = [
     ("humanize-3", "Humanize", "draft-humanize-3.html", "Humanize 3.0", ["flicker-images.js", "humanize-3.js"]),
     ("hurricane-2", "Humanize", "draft-hurricane-2.html", "Hurricane 2.0", ["flicker-images.js", "photo-deck.js", "hurricane-2.js"]),
     ("hurricane-2-frame", "Humanize", "draft-hurricane-2-frame.html", "Hurricane 2.0, framed", ["flicker-images.js", "photo-deck.js", "hurricane-2.js"]),
+    ("no-box", "Humanize", "draft-hurricane-2-bare.html", "No box", ["flicker-images.js", "photo-deck.js", "hurricane-2.js"]),
     ("scroll-static-final", "Design", "scroll-static-final.html", None, ["flicker-images.js", "photo-deck.js", "scroll.js"]),
 ]
 # The final version of draft-archive: the settings chosen in its Options, fixed (and no Options).
@@ -131,6 +132,7 @@ DRAFTS = {   # each design, and what it tries, as listed on /design
     "one-pager": "Works on the left; 'non plus' and contributor links arranged across the right, with contact in the lower corner, over a still Hurricane Gracie photograph.",
     "humanize-3": "Humanize 3.0: 'non plus' at the top and, in a small black box in the middle, one of the archive's texts, a different one on each visit; no menu.",
     "hurricane-2": "Hurricane 2.0: Hurricane Gracie with a black box over its eye ('non plus', Directory, Work); the menu opens a panel on the left, over the hurricane: the Directory (About, the people, Contact) or the Work, and its pieces.",
+    "no-box": "Hurricane 2.0 without the box: the works, the Work list and the Directory set straight on the photograph.",
     "hurricane-2-frame": "Hurricane 2.0 with its black panel in a gilt picture frame: an outer roll, a gilded hollow, a raised bead and a row of beads round the sight edge, with carved scrolls at the corners (static/images/gilt-frame.svg, drawn by tools/gilt_frame.py).",
     "color-palette-design": "The site's own design, for trying the colour palettes: pick one, or choose which colour plays which part.",
     "draft-disappearing-s": "The barred S hidden in the background colour: hover to see it, click to draw the bar and open the directory.",

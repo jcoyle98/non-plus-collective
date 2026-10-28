@@ -2721,3 +2721,30 @@ html.phone .eye .eye-panel:has(> .eye-section:not([hidden]) > .humanize-article.
 html.phone .eye .bc-art { width: auto; height: auto; max-width: 100%; aspect-ratio: auto; margin: 0 auto; }   /* hurricane-2.js shrinks it only if the card would not fit */
 html.phone .eye .bc-card { justify-items: center; }
 html.phone .eye .bc-player, html.phone .eye .bc-side { justify-self: stretch; width: 100%; }
+
+/* Hurricane 2.0 without the box (templates/draft-hurricane-2-bare.html): the panel's text straight on the
+   photograph, in the same place; on phones the arrows' strip goes too */
+.eye-bare .eye-panel, html.phone .eye-bare .eye-panel { background: transparent !important; }
+.eye-bare::after { display: none !important; }
+
+/* Hurricane 2.0 (and its copies): the panel scrolls, but shows no scroll bar */
+.eye-panel { scrollbar-width: none; -ms-overflow-style: none; }
+.eye-panel::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.eye-bare .eye-close { display: none !important; }   /* no "close" without the box */
+
+/* without the box: the text fades out gently at the top and bottom as it scrolls (padding keeps the first and
+   last lines clear of the fade) */
+.eye-bare .eye-panel {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 1.6rem, #000 calc(100% - 1.6rem), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 1.6rem, #000 calc(100% - 1.6rem), transparent 100%);
+}
+/* phones: the text held in from the sides, and starting a little lower than the highest it could */
+html.phone .eye-bare { --sheet-gap: 44px; --sheet-top: calc(env(safe-area-inset-top, 0px) + 5.9rem + 10px + 1.75rem); }
+html.phone .eye-bare .eye-panel { padding-top: 2rem; padding-bottom: 2rem; }
+html.phone .eye-bare .eye-panel:has(> .eye-section:not([hidden]) > .humanize-article.music) { padding-top: 1.7rem; }
+
+/* without the box, on the computer: the text starts lower down, and further in from the left */
+html:not(.phone) .eye-bare .eye-panel { padding-top: 14vh; padding-left: 5.2rem; }
+html:not(.phone) .eye-bare[data-open^="w-"] .eye-panel, html:not(.phone) .eye-bare[data-open^="f-"] .eye-panel { padding-left: 5.2rem; }
+/* and on phones a little lower again */
+html.phone .eye-bare .eye-panel { padding-top: 3.4rem; }
