@@ -18,7 +18,8 @@ each beginning with a <title>...</title> line and optionally a <date>YYYY-MM-DD<
 "| text" centres a line; <annotation>...</annotation> sets a note flush right;
 <note>...</note> wraps a note flush left without a hanging indent. Prose: a blank line starts a
 paragraph (set like a book: justified, first lines indented); \"\"\"...\"\"\" is a block quote and <poem>...</poem>
-a passage of verse. Anywhere: *italic*, **bold**, <sanskrit>SLP1</sanskrit> (Devanagari), <epigraph>...</epigraph>.
+a passage of verse. Anywhere: *italic*, **bold**, [words](https://address) for a link, <sanskrit>SLP1</sanskrit> (Devanagari),
+<epigraph>...</epigraph>. Footnotes: [^1] where the mark goes, and a paragraph "[^1]: the note" at the end.
 
 A file whose name starts with "_" is an example: shown on Humanize 2.0 (a design page) to demonstrate the
 format, and left out of everything else.
@@ -85,10 +86,30 @@ def read_text(path):
     return text
 
 
+LINK_RE = re.compile(r"\[([^\]^][^\]]*)\]\((https?://[^)\s]+|mailto:[^)\s]+)\)")
+NOTE_REF_RE = re.compile(r"\[\^(\w+)\](?!:)")
+
+
 def inline(text):
-    """Escape HTML, then turn **words** into bold and *words* into italics."""
+    """Escape HTML, then turn **words** into bold, *words* into italics, [words](https://...) into a link
+    (opening in a new tab, so the page stays where it was), and [^1] into a footnote mark."""
+    links = []
+
+    def keep(m):   # links are set aside first, so a * in an address can't be read as italics
+        links.append((m.group(1), m.group(2)))
+        return f"\x00{len(links) - 1}\x00"
+
+    text = LINK_RE.sub(keep, text)
     text = re.sub(r"\*\*(\S(?:.*?\S)?)\*\*", r"<strong>\1</strong>", html.escape(text))
-    return re.sub(r"\*(\S(?:.*?\S)?)\*", r"<em>\1</em>", text)
+    text = re.sub(r"\*(\S(?:.*?\S)?)\*", r"<em>\1</em>", text)
+    text = NOTE_REF_RE.sub(r'<sup class="fnref"><a href="#fn-\1" data-fn="\1">\1</a></sup>', text)
+
+    def link(m):
+        words, url = links[int(m.group(1))]
+        words = re.sub(r"\*(\S(?:.*?\S)?)\*", r"<em>\1</em>", html.escape(words))
+        return f'<a href="{html.escape(url, quote=True)}" target="_blank" rel="noopener">{words}</a>'
+
+    return re.sub(r"\x00(\d+)\x00", link, text)
 
 
 def blocks(text):
@@ -129,7 +150,12 @@ def render_paragraphs(text, continues=False):
     paragraphs = []
     for i, b in enumerate(blocks(text)):
         b = " ".join(b.split())
-        if b.startswith("|"):  # "| text" = centered paragraph
+        note = re.match(r"\[\^(\w+)\]:\s*(.*)", b)
+        if note:  # "[^1]: text" = the footnote itself, set small at the end, leading back to its mark
+            paragraphs.append(f'<p class="footnote" id="fn-{note.group(1)}" data-fn-note="{note.group(1)}">'
+                              f'<span class="fn-num">{note.group(1)}</span> {inline(note.group(2))} '
+                              f'<a class="fn-back" href="#fnref-{note.group(1)}" data-fn-back="{note.group(1)}">&#8617;&#xFE0E;</a></p>')
+        elif b.startswith("|"):  # "| text" = centered paragraph
             paragraphs.append(f'<p class="center">{inline(b[1:].strip())}</p>')
         elif i == 0 and continues:
             paragraphs.append(f'<p class="cont">{inline(b)}</p>')

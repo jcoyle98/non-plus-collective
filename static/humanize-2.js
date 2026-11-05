@@ -218,4 +218,16 @@
   // arrive at the screen the address names (e.g. back from a work, at #archive) without gliding
   go(location.hash.slice(1) || "home", { animate: false, record: false });
   history.replaceState({ hz: names[at] }, "", at === 0 ? location.pathname : `#${names[at]}`);
+
+  // footnotes: the mark and the arrow back move within the piece, without changing the address
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-fn], a[data-fn-back]");
+    if (!a) return;
+    e.preventDefault();
+    const piece = a.closest("article") || document;
+    const target = a.dataset.fn
+      ? piece.querySelector(`[data-fn-note="${a.dataset.fn}"]`)
+      : piece.querySelector(`a[data-fn="${a.dataset.fnBack}"]`);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, true);
 })();

@@ -223,6 +223,11 @@
     document.documentElement.style.setProperty("--hover", s.hover || s.light);
     page.style.setProperty("--panel-bg-80", `rgba(${hex(ground).map((v) => Math.round(v * 255)).join(", ")}, .925)`);   // 92.5%
     page.style.setProperty("--panel-fg", s.text || readable(ground));
+    // links in a piece's text: the text colour, shaded a little towards the scheme's other colour (its light
+    // one, the photograph's tint); where that is the text colour itself (black and white), towards grey
+    const fg = s.text || readable(ground);
+    const toward = s.light.toLowerCase() === fg.toLowerCase() ? "#808080" : s.light;
+    page.style.setProperty("--link", mix(fg, toward, 0.75));   // well towards it: plainly coloured
     photo.style.filter = "none"; void photo.offsetWidth; photo.style.filter = "";   // repaint with the new colours
     // the authors' shades, from this scheme (anyone not in the Directory takes the deepest)
     const { at, rest } = shades(s);
@@ -244,4 +249,16 @@
   }
   mark.addEventListener("click", home);
   mark.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); home(); } });
+
+  // footnotes: the mark and the arrow back move within the piece, without changing the address
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-fn], a[data-fn-back]");
+    if (!a) return;
+    e.preventDefault();
+    const piece = a.closest("article") || document;
+    const target = a.dataset.fn
+      ? piece.querySelector(`[data-fn-note="${a.dataset.fn}"]`)
+      : piece.querySelector(`a[data-fn="${a.dataset.fnBack}"]`);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, true);
 })();
