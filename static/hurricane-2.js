@@ -168,9 +168,16 @@
 
   // every visit (and every reload) starts in the flow, on the newest featured piece (or else the newest work),
   // whatever the address says
-  const start = isPhone ? "" : flow[0] || "";   // a phone starts on its first screen
+  // ...except a link made to share, which opens directly, phone or not: ?read=featured for the featured piece
+  // (its only address: featured pieces are never reachable by name), or ?read=<work> for a work
+  // (e.g. ?read=the-chameleon). The address is then tidied, so a reload starts fresh as usual.
+  const wanted = new URLSearchParams(location.search).get("read");
+  const shared = wanted === "featured" ? flow[0]
+    : wanted && works.includes("w-" + wanted) ? "w-" + wanted : "";
+  const start = shared || (isPhone ? "" : flow[0] || "");   // a phone starts on its first screen
+  if (shared) opened = true;   // a phone shows Work and Directory at the top, not its first screen
   open(start, false);
-  history.replaceState(null, "", start ? `#${start}` : location.pathname);
+  history.replaceState(null, "", location.pathname + (start ? `#${start}` : ""));
 
   // "non plus" is a link to the colours: each click steps to the next scheme (the photograph's two colours,
   // the ground behind them, and the authors' gradient)
