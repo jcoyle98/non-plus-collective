@@ -2764,3 +2764,7 @@ html.phone .eye-bare .eye-panel { padding-top: 3.4rem; }
 /* a piece's subtitle (e.g. where it first appeared): its links shaded like the text's, and more room after it */
 .hz-reading .subtitle a { color: var(--link, #b6d3e8); }
 .hz-reading .humanize-article header:has(.subtitle) { margin-bottom: 3.6rem; }
+
+/* in a featured piece, each work's title sits closer to its text (the featured title keeps its room above
+   the works; works on their own are unchanged) */
+.eye-panel .feat-part .humanize-article > header:not(:has(.subtitle)) { margin-bottom: 1.2rem; }
