@@ -203,8 +203,9 @@ def build():
     alpha = lambda t: re.sub(r"^\W+", "", t).lower()   # ignoring an opening quotation mark and the like
     by_author = sorted(hz_archive, key=lambda p: (alpha(p["author"]), alpha(p["title"])))
     next_author = ' class="next-author"'
-    eye_works = "\n".join(
-        f'<li{next_author if i and p["author"] != by_author[i - 1]["author"] else ""}>'
+    # The live work leads the list, with the usual space before the next author's works.
+    eye_works = '<li><a href="#w-tenderscope" data-open="w-tenderscope" data-author="~tgt">🧿 tenderscope</a></li>\n' + "\n".join(
+        f'<li{next_author if not i or p["author"] != by_author[i - 1]["author"] else ""}>'
         f'<a href="#w-{p["slug"]}" data-open="w-{p["slug"]}" data-author="{html.escape(p["author"], quote=True)}">{p["title_html"]}</a></li>'
         for i, p in enumerate(by_author)
     )
@@ -226,7 +227,7 @@ def build():
         + "\n</article>\n</section>"
         for f in featured
     )
-    eye_pieces = "\n".join(
+    eye_pieces = render("tenderscope.html") + "\n\n" + "\n".join(
         f'<section class="eye-section hz-reading" data-panel="w-{p["slug"]}" hidden>\n'
         + hz_article(p, "", author_at_foot=True) + "\n</section>"
         for p in hz_archive

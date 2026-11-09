@@ -2768,3 +2768,13 @@ html.phone .eye-bare .eye-panel { padding-top: 3.4rem; }
 /* in a featured piece, each work's title sits closer to its text (the featured title keeps its room above
    the works; works on their own are unchanged) */
 .eye-panel .feat-part .humanize-article > header:not(:has(.subtitle)) { margin-bottom: 1.2rem; }
+
+/* The live work keeps the reading panel's type and spacing; the player fills its text width. */
+.eye-panel .tenderscope-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #000;
+}

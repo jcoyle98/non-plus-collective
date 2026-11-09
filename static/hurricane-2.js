@@ -116,7 +116,18 @@
     if (name === "featured") name = flow[0] || "";   // "Featured" (phones' first screen): the newest featured piece
     const known = sections.some((s) => s.dataset.panel === name);
     name = known ? name : "";
-    sections.forEach((s) => { s.hidden = s.dataset.panel !== name; });
+    sections.forEach((s) => {
+      s.hidden = s.dataset.panel !== name;
+      // Live embeds run only in the open work: leaving it unloads both video and audio.
+      s.querySelectorAll("iframe[data-src]").forEach((frame) => {
+        if (s.hidden && frame.hasAttribute("src")) {
+          // Drop the browsing context so stopping playback adds no blank-page history entry.
+          const idle = frame.cloneNode(false);
+          idle.removeAttribute("src");
+          frame.replaceWith(idle);
+        } else if (!s.hidden && !frame.hasAttribute("src")) frame.src = frame.dataset.src;
+      });
+    });
     panel.hidden = !name;
     panel.scrollTop = 0;
     page.dataset.open = name;
@@ -174,8 +185,10 @@
   const wanted = new URLSearchParams(location.search).get("read");
   const shared = wanted === "featured" ? flow[0]
     : wanted && works.includes("w-" + wanted) ? "w-" + wanted : "";
-  const start = shared || (isPhone ? "" : flow[0] || "");   // a phone starts on its first screen
-  if (shared) opened = true;   // a phone shows Work and Directory at the top, not its first screen
+  // The live work also has a direct #w-tenderscope address, including on reload.
+  const liveLink = location.hash === "#w-tenderscope" ? "w-tenderscope" : "";
+  const start = shared || liveLink || (isPhone ? "" : flow[0] || "");   // a phone starts on its first screen
+  if (shared || liveLink) opened = true;   // a phone shows Work and Directory at the top, not its first screen
   open(start, false);
   history.replaceState(null, "", location.pathname + (start ? `#${start}` : ""));
 

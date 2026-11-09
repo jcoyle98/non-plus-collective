@@ -8,7 +8,8 @@
     "naterthought.com",
     "brookecorso.com",
     "macksrothman.com",
-    "cowamusic.bandcamp.com"
+    "cowamusic.bandcamp.com",
+    "theory.stanford.edu/~tgt/"
   ],
   "palettes": [
     {
@@ -140,7 +141,8 @@
     "macksrothman.com": "Max Rothman",
     "marykatetankard.com": "Mary Kate Tankard",
     "naterthought.com": "Nathan Johnson",
-    "cowamusic.bandcamp.com": "CO/WA"
+    "cowamusic.bandcamp.com": "CO/WA",
+    "theory.stanford.edu/~tgt/": "~tgt"
   },
   "colours": {
     "Alex Wennerberg": "#b0d7e0",
