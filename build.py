@@ -201,11 +201,14 @@ def build():
     # Hurricane 2.0's Work list: by author, then by title, each title in its author's colour (set by the page),
     # with a little space where one author's works give way to the next's
     alpha = lambda t: re.sub(r"^\W+", "", t).lower()   # ignoring an opening quotation mark and the like
-    by_author = sorted(hz_archive, key=lambda p: (alpha(p["author"]), alpha(p["title"])))
+    # every work, tenderscope (the live work) included, by author and then title, with a little space between
+    # authors; a leading mark ("~" in "~tgt", an opening quotation mark) is ignored in the order
+    listed = [{"slug": p["slug"], "author": p["author"], "title": p["title"], "title_html": p["title_html"]} for p in hz_archive]
+    listed.append({"slug": "tenderscope", "author": "~tgt", "title": "tenderscope", "title_html": "tenderscope"})
+    by_author = sorted(listed, key=lambda p: (alpha(p["author"]), alpha(p["title"])))
     next_author = ' class="next-author"'
-    # The live work leads the list, with the usual space before the next author's works.
-    eye_works = '<li><a href="#w-tenderscope" data-open="w-tenderscope" data-author="~tgt">tenderscope</a></li>\n' + "\n".join(
-        f'<li{next_author if not i or p["author"] != by_author[i - 1]["author"] else ""}>'
+    eye_works = "\n".join(
+        f'<li{next_author if i and p["author"] != by_author[i - 1]["author"] else ""}>'
         f'<a href="#w-{p["slug"]}" data-open="w-{p["slug"]}" data-author="{html.escape(p["author"], quote=True)}">{p["title_html"]}</a></li>'
         for i, p in enumerate(by_author)
     )
@@ -235,7 +238,7 @@ def build():
     people = config.get("people", {})   # site -> person, for Humanize 2.0's Directory (by last name)
     hz_directory = "\n".join(
         f'<li><a href="https://{html.escape(site)}">{html.escape(people.get(site, site))}</a></li>'
-        for site in sorted(config["directory"], key=lambda site: people.get(site, site).lower())   # by first name
+        for site in sorted(config["directory"], key=lambda site: re.sub(r"^\W+", "", people.get(site, site)).lower())   # by first name
     )
     onepager_works = "\n".join(
         f'<li><a href="works/{html.escape(p["slug"], quote=True)}/">{p["title_html"]}'
@@ -244,7 +247,7 @@ def build():
     )
     eye_directory = "\n".join(   # ...and on Hurricane 2.0, the names in a gradient of the colour scheme (set by the page)
         f'<li><a href="https://{html.escape(site)}" data-author="{html.escape(people.get(site, site), quote=True)}">{html.escape(people.get(site, site))}</a></li>'
-        for site in sorted(config["directory"], key=lambda site: people.get(site, site).lower())
+        for site in sorted(config["directory"], key=lambda site: re.sub(r"^\W+", "", people.get(site, site)).lower())
     )
     archive_list = "\n".join(   # the one-page draft's Archive section: each title links to the piece's own page
         f'<li class="sd-entry"><a class="sd-entry-link" href="archive/{p["slug"]}/">'
