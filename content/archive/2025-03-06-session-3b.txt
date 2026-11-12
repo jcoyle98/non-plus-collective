@@ -1,0 +1,9 @@
+<music>
+Session 3b
+author: fold0971
+link: https://fold0971.bandcamp.com/music
+url: https://fold0971.bandcamp.com/track/session-3b
+album: https://fold0971.bandcamp.com/album/ring-set-3
+bandcamp: 18851401
+art: fold0971-session-3b.jpg
+
