@@ -1,0 +1,9 @@
+<music>
+Series 27
+author: fold0971
+link: https://fold0971.bandcamp.com/music
+url: https://fold0971.bandcamp.com/track/series-27
+album: https://fold0971.bandcamp.com/album/lapse-set-1
+bandcamp: 2707373876
+art: fold0971-series-27.jpg
+

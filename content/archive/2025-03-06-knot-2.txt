@@ -1,0 +1,9 @@
+<music>
+Knot 2
+author: fold0971
+link: https://fold0971.bandcamp.com/music
+url: https://fold0971.bandcamp.com/track/knot-2
+album: https://fold0971.bandcamp.com/album/knot-set-2
+bandcamp: 72531829
+art: fold0971-knot-2.jpg
+
