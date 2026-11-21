@@ -10,7 +10,8 @@
     "macksrothman.com",
     "cowamusic.bandcamp.com",
     "theory.stanford.edu/~tgt/",
-    "fold0971.bandcamp.com/music"
+    "fold0971.bandcamp.com/music",
+    "en.wikipedia.org/wiki/HTTP_404"
   ],
   "palettes": [
     {
@@ -144,7 +145,8 @@
     "naterthought.com": "Nathan Johnson",
     "cowamusic.bandcamp.com": "CO/WA",
     "theory.stanford.edu/~tgt/": "~tgt",
-    "fold0971.bandcamp.com/music": "fold0971"
+    "fold0971.bandcamp.com/music": "fold0971",
+    "en.wikipedia.org/wiki/HTTP_404": "Mephisto"
   },
   "colours": {
     "Alex Wennerberg": "#b0d7e0",
